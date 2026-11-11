@@ -1,3 +1,7 @@
+import os
+
+# Local development only
+os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
 from google_auth_oauthlib.flow import Flow
 from http.server import HTTPServer, BaseHTTPRequestHandler
