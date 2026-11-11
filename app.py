@@ -264,90 +264,88 @@ def create_offer_pdf(aid, name, to_email, domain):
 
     return bytes(pdf.output())
 
+from email.utils import formatdate, make_msgid
+
 def send_offer_email(name, to_email, aid, domain, pdf_bytes):
     c = {"COMPANY_NAME": COMPANY_NAME, "START_DATE": START_DATE, "DURATION": DURATION, "FROM_EMAIL": GMAIL_USER}
 
     msg = EmailMessage()
 
-    # 1. Subject that passes Google AI NLP filter (Zero promotional flags)
-    msg["Subject"] = f"Internship Documentation: {domain} - {c['COMPANY_NAME']} [{aid}]"
+    first_name = name.split()[0] if name else "Candidate"
+
+    # 1. Human subject line (completely breaks previous spam subject hash)
+    msg["Subject"] = f"Your internship offer with {c['COMPANY_NAME']} - {domain}"
     msg["From"] = f"VR PI Talent Acquisition <{c['FROM_EMAIL']}>"
     msg["To"] = to_email
     msg["Reply-To"] = c["FROM_EMAIL"]
     msg["Date"] = formatdate(localtime=True)
+    msg["Message-ID"] = make_msgid(domain="gmail.com")
 
-    # 2. Authentic Corporate Message (No bulk mail markers)
+    # 2. Conversational, personal plain text (no bot markers)
     body_text = (
-        f"Dear {name},\n\n"
-        f"Thank you for registering for the {domain} internship track at {c['COMPANY_NAME']}.\n\n"
-        f"We have verified your application details:\n"
-        f"• Candidate Name: {name}\n"
-        f"• Reference ID: {aid}\n"
-        f"• Assigned Track: {domain}\n"
-        f"• Commencement Date: {c['START_DATE']}\n"
-        f"• Duration: {c['DURATION']}\n\n"
-        f"Your official Internship Offer Letter has been issued and is attached as a PDF to this email.\n\n"
-        f"ACTION REQUIRED: Please reply directly to this email confirming 'I accept' to confirm your enrollment.\n\n"
-        f"Warm regards,\n"
-        f"HR & Talent Acquisition Team\n"
+        f"Hi {first_name},\n\n"
+        f"Thank you for completing your application. We are pleased to offer you an internship position in our {domain} track.\n\n"
+        f"Program Overview:\n"
+        f"- Candidate: {name}\n"
+        f"- Role: {domain} Intern\n"
+        f"- Start Date: {c['START_DATE']}\n"
+        f"- Duration: {c['DURATION']}\n"
+        f"- Reference ID: {aid}\n\n"
+        f"Your official offer letter is attached as a PDF. Please review it and reply directly to this email to confirm your acceptance.\n\n"
+        f"If you have any questions before the start date, please feel free to reach out to us here.\n\n"
+        f"Best regards,\n"
+        f"Talent Acquisition Team\n"
         f"{c['COMPANY_NAME']}\n"
-        f"Website: https://thevrpigroup.com/about"
+        f"vrpigroupoftechnology@gmail.com"
     )
     msg.set_content(body_text)
 
-    # 3. Clean, Minimalist HTML (Bypasses SpamAssassin & Gmail Promo Filters)
+    # 3. Clean, lightweight HTML (looks like a normal email, not a bulk marketing template)
     html_content = f"""
     <!DOCTYPE html>
     <html>
     <head><meta charset="utf-8"></head>
-    <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #1e293b; line-height: 1.6; padding: 15px;">
-      <div style="max-width: 580px; margin: 0 auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 25px;">
-        
-        <p style="font-size: 15px; margin-top: 0;">Dear <strong>{escape(name)}</strong>,</p>
-        
-        <p style="font-size: 14px; color: #334155;">
-          Thank you for applying to <strong>{escape(c['COMPANY_NAME'])}</strong>. We have verified your registration for the <strong>{escape(domain)}</strong> internship track.
-        </p>
+    <body style="font-family: Arial, sans-serif; font-size: 14px; color: #222222; line-height: 1.6;">
+      <p>Hi {escape(first_name)},</p>
+      
+      <p>Thank you for completing your application. We are pleased to offer you an internship position in our <strong>{escape(domain)}</strong> track.</p>
+      
+      <p><strong>Program Overview:</strong><br/>
+      &bull; <strong>Candidate:</strong> {escape(name)}<br/>
+      &bull; <strong>Role:</strong> {escape(domain)} Intern<br/>
+      &bull; <strong>Start Date:</strong> {c['START_DATE']}<br/>
+      &bull; <strong>Duration:</strong> {c['DURATION']}<br/>
+      &bull; <strong>Reference ID:</strong> {aid}</p>
 
-        <div style="background-color: #f8fafc; border-left: 4px solid #ea580c; padding: 12px 16px; margin: 18px 0; font-size: 13.5px;">
-          <p style="margin: 3px 0;"><strong>Reference ID:</strong> {aid}</p>
-          <p style="margin: 3px 0;"><strong>Domain Track:</strong> {escape(domain)}</p>
-          <p style="margin: 3px 0;"><strong>Start Date:</strong> {c['START_DATE']}</p>
-          <p style="margin: 3px 0;"><strong>Duration:</strong> {c['DURATION']}</p>
-        </div>
+      <p>Your official offer letter is attached as a PDF. Please review it and reply directly to this email to confirm your acceptance.</p>
 
-        <p style="font-size: 14px; color: #334155;">
-          Your formal <strong>Internship Offer Letter</strong> is attached to this email as a PDF document. Please review the program specifications and terms.
-        </p>
+      <p>If you have any questions before the start date, please feel free to reach out to us here.</p>
 
-        <div style="background-color: #fff7ed; border: 1px solid #fed7aa; border-radius: 4px; padding: 10px 14px; margin: 18px 0; font-size: 13px; color: #9a3412;">
-          <strong>Action Required:</strong> Please reply directly to this email with <em>"I accept"</em> to confirm your onboarding.
-        </div>
-
-        <p style="margin-top: 25px; font-size: 13px; color: #64748b; border-top: 1px solid #f1f5f9; padding-top: 15px;">
-          Warm regards,<br/>
-          <strong>HR &amp; Talent Acquisition Team</strong><br/>
-          {escape(c['COMPANY_NAME'])}<br/>
-          <a href="https://thevrpigroup.com/about" style="color: #ea580c; text-decoration: none;">thevrpigroup.com</a>
-        </p>
-      </div>
+      <p style="margin-top: 25px; color: #555555;">
+        Best regards,<br/>
+        <strong>Talent Acquisition Team</strong><br/>
+        {escape(c['COMPANY_NAME'])}<br/>
+        <span style="font-size: 12px; color: #777777;">vrpigroupoftechnology@gmail.com</span>
+      </p>
     </body>
     </html>
     """
     msg.add_alternative(html_content, subtype="html")
 
-    # 4. Attach PDF
-    msg.add_attachment(pdf_bytes, maintype="application", subtype="pdf", filename=f"Internship_Offer_{aid}.pdf")
+    # 4. Attach PDF with a friendly filename
+    msg.add_attachment(
+        pdf_bytes,
+        maintype="application",
+        subtype="pdf",
+        filename=f"{first_name}_Internship_Offer.pdf"
+    )
 
-
-    # Send using Gmail API (OAuth 2.0), authenticated as the old Gmail account.
     raw_message = base64.urlsafe_b64encode(msg.as_bytes()).decode("utf-8").rstrip("=")
     service = get_gmail_service()
     result = service.users().messages().send(
         userId="me", body={"raw": raw_message}
     ).execute()
     return result.get("id", "")
-
 
 def process_pending_rows(max_rows=5):
     ws = get_sheet()
