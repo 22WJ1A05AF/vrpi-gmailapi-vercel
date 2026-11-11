@@ -1,0 +1,32 @@
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# OAuth credentials
+oauth_client.json
+oauth_client*.json
+token.json
+credentials.json
+
+# Google service account credentials
+service-account*.json
+service_account*.json
+google-credentials*.json
+
+# Private keys
+*.pem
+
+# Vercel local files
+.vercel/
+
+# Editor files
+.vscode/
+.DS_Store

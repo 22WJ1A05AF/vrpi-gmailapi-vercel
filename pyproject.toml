@@ -1,0 +1,15 @@
+
+[project]
+name = "vrpi-gmailapi"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "gspread==6.2.1",
+    "google-api-python-client==2.187.0",
+    "google-auth==2.41.1",
+    "google-auth-oauthlib==1.2.2",
+    "fpdf2==2.8.5",
+]
+
+[tool.vercel]
+entrypoint = "api.process:handler"
