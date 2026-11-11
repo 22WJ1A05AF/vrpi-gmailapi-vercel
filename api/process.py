@@ -1,6 +1,8 @@
 
+
 import json
 import os
+import hmac
 import logging
 from http.server import BaseHTTPRequestHandler
 
@@ -20,12 +22,18 @@ class handler(BaseHTTPRequestHandler):
         self.wfile.write(body)
 
     def _authorized(self, header_name="Authorization"):
-        secret = os.getenv("CRON_SECRET", "")
+        secret = os.getenv("CRON_SECRET", "").strip()
+
         if not secret:
+            log.error("CRON_SECRET is missing from environment variables")
             return False
 
-        value = self.headers.get(header_name, "")
-        return value == f"Bearer {secret}" or value == secret
+        value = self.headers.get(header_name, "").strip()
+
+        if value.lower().startswith("bearer "):
+            value = value[7:].strip()
+
+        return hmac.compare_digest(value, secret)
 
     def _process(self):
         try:
@@ -34,10 +42,14 @@ class handler(BaseHTTPRequestHandler):
             if max_rows < 1 or max_rows > 5:
                 return self._send(
                     400,
-                    {"ok": False, "error": "MAX_ROWS_PER_RUN must be between 1 and 5."}
+                    {
+                        "ok": False,
+                        "error": "MAX_ROWS_PER_RUN must be between 1 and 5."
+                    }
                 )
 
             result = process_pending_rows(max_rows=max_rows)
+
             return self._send(200, {"ok": True, **result})
 
         except Exception:
