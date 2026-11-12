@@ -3,75 +3,83 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>VR PI Group | Enterprise Talent Excellence Platform</title>
 <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#f4f6fa;color:#172033;font-family:'Plus Jakarta Sans',sans-serif}
+body{margin:0;background:#f3f6fa;color:#17233a;font-family:'Plus Jakarta Sans',sans-serif}
 button,input,select{font:inherit}
 button{cursor:pointer}
-.page{max-width:1150px;margin:auto;padding:30px 22px}
-.header{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;padding-bottom:20px;border-bottom:1px solid #e2e8f0}
-.logo{width:160px;height:auto;display:block}
+.app{max-width:1160px;margin:auto;padding:28px 22px}
+.header{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;padding-bottom:22px;border-bottom:1px solid #e1e7ef}
+.logo{width:175px;height:auto;display:block}
 .actions{display:flex;gap:9px;flex-wrap:wrap}
-.btn{padding:10px 15px;border:1px solid #e2e8f0;background:white;border-radius:9px;color:#263c5b;font-size:11px;font-weight:800;text-decoration:none}
-.btn-dark{background:#1e3a5f;color:white;border-color:#1e3a5f}
-.btn-orange{background:#eb4b16;color:white;border:0}
-.hero{text-align:center;padding:65px 10px 45px}
-.eyebrow{display:inline-block;background:white;border:1px solid #e2e8f0;border-radius:30px;padding:9px 16px;color:#66758b;font-size:10px;font-weight:700;letter-spacing:1px}
-.hero h1{font-size:clamp(34px,5vw,55px);line-height:1.12;letter-spacing:-2px;color:#111a2d;font-weight:800;margin:23px 0 15px}
-.hero p{max-width:740px;margin:auto;color:#708096;font-size:14px;line-height:1.9}
-.library{background:white;border:1px solid #e3e9f1;border-radius:18px;padding:28px;box-shadow:0 10px 35px #25334a09}
-.kicker{color:#8b98aa;font-size:10px;font-weight:800;letter-spacing:1.4px}
-.library h2{font-size:21px;margin:8px 0;color:#172b4d}
-.library p{font-size:12px;line-height:1.8;color:#8290a3}
-.controls{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:25px}
-.field label{display:block;font-size:10px;font-weight:800;color:#53647d;margin-bottom:9px}
-.field select{width:100%;padding:13px;border:1px solid #dfe5ed;border-radius:9px;background:white;color:#30425d;font-size:12px;outline:none}
-.field select:focus{border-color:#eb4b16}
-.template-list{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:25px}
-.template{padding:20px;border:1px solid #e5eaf0;border-radius:13px}
-.template h3{font-size:13px;color:#1e3a5f;margin:10px 0}
-.template p{font-size:11px;min-height:55px;margin:0 0 15px}
-.template button{width:100%;padding:10px;border:0;border-radius:8px;background:#1e3a5f;color:white;font-weight:700;font-size:10px}
-.template.selected{border:2px solid #eb4b16;background:#fffaf7}
-.candidate-note{font-size:11px;color:#718096;margin-top:12px}
-.footer{text-align:center;padding:28px 0;color:#8b98aa;font-size:10px}
+.btn{padding:10px 15px;border:1px solid #dfe6ef;background:#fff;border-radius:9px;color:#263d5e;text-decoration:none;font-size:11px;font-weight:800}
+.primary{background:#1e3a5f;color:white;border-color:#1e3a5f}
+.orange{background:#e94b17;color:white;border:0}
+.hero{text-align:center;padding:60px 10px 42px}
+.eyebrow{display:inline-block;background:white;border:1px solid #e1e7ef;border-radius:30px;padding:9px 17px;color:#687891;font-size:10px;font-weight:800;letter-spacing:1px}
+.hero h1{font-size:clamp(34px,5vw,55px);line-height:1.12;letter-spacing:-2px;color:#111a2d;font-weight:800;margin:22px 0 14px}
+.hero p{max-width:750px;margin:auto;color:#74839a;font-size:13px;line-height:1.9}
+.panel{background:white;border:1px solid #e1e7ef;border-radius:18px;padding:28px;box-shadow:0 10px 32px #263b5909}
+.kicker{color:#8291a6;font-size:10px;font-weight:800;letter-spacing:1.5px}
+h2{font-size:21px;color:#172b49;margin:9px 0}
+.description{font-size:12px;color:#8290a5;line-height:1.8}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:25px}
+.field label{display:block;font-size:10px;font-weight:800;color:#52637c;margin-bottom:9px}
+.field select{width:100%;padding:13px;border:1px solid #dfe6ef;border-radius:9px;background:white;color:#30425d;font-size:12px;outline:none}
+.field select:focus{border-color:#e94b17}
+.templates{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+.template{border:1px solid #e0e7ef;border-radius:14px;padding:20px;display:flex;flex-direction:column}
+.template.active{border:2px solid #e94b17;background:#fffaf7}
+.template h3{font-size:13px;color:#1e3a5f;margin:12px 0 8px}
+.template p{font-size:11px;color:#7d8aa0;line-height:1.75;flex:1}
+.template button{border:0;border-radius:8px;background:#1e3a5f;color:white;padding:11px;font-size:10px;font-weight:800}
+.notice{padding:12px 15px;border-radius:9px;font-size:11px;margin-top:16px;background:#f0f5fb;color:#52637c}
+.error{background:#fff5ed;color:#a34a16;border:1px solid #ffdbbd}
+.success{background:#edfaf3;color:#16754c;border:1px solid #c9eedc}
+.footer{text-align:center;padding:30px 0;color:#8491a5;font-size:10px}
 .footer a{color:#0d7377;text-decoration:none}
-.modal{position:fixed;inset:0;z-index:50;background:#101827df;display:flex;justify-content:center;align-items:flex-start;overflow:auto;padding:15px}
-.modal-inner{width:100%;max-width:900px}
-.modal-bar{background:#111b2e;padding:12px 16px;border-radius:11px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:13px}
-.modal-bar select{padding:8px;border-radius:7px;font-size:10px;max-width:240px}
-.a4-page{width:210mm;height:297mm;min-height:297mm;background:white;margin:auto;display:flex;flex-direction:column;position:relative;overflow:hidden;box-shadow:0 15px 50px #0003}
-.doc-header{padding:23px 36px;display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:2px solid #1e3a5f}
-.doc-brand{display:flex;align-items:center;gap:12px}
-.doc-brand strong{display:block;font-size:14px;color:#172b4d}
-.doc-brand small{display:block;font-size:8px;color:#748399;margin-top:4px;letter-spacing:1px}
-.doc-content{padding:28px 40px;flex:1;display:flex;flex-direction:column;font-size:11px;line-height:1.8}
-.doc-title{text-align:center;margin:12px 0 24px}
-.doc-title h2{font-size:17px;color:#1e3a5f;letter-spacing:1.5px;margin:6px}
-.doc-title small{font-size:9px;color:#8290a3;letter-spacing:2px}
-.doc-content p{color:#46566d;line-height:1.9}
-.doc-table{border-collapse:collapse;width:100%;font-size:10px;margin:12px 0}
-.doc-table td{padding:8px 10px;border-bottom:1px solid #e7ebf0}
-.doc-table td:first-child{background:#f1f5f9;color:#1e3a5f;font-weight:700;width:38%}
-.doc-footer{padding:11px;background:#1e3a5f;color:white;text-align:center;font-size:9px}
-.signoff{margin-top:auto;border-top:1px solid #e2e8f0;padding-top:20px;color:#253650}
-.signoff strong{display:block;margin-top:8px;font-size:11px}
-.signoff small{font-size:9px;color:#78869a}
-.training-accent{height:8px;background:linear-gradient(90deg,#191928 55%,#eb4b16)}
-.completion-accent{height:4px;background:#0d7377}
-@media(max-width:700px){
- .page{padding:18px 12px}
- .controls,.template-list{grid-template-columns:1fr}
- .library{padding:20px}
+.modal{position:fixed;inset:0;background:#101827e8;z-index:100;overflow:auto;padding:15px;display:flex;justify-content:center;align-items:flex-start}
+.modal-inner{max-width:900px;width:100%;margin:auto}
+.modalbar{background:#111c30;padding:12px 15px;border-radius:11px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.modalbar strong{font-size:11px;color:white}
+.modalbar select{padding:8px;border-radius:7px;font-size:10px;max-width:220px}
+.modal-actions{display:flex;gap:8px;flex-wrap:wrap}
+.a4{width:210mm;height:297mm;min-height:297mm;margin:auto;background:white;display:flex;flex-direction:column;position:relative;overflow:hidden;box-shadow:0 15px 50px #0004;color:#26354d}
+.doc-header{padding:23px 35px;display:flex;align-items:center;justify-content:space-between;gap:14px;border-bottom:2px solid #1e3a5f}
+.doc-logo{width:150px;height:auto}
+.doc-info{text-align:right;font-size:9px;color:#66758c;line-height:1.8}
+.doc-info strong{color:#1e3a5f}
+.doc-content{padding:27px 39px;flex:1;display:flex;flex-direction:column;font-size:10.5px;line-height:1.8}
+.doc-content p{color:#475569;margin:9px 0}
+.doc-title{text-align:center;margin:12px 0 23px}
+.doc-title h2{font-size:17px;letter-spacing:1.5px;color:#1e3a5f;margin:8px}
+.doc-title small{color:#8491a5;font-size:9px;letter-spacing:2px;font-weight:700}
+.doc-section{font-size:10px;letter-spacing:1.2px;color:#1e3a5f;font-weight:800;border-bottom:1px solid #dce3ec;padding-bottom:6px;margin-top:17px}
+.doc-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:10px}
+.doc-table td{border-bottom:1px solid #e5eaf0;padding:7px 10px}
+.doc-table td:first-child{width:37%;background:#f3f6fa;color:#1e3a5f;font-weight:700}
+.doc-footer{padding:11px 20px;background:#1e3a5f;color:#fff;text-align:center;font-size:9px;line-height:1.7}
+.signoff{margin-top:auto;padding-top:22px;border-top:1px solid #e1e7ef}
+.signoff strong{display:block;margin-top:7px;color:#1e3a5f;font-size:11px}
+.signoff small{display:block;color:#8190a5;margin-top:3px;font-size:9px}
+.draft{padding:7px;text-align:center;background:#fff4e8;color:#aa4b16;border:1px solid #ffd7b5;font-weight:800;font-size:9px;letter-spacing:1px}
+.training-top{height:9px;background:linear-gradient(90deg,#191928 70%,#e94b17)}
+.training-title{font-size:26px;line-height:1.17;font-weight:800;color:#111827;margin:13px 0 24px}
+.footer-brand{display:flex;justify-content:center;align-items:center;gap:12px;margin-bottom:10px}
+@media(max-width:750px){
+ .app{padding:16px 12px}
+ .fields,.templates{grid-template-columns:1fr}
+ .panel{padding:20px}
  .header{align-items:flex-start}
- .logo{width:135px}
- .a4-page{width:100%;height:auto;min-height:1050px}
+ .logo{width:145px}
+ .a4{width:100%;height:auto;min-height:1050px}
  .doc-content{padding:22px}
 }
 @media print{
@@ -79,317 +87,535 @@ button{cursor:pointer}
  html,body{margin:0!important;padding:0!important;background:white!important}
  body *{visibility:hidden!important}
  #printTarget,#printTarget *{visibility:visible!important}
- #printTarget{position:absolute!important;left:0!important;top:0!important;width:210mm!important}
- .a4-page{width:210mm!important;height:297mm!important;min-height:297mm!important;margin:0!important;box-shadow:none!important;break-after:page;page-break-after:always}
  .modal{position:static!important;display:block!important;padding:0!important;background:white!important;overflow:visible!important}
- .modal-inner{width:210mm!important;max-width:none!important}
- .modal-bar,.no-print{display:none!important}
+ .modal-inner{width:210mm!important;max-width:none!important;margin:0!important}
+ #printTarget{position:absolute!important;left:0!important;top:0!important;width:210mm!important}
+ .a4{width:210mm!important;height:297mm!important;min-height:297mm!important;margin:0!important;box-shadow:none!important;break-after:page}
+ .no-print{display:none!important}
 }
 </style>
 </head>
 
 <body>
 <div id="root"></div>
-
 <script type="text/babel">
+
 const {useState,useEffect,useCallback}=React;
 
-const COMPANY="VR PI Group Of Company";
-const COMPANY_EMAIL="vrpigroupoftechnology@gmail.com";
-const COMPANY_URL="https://share.google/Staafq7spnZSStc8n";
+const COMPANY="VR PI Group Of Companies";
+const EMAIL="vrpigroupoftechnology@gmail.com";
+const LOCATION="Wanaparthy, Telangana, India";
+const WEBSITE="https://share.google/Staafq7spnZSStc8n";
 const SHEET_URL="https://docs.google.com/spreadsheets/d/1dCJXGZN3dbThvJt5SnMYUSp0uAAsVuWnKuXd1rabBOU/edit";
 const GMAIL_URL="https://mail.google.com/mail/?authuser=vrpigroupoftechnology%40gmail.com#inbox";
+const API_URL="/api/candidates";
+const TODAY=new Date().toLocaleDateString("en-IN",{day:"2-digit",month:"long",year:"numeric"});
 
-/* Inline single-file logo inspired by the uploaded VRPi brand artwork */
-function Logo({width=160}){
- return <svg className="logo" width={width} viewBox="0 0 360 132" role="img" aria-label="VR PI Group of Companies">
-  <text x="3" y="82" fontSize="91" fontWeight="900" letterSpacing="-9" fill="#d9003d">VR</text>
-  <text x="193" y="82" fontSize="83" fontWeight="900" letterSpacing="-6" fill="#ff6900">Pi</text>
-  <text x="5" y="119" fontSize="19" fontWeight="600" letterSpacing="1.1" fill="#d9003d">GROUP OF COMPANIES</text>
- </svg>;
-}
+/* Actual uploaded company logo embedded in this HTML file */
+const LOGO="data:image/png;base64,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";
 
-const TEMPLATES=[
- {id:"offer",name:"Internship Offer Letter",color:"#1e3a5f",desc:"Formal corporate internship offer with programme particulars and terms."},
- {id:"completion",name:"Internship Completion Certificate",color:"#0d7377",desc:"Premium teal-accented internship completion document."},
- {id:"training",name:"Industrial Training Appointment",color:"#e84916",desc:"Modern corporate training appointment with structured details."}
-];
+const norm=s=>String(s||"").toLowerCase().replace(/[^a-z0-9]/g,"");
 
-const normalize=s=>String(s||"").toLowerCase().replace(/[^a-z0-9]/g,"");
-
-function pick(row,names){
- const key=Object.keys(row||{}).find(k=>names.some(n=>normalize(n)===normalize(k)));
+function value(row,names){
+ const key=Object.keys(row||{}).find(k=>
+  names.some(n=>norm(n)===norm(k))
+ );
  return key?row[key]??"":"";
 }
 
-function Candidate(raw){
+function mapCandidate(row){
  return {
-  ...raw,
-  aid:pick(raw,["Application ID","Application Id","aid","Reference Code"]),
-  name:pick(raw,["Full Name","Name","name"]),
-  email:pick(raw,["Email Address","Email","email"]),
-  phone:pick(raw,["WhatsApp / Phone","WhatsApp","Phone"]),
-  college:pick(raw,["College"]),
-  domain:pick(raw,["Domain","Internship Domain","Track"]),
-  mode:pick(raw,["Mode","Programme Mode"]),
-  joining:pick(raw,["Joining Date","Start Date"]),
-  duration:pick(raw,["Duration"]),
-  timestamp:pick(raw,["Timestamp"]),
-  status:pick(raw,["Email Status","Letter Sent","Application Status","Status"]),
-  pdf:pick(raw,["PDF Link","PDF Record"]),
-  completion:pick(raw,["Completion Date"])
+  raw:row,
+  aid:value(row,["Application ID","Application Id","aid","Reference Code"]),
+  name:value(row,["Full Name","Name","name"]),
+  email:value(row,["Email Address","Email","email"]),
+  phone:value(row,["WhatsApp / Phone","WhatsApp","Phone"]),
+  college:value(row,["College"]),
+  degree:value(row,["Degree"]),
+  domain:value(row,["Domain","Internship Domain","Track"]),
+  mode:value(row,["Mode","Programme Mode"]),
+  joining:value(row,["Joining Date","Start Date","Commencement Date"]),
+  endDate:value(row,["End Date","Internship End Date"]),
+  duration:value(row,["Duration","Programme Duration"]),
+  status:value(row,["Application Status","Email Status","Letter Sent","Status"]),
+  completionStatus:value(row,["Completion Status","Training Status","Programme Status"]),
+  completionDate:value(row,["Completion Date"]),
+  stipend:value(row,["Stipend"]),
+  timestamp:value(row,["Timestamp"]),
+  pdf:value(row,["PDF Link","PDF Record"])
  };
 }
 
-/*
-  The frontend reads private sheet data through your existing
-  authenticated Vercel backend. Expected endpoint: GET /api/candidates.
-  No credentials are stored in this HTML.
-*/
-function App(){
- const [candidates,setCandidates]=useState([]);
- const [selectedId,setSelectedId]=useState("");
- const [templateId,setTemplateId]=useState("offer");
- const [open,setOpen]=useState(false);
- const [loading,setLoading]=useState(true);
- const [message,setMessage]=useState("Connecting to company records...");
+function val(v){
+ return v&&String(v).trim()?String(v).trim():"To be confirmed by VR PI Group";
+}
 
- const loadCandidates=useCallback(async()=>{
+function Logo(){
+ return <img src={LOGO} alt="VR PI Group of Companies" className="doc-logo"/>;
+}
+
+function CompanyDetails(){
+ return <div className="doc-info">
+  <strong>{COMPANY}</strong><br/>
+  {LOCATION}<br/>
+  {EMAIL}<br/>
+  {WEBSITE}
+ </div>;
+}
+
+function DocHeader({candidate,color="#1e3a5f"}){
+ return <div className="doc-header" style={{borderColor:color}}>
+  <div><Logo/></div>
+  <div className="doc-info">
+   <strong>{COMPANY}</strong><br/>
+   {LOCATION}<br/>
+   {EMAIL}<br/>
+   {WEBSITE}<br/>
+   Reference: {candidate.aid}
+  </div>
+ </div>;
+}
+
+function DocFooter({color="#1e3a5f"}){
+ return <div className="doc-footer" style={{background:color}}>
+  {COMPANY} • {LOCATION}<br/>
+  {EMAIL} • {WEBSITE}
+ </div>;
+}
+
+function DetailsTable({candidate,fields}){
+ return <table className="doc-table"><tbody>
+  {fields.map(([label,key])=>{
+   const v=candidate[key];
+   if(!v)return null;
+   return <tr key={label}><td>{label}</td><td>{v}</td></tr>;
+  })}
+ </tbody></table>;
+}
+
+/* TEMPLATE 1 — ABC-STYLE INTERNSHIP OFFER */
+
+function OfferLetter({c}){
+ return <div className="a4" id="printPage">
+  <div style={{
+   background:"#1e3a5f",
+   padding:"21px 35px",
+   display:"flex",
+   justifyContent:"space-between",
+   alignItems:"center",
+   gap:15
+  }}>
+   <Logo/>
+   <div style={{textAlign:"right",color:"#e2e8f0",fontSize:9,lineHeight:1.9}}>
+    <b style={{color:"white"}}>{COMPANY}</b><br/>
+    {LOCATION}<br/>
+    {EMAIL}<br/>
+    {WEBSITE}<br/>
+    Ref: {c.aid}
+   </div>
+  </div>
+  <div style={{height:4,background:"linear-gradient(90deg,#f97316,#ffd5ae)"}}/>
+
+  <div className="doc-content">
+   <div className="doc-title">
+    <small>OFFICIAL CORPORATE COMMUNICATION</small>
+    <h2>INTERNSHIP OFFER LETTER</h2>
+    <small>{TODAY}</small>
+   </div>
+
+   <p><b>To: {c.name}</b><br/>
+   {c.email}<br/>{c.phone}</p>
+
+   <p>Dear {c.name},</p>
+
+   <p>We are pleased to inform you that you have been selected for the <b>{val(c.domain)}</b> internship programme at <b>{COMPANY}</b>, subject to the programme particulars and terms mentioned in this letter.</p>
+
+   <p>We welcome you to the programme and look forward to your participation in assigned practical activities, project deliverables and professional learning engagements.</p>
+
+   <div className="doc-section">INTERNSHIP PARTICULARS</div>
+
+   <DetailsTable candidate={c} fields={[
+    ["Candidate Name","name"],
+    ["Application Reference","aid"],
+    ["Email Address","email"],
+    ["Contact Number","phone"],
+    ["College","college"],
+    ["Degree","degree"],
+    ["Internship Domain","domain"],
+    ["Programme Mode","mode"],
+    ["Joining Date","joining"],
+    ["End Date","endDate"],
+    ["Duration","duration"],
+    ["Stipend","stipend"]
+   ]}/>
+
+   <div className="doc-section">TERMS AND CONDITIONS</div>
+   <p>1. The candidate is expected to maintain professional conduct throughout the programme.</p>
+   <p>2. Assigned activities and deliverables should be completed within the timelines communicated by the organization.</p>
+   <p>3. Confidential company information must be handled responsibly.</p>
+   <p>4. The candidate must follow the applicable programme guidelines and instructions communicated by the company.</p>
+
+   <div style={{
+    marginTop:15,
+    padding:13,
+    border:"1px solid #d9e1eb",
+    borderRadius:6,
+    background:"#f8fafc"
+   }}>
+    <b style={{color:"#1e3a5f"}}>CANDIDATE ACCEPTANCE</b>
+    <p>I, {c.name}, acknowledge receipt of this offer and agree to review and follow the applicable programme terms.</p>
+    <div style={{fontSize:9,color:"#64748b"}}>Candidate signature and date: To be completed physically.</div>
+   </div>
+
+   <div className="signoff">
+    Regards,
+    <strong>Talent Acquisition Department</strong>
+    <small>{COMPANY} • Authorized Corporate Representative</small>
+    <small>{LOCATION}</small>
+   </div>
+  </div>
+  <DocFooter/>
+ </div>;
+}
+
+/* TEMPLATE 2 — FACTOHR-STYLE COMPLETION LETTER */
+
+function CompletionLetter({c}){
+ const verified=/completed|successfully completed|verified/i.test(c.completionStatus);
+ return <div className="a4" id="printPage">
+  <div style={{
+   padding:"25px 38px",
+   borderBottom:"2px solid #e6ebf0",
+   display:"flex",
+   justifyContent:"space-between",
+   alignItems:"center",
+   gap:15
+  }}>
+   <Logo/>
+   <div style={{textAlign:"right",fontSize:9,color:"#64748b",lineHeight:1.8}}>
+    <b>{COMPANY}</b><br/>
+    {LOCATION}<br/>
+    {EMAIL}<br/>
+    {WEBSITE}
+   </div>
+  </div>
+
+  <div className="completion-accent"/>
+  {!verified&&<div className="draft">DRAFT PREVIEW • COMPLETION STATUS REQUIRES COMPANY VERIFICATION</div>}
+
+  <div className="doc-content" style={{padding:"38px 48px"}}>
+   <div style={{
+    color:"#0d7377",
+    fontSize:10,
+    fontWeight:800,
+    letterSpacing:3,
+    marginBottom:25
+   }}>DATE: {TODAY}</div>
+
+   <div className="doc-title" style={{textAlign:"left",margin:"0 0 27px"}}>
+    <h2 style={{textAlign:"left",color:"#0d7377",fontSize:19}}>
+     Subject: Internship Completion Letter
+    </h2>
+    <p>Respected {c.name},</p>
+   </div>
+
+   {verified?
+    <p>Congratulations on successfully completing your internship with <b>{COMPANY}</b> in the <b>{c.domain}</b> domain. Your contribution and commitment during the programme are acknowledged by the organization.</p>
+    :
+    <p>This document has been prepared for <b>{c.name}</b> in connection with the <b>{val(c.domain)}</b> programme at <b>{COMPANY}</b>. The completion status must be verified by the authorized company representative before this letter is issued as a completion credential.</p>
+   }
+
+   <p>The programme record is associated with Application ID <b>{c.aid}</b>. Candidate details and programme information are shown below for review and validation.</p>
+
+   <div className="doc-section" style={{color:"#0d7377"}}>CANDIDATE AND PROGRAMME DETAILS</div>
+
+   <DetailsTable candidate={c} fields={[
+    ["Candidate Name","name"],
+    ["Application ID","aid"],
+    ["Email Address","email"],
+    ["College","college"],
+    ["Degree","degree"],
+    ["Domain","domain"],
+    ["Programme Mode","mode"],
+    ["Joining Date","joining"],
+    ["Completion Date","completionDate"],
+    ["Duration","duration"]
+   ]}/>
+
+   <p>We appreciate the candidate's participation and wish them continued success in their future professional endeavours.</p>
+
+   <div className="signoff">
+    Regards,
+    <strong>Talent Excellence Division</strong>
+    <small>{COMPANY}</small>
+    <small>{LOCATION} • {EMAIL}</small>
+   </div>
+  </div>
+  <DocFooter color="#0d7377"/>
+ </div>;
+}
+
+/* TEMPLATE 3 — AKRIVIA-STYLE TRAINING APPOINTMENT */
+
+function TrainingLetter({c}){
+ return <div className="a4" id="printPage">
+  <div className="training-top"/>
+  <div className="doc-header" style={{borderColor:"#e94b17"}}>
+   <Logo/>
+   <div className="doc-info">
+    <strong>{COMPANY}</strong><br/>
+    {LOCATION}<br/>
+    {EMAIL}<br/>
+    {WEBSITE}<br/>
+    Ref: {c.aid}
+   </div>
+  </div>
+
+  <div className="doc-content" style={{padding:"36px 42px"}}>
+   <div style={{fontSize:10,color:"#e94b17",fontWeight:800,letterSpacing:2}}>
+    {COMPANY.toUpperCase()}
+   </div>
+   <h2 style={{
+    fontSize:23,
+    fontWeight:800,
+    color:"#111827",
+    margin:"12px 0 22px",
+    letterSpacing:-.5
+   }}>INDUSTRIAL TRAINING<br/>APPOINTMENT LETTER</h2>
+
+   <p><b>Date:</b> {TODAY}</p>
+   <p><b>Employee / Trainee Name:</b> {c.name}<br/>
+   <b>Application Reference:</b> {c.aid}<br/>
+   <b>Email:</b> {c.email}</p>
+
+   <p>Dear {c.name},</p>
+
+   <p>We are pleased to offer you an industrial training opportunity at <b>{COMPANY}</b> in the <b>{val(c.domain)}</b> domain. The following particulars are based on the candidate information available in the connected application record.</p>
+
+   <div className="doc-section" style={{color:"#e94b17"}}>TRAINING PARTICULARS</div>
+
+   <DetailsTable candidate={c} fields={[
+    ["Trainee Name","name"],
+    ["Application ID","aid"],
+    ["Email Address","email"],
+    ["College","college"],
+    ["Degree","degree"],
+    ["Training Domain","domain"],
+    ["Programme Mode","mode"],
+    ["Commencement Date","joining"],
+    ["Programme Duration","duration"],
+    ["End Date","endDate"]
+   ]}/>
+
+   <p>You are expected to maintain professional conduct, complete assigned tasks within communicated timelines, and follow the programme instructions and confidentiality requirements.</p>
+
+   <p>Any additional programme conditions or joining instructions will be communicated by the authorized company representative.</p>
+
+   <div className="signoff">
+    Regards,
+    <strong>Industrial Training Department</strong>
+    <small>{COMPANY}</small>
+    <small>{LOCATION} • {EMAIL}</small>
+   </div>
+  </div>
+  <DocFooter color="#e94b17"/>
+ </div>;
+}
+
+/* MAIN REACT APPLICATION */
+
+function App(){
+ const [records,setRecords]=useState([]);
+ const [candidateId,setCandidateId]=useState("");
+ const [templateId,setTemplateId]=useState("offer");
+ const [preview,setPreview]=useState(false);
+ const [loading,setLoading]=useState(true);
+ const [error,setError]=useState("");
+ const [search,setSearch]=useState("");
+
+ const loadRecords=useCallback(async()=>{
   setLoading(true);
   try{
-   const response=await fetch("/api/candidates",{
+   const response=await fetch(API_URL,{
     method:"GET",
-    credentials:"include",
     cache:"no-store",
+    credentials:"include",
     headers:{Accept:"application/json"}
    });
-   if(!response.ok)throw new Error("Candidate API unavailable");
+   if(!response.ok)throw new Error("Candidate API returned "+response.status);
+
    const data=await response.json();
    const rows=Array.isArray(data)?data:(data.rows||data.candidates||[]);
-   const records=rows.map(Candidate).filter(c=>c.aid||c.email||c.name);
-   setCandidates(records);
-   setSelectedId(previous=>records.some(c=>c.aid===previous)?previous:(records[0]?.aid||""));
-   setMessage(records.length?`${records.length} live candidate records available`:"No candidate records returned");
-  }catch(error){
-   setCandidates([]);
-   setMessage("Live records require the authenticated /api/candidates backend endpoint.");
+   const parsed=rows.map(mapCandidate).filter(x=>x.aid||x.name||x.email);
+
+   setRecords(parsed);
+   setCandidateId(old=>parsed.some(x=>x.aid===old)?old:(parsed[0]?.aid||""));
+   setError("");
+  }catch(e){
+   setRecords([]);
+   setCandidateId("");
+   setError("Could not load actual candidate records. Connect the authenticated /api/candidates endpoint to the private Google Sheet. No sample records are displayed.");
   }finally{
    setLoading(false);
   }
  },[]);
 
  useEffect(()=>{
-  loadCandidates();
-  const timer=setInterval(loadCandidates,60000);
+  loadRecords();
+  const timer=setInterval(loadRecords,60000);
   return()=>clearInterval(timer);
- },[loadCandidates]);
+ },[loadRecords]);
 
- const candidate=candidates.find(c=>c.aid===selectedId)||null;
+ const filtered=records.filter(c=>
+  [c.aid,c.name,c.email,c.domain].join(" ").toLowerCase().includes(search.toLowerCase())
+ );
+
+ const candidate=records.find(c=>c.aid===candidateId)||null;
  const template=TEMPLATES.find(t=>t.id===templateId);
 
- return <main className="page">
+ function openTemplate(id){
+  setTemplateId(id);
+  setPreview(true);
+ }
+
+ return <main className="app">
+
   <header className="header no-print">
-   <a href={COMPANY_URL} target="_blank" rel="noreferrer">
-    <Logo width={175}/>
+   <a href={WEBSITE} target="_blank" rel="noreferrer">
+    <Logo/>
    </a>
    <div className="actions">
-    <a className="btn" href={COMPANY_URL} target="_blank" rel="noreferrer">Company Website ↗</a>
+    <a className="btn" href={WEBSITE} target="_blank" rel="noreferrer">Company Website ↗</a>
     <a className="btn" href={SHEET_URL} target="_blank" rel="noreferrer">Google Sheet ↗</a>
-    <a className="btn btn-dark" href={GMAIL_URL} target="_blank" rel="noreferrer">Open Company Gmail ↗</a>
+    <a className="btn primary"
+       href={GMAIL_URL}
+       target="_blank"
+       rel="noreferrer">Company Gmail ↗</a>
    </div>
   </header>
 
   <section className="hero no-print">
-   <div className="eyebrow">VR PI GROUP • ENTERPRISE OPERATIONS SUITE</div>
-   <h1>Enterprise Talent<br/><span style={{color:"#1e3a5f"}}>Excellence Platform</span></h1>
+   <div className="eyebrow">VR PI GROUP • CORPORATE OPERATIONS SUITE</div>
+   <h1>Enterprise Talent<br/>
+    <span style={{color:"#1e3a5f"}}>Excellence Platform</span>
+   </h1>
    <p>A unified enterprise solution for intelligent talent management, official documentation, professional certifications, and automated corporate communication.</p>
   </section>
 
-  <section className="library no-print">
-   <span className="kicker">CORPORATE DOCUMENT LIBRARY</span>
+  <section className="panel no-print">
+   <div className="kicker">CORPORATE DOCUMENT LIBRARY</div>
    <h2>Professional Document Generation</h2>
-   <p>Select a real candidate from the connected company records, choose a document template, and preview it in A4 format before printing or saving as PDF.</p>
+   <p className="description">Select an actual candidate record, choose an official VR PI Group document and preview the personalized A4 letter before saving it as PDF.</p>
 
-   <div className="controls">
+   {error&&<div className="notice error">{error}</div>}
+
+   <div className="fields">
     <div className="field">
      <label>SELECT CANDIDATE</label>
-     <select value={selectedId} onChange={e=>setSelectedId(e.target.value)}>
-      <option value="">{loading?"Loading candidates...":"Select candidate"}</option>
-      {candidates.map((c,i)=><option key={c.aid||i} value={c.aid}>{c.name} — {c.aid}</option>)}
+     <select value={candidateId}
+      onChange={e=>setCandidateId(e.target.value)}>
+      <option value="">{loading?"Loading real records...":"Select candidate"}</option>
+      {filtered.map((c,i)=>
+       <option key={c.aid||i} value={c.aid}>
+        {c.name} — {c.aid}
+       </option>
+      )}
      </select>
+     <input value={search}
+      onChange={e=>setSearch(e.target.value)}
+      placeholder="Search candidate name or application ID"
+      style={{width:"100%",padding:10,marginTop:9,border:"1px solid #e1e7ef",borderRadius:8,fontSize:11}}/>
     </div>
+
     <div className="field">
      <label>SELECT DOCUMENT TEMPLATE</label>
      <select value={templateId} onChange={e=>setTemplateId(e.target.value)}>
       {TEMPLATES.map(t=><option key={t.id} value={t.id}>{t.name}</option>)}
      </select>
+
+     <div className="notice" style={{marginTop:10}}>
+      <b>{COMPANY}</b><br/>
+      {LOCATION}<br/>
+      {EMAIL}
+     </div>
     </div>
    </div>
 
-   <div className="candidate-note">{message}</div>
+   <div className="notice">
+    {loading?"Synchronizing actual Google Sheets records...":
+     candidate?`Selected: ${candidate.name} • ${candidate.aid}`:
+     "No candidate selected. Check the private Sheet API connection."}
+   </div>
 
-   <div className="template-list">
+   <div className="templates">
     {TEMPLATES.map(t=>
-     <article className={"template "+(templateId===t.id?"selected":"")} key={t.id}>
+     <article className={"template "+(templateId===t.id?"active":"")} key={t.id}>
       <span className="kicker" style={{color:t.color}}>VR PI • OFFICIAL DOCUMENT</span>
       <h3>{t.name}</h3>
       <p>{t.desc}</p>
-      <button disabled={!candidate} onClick={()=>{setTemplateId(t.id);setOpen(true);}}>Preview A4 Document →</button>
+      <button disabled={!candidate} onClick={()=>openTemplate(t.id)}>
+       Preview A4 Document →
+      </button>
      </article>
     )}
    </div>
 
-   <div style={{marginTop:20,display:"flex",justifyContent:"flex-end"}}>
-    <button className="btn btn-orange" disabled={!candidate} onClick={()=>setOpen(true)}>Open A4 / PDF Preview</button>
+   <div style={{display:"flex",justifyContent:"flex-end",marginTop:22}}>
+    <button className="btn orange" disabled={!candidate}
+     onClick={()=>setPreview(true)}>
+     Open A4 / PDF Preview
+    </button>
    </div>
   </section>
 
   <footer className="footer no-print">
-   <Logo width={150}/>
-   <p><strong>{COMPANY}</strong></p>
+   <div className="footer-brand"><Logo/></div>
+   <b>{COMPANY}</b><br/>
+   {LOCATION}<br/>
+   {EMAIL}<br/>
+   <a href={WEBSITE} target="_blank" rel="noreferrer">Official Company Website ↗</a>
    <p>Enterprise Talent Excellence Platform</p>
-   <a href={COMPANY_URL} target="_blank" rel="noreferrer">Official Company Website ↗</a>
   </footer>
 
-  {open&&candidate&&<div className="modal">
-   <div className="modal-inner">
-    <div className="modal-bar no-print">
-     <strong style={{color:"white",fontSize:11}}>{template.name} • {candidate.name}</strong>
-     <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
-      <button className="btn" onClick={()=>window.print()}>Print / Save A4 PDF</button>
-      <button className="btn btn-orange" onClick={()=>setOpen(false)}>Close ×</button>
+  {preview&&candidate&&
+   <div className="modal">
+    <div className="modal-inner">
+     <div className="modalbar no-print">
+      <strong>{template.name} • {candidate.name}</strong>
+      <div className="modal-actions">
+       <select value={candidateId} onChange={e=>setCandidateId(e.target.value)}>
+        {records.map(c=><option key={c.aid} value={c.aid}>{c.name} — {c.aid}</option>)}
+       </select>
+       <button className="btn orange" onClick={()=>window.print()}>
+        Print / Save PDF
+       </button>
+       <button className="btn" onClick={()=>setPreview(false)}>Close ×</button>
+      </div>
+     </div>
+
+     <div className="modal-actions no-print" style={{justifyContent:"center",marginBottom:12}}>
+      {TEMPLATES.map(t=>
+       <button className="btn"
+        key={t.id}
+        style={{
+         background:templateId===t.id?t.color:"#fff",
+         color:templateId===t.id?"#fff":"#263d5e"
+        }}
+        onClick={()=>setTemplateId(t.id)}>
+        {t.name}
+       </button>
+      )}
+     </div>
+
+     <div id="printTarget">
+      {templateId==="offer"&&<OfferLetter c={candidate}/>}
+      {templateId==="completion"&&<CompletionLetter c={candidate}/>}
+      {templateId==="training"&&<TrainingLetter c={candidate}/>}
      </div>
     </div>
-
-    <div className="no-print" style={{display:"flex",justifyContent:"center",gap:8,marginBottom:12,flexWrap:"wrap"}}>
-     {TEMPLATES.map(t=><button key={t.id} className="btn" style={{background:templateId===t.id?t.color:"#fff",color:templateId===t.id?"#fff":"#263c5b"}} onClick={()=>setTemplateId(t.id)}>{t.name}</button>)}
-    </div>
-
-    <div id="printTarget">
-     {templateId==="offer"&&<OfferDocument candidate={candidate}/>}
-     {templateId==="completion"&&<CompletionDocument candidate={candidate}/>}
-     {templateId==="training"&&<TrainingDocument candidate={candidate}/>}
-    </div>
    </div>
-  </div>}
+  }
  </main>;
-}
-
-/* A4 TEMPLATE CONTENT */
-
-function OfferDocument({candidate:c}){
- const rows=[
-  ["Candidate Name",c.name],["Application ID",c.aid],
-  ["Email Address",c.email],["Phone",c.phone],
-  ["College",c.college],["Programme Domain",c.domain],
-  ["Mode",c.mode],["Joining Date",c.joining],["Duration",c.duration]
- ].filter(x=>x[1]);
-
- return <div className="a4-page">
-  <DocumentHeader reference={c.aid} date={new Date().toLocaleDateString("en-IN")}/>
-  <div className="doc-content">
-   <div className="doc-title">
-    <small>OFFICIAL CORPORATE COMMUNICATION</small>
-    <h2>INTERNSHIP OFFER LETTER</h2>
-   </div>
-   <p><b>To: {c.name}</b><br/>{c.email}</p>
-   <p>Dear {c.name},</p>
-   <p>We are pleased to inform you that you have been selected for the <b>{c.domain}</b> internship programme at <b>VR PI Group of Companies</b>.</p>
-   <p>We welcome you to our professional development programme and look forward to your participation in assigned projects, practical learning activities, and professional engagements.</p>
-   <h4 style={{color:"#1e3a5f",letterSpacing:1}}>PROGRAMME PARTICULARS</h4>
-   <table className="doc-table"><tbody>{rows.map(([k,v])=><tr key={k}><td>{k}</td><td>{v}</td></tr>)}</tbody></table>
-   <h4 style={{color:"#1e3a5f",letterSpacing:1}}>TERMS AND CONDITIONS</h4>
-   <p>1. Maintain confidentiality of company information.</p>
-   <p>2. Complete assigned tasks within communicated deadlines.</p>
-   <p>3. Follow professional conduct and programme guidelines.</p>
-   <p>4. Adhere to applicable company policies.</p>
-   <div className="signoff">
-    Regards,
-    <strong>Talent Acquisition Directorate</strong>
-    <small>VR PI Group of Companies • Authorized Corporate Representative</small>
-   </div>
-  </div>
-  <DocumentFooter/>
- </div>;
-}
-
-function CompletionDocument({candidate:c}){
- return <div className="a4-page">
-  <DocumentHeader reference={c.aid} date={new Date().toLocaleDateString("en-IN")} color="#0d7377"/>
-  <div className="doc-content" style={{padding:"40px 48px"}}>
-   <div className="doc-title">
-    <small style={{color:"#0d7377"}}>OFFICIAL CORPORATE COMMUNICATION</small>
-    <h2 style={{color:"#0d7377"}}>TO WHOM IT MAY CONCERN</h2>
-    <small>INTERNSHIP COMPLETION CERTIFICATE</small>
-   </div>
-   <p>This document is issued in the name of <b>{c.name}</b>, application reference <b>{c.aid}</b>, in connection with the <b>{c.domain}</b> programme at VR PI Group of Companies.</p>
-   <p>This document is intended to formally recognize completion of the programme, subject to confirmation of the candidate's completion status by the authorized company representative.</p>
-   <div style={{background:"#effafa",borderLeft:"4px solid #0d7377",padding:20,marginTop:25}}>
-    <h4 style={{color:"#0d7377",marginTop:0}}>CANDIDATE DETAILS</h4>
-    {[["Name",c.name],["Application ID",c.aid],["Email",c.email],["Domain",c.domain],["College",c.college],["Programme Mode",c.mode],["Completion Date",c.completion]].filter(x=>x[1]).map(([k,v])=><p key={k} style={{fontSize:10,margin:"9px 0"}}><b>{k}:</b> {v}</p>)}
-   </div>
-   <div className="signoff">
-    Regards,
-    <strong>Director of Talent Acquisition</strong>
-    <small>VR PI Group of Companies • Authorized Corporate Representative</small>
-   </div>
-  </div>
-  <DocumentFooter color="#0d7377"/>
- </div>;
-}
-
-function TrainingDocument({candidate:c}){
- return <div className="a4-page">
-  <div style={{height:12,background:"linear-gradient(90deg,#191928 65%,#e84916)"}}/>
-  <div className="doc-header" style={{borderColor:"#e84916"}}>
-   <div className="doc-brand">
-    <Logo width={145}/>
-   </div>
-   <div style={{textAlign:"right",fontSize:9,color:"#64748b"}}>
-    DATE ISSUED<br/><b>{new Date().toLocaleDateString("en-IN")}</b><br/>
-    <b style={{color:"#e84916"}}>{c.aid}</b>
-   </div>
-  </div>
-  <div className="doc-content" style={{padding:"35px 42px"}}>
-   <small style={{color:"#e84916",fontWeight:800,letterSpacing:2}}>VR PI GROUP OF COMPANIES</small>
-   <h2 style={{fontSize:25,lineHeight:1.2,color:"#101828",margin:"12px 0 25px"}}>INDUSTRIAL TRAINING<br/>APPOINTMENT LETTER</h2>
-   <p><b>To: {c.name}</b><br/>{c.email}</p>
-   <p>Dear {c.name},</p>
-   <p>We are pleased to offer you an industrial training opportunity in the <b style={{color:"#e84916"}}>{c.domain}</b> domain at VR PI Group of Companies.</p>
-   <h4>TRAINING PARTICULARS</h4>
-   <table className="doc-table"><tbody>
-    {[["Candidate",c.name],["Application ID",c.aid],["Domain",c.domain],["College",c.college],["Mode",c.mode],["Joining Date",c.joining],["Duration",c.duration]].filter(x=>x[1]).map(([k,v])=><tr key={k}><td>{k}</td><td>{v}</td></tr>)}
-   </tbody></table>
-   <div style={{background:"#111827",color:"#e2e8f0",padding:17,borderRadius:7,marginTop:20,fontSize:10}}>
-    <b style={{color:"#fb743e"}}>PROFESSIONAL EXPECTATIONS</b><br/>
-    Maintain professional conduct, fulfil assigned deliverables, participate in programme reviews, and comply with company confidentiality requirements.
-   </div>
-   <div className="signoff">
-    Regards,
-    <strong>Head, Industrial Training Cell</strong>
-    <small>VR PI Group of Companies • Authorized Corporate Representative</small>
-   </div>
-  </div>
-  <DocumentFooter color="#e84916"/>
- </div>;
-}
-
-function DocumentHeader({reference,date,color="#1e3a5f"}){
- return <div className="doc-header" style={{borderColor:color}}>
-  <div className="doc-brand">
-   <Logo width={145}/>
-  </div>
-  <div style={{textAlign:"right",fontSize:9,color:"#64748b"}}>
-   DATE ISSUED<br/><b>{date}</b><br/>
-   <b style={{color}}>REF: {reference}</b>
-  </div>
- </div>;
-}
-
-function DocumentFooter({color="#1e3a5f"}){
- return <div className="doc-footer" style={{background:color}}>
-  VR PI Group Of Company • {COMPANY_EMAIL} • Official Corporate Documentation
- </div>;
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
