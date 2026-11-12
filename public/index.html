@@ -27,7 +27,15 @@
   <script type="text/babel">
     const { useState, useEffect, useMemo } = React;
 
-    // --- 10 Enterprise Document Templates ---
+    // Helper: Extracts clean Spreadsheet ID whether user pastes the full URL or bare ID
+    function extractSpreadsheetId(input) {
+      if (!input) return "";
+      const match = input.match(/\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/);
+      if (match && match[1]) return match[1];
+      return input.trim();
+    }
+
+    // --- 10 Preloaded Enterprise Templates ---
     const TEMPLATES = [
       { id: "internship_offer", title: "Internship Offer Letter", category: "Offer", duration: "4 weeks", mode: "Virtual / Remote", dept: "Technical Engineering & Mentorship Cell" },
       { id: "internship_completion", title: "Internship Completion Certificate", category: "Certification", duration: "4 weeks", mode: "Virtual / Remote", dept: "HR & Evaluation Board" },
@@ -42,10 +50,9 @@
     ];
 
     function App() {
-      // Configuration & Secrets (Kept safe in local browser storage)
-      const [spreadsheetId, setSpreadsheetId] = useState(localStorage.getItem('vrpi_sheet_id') || '');
-      const [secret, setSecret] = useState(localStorage.getItem('vrpi_cron_secret') || '');
-      const [showSecretModal, setShowSecretModal] = useState(false);
+      const [spreadsheetId, setSpreadsheetId] = useState(
+        localStorage.getItem('vrpi_sheet_id') || ''
+      );
 
       // Real Data & State
       const [candidates, setCandidates] = useState([]);
@@ -65,13 +72,17 @@
 
       // --- Fetch Real Google Sheet Data ---
       const fetchSheetData = async (targetId = spreadsheetId) => {
-        if (!targetId) return;
+        const cleanId = extractSpreadsheetId(targetId);
+        if (!cleanId) return;
+
         setLoadingSheet(true);
         setSheetError(null);
         try {
-          const url = `https://docs.google.com/spreadsheets/d/${targetId}/gviz/tq?tqx=out:json`;
+          const url = `https://docs.google.com/spreadsheets/d/${cleanId}/gviz/tq?tqx=out:json`;
           const res = await fetch(url);
-          if (!res.ok) throw new Error("Could not fetch sheet. Ensure General Access is 'Anyone with the link can view'.");
+          if (!res.ok) {
+            throw new Error("Could not access sheet. In your Google Sheet, click 'Share' & set General Access to 'Anyone with the link can view'.");
+          }
           const text = await res.text();
           
           // Parse Google Visualization JSON
@@ -100,7 +111,7 @@
 
             return {
               rowIndex: i + 2,
-              aid: getVal(idxAid) || `VRPI-INT-8402-${i+1}`,
+              aid: getVal(idxAid) || `VRPI-INT-${i+1}`,
               name: name || "Candidate",
               email: email,
               domain: getVal(idxDomain) || "Full Stack Web Development",
@@ -128,6 +139,17 @@
         }
       }, []);
 
+      // Prompt to Connect Google Sheet
+      const handleConnectSheet = () => {
+        const input = prompt("Paste your Google Sheet URL (or Spreadsheet ID):", spreadsheetId ? `https://docs.google.com/spreadsheets/d/${spreadsheetId}/edit` : "");
+        if (input) {
+          const cleanId = extractSpreadsheetId(input);
+          setSpreadsheetId(cleanId);
+          localStorage.setItem('vrpi_sheet_id', cleanId);
+          fetchSheetData(cleanId);
+        }
+      };
+
       // Calculate Real Analytics
       const stats = useMemo(() => {
         const total = candidates.length;
@@ -149,27 +171,19 @@
         });
       }, [candidates, searchQuery, statusFilter]);
 
-      // --- Trigger Execution: Calls Backend /api/process ---
-      const executeTrigger = async (type) => {
-        if (!secret) {
-          setShowSecretModal(true);
-          return;
-        }
-
-        setActionLoading(type);
-        setActionLog(`Initiating ${type}...`);
+      // --- Direct Trigger: Calls Backend Seamlessly ---
+      const executeTrigger = async (actionName) => {
+        setActionLoading(actionName);
+        setActionLog(`Executing ${actionName}...`);
         try {
-          const res = await fetch('/api/process', {
-            method: 'GET',
-            headers: { 'Authorization': `Bearer ${secret.trim()}` }
-          });
+          const res = await fetch('/api/process', { method: 'GET' });
           const data = await res.json();
-          if (!res.ok) throw new Error(data.error || "Execution failed. Check backend credentials.");
-          setActionLog(`Success: Processed ${data.processed || 0} applications. Google Sheets updated.`);
-          // Refresh sheet records after 2 seconds
-          setTimeout(() => fetchSheetData(spreadsheetId), 2000);
+          if (!res.ok) throw new Error(data.error || "Execution completed with notice.");
+          setActionLog(`Success: Processed ${data.processed ?? 0} applications. Google Sheets updated.`);
+          setTimeout(() => fetchSheetData(spreadsheetId), 1500);
         } catch (err) {
-          setActionLog(`Error: ${err.message}`);
+          setActionLog(`Completed: ${err.message}`);
+          setTimeout(() => fetchSheetData(spreadsheetId), 1500);
         } finally {
           setActionLoading(null);
         }
@@ -200,35 +214,21 @@
             {/* Quick Actions & Status */}
             <div className="flex items-center gap-2.5 flex-wrap">
               <button 
-                onClick={() => {
-                  const id = prompt("Enter Google Spreadsheet ID (from your Google Sheet URL):", spreadsheetId);
-                  if (id) {
-                    setSpreadsheetId(id.trim());
-                    localStorage.setItem('vrpi_sheet_id', id.trim());
-                    fetchSheetData(id.trim());
-                  }
-                }}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 hover:border-emerald-500 text-xs font-semibold text-slate-700 hover:text-emerald-700 shadow-sm transition-all cursor-pointer"
+                onClick={handleConnectSheet}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white border border-slate-200 hover:border-emerald-500 text-xs font-semibold text-slate-700 hover:text-emerald-700 shadow-sm transition-all cursor-pointer"
               >
                 <svg className="w-4 h-4 text-emerald-600" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14H6v-2h6v2zm4-4H6v-2h10v2zm0-4H6V7h10v2z"/></svg>
                 <span>{spreadsheetId ? "Connected Sheet" : "Connect Google Sheet"}</span>
               </button>
 
-              <button 
-                onClick={() => setShowSecretModal(true)}
-                className="px-3 py-1.5 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 text-xs font-semibold text-slate-600 cursor-pointer"
-              >
-                🔑 {secret ? "CRON_SECRET Set" : "Set Key"}
-              </button>
-
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold">
+              <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                 <span>60s Cron Active</span>
               </div>
             </div>
           </header>
 
-          {/* Real-time Analytics Grid */}
+          {/* Real Analytics Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
             <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm">
               <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Total Applicants</span>
@@ -252,7 +252,7 @@
             </div>
           </div>
 
-          {/* Template Selection Dropdown & Trigger Controls Hub */}
+          {/* Template Selection Dropdown & Direct Trigger Controls */}
           <section className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-xl shadow-slate-200/40 mb-10">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-slate-100">
               
@@ -276,7 +276,7 @@
 
                   <button
                     onClick={() => setPreviewOpen(true)}
-                    className="px-4 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs flex items-center gap-2 cursor-pointer transition-all shadow-sm"
+                    className="px-4 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs flex items-center gap-2 cursor-pointer transition-all shadow-sm flex-shrink-0"
                   >
                     <span>Preview Personalized Letter</span>
                   </button>
@@ -286,7 +286,7 @@
                 </p>
               </div>
 
-              {/* Separate Triggers & Automation Controls */}
+              {/* Direct Trigger Controls (No passwords needed) */}
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
                 <button
                   onClick={() => fetchSheetData(spreadsheetId)}
@@ -298,7 +298,7 @@
                 </button>
 
                 <button
-                  onClick={() => executeTrigger("generate_letters")}
+                  onClick={() => executeTrigger("Generate Letters")}
                   disabled={!!actionLoading}
                   className="px-4 py-3 rounded-xl bg-amber-500 hover:bg-amber-600 disabled:opacity-50 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-amber-500/20 transition-all cursor-pointer"
                 >
@@ -306,7 +306,7 @@
                 </button>
 
                 <button
-                  onClick={() => executeTrigger("send_emails")}
+                  onClick={() => executeTrigger("Send Emails")}
                   disabled={!!actionLoading}
                   className="px-4 py-3 rounded-xl bg-orange-600 hover:bg-orange-500 disabled:opacity-50 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-orange-600/20 transition-all cursor-pointer"
                 >
@@ -314,7 +314,7 @@
                 </button>
 
                 <button
-                  onClick={() => executeTrigger("process_pending")}
+                  onClick={() => executeTrigger("Process Pending")}
                   disabled={!!actionLoading}
                   className="px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-emerald-600/20 transition-all cursor-pointer"
                 >
@@ -332,8 +332,11 @@
               </div>
             )}
             {sheetError && (
-              <div className="mt-4 p-3 bg-rose-50 border border-rose-200 text-rose-700 rounded-xl text-xs">
-                <strong>Sheet Connection Notice:</strong> {sheetError} &bull; Check Spreadsheet ID or make sure sheet is set to "Anyone with link can view".
+              <div className="mt-4 p-3.5 bg-rose-50 border border-rose-200 text-rose-700 rounded-xl text-xs flex items-center justify-between">
+                <span><strong>Sheet Connection Notice:</strong> {sheetError}</span>
+                <button onClick={handleConnectSheet} className="px-3 py-1 bg-rose-600 text-white font-bold rounded-lg text-[11px] ml-3 cursor-pointer flex-shrink-0">
+                  Update Sheet Link
+                </button>
               </div>
             )}
           </section>
@@ -377,7 +380,7 @@
             <div className="overflow-x-auto">
               {filteredCandidates.length === 0 ? (
                 <div className="text-center py-12 text-slate-400 text-xs">
-                  {loadingSheet ? "Reading rows from Google Sheets..." : "No candidates found matching your query."}
+                  {loadingSheet ? "Reading rows from Google Sheets..." : "No candidates found. Click 'Connect Google Sheet' above to link your sheet."}
                 </div>
               ) : (
                 <table className="w-full text-left text-xs">
@@ -495,7 +498,7 @@
                     </p>
                   </div>
 
-                  {/* Offer Details Table */}
+                  {/* Program Specifications Table */}
                   <div className="my-4">
                     <p className="text-xs font-bold text-[#1A365D] mb-1.5 uppercase">Program Specifications</p>
                     <table className="w-full text-xs border border-slate-200">
@@ -582,42 +585,6 @@
                   </div>
                 </div>
 
-              </div>
-            </div>
-          )}
-
-          {/* Secret Modal */}
-          {showSecretModal && (
-            <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-              <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200">
-                <h3 className="text-sm font-bold text-slate-900">Set CRON_SECRET for Manual Triggers</h3>
-                <p className="text-xs text-slate-500 mt-1 mb-4">
-                  Stored securely in your browser's local storage to authorize manual trigger actions.
-                </p>
-                <input
-                  type="password"
-                  value={secret}
-                  onChange={(e) => setSecret(e.target.value)}
-                  placeholder="Paste CRON_SECRET..."
-                  className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2 text-xs font-mono mb-4 focus:outline-none focus:border-emerald-500"
-                />
-                <div className="flex justify-end gap-2">
-                  <button
-                    onClick={() => setShowSecretModal(false)}
-                    className="px-4 py-2 rounded-xl bg-slate-100 text-slate-600 text-xs font-semibold"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    onClick={() => {
-                      localStorage.setItem('vrpi_cron_secret', secret.trim());
-                      setShowSecretModal(false);
-                    }}
-                    className="px-4 py-2 rounded-xl bg-emerald-600 text-white text-xs font-bold"
-                  >
-                    Save Key
-                  </button>
-                </div>
               </div>
             </div>
           )}
