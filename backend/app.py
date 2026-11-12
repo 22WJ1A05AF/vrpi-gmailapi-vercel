@@ -1,10 +1,14 @@
 """VR PI Group internship automation — Vercel + Gmail API.
-Original offer-letter PDF layout and original email HTML/text template are retained.
+Includes clean PDF offer-letter generation and anti-spam humanized email formatting.
 """
-import os, json, base64, hashlib, logging
+import os
+import json
+import base64
+import hashlib
+import logging
 from datetime import datetime
 from email.message import EmailMessage
-from email.utils import formatdate
+from email.utils import formatdate, make_msgid
 from html import escape
 
 import gspread
@@ -13,15 +17,16 @@ from google.oauth2.credentials import Credentials
 from google.auth.transport.requests import Request
 from googleapiclient.discovery import build
 
+# Environment Variables & Configuration
 COMPANY_NAME = os.getenv("COMPANY_NAME", "VR PI Group of Companies")
 START_DATE = os.getenv("START_DATE", "10 November 2026")
 DURATION = os.getenv("DURATION", "4 weeks")
-SPREADSHEET_ID = os.environ["SPREADSHEET_ID"]
+SPREADSHEET_ID = os.environ.get("SPREADSHEET_ID", "")
 GMAIL_USER = os.getenv("GMAIL_USER", "vrpigroupoftechnology@gmail.com")
-GMAIL_CLIENT_ID = os.environ["GMAIL_CLIENT_ID"]
-GMAIL_CLIENT_SECRET = os.environ["GMAIL_CLIENT_SECRET"]
-GMAIL_REFRESH_TOKEN = os.environ["GMAIL_REFRESH_TOKEN"]
-GOOGLE_SERVICE_ACCOUNT_JSON = os.environ["GOOGLE_SERVICE_ACCOUNT_JSON"]
+GMAIL_CLIENT_ID = os.environ.get("GMAIL_CLIENT_ID", "")
+GMAIL_CLIENT_SECRET = os.environ.get("GMAIL_CLIENT_SECRET", "")
+GMAIL_REFRESH_TOKEN = os.environ.get("GMAIL_REFRESH_TOKEN", "")
+GOOGLE_SERVICE_ACCOUNT_JSON = os.environ.get("GOOGLE_SERVICE_ACCOUNT_JSON", "")
 
 logging.basicConfig(level=logging.INFO)
 log = logging.getLogger("vrpi")
@@ -32,6 +37,8 @@ def now():
 
 
 def get_sheet():
+    if not GOOGLE_SERVICE_ACCOUNT_JSON:
+        raise ValueError("GOOGLE_SERVICE_ACCOUNT_JSON environment variable is missing.")
     info = json.loads(GOOGLE_SERVICE_ACCOUNT_JSON)
     gc = gspread.service_account_from_dict(info)
     spreadsheet = gc.open_by_key(SPREADSHEET_ID)
@@ -52,7 +59,6 @@ def get_gmail_service():
 
 
 def update_sheet_cell(ws, row_index, status, note, pdf_filename):
-    # Keep the same output columns used by the original spreadsheet automation.
     now_time = datetime.now().strftime("%m/%d/%Y %H:%M:%S")
     pdf_text = f"Delivered via Email ({pdf_filename})" if pdf_filename else ""
     ws.update_cell(row_index, 18, status)
@@ -62,7 +68,7 @@ def update_sheet_cell(ws, row_index, status, note, pdf_filename):
 
 
 def clean_pdf_text(text):
-    """Sanitizes text to ASCII to prevent font crashes on Helvetica."""
+    """Sanitizes text to ASCII/Latin-1 to prevent font crashes on Helvetica."""
     if not text:
         return ""
     replacements = {
@@ -84,6 +90,7 @@ class FormalOfferPDF(FPDF):
         self.set_font("Helvetica", "I", 7.5)
         self.set_text_color(148, 163, 184)
         self.cell(0, 8, "VR PI Group of Companies - Official Document | Candidate Confidential", align="C")
+
 
 def create_offer_pdf(aid, name, to_email, domain):
     pdf = FormalOfferPDF(orientation="P", unit="mm", format="A4")
@@ -124,7 +131,7 @@ def create_offer_pdf(aid, name, to_email, domain):
     # 2. DOCUMENT TITLE
     pdf.set_xy(14, 32)
     pdf.set_font("Helvetica", "B", 13)
-    pdf.set_text_color(255, 87, 34)  # Orange
+    pdf.set_text_color(255, 87, 34)
     pdf.cell(182, 6, "INTERNSHIP OFFER LETTER", align="C")
     pdf.ln(8)
 
@@ -264,16 +271,14 @@ def create_offer_pdf(aid, name, to_email, domain):
 
     return bytes(pdf.output())
 
-from email.utils import formatdate, make_msgid
 
 def send_offer_email(name, to_email, aid, domain, pdf_bytes):
     c = {"COMPANY_NAME": COMPANY_NAME, "START_DATE": START_DATE, "DURATION": DURATION, "FROM_EMAIL": GMAIL_USER}
 
     msg = EmailMessage()
-
     first_name = name.split()[0] if name else "Candidate"
 
-    # 1. Human subject line (completely breaks previous spam subject hash)
+    # 1. Human subject line (breaks spam hash filters)
     msg["Subject"] = f"Your internship offer with {c['COMPANY_NAME']} - {domain}"
     msg["From"] = f"VR PI Talent Acquisition <{c['FROM_EMAIL']}>"
     msg["To"] = to_email
@@ -281,7 +286,7 @@ def send_offer_email(name, to_email, aid, domain, pdf_bytes):
     msg["Date"] = formatdate(localtime=True)
     msg["Message-ID"] = make_msgid(domain="gmail.com")
 
-    # 2. Conversational, personal plain text (no bot markers)
+    # 2. Conversational plain text body
     body_text = (
         f"Hi {first_name},\n\n"
         f"Thank you for completing your application. We are pleased to offer you an internship position in our {domain} track.\n\n"
@@ -300,7 +305,7 @@ def send_offer_email(name, to_email, aid, domain, pdf_bytes):
     )
     msg.set_content(body_text)
 
-    # 3. Clean, lightweight HTML (looks like a normal email, not a bulk marketing template)
+    # 3. Clean, lightweight HTML (looks authentic and avoids promo/spam blocks)
     html_content = f"""
     <!DOCTYPE html>
     <html>
@@ -332,12 +337,13 @@ def send_offer_email(name, to_email, aid, domain, pdf_bytes):
     """
     msg.add_alternative(html_content, subtype="html")
 
-    # 4. Attach PDF with a friendly filename
+    # 4. Attach PDF with clean, personalized filename
+    pdf_filename = f"{first_name}_Internship_Offer.pdf"
     msg.add_attachment(
         pdf_bytes,
         maintype="application",
         subtype="pdf",
-        filename=f"{first_name}_Internship_Offer.pdf"
+        filename=pdf_filename
     )
 
     raw_message = base64.urlsafe_b64encode(msg.as_bytes()).decode("utf-8").rstrip("=")
@@ -345,7 +351,8 @@ def send_offer_email(name, to_email, aid, domain, pdf_bytes):
     result = service.users().messages().send(
         userId="me", body={"raw": raw_message}
     ).execute()
-    return result.get("id", "")
+    return result.get("id", ""), pdf_filename
+
 
 def process_pending_rows(max_rows=5):
     ws = get_sheet()
@@ -375,19 +382,19 @@ def process_pending_rows(max_rows=5):
         recipient = row[col_email].strip()
         aid = row[col_id].strip() or f"VRPI-INT-{hashlib.sha1((recipient + name).encode()).hexdigest()[:6].upper()}"
         domain = row[col_domain].strip() or "Internship Track"
+
         if not name or not recipient or "@" not in recipient:
             update_sheet_cell(ws, row_index, "FAILED", "Missing or invalid candidate name/email.", "")
             continue
 
         try:
-            # Mark before sending so overlapping requests do not normally re-send the same row.
             update_sheet_cell(ws, row_index, "PROCESSING", "Preparing offer letter.", "")
             pdf_bytes = create_offer_pdf(aid, name, recipient, domain)
-            message_id = send_offer_email(name, recipient, aid, domain, pdf_bytes)
+            message_id, pdf_filename = send_offer_email(name, recipient, aid, domain, pdf_bytes)
             update_sheet_cell(
                 ws, row_index, "SENT",
-                f"Accepted by Gmail API; message ID: {message_id}. This does not confirm inbox placement.",
-                f"Internship_Offer_{aid}.pdf"
+                f"Accepted by Gmail API; message ID: {message_id}.",
+                pdf_filename
             )
             results.append({"row": row_index, "status": "SENT", "application_id": aid, "gmail_message_id": message_id})
             processed += 1
