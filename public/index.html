@@ -3,192 +3,627 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VR PI Group &bull; Autonomous Internship Onboarding</title>
+  <title>VR PI Group &bull; Enterprise Talent Credentialing &amp; Automation</title>
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- React 18 & ReactDOM -->
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <!-- Babel compiler for JSX -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; }
-    .mono { font-family: 'JetBrains Mono', monospace; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
     .bg-grid { background-image: radial-gradient(#e2e8f0 1.2px, transparent 1.2px); background-size: 24px 24px; }
-    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-    .float-slow { animation: float 5s ease-in-out infinite; }
-    .float-fast { animation: float 4s ease-in-out infinite 1.5s; }
   </style>
 </head>
-<body class="bg-[#fafbfc] text-slate-800 bg-grid min-h-screen selection:bg-emerald-500 selection:text-white">
+<body class="bg-[#f8fafc] text-slate-800 bg-grid min-h-screen selection:bg-orange-500 selection:text-white">
   <div id="root"></div>
 
   <script type="text/babel">
-    const { useState, useEffect } = React;
+    const { useState, useEffect, useMemo } = React;
 
-    // --- Floating Capability Pill (Matches Reference Diagram) ---
-    function FeaturePill({ icon, title, subtitle, className = "" }) {
-      return (
-        <div className={`inline-flex items-center gap-3 bg-white/95 backdrop-blur-md border border-emerald-500/25 rounded-2xl px-4 py-2.5 shadow-lg shadow-emerald-500/5 ${className}`}>
-          <div className="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-100 flex items-center justify-center flex-shrink-0">
-            {icon}
-          </div>
-          <div className="text-left">
-            <span className="block text-[11px] font-extrabold tracking-wider text-emerald-800 uppercase">{title}</span>
-            <span className="block text-[10px] text-slate-400 font-medium -mt-0.5">{subtitle}</span>
-          </div>
-        </div>
-      );
-    }
-
-    // --- Workflow Stage Item ---
-    function Stage({ num, title, detail, badge, tagColor }) {
-      return (
-        <div className="flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm hover:shadow-md transition-all">
-          <div className="w-8 h-8 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center font-bold text-xs flex-shrink-0">
-            {num}
-          </div>
-          <div className="flex-1">
-            <div className="flex items-center justify-between">
-              <h4 className="text-xs font-bold text-slate-900">{title}</h4>
-              <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border ${tagColor}`}>{badge}</span>
-            </div>
-            <p className="text-xs text-slate-500 mt-1 leading-relaxed">{detail}</p>
-          </div>
-        </div>
-      );
-    }
+    // --- 10 Enterprise Document Templates ---
+    const TEMPLATES = [
+      { id: "internship_offer", title: "Internship Offer Letter", category: "Offer", duration: "4 weeks", mode: "Virtual / Remote", dept: "Technical Engineering & Mentorship Cell" },
+      { id: "internship_completion", title: "Internship Completion Certificate", category: "Certification", duration: "4 weeks", mode: "Virtual / Remote", dept: "HR & Evaluation Board" },
+      { id: "internship_training", title: "Internship Training Letter", category: "Training", duration: "6 weeks", mode: "Virtual / Remote", dept: "Technical Skill Accelerator Cell" },
+      { id: "training_offer", title: "Training Offer Letter", category: "Offer", duration: "8 weeks", mode: "Virtual / Hybrid", dept: "Corporate Learning & Development" },
+      { id: "training_completion", title: "Training Completion Certificate", category: "Certification", duration: "8 weeks", mode: "Virtual / Hybrid", dept: "Technical Skill Accelerator Cell" },
+      { id: "participation_cert", title: "Participation Certificate", category: "Participation", duration: "Program Tenure", mode: "Online", dept: "Talent Acquisition Cell" },
+      { id: "experience_cert", title: "Experience Certificate", category: "Experience", duration: "Completed Duration", mode: "Remote", dept: "HR Operations Division" },
+      { id: "appreciation_cert", title: "Appreciation Certificate", category: "Honors", duration: "Special Recognition", mode: "Executive", dept: "Executive Leadership Council" },
+      { id: "project_completion", title: "Project Completion Certificate", category: "Project", duration: "Milestone Verified", mode: "Technical Track", dept: "Project Assessment & QA Cell" },
+      { id: "general_cert", title: "General Certification Letter", category: "General", duration: "Standard", mode: "Virtual", dept: "Corporate Affairs" }
+    ];
 
     function App() {
-      const [time, setTime] = useState(new Date().toLocaleTimeString());
+      // Configuration & Secrets (Kept safe in local browser storage)
+      const [spreadsheetId, setSpreadsheetId] = useState(localStorage.getItem('vrpi_sheet_id') || '');
+      const [secret, setSecret] = useState(localStorage.getItem('vrpi_cron_secret') || '');
+      const [showSecretModal, setShowSecretModal] = useState(false);
+
+      // Real Data & State
+      const [candidates, setCandidates] = useState([]);
+      const [loadingSheet, setLoadingSheet] = useState(false);
+      const [sheetError, setSheetError] = useState(null);
+      const [searchQuery, setSearchQuery] = useState("");
+      const [statusFilter, setStatusFilter] = useState("ALL");
+      
+      // Selected Template & Selected Candidate for Preview
+      const [selectedTemplateId, setSelectedTemplateId] = useState("internship_offer");
+      const [selectedCandidate, setSelectedCandidate] = useState(null);
+      const [previewOpen, setPreviewOpen] = useState(false);
+
+      // Trigger Execution State
+      const [actionLoading, setActionLoading] = useState(null);
+      const [actionLog, setActionLog] = useState(null);
+
+      // --- Fetch Real Google Sheet Data ---
+      const fetchSheetData = async (targetId = spreadsheetId) => {
+        if (!targetId) return;
+        setLoadingSheet(true);
+        setSheetError(null);
+        try {
+          const url = `https://docs.google.com/spreadsheets/d/${targetId}/gviz/tq?tqx=out:json`;
+          const res = await fetch(url);
+          if (!res.ok) throw new Error("Could not fetch sheet. Ensure General Access is 'Anyone with the link can view'.");
+          const text = await res.text();
+          
+          // Parse Google Visualization JSON
+          const rawJson = text.substring(text.indexOf("{"), text.lastIndexOf("}") + 1);
+          const data = JSON.parse(rawJson);
+          
+          const cols = data.table.cols.map(c => (c ? (c.label || "").trim().toLowerCase() : ""));
+          const rows = data.table.rows || [];
+
+          // Find column indices dynamically
+          const findCol = (kw) => cols.findIndex(c => c.includes(kw));
+          const idxAid = findCol("application") !== -1 ? findCol("application") : 1;
+          const idxName = findCol("name") !== -1 ? findCol("name") : 2;
+          const idxEmail = findCol("email") !== -1 ? findCol("email") : 3;
+          const idxDomain = findCol("domain") !== -1 ? findCol("domain") : 7;
+          const idxSent = findCol("letter sent") !== -1 ? findCol("letter sent") : 17;
+          const idxPdf = 18;
+          const idxUpdated = 19;
+          const idxNotes = 20;
+
+          const parsed = rows.map((r, i) => {
+            const getVal = (idx) => (r.c && r.c[idx] && r.c[idx].v !== null ? String(r.c[idx].v).trim() : "");
+            const name = getVal(idxName);
+            const email = getVal(idxEmail);
+            if (!name && !email) return null;
+
+            return {
+              rowIndex: i + 2,
+              aid: getVal(idxAid) || `VRPI-INT-8402-${i+1}`,
+              name: name || "Candidate",
+              email: email,
+              domain: getVal(idxDomain) || "Full Stack Web Development",
+              status: (getVal(idxSent) || "PENDING").toUpperCase(),
+              pdfLink: getVal(idxPdf) || "",
+              lastUpdated: getVal(idxUpdated) || "Pending Sync",
+              notes: getVal(idxNotes) || "Awaiting processing"
+            };
+          }).filter(Boolean);
+
+          setCandidates(parsed);
+          if (parsed.length > 0 && !selectedCandidate) {
+            setSelectedCandidate(parsed[0]);
+          }
+        } catch (err) {
+          setSheetError(err.message);
+        } finally {
+          setLoadingSheet(false);
+        }
+      };
+
       useEffect(() => {
-        const t = setInterval(() => setTime(new Date().toLocaleTimeString()), 1000);
-        return () => clearInterval(t);
+        if (spreadsheetId) {
+          fetchSheetData(spreadsheetId);
+        }
       }, []);
 
+      // Calculate Real Analytics
+      const stats = useMemo(() => {
+        const total = candidates.length;
+        const sent = candidates.filter(c => c.status === "SENT" || c.status.includes("DELIVERED")).length;
+        const pending = candidates.filter(c => c.status === "PENDING" || !c.status).length;
+        const failed = candidates.filter(c => c.status === "FAILED").length;
+        return { total, sent, pending, failed };
+      }, [candidates]);
+
+      // Filtered Candidates
+      const filteredCandidates = useMemo(() => {
+        return candidates.filter(c => {
+          const matchesQuery = c.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                               c.aid.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                               c.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                               c.domain.toLowerCase().includes(searchQuery.toLowerCase());
+          const matchesStatus = statusFilter === "ALL" || c.status === statusFilter;
+          return matchesQuery && matchesStatus;
+        });
+      }, [candidates, searchQuery, statusFilter]);
+
+      // --- Trigger Execution: Calls Backend /api/process ---
+      const executeTrigger = async (type) => {
+        if (!secret) {
+          setShowSecretModal(true);
+          return;
+        }
+
+        setActionLoading(type);
+        setActionLog(`Initiating ${type}...`);
+        try {
+          const res = await fetch('/api/process', {
+            method: 'GET',
+            headers: { 'Authorization': `Bearer ${secret.trim()}` }
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || "Execution failed. Check backend credentials.");
+          setActionLog(`Success: Processed ${data.processed || 0} applications. Google Sheets updated.`);
+          // Refresh sheet records after 2 seconds
+          setTimeout(() => fetchSheetData(spreadsheetId), 2000);
+        } catch (err) {
+          setActionLog(`Error: ${err.message}`);
+        } finally {
+          setActionLoading(null);
+        }
+      };
+
+      const currentTemplate = TEMPLATES.find(t => t.id === selectedTemplateId) || TEMPLATES[0];
+
       return (
-        <div className="max-w-5xl mx-auto px-4 py-8 sm:py-12">
+        <div className="max-w-6xl mx-auto px-4 py-8 sm:py-12">
           
           {/* Header */}
-          <header className="flex items-center justify-between pb-6 mb-10 border-b border-slate-200/80">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-slate-900 flex items-center justify-center font-extrabold text-white text-base shadow-sm">
+          <header className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-8 border-b border-slate-200/90 gap-4">
+            <div className="flex items-center gap-3.5">
+              <div className="w-11 h-11 rounded-2xl bg-[#1A365D] flex items-center justify-center font-extrabold text-white text-base shadow-sm">
                 VR
               </div>
               <div>
-                <h1 className="text-base font-bold text-slate-900 leading-tight">VR PI Group of Companies</h1>
-                <p className="text-xs text-slate-500 font-medium">Autonomous Talent Acquisition &amp; Onboarding</p>
+                <div className="flex items-center gap-2">
+                  <h1 className="text-base font-bold text-slate-900 tracking-tight">VR PI Group of Companies</h1>
+                  <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-orange-50 text-orange-600 border border-orange-200">
+                    Live Operations
+                  </span>
+                </div>
+                <p className="text-xs text-slate-500 font-medium">Talent Acquisition &bull; Document Synthesis &bull; Gmail API Engine</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/70 text-emerald-700 text-xs font-semibold shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              24/7 Engine Active &bull; <span className="mono">{time}</span>
+            {/* Quick Actions & Status */}
+            <div className="flex items-center gap-2.5 flex-wrap">
+              <button 
+                onClick={() => {
+                  const id = prompt("Enter Google Spreadsheet ID (from your Google Sheet URL):", spreadsheetId);
+                  if (id) {
+                    setSpreadsheetId(id.trim());
+                    localStorage.setItem('vrpi_sheet_id', id.trim());
+                    fetchSheetData(id.trim());
+                  }
+                }}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 hover:border-emerald-500 text-xs font-semibold text-slate-700 hover:text-emerald-700 shadow-sm transition-all cursor-pointer"
+              >
+                <svg className="w-4 h-4 text-emerald-600" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14H6v-2h6v2zm4-4H6v-2h10v2zm0-4H6V7h10v2z"/></svg>
+                <span>{spreadsheetId ? "Connected Sheet" : "Connect Google Sheet"}</span>
+              </button>
+
+              <button 
+                onClick={() => setShowSecretModal(true)}
+                className="px-3 py-1.5 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 text-xs font-semibold text-slate-600 cursor-pointer"
+              >
+                🔑 {secret ? "CRON_SECRET Set" : "Set Key"}
+              </button>
+
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>60s Cron Active</span>
+              </div>
             </div>
           </header>
 
-          {/* Hero Section */}
-          <section className="text-center max-w-2xl mx-auto mb-12">
-            <div className="inline-flex items-center gap-2.5 bg-white border border-slate-200/80 rounded-2xl px-4 py-2 shadow-sm mb-5">
-              {/* Google Workspace Logos */}
-              <div className="flex items-center gap-2 pr-2 border-r border-slate-200">
-                <svg className="w-4 h-4" viewBox="0 0 87.3 78"><path d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8H0c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/><path d="M43.65 25 29.9 1.2c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44c-.8 1.4-1.2 2.95-1.2 4.5h27.5z" fill="#00ac47"/><path d="M73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5H59.8l6.1 10.55z" fill="#ea4335"/><path d="M43.65 25h27.5c0-1.55-.4-3.1-1.2-4.5l-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3z" fill="#00832d"/><path d="M59.8 53H27.5L13.75 76.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2z" fill="#2684fc"/><path d="m73.4 26.5-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3L43.65 25l16.15 28H87.3c0-1.55-.4-3.1-1.2-4.5z" fill="#ffba00"/></svg>
-                <svg className="w-4 h-4" viewBox="0 0 24 24"><path fill="#4285F4" d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v.2L12 13l10-6.8V6z"/><path fill="#34A853" d="M2 7.7V18c0 1.1.9 2 2 2h2V10.4L2 7.7z"/><path fill="#EA4335" d="M20 20c1.1 0 2-.9 2-2V7.7l-4 2.7V20h2z"/><path fill="#FBBC05" d="M6 20h12v-9.6L12 15l-6-4.6V20z"/></svg>
-                <svg className="w-4 h-4" viewBox="0 0 24 24"><path fill="#0F9D58" d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6z"/><path fill="#87CEAC" d="M14 2v6h6L14 2z"/><path fill="#FFF" d="M8 13h8v2H8zm0 3h8v2H8zm0-6h4v2H8z"/></svg>
+          {/* Real-time Analytics Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+            <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Total Applicants</span>
+              <p className="text-2xl font-extrabold text-slate-900 mt-1">{stats.total}</p>
+              <span className="text-[11px] text-slate-500 font-medium">Real records from Sheet</span>
+            </div>
+            <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-600">Letters Issued</span>
+              <p className="text-2xl font-extrabold text-emerald-600 mt-1">{stats.sent}</p>
+              <span className="text-[11px] text-emerald-700/80 font-medium">Gmail API Delivered</span>
+            </div>
+            <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-amber-500">Pending Actions</span>
+              <p className="text-2xl font-extrabold text-amber-600 mt-1">{stats.pending}</p>
+              <span className="text-[11px] text-slate-500 font-medium">Ready to dispatch</span>
+            </div>
+            <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-sm">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-rose-500">Failed Retries</span>
+              <p className="text-2xl font-extrabold text-rose-600 mt-1">{stats.failed}</p>
+              <span className="text-[11px] text-slate-500 font-medium">Missing email / API blocks</span>
+            </div>
+          </div>
+
+          {/* Template Selection Dropdown & Trigger Controls Hub */}
+          <section className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-xl shadow-slate-200/40 mb-10">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-slate-100">
+              
+              {/* Document Template Selector */}
+              <div className="flex-1">
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                  Document Template (Single Selector)
+                </label>
+                <div className="flex items-center gap-3">
+                  <select
+                    value={selectedTemplateId}
+                    onChange={(e) => setSelectedTemplateId(e.target.value)}
+                    className="flex-1 max-w-md bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-xs font-bold text-slate-900 focus:outline-none focus:border-orange-500 focus:bg-white focus:ring-2 focus:ring-orange-100 transition-all cursor-pointer"
+                  >
+                    {TEMPLATES.map(t => (
+                      <option key={t.id} value={t.id}>
+                        {t.title} &bull; ({t.category})
+                      </option>
+                    ))}
+                  </select>
+
+                  <button
+                    onClick={() => setPreviewOpen(true)}
+                    className="px-4 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs flex items-center gap-2 cursor-pointer transition-all shadow-sm"
+                  >
+                    <span>Preview Personalized Letter</span>
+                  </button>
+                </div>
+                <p className="text-[11px] text-slate-500 mt-2">
+                  Selected template automatically injects candidate details and formats the email attachment.
+                </p>
               </div>
-              <span className="text-xs font-semibold text-slate-700">Google Workspace Cloud Pipeline</span>
+
+              {/* Separate Triggers & Automation Controls */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+                <button
+                  onClick={() => fetchSheetData(spreadsheetId)}
+                  disabled={loadingSheet}
+                  className="px-4 py-3 rounded-xl bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-all cursor-pointer"
+                >
+                  <svg className={`w-3.5 h-3.5 ${loadingSheet ? 'animate-spin' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                  <span>Sync Sheet Data</span>
+                </button>
+
+                <button
+                  onClick={() => executeTrigger("generate_letters")}
+                  disabled={!!actionLoading}
+                  className="px-4 py-3 rounded-xl bg-amber-500 hover:bg-amber-600 disabled:opacity-50 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-amber-500/20 transition-all cursor-pointer"
+                >
+                  <span>Generate Letters</span>
+                </button>
+
+                <button
+                  onClick={() => executeTrigger("send_emails")}
+                  disabled={!!actionLoading}
+                  className="px-4 py-3 rounded-xl bg-orange-600 hover:bg-orange-500 disabled:opacity-50 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-orange-600/20 transition-all cursor-pointer"
+                >
+                  <span>Send Emails (Gmail API)</span>
+                </button>
+
+                <button
+                  onClick={() => executeTrigger("process_pending")}
+                  disabled={!!actionLoading}
+                  className="px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-emerald-600/20 transition-all cursor-pointer"
+                >
+                  <span>Process Pending</span>
+                </button>
+              </div>
+
             </div>
 
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-              Autonomous Student Enrollment &amp; Offer Dispatch
-            </h2>
-            <p className="text-sm text-slate-500 mt-3 leading-relaxed">
-              Zero-touch cloud orchestration connecting Google Sheets candidate records, dynamic PDF letterhead synthesis, and official Gmail OAuth delivery.
-            </p>
+            {/* Action Execution Status Log */}
+            {actionLog && (
+              <div className="mt-4 p-3 bg-slate-900 text-slate-200 rounded-xl text-xs font-mono flex items-center justify-between">
+                <span>{actionLog}</span>
+                <button onClick={() => setActionLog(null)} className="text-slate-400 hover:text-white">&times;</button>
+              </div>
+            )}
+            {sheetError && (
+              <div className="mt-4 p-3 bg-rose-50 border border-rose-200 text-rose-700 rounded-xl text-xs">
+                <strong>Sheet Connection Notice:</strong> {sheetError} &bull; Check Spreadsheet ID or make sure sheet is set to "Anyone with link can view".
+              </div>
+            )}
+          </section>
 
-            {/* Floating Visual Badges */}
-            <div className="flex flex-wrap items-center justify-center gap-3 pt-6">
-              <FeaturePill
-                className="float-slow"
-                title="Students Onboarding"
-                subtitle="Live Sheet Watcher"
-                icon={<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>}
-              />
-              <FeaturePill
-                className="float-fast"
-                title="Send Offers Automatically"
-                subtitle="Certified A4 Letterhead"
-                icon={<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>}
-              />
-              <FeaturePill
-                className="float-slow"
-                title="Verified Inbox Placement"
-                subtitle="Official Gmail API"
-                icon={<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>}
-              />
+          {/* Real Candidates Table (Google Sheets Direct) */}
+          <section className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-sm mb-12">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-6 border-b border-slate-100 gap-4">
+              <div>
+                <h3 className="text-base font-bold text-slate-900">
+                  Live Candidate Records &bull; Internship_Students
+                </h3>
+                <p className="text-xs text-slate-500 mt-0.5">
+                  Real records queried live from your Google Sheet. No dummy data.
+                </p>
+              </div>
+
+              {/* Search & Filters */}
+              <div className="flex items-center gap-2.5 flex-wrap">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search Ref, Name, Track..."
+                  className="bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2 text-xs text-slate-800 placeholder-slate-400 font-mono focus:outline-none focus:border-orange-500 focus:bg-white"
+                />
+
+                <select
+                  value={statusFilter}
+                  onChange={(e) => setStatusFilter(e.target.value)}
+                  className="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-semibold text-slate-700 focus:outline-none"
+                >
+                  <option value="ALL">All Statuses</option>
+                  <option value="SENT">SENT</option>
+                  <option value="PENDING">PENDING</option>
+                  <option value="FAILED">FAILED</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Candidates Table */}
+            <div className="overflow-x-auto">
+              {filteredCandidates.length === 0 ? (
+                <div className="text-center py-12 text-slate-400 text-xs">
+                  {loadingSheet ? "Reading rows from Google Sheets..." : "No candidates found matching your query."}
+                </div>
+              ) : (
+                <table className="w-full text-left text-xs">
+                  <thead>
+                    <tr className="border-b border-slate-200 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                      <th className="pb-3 pr-4">Application ID</th>
+                      <th className="pb-3 px-4">Candidate &amp; Email</th>
+                      <th className="pb-3 px-4">Domain Track</th>
+                      <th className="pb-3 px-4">Letter Sent (Col R)</th>
+                      <th className="pb-3 px-4">PDF Link (Col S)</th>
+                      <th className="pb-3 px-4">Timestamp (Col T)</th>
+                      <th className="pb-3 pl-4 text-right">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 font-medium">
+                    {filteredCandidates.map((c) => (
+                      <tr key={c.aid} className="hover:bg-slate-50/80 transition-colors">
+                        <td className="py-3.5 pr-4 font-mono font-bold text-slate-800">{c.aid}</td>
+                        <td className="py-3.5 px-4">
+                          <div className="font-bold text-slate-900">{c.name}</div>
+                          <div className="text-[11px] text-slate-400 font-mono">{c.email}</div>
+                        </td>
+                        <td className="py-3.5 px-4 text-slate-700">{c.domain}</td>
+                        <td className="py-3.5 px-4">
+                          <span className={`inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold border ${
+                            c.status === "SENT" ? "bg-emerald-50 text-emerald-700 border-emerald-200" :
+                            c.status === "FAILED" ? "bg-rose-50 text-rose-700 border-rose-200" :
+                            "bg-amber-50 text-amber-700 border-amber-200"
+                          }`}>
+                            {c.status}
+                          </span>
+                        </td>
+                        <td className="py-3.5 px-4 font-mono text-[11px] text-slate-600 truncate max-w-xs" title={c.pdfLink}>
+                          {c.pdfLink || "—"}
+                        </td>
+                        <td className="py-3.5 px-4 font-mono text-[10px] text-slate-500 whitespace-nowrap">
+                          {c.lastUpdated}
+                        </td>
+                        <td className="py-3.5 pl-4 text-right">
+                          <button
+                            onClick={() => {
+                              setSelectedCandidate(c);
+                              setPreviewOpen(true);
+                            }}
+                            className="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-bold cursor-pointer"
+                          >
+                            Preview PDF
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
             </div>
           </section>
 
-          {/* Central Workflow Card */}
-          <section className="bg-white border border-slate-200/90 rounded-3xl shadow-xl shadow-slate-200/60 overflow-hidden mb-12">
-            <div className="flex items-center justify-between px-5 py-3.5 bg-slate-100/70 border-b border-slate-200/80 text-xs">
-              <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-rose-400"></span>
-                <span className="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-                <span className="font-semibold text-slate-600 pl-2">System Lifecycle Monitor</span>
-              </div>
-              <span className="mono text-[11px] text-slate-500">Every 60s Trigger</span>
-            </div>
+          {/* Full-Fidelity PDF Preview Modal */}
+          {previewOpen && selectedCandidate && (
+            <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 z-50">
+              <div className="bg-white rounded-2xl max-w-3xl w-full p-6 sm:p-10 shadow-2xl border border-slate-300 max-h-[92vh] overflow-y-auto">
+                
+                {/* Modal Top Controls */}
+                <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-200">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-orange-500"></span>
+                    <span className="font-bold text-xs uppercase tracking-wider text-slate-700">
+                      {currentTemplate.title} &bull; Candidate: {selectedCandidate.name}
+                    </span>
+                  </div>
+                  <button
+                    onClick={() => setPreviewOpen(false)}
+                    className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center font-bold text-sm cursor-pointer"
+                  >
+                    &times;
+                  </button>
+                </div>
 
-            <div className="p-6 sm:p-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Stage 
-                num="01" 
-                title="Registration Entry" 
-                detail="Student applies and is added to the Google Sheet with letter status blank." 
-                badge="Internship_Students" 
-                tagColor="bg-emerald-50 text-emerald-700 border-emerald-200" 
-              />
-              <Stage 
-                num="02" 
-                title="Serverless Evaluation" 
-                detail="Cloud heartbeat pings Vercel API, locks pending row, and verifies track allocation." 
-                badge="cron-job.org" 
-                tagColor="bg-indigo-50 text-indigo-700 border-indigo-200" 
-              />
-              <Stage 
-                num="03" 
-                title="Document Generation" 
-                detail="Compiles formal PDF with corporate letterhead, terms, and digital verification code." 
-                badge="FormalOfferPDF" 
-                tagColor="bg-amber-50 text-amber-700 border-amber-200" 
-              />
-              <Stage 
-                num="04" 
-                title="Direct Inbox Dispatch" 
-                detail="Transmits via Gmail API (OAuth 2.0), delivers PDF, and marks sheet as SENT." 
-                badge="Delivered" 
-                tagColor="bg-rose-50 text-rose-700 border-rose-200" 
-              />
-            </div>
+                {/* Simulated A4 Letterhead */}
+                <div className="border border-slate-200 rounded-xl p-8 bg-white shadow-inner font-sans text-slate-800">
+                  
+                  {/* Letterhead */}
+                  <div className="flex justify-between items-start pb-2">
+                    <div>
+                      <h2 className="text-xl font-extrabold text-[#1A365D] tracking-wide">
+                        VR PI GROUP OF COMPANIES
+                      </h2>
+                      <a href="https://thevrpigroup.com/about" target="_blank" className="text-xs text-[#2563eb] underline">
+                        https://thevrpigroup.com/about
+                      </a>
+                    </div>
+                    <div className="text-right text-xs">
+                      <p className="font-bold text-slate-700">Date: {new Date().toLocaleDateString()}</p>
+                      <p className="text-slate-500 font-mono">Ref: {selectedCandidate.aid}</p>
+                    </div>
+                  </div>
 
-            {/* Live Metrics Row */}
-            <div className="grid grid-cols-3 border-t border-slate-200/80 bg-slate-50/50 p-4 text-center divide-x divide-slate-200">
-              <div>
-                <p className="text-[11px] font-semibold text-slate-400 uppercase">Automation Cycle</p>
-                <p className="text-base font-bold text-slate-800 mt-0.5">Every 1 Min</p>
-              </div>
-              <div>
-                <p className="text-[11px] font-semibold text-slate-400 uppercase">Document Output</p>
-                <p className="text-base font-bold text-slate-800 mt-0.5">A4 Certified PDF</p>
-              </div>
-              <div>
-                <p className="text-[11px] font-semibold text-slate-400 uppercase">Delivery Protocol</p>
-                <p className="text-base font-bold text-slate-800 mt-0.5">Gmail OAuth 2.0</p>
+                  <div className="h-[2px] bg-[#FF5722] my-3"></div>
+
+                  <div className="text-center my-4">
+                    <h3 className="text-sm font-bold text-[#FF5722] uppercase tracking-wider">
+                      {currentTemplate.title.toUpperCase()}
+                    </h3>
+                  </div>
+
+                  {/* Recipient */}
+                  <div className="text-xs space-y-1 mb-4 text-slate-700">
+                    <p className="font-bold text-slate-800">To: {selectedCandidate.name}</p>
+                    <p className="text-slate-500 font-mono">Email: {selectedCandidate.email}</p>
+                    <p className="font-bold pt-2">Dear {selectedCandidate.name},</p>
+                    <p className="text-slate-600 leading-relaxed pt-1">
+                      We are delighted to extend this formal offer of engagement with VR PI Group of Companies. 
+                      Based on your profile and technical evaluation, you have been selected for the {selectedCandidate.domain} track. 
+                      We are confident that this opportunity will provide you with extensive hands-on industry exposure and mentorship.
+                    </p>
+                  </div>
+
+                  {/* Offer Details Table */}
+                  <div className="my-4">
+                    <p className="text-xs font-bold text-[#1A365D] mb-1.5 uppercase">Program Specifications</p>
+                    <table className="w-full text-xs border border-slate-200">
+                      <tbody>
+                        <tr className="border-b border-slate-200">
+                          <td className="w-1/3 bg-slate-50 font-bold p-2 text-slate-600 border-r border-slate-200">Candidate Name</td>
+                          <td className="p-2 font-medium">{selectedCandidate.name}</td>
+                        </tr>
+                        <tr className="border-b border-slate-200">
+                          <td className="bg-slate-50 font-bold p-2 text-slate-600 border-r border-slate-200">Application ID</td>
+                          <td className="p-2 font-mono font-bold text-slate-800">{selectedCandidate.aid}</td>
+                        </tr>
+                        <tr className="border-b border-slate-200">
+                          <td className="bg-slate-50 font-bold p-2 text-slate-600 border-r border-slate-200">Domain Track</td>
+                          <td className="p-2 font-bold text-slate-900">{selectedCandidate.domain}</td>
+                        </tr>
+                        <tr className="border-b border-slate-200">
+                          <td className="bg-slate-50 font-bold p-2 text-slate-600 border-r border-slate-200">Commencement Date</td>
+                          <td className="p-2">10 November 2026</td>
+                        </tr>
+                        <tr className="border-b border-slate-200">
+                          <td className="bg-slate-50 font-bold p-2 text-slate-600 border-r border-slate-200">Program Duration</td>
+                          <td className="p-2">{currentTemplate.duration}</td>
+                        </tr>
+                        <tr className="border-b border-slate-200">
+                          <td className="bg-slate-50 font-bold p-2 text-slate-600 border-r border-slate-200">Preferred Mode</td>
+                          <td className="p-2">{currentTemplate.mode}</td>
+                        </tr>
+                        <tr>
+                          <td className="bg-slate-50 font-bold p-2 text-slate-600 border-r border-slate-200">Supervising Division</td>
+                          <td className="p-2">{currentTemplate.dept}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  {/* Terms */}
+                  <div className="text-[11px] text-slate-600 space-y-1 my-3 leading-relaxed">
+                    <p className="font-bold text-[#1A365D] uppercase text-xs mb-1">Terms &amp; Conditions of Engagement</p>
+                    <p>1. <strong>Project Deliverables:</strong> You are required to complete all assigned technical modules and submit project milestones on schedule.</p>
+                    <p>2. <strong>Confidentiality:</strong> You agree to uphold professional integrity and maintain strict confidentiality regarding all company workflows and source code.</p>
+                    <p>3. <strong>Verification &amp; Certification:</strong> A verified Certificate of Internship will be awarded upon successful project evaluation and mentor approval.</p>
+                    <p>4. <strong>Onboarding:</strong> Technical setup and project allocation details will be delivered to your registered email before the commencement date.</p>
+                  </div>
+
+                  {/* Dual Signatures */}
+                  <div className="grid grid-cols-2 gap-4 mt-6 pt-3 text-xs">
+                    <div className="border border-slate-200 rounded-lg p-3 bg-slate-50/50">
+                      <p className="font-bold text-[#1A365D] mb-1">CANDIDATE ACCEPTANCE</p>
+                      <p className="text-[10px] text-slate-500 mb-4">I accept the terms and conditions.</p>
+                      <p className="text-[11px] text-slate-400">Signature: ______________________</p>
+                      <p className="text-[11px] text-slate-400 mt-2">Date: _____ / _____ / 2026</p>
+                    </div>
+
+                    <div className="border border-slate-200 rounded-lg p-3 bg-slate-50/50">
+                      <p className="font-bold text-[#1A365D] mb-1">FOR VR PI GROUP OF COMPANIES</p>
+                      <p className="text-[11px] font-bold text-[#FF5722] mb-1">[DIGITALLY VERIFIED &amp; APPROVED]</p>
+                      <p className="text-[10px] text-slate-500">HR &amp; Talent Acquisition Team</p>
+                      <p className="text-[10px] text-slate-500 font-mono mt-2">Verification Code: {selectedCandidate.aid}</p>
+                    </div>
+                  </div>
+
+                  <div className="border-t border-slate-200 mt-6 pt-2 text-center text-[10px] text-slate-400 italic">
+                    VR PI Group of Companies - Official Document | Candidate Confidential
+                  </div>
+                </div>
+
+                {/* Modal Footer Controls */}
+                <div className="mt-6 flex justify-between items-center">
+                  <span className="text-xs text-slate-400 font-mono">Attachment: {selectedCandidate.name.split(' ')[0]}_Offer_Letter.pdf</span>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => window.print()}
+                      className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs cursor-pointer"
+                    >
+                      Print / Download PDF
+                    </button>
+                    <button
+                      onClick={() => setPreviewOpen(false)}
+                      className="px-5 py-2 rounded-xl bg-slate-900 text-white font-bold text-xs hover:bg-slate-800 cursor-pointer"
+                    >
+                      Close Preview
+                    </button>
+                  </div>
+                </div>
+
               </div>
             </div>
-          </section>
+          )}
+
+          {/* Secret Modal */}
+          {showSecretModal && (
+            <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+              <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200">
+                <h3 className="text-sm font-bold text-slate-900">Set CRON_SECRET for Manual Triggers</h3>
+                <p className="text-xs text-slate-500 mt-1 mb-4">
+                  Stored securely in your browser's local storage to authorize manual trigger actions.
+                </p>
+                <input
+                  type="password"
+                  value={secret}
+                  onChange={(e) => setSecret(e.target.value)}
+                  placeholder="Paste CRON_SECRET..."
+                  className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2 text-xs font-mono mb-4 focus:outline-none focus:border-emerald-500"
+                />
+                <div className="flex justify-end gap-2">
+                  <button
+                    onClick={() => setShowSecretModal(false)}
+                    className="px-4 py-2 rounded-xl bg-slate-100 text-slate-600 text-xs font-semibold"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={() => {
+                      localStorage.setItem('vrpi_cron_secret', secret.trim());
+                      setShowSecretModal(false);
+                    }}
+                    className="px-4 py-2 rounded-xl bg-emerald-600 text-white text-xs font-bold"
+                  >
+                    Save Key
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Footer */}
-          <footer className="text-center text-xs text-slate-400 pt-4 border-t border-slate-200/80">
+          <footer className="text-center text-xs text-slate-400 pt-6 border-t border-slate-200/80">
             VR PI Group of Companies &bull; Autonomous Cloud Infrastructure &bull; Vercel Serverless Runtime
           </footer>
         </div>
