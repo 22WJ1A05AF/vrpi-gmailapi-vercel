@@ -1,525 +1,415 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Enterprise Talent Excellence Platform • VR PI Group</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,700;1,600&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; }
-    body { font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; background: #f1f5f9; }
-    .dot-bg { background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 22px 22px; }
-    .a4-page {
-      width: 210mm; min-height: 297mm;
-      margin: 0 auto; background: #fff;
-      box-shadow: 0 20px 60px -10px rgba(0,0,0,0.18);
-      position: relative; overflow: hidden;
-    }
-    @media print {
-      @page { size: A4 portrait; margin: 0; }
-      body * { visibility: hidden; }
-      .a4-page, .a4-page * { visibility: visible; }
-      .a4-page { position: fixed; left: 0; top: 0; width: 100%; height: 100%; box-shadow: none; }
-    }
-    .s-sent    { background:#d1fae5;color:#065f46;border:1px solid #6ee7b7;padding:3px 10px;border-radius:20px;font-weight:700;font-size:9.5px; }
-    .s-pending { background:#fef3c7;color:#92400e;border:1px solid #fcd34d;padding:3px 10px;border-radius:20px;font-weight:700;font-size:9.5px; }
-    .s-failed  { background:#fee2e2;color:#991b1b;border:1px solid #fca5a5;padding:3px 10px;border-radius:20px;font-weight:700;font-size:9.5px; }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>VR PI Group | Enterprise Talent Excellence Platform</title>
+
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f5f7fb;color:#172033;font-family:'DM Sans',sans-serif}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.app{max-width:1500px;margin:auto;padding:25px 35px}
+.header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #e4e9f1;padding-bottom:22px;gap:20px}
+.brand{display:flex;align-items:center;gap:13px}
+.logo{width:48px;height:48px;border-radius:13px;background:#172b4d;color:white;display:grid;place-items:center;font-weight:900;border:2px solid #e99a50;font-size:18px}
+.brand h2{font:800 15px Manrope;margin:0}
+.brand p{font-size:11px;color:#8491a5;margin:5px 0 0}
+.header-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{border:0;border-radius:9px;padding:11px 16px;font-size:12px;font-weight:700}
+.btn-primary{background:#087e59;color:white}
+.btn-dark{background:#172b4d;color:white}
+.btn-light{background:white;border:1px solid #dce3ed;color:#34435b}
+.hero{text-align:center;padding:65px 10px 48px}
+.eyebrow{display:inline-block;padding:9px 16px;border:1px solid #e2e8f0;border-radius:30px;background:white;color:#66758b;font-size:10px;letter-spacing:1px;font-weight:700}
+.dot{display:inline-block;width:8px;height:8px;background:#f47b32;border-radius:50%;margin-right:8px}
+.hero h1{font:800 clamp(34px,5vw,58px)/1.12 Manrope;letter-spacing:-2px;margin:23px 0 15px;color:#111a2d}
+.hero p{max-width:790px;margin:auto;color:#6c7a8e;font-size:15px;line-height:1.9}
+.hero small{display:block;color:#96a2b3;margin-top:20px;font-size:11px}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:25px}
+.metric{background:white;border:1px solid #e7ebf2;border-radius:14px;padding:20px}
+.metric span{font-size:11px;color:#8794a7}
+.metric h2{font:800 27px Manrope;margin:10px 0 4px}
+.metric small{font-size:10px;color:#9aa5b4}
+.panel{background:white;border:1px solid #e5eaf1;border-radius:17px;overflow:hidden;box-shadow:0 10px 30px #24324a08}
+.panel-heading{padding:25px 27px 18px;display:flex;justify-content:space-between;align-items:center;gap:15px}
+.panel-heading h2{font:800 21px Manrope;margin:5px 0}
+.panel-heading p{font-size:11px;color:#8794a7;margin:0}
+.kicker{font-size:10px;font-weight:800;letter-spacing:1.2px;color:#8794a7}
+.connected{font-size:10px;background:#edfaf4;color:#13865b;padding:8px 12px;border-radius:20px}
+.toolbar{display:flex;justify-content:space-between;gap:15px;padding:0 27px 18px;border-bottom:1px solid #edf0f5;flex-wrap:wrap}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tab{background:transparent;border:0;padding:11px 13px;color:#8995a6;font-size:12px;font-weight:700;border-bottom:2px solid transparent}
+.tab.active{color:#172b4d;border-color:#f47b32}
+.search{width:min(380px,100%);padding:11px 14px;border:1px solid #e0e6ef;border-radius:9px;font-size:12px;outline:none}
+.search:focus,select:focus{border-color:#e88b4c}
+.table-wrap{overflow:auto}
+table{width:100%;border-collapse:collapse;white-space:nowrap}
+th{text-align:left;background:#fbfcfe;color:#94a1b3;padding:15px 13px;font-size:9px;letter-spacing:.7px;text-transform:uppercase}
+td{padding:15px 13px;border-top:1px solid #eff2f6;font-size:11px;color:#5c6b80}
+th:first-child,td:first-child{padding-left:27px}
+td strong{color:#25334b}
+.mono{font-family:monospace;font-weight:700}
+.status{display:inline-block;padding:5px 10px;border-radius:20px;background:#eef3f8;color:#68778c;font-size:9px;font-weight:800}
+.status.sent,.status.success,.status.completed{background:#eaf9f1;color:#12865a}
+.status.failed,.status.rejected{background:#fff0ee;color:#c94e43}
+.link-btn{border:0;background:none;color:#087eae;font-size:11px;font-weight:700}
+.empty{text-align:center;padding:55px 20px;color:#8794a7;font-size:12px}
+.history{padding:25px 30px}
+.history-event{border-left:2px solid #e5eaf1;padding:0 0 25px 23px;position:relative}
+.history-event:before{content:"";position:absolute;left:-6px;top:3px;width:9px;height:9px;border-radius:50%;background:#ed873d}
+.event-head{display:flex;justify-content:space-between;gap:15px}
+.event-head strong{font-size:11px;color:#1c3558}
+.event-head time{font-size:10px;color:#96a2b3}
+.history-event p{font-size:12px;color:#65748a}
+.event-details{display:flex;flex-wrap:wrap;gap:12px 20px;font-size:10px;color:#8996a7}
+.event-details b{color:#4b5b72}
+.templates{display:grid;grid-template-columns:1fr 1fr;gap:30px;padding:30px}
+.templates h3{font:800 22px Manrope}
+.templates p{font-size:12px;line-height:1.8;color:#8190a3}
+.templates label{display:block;font-size:11px;font-weight:700;margin:25px 0 9px}
+.template-select{width:100%;padding:13px;border:1px solid #dfe6ef;border-radius:9px;background:white;color:#34435b}
+.preview{border:1px solid #e3e8ef;border-radius:12px;padding:27px;background:#fff;min-height:360px;box-shadow:0 8px 25px #24324a08}
+.paper-header{display:flex;align-items:center;gap:12px}
+.paper-header h4{font:800 13px Manrope;color:#172b4d;margin:0}
+.paper-header small{font-size:9px;color:#8794a7}
+.paper-rule{height:3px;background:#1a365d;margin:18px 0 28px}
+.preview h2{text-align:center;font:800 20px Manrope;color:#1a365d;margin:25px 0}
+.preview-body{font-size:12px;line-height:2;color:#526178}
+.preview-meta{display:flex;justify-content:space-between;gap:12px;font-size:10px;color:#748298;margin:20px 0}
+.signoff{border-top:1px solid #e4e9ef;padding-top:16px;margin-top:50px;font-size:11px;color:#35445c}
+.signoff span{display:block;color:#8b97a8;font-size:9px;margin-top:5px}
+.preview-footer{border-top:2px solid #1a365d;margin-top:25px;padding-top:10px;text-align:center;font-size:9px;color:#8591a3}
+.footer{text-align:center;padding:30px 10px;color:#8c98a9;font-size:10px}
+.footer a{color:#087eae;text-decoration:none}
+.alert{margin:0 0 18px;padding:13px 16px;background:#fff7ed;border:1px solid #fed7aa;color:#9a531b;border-radius:10px;font-size:12px}
+.modal-bg{position:fixed;inset:0;background:#101a2c99;display:grid;place-items:center;padding:20px;z-index:10}
+.modal{background:white;width:min(850px,100%);max-height:85vh;overflow:auto;border-radius:15px;padding:25px}
+.modal-top{display:flex;justify-content:space-between;align-items:center}
+.detail-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:20px}
+.detail{padding:12px;background:#f8fafc;border:1px solid #edf0f4;border-radius:8px;overflow-wrap:anywhere}
+.detail span{display:block;font-size:9px;color:#8794a7;text-transform:uppercase}
+.detail b{display:block;font-size:11px;margin-top:7px;color:#34435b}
+@media(max-width:800px){
+ .app{padding:16px}
+ .header{align-items:flex-start;flex-direction:column}
+ .metrics{grid-template-columns:repeat(2,1fr)}
+ .templates{grid-template-columns:1fr;padding:20px}
+ .panel-heading{padding:20px}
+ .hero{padding:45px 5px 35px}
+}
+@media(max-width:480px){
+ .metrics{gap:8px}
+ .metric{padding:13px}
+ .metric h2{font-size:21px}
+ .detail-grid{grid-template-columns:1fr}
+ .event-head{flex-direction:column}
+}
+@media print{
+ body *{visibility:hidden}
+ #documentPreview,#documentPreview *{visibility:visible}
+ #documentPreview{position:absolute;left:0;top:0;width:100%;box-shadow:none}
+}
+</style>
 </head>
-<body class="dot-bg min-h-screen" style="color:#1e293b">
-  <div id="root"></div>
-  <script type="text/babel">
-    const { useState, useEffect, useCallback } = React;
 
-    const SHEET_ID    = "1dCJXGZN3dbThvJt5SnMYUSp0uAAsVuWnKuXd1rabBOU";
-    const SHEET_URL   = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit?gid=0#gid=0`;
-    const GMAIL_URL   = "https://mail.google.com/mail/u/0/#inbox";
-    const COMPANY_URL = "https://share.google/Staafq7spnZSStc8n";
-    const TODAY       = new Date().toLocaleDateString("en-IN",{day:"2-digit",month:"long",year:"numeric"});
+<body>
+<div id="root"></div>
 
-    // REAL rows from your actual Google Sheet (Col A-E + R-U)
-    const REAL_ROWS = [
-      { timestamp:"2026-11-06 17:19:18", aid:"VRPI-INT-3205", name:"Shiva",             email:"kshivaprasad33987@gmail.com", phone:"9949020175",    domain:"Full Stack Web Development",    status:"SENT", pdfRecord:"Delivered via Email (Shiva_Internship_Offer.pdf)",     lastUpdated:"2026-11-12 14:32:10", notes:"Accepted by Gmail API; message ID: 19324ff82a9b1c." },
-      { timestamp:"2026-11-06 17:41:36", aid:"VRPI-INT-8402", name:"Srija",             email:"srijayelleni@gmail.com",        phone:"9701861659",    domain:"Full Stack Web Development",    status:"SENT", pdfRecord:"Delivered via Email (Srija_Internship_Offer.pdf)",     lastUpdated:"2026-11-12 16:48:59", notes:"Email accepted by Gmail API; message ID: 19324ec1407e3d." },
-      { timestamp:"2026-11-07 23:31:55", aid:"VRPI-INT-3887", name:"Kummita Meenakshi", email:"meenakshikummita@gmail.com",   phone:"+919391773744", domain:"Artificial Intelligence & ML", status:"SENT", pdfRecord:"Delivered via Email (Meenakshi_Internship_Offer.pdf)", lastUpdated:"2026-11-12 14:15:04", notes:"Accepted by Gmail API; message ID: 19324c4b912a7f." },
-      { timestamp:"2026-11-10 14:50:31", aid:"VRPI-INT-9502", name:"Shiva",             email:"yshakerrao364@gmail.com",       phone:"9618762752",    domain:"Cloud Computing & DevOps",      status:"SENT", pdfRecord:"Delivered via Email (Shiva_Internship_Offer.pdf)",     lastUpdated:"2026-11-12 13:58:22", notes:"Gmail API Verified; message ID: 19324c4b717abc." },
-    ];
+<script type="text/babel">
+const {useState,useEffect,useMemo,useCallback}=React;
 
-    const TEMPLATES = [
-      { id:"offer",       title:"Internship Offer Letter",          tag:"Offer",        color:"#1e3a5f", desc:"Corporate navy-header offer letter with programme specs table, formal terms, and dual-party acceptance block." },
-      { id:"certificate", title:"Internship Completion Certificate", tag:"Certificate", color:"#7b341e", desc:"Gold double-frame premium award certificate with official seal, verification table, and commendation body." },
-      { id:"training",    title:"Industrial Training Appointment",   tag:"Training",    color:"#1a202c", desc:"Modern left red-accent bar with bulleted programme particulars, company branding panel, and clean sans-serif typography." },
-    ];
+/*
+  IMPORTANT:
+  Configure this URL to your authenticated backend.
+  Do not place Google service-account credentials in this HTML.
+*/
+const API_BASE=""; 
+const SHEET_URL="https://docs.google.com/spreadsheets/d/1dCJXGZN3dbThvJt5SnMYUSp0uAAsVuWnKuXd1rabBOU/edit";
+const COMPANY_WEBSITE="https://share.google/Staafq7spnZSStc8n";
 
-    const VRLogo = ({ size=48, inv=false }) => (
-      <div style={{width:size,height:size,background:inv?"#fff":"#1A365D",border:inv?"2.5px solid #1A365D":"none",borderRadius:Math.round(size*0.2),display:"flex",alignItems:"center",justifyContent:"center",fontWeight:900,fontSize:Math.round(size*0.33),color:inv?"#1A365D":"#fff",letterSpacing:"-0.5px",flexShrink:0,fontFamily:"Plus Jakarta Sans,sans-serif"}}>VR</div>
-    );
+const TEMPLATE_LIST=[
+ ["internship-offer","Internship Offer Letter"],
+ ["internship-completion","Internship Completion Certificate"],
+ ["internship-training","Internship Training Letter"],
+ ["training-offer","Training Offer Letter"],
+ ["training-completion","Training Completion Certificate"],
+ ["participation","Participation Certificate"],
+ ["experience","Experience Certificate"],
+ ["appreciation","Appreciation Certificate"],
+ ["project-completion","Project Completion Certificate"],
+ ["general-certificate","General Certification Letter"]
+];
 
-    // ── TEMPLATE 1: Corporate Navy Offer Letter ──────────────────
-    function OfferLetter({ c }) {
-      return (
-        <div className="a4-page" style={{display:"flex",flexDirection:"column"}}>
-          <div style={{background:"#1e3a5f",padding:"22px 36px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-            <div style={{display:"flex",alignItems:"center",gap:14}}>
-              <VRLogo size={52} inv />
-              <div>
-                <div style={{color:"#fff",fontWeight:800,fontSize:16,letterSpacing:0.3}}>VR PI GROUP OF COMPANIES</div>
-                <div style={{color:"#93c5fd",fontSize:10,marginTop:2}}>Innovate. Engineer. Empower. — Est. 2015</div>
-              </div>
-            </div>
-            <div style={{textAlign:"right",color:"#bfdbfe",fontSize:10,lineHeight:1.75}}>
-              <div>vrpigroupoftechnology@gmail.com</div>
-              <div>Tech Park, Bengaluru, Karnataka</div>
-              <div style={{color:"#fed7aa",fontWeight:700,fontFamily:"JetBrains Mono,monospace"}}>Ref: {c.aid}</div>
-            </div>
-          </div>
-          <div style={{height:4,background:"linear-gradient(90deg,#f97316,#fb923c,#fed7aa)"}}></div>
-          <div style={{padding:"28px 40px",flex:1,display:"flex",flexDirection:"column",fontSize:11}}>
-            <div style={{textAlign:"center",marginBottom:22}}>
-              <div style={{display:"inline-block",padding:"6px 28px",border:"1.5px solid #1e3a5f",borderRadius:4}}>
-                <span style={{fontSize:13,fontWeight:800,color:"#1e3a5f",letterSpacing:2.5,textTransform:"uppercase"}}>Internship Offer Letter</span>
-              </div>
-              <div style={{fontSize:10,color:"#94a3b8",marginTop:6}}>Issued: {TODAY}</div>
-            </div>
-            <div style={{marginBottom:14,lineHeight:1.75}}>
-              <div style={{fontWeight:700,color:"#0f172a"}}>To: {c.name}</div>
-              <div style={{color:"#64748b",fontFamily:"JetBrains Mono,monospace",fontSize:10}}>{c.email} &nbsp;|&nbsp; {c.phone}</div>
-            </div>
-            <div style={{fontWeight:700,color:"#1e293b",marginBottom:10}}>Dear {c.name},</div>
-            <div style={{color:"#475569",lineHeight:1.85,marginBottom:12}}>
-              We are pleased to inform you that after a thorough evaluation of your academic credentials and technical aptitude, you have been selected for the <strong style={{color:"#1e3a5f"}}>{c.domain}</strong> Internship Programme at <strong>VR PI Group of Companies</strong>.
-            </div>
-            <div style={{color:"#475569",lineHeight:1.85,marginBottom:20}}>
-              Your internship commences on <strong>10 November 2026</strong> for a duration of <strong>4 Weeks</strong>, under our Technical Engineering &amp; Mentorship Division, in <strong>Virtual / Remote</strong> mode.
-            </div>
-            <div style={{fontSize:10,fontWeight:700,color:"#1e3a5f",textTransform:"uppercase",letterSpacing:1.5,marginBottom:8,borderBottom:"1.5px solid #e2e8f0",paddingBottom:4}}>Programme Specifications</div>
-            <table style={{width:"100%",borderCollapse:"collapse",fontSize:11,marginBottom:16}}>
-              {[["Candidate Name",c.name],["Application ID",c.aid],["Programme Domain",c.domain],["Mode of Engagement","Virtual / Remote (Work-From-Home)"],["Duration","4 Weeks — 10 Nov 2026 to 7 Dec 2026"],["Reporting Division","Technical Engineering & Mentorship Cell"],["Registered Email",c.email]].map(([k,v],i)=>(
-                <tr key={i}>
-                  <td style={{background:"#f1f5f9",padding:"7px 12px",fontWeight:700,color:"#1e3a5f",borderBottom:"1px solid #e2e8f0",width:"38%"}}>{k}</td>
-                  <td style={{padding:"7px 12px",color:"#334155",borderBottom:"1px solid #e2e8f0"}}>{v}</td>
-                </tr>
-              ))}
-            </table>
-            <div style={{fontSize:10,fontWeight:700,color:"#1e3a5f",textTransform:"uppercase",letterSpacing:1.5,marginBottom:8,borderBottom:"1.5px solid #e2e8f0",paddingBottom:4}}>Terms &amp; Conditions</div>
-            {["Maintain strict confidentiality of all proprietary information accessed during the programme.",
-              "Deliverables must be submitted by deadlines communicated by the respective project lead.",
-              "Intellectual property developed during the internship shall remain the property of VR PI Group of Companies.",
-              "Violation of conduct or non-performance may result in immediate revocation of this offer letter."
-            ].map((t,i)=>(
-              <div key={i} style={{display:"flex",gap:8,fontSize:10.5,color:"#475569",marginBottom:5,lineHeight:1.6}}>
-                <span style={{color:"#f97316",fontWeight:700,flexShrink:0}}>{i+1}.</span><span>{t}</span>
-              </div>
-            ))}
-            <div style={{display:"flex",justifyContent:"space-between",marginTop:"auto",paddingTop:18,borderTop:"1px solid #e2e8f0"}}>
-              <div>
-                <div style={{fontSize:10,color:"#94a3b8",marginBottom:28}}>Candidate Acceptance</div>
-                <div style={{borderBottom:"1.5px solid #334155",width:180,marginBottom:5}}></div>
-                <div style={{fontWeight:700,color:"#1e293b",fontSize:11}}>{c.name}</div>
-                <div style={{fontSize:9,color:"#94a3b8"}}>Signature &amp; Date</div>
-              </div>
-              <div style={{textAlign:"right"}}>
-                <div style={{fontSize:10,color:"#94a3b8",marginBottom:28}}>For VR PI Group of Companies</div>
-                <div style={{borderBottom:"1.5px solid #334155",width:180,marginBottom:5}}></div>
-                <div style={{fontWeight:700,color:"#1e293b",fontSize:11}}>Director, Talent Acquisition</div>
-                <div style={{fontSize:9,color:"#94a3b8"}}>HR &amp; Corporate Affairs</div>
-              </div>
-            </div>
-          </div>
-          <div style={{background:"#1e3a5f",color:"#93c5fd",fontSize:9,padding:"9px 36px",textAlign:"center"}}>
-            VR PI Group of Companies &bull; vrpigroupoftechnology@gmail.com &bull; Tech Park, Bengaluru, Karnataka &bull; GSTIN: 29AABCV1234F1Z5
-          </div>
-        </div>
-      );
-    }
+function getValue(row, names){
+ const keys=Object.keys(row||{});
+ for(const name of names){
+  const key=keys.find(k=>k.toLowerCase().replace(/[^a-z0-9]/g,"")===name.toLowerCase().replace(/[^a-z0-9]/g,""));
+  if(key) return row[key]??"";
+ }
+ return "";
+}
 
-    // ── TEMPLATE 2: Gold Completion Certificate ──────────────────
-    function CompletionCert({ c }) {
-      return (
-        <div className="a4-page" style={{background:"#fffdf7",display:"flex",flexDirection:"column"}}>
-          <div style={{position:"absolute",inset:14,border:"2px solid #b7791f",pointerEvents:"none",zIndex:1}}></div>
-          <div style={{position:"absolute",inset:21,border:"1px solid #d69e2e",pointerEvents:"none",zIndex:1}}></div>
-          <div style={{background:"linear-gradient(135deg,#744210 0%,#b7791f 50%,#744210 100%)",padding:"26px 60px 22px",textAlign:"center",position:"relative",zIndex:2}}>
-            <div style={{display:"flex",justifyContent:"center",alignItems:"center",gap:18,marginBottom:12}}>
-              <div style={{width:70,height:2,background:"rgba(255,255,255,0.35)"}}></div>
-              <VRLogo size={52} inv />
-              <div style={{width:70,height:2,background:"rgba(255,255,255,0.35)"}}></div>
-            </div>
-            <div style={{color:"#fff",fontWeight:300,fontSize:11,letterSpacing:5,textTransform:"uppercase"}}>VR PI Group of Companies</div>
-            <div style={{color:"#fef3c7",fontWeight:300,fontSize:9,letterSpacing:2.5,marginTop:3}}>TALENT EXCELLENCE DIVISION — OFFICIAL DOCUMENTATION</div>
-          </div>
-          <div style={{padding:"32px 60px",textAlign:"center",flex:1,display:"flex",flexDirection:"column",justifyContent:"center",position:"relative",zIndex:2}}>
-            <div style={{fontSize:9,letterSpacing:5,color:"#92400e",textTransform:"uppercase",fontWeight:700,marginBottom:12}}>Certificate of Completion</div>
-            <div style={{fontSize:10,color:"#78716c",letterSpacing:1,marginBottom:14}}>This is to certify that</div>
-            <div style={{fontFamily:"Playfair Display,serif",fontSize:36,fontWeight:700,color:"#1a202c",lineHeight:1.1,marginBottom:6}}>{c.name}</div>
-            <div style={{width:120,height:3,background:"linear-gradient(90deg,transparent,#b7791f,transparent)",margin:"0 auto 16px"}}></div>
-            <div style={{fontSize:12,color:"#44403c",lineHeight:1.9,marginBottom:6}}>has successfully completed the</div>
-            <div style={{fontSize:16,fontWeight:800,color:"#b7791f",textTransform:"uppercase",letterSpacing:1.5,marginBottom:10}}>{c.domain}</div>
-            <div style={{fontSize:11.5,color:"#57534e",lineHeight:1.8,marginBottom:8}}>Internship Programme at <strong>VR PI Group of Companies</strong></div>
-            <div style={{fontSize:10.5,color:"#78716c",lineHeight:1.8,maxWidth:460,margin:"0 auto 28px"}}>
-              Demonstrating exceptional commitment, technical proficiency, and professional conduct throughout the programme from <strong>10 November 2026</strong> to <strong>7 December 2026</strong>.
-            </div>
-            <div style={{background:"#fef9ec",border:"1px solid #d69e2e",borderRadius:10,padding:"14px 24px",maxWidth:460,margin:"0 auto 28px",textAlign:"left"}}>
-              {[["Application ID",c.aid],["Programme Domain",c.domain],["Completion Date","7 December 2026"],["Certificate No.",`VRPI-CERT-${c.aid.slice(-4)}-2026`]].map(([k,v],i)=>(
-                <div key={i} style={{display:"flex",justifyContent:"space-between",padding:"5px 0",borderBottom:i<3?"1px solid #fde68a":"none",fontSize:10}}>
-                  <span style={{color:"#92400e",fontWeight:700}}>{k}</span>
-                  <span style={{color:"#44403c",fontFamily:"JetBrains Mono,monospace"}}>{v}</span>
-                </div>
-              ))}
-            </div>
-            <div style={{display:"flex",justifyContent:"space-around",alignItems:"flex-end"}}>
-              <div style={{textAlign:"center"}}>
-                <div style={{width:76,height:76,border:"2px dashed #b7791f",borderRadius:"50%",display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 8px",fontSize:8,color:"#b7791f",fontWeight:700,textTransform:"uppercase",lineHeight:1.4}}>Official<br/>Seal</div>
-                <div style={{fontSize:9,color:"#92400e"}}>VR PI Group of Companies</div>
-              </div>
-              <div style={{textAlign:"center"}}>
-                <div style={{borderBottom:"1.5px solid #44403c",width:160,marginBottom:6}}></div>
-                <div style={{fontSize:10,fontWeight:700,color:"#1c1917"}}>Director, HR &amp; Certifications</div>
-                <div style={{fontSize:9,color:"#78716c"}}>VR PI Group of Companies</div>
-                <div style={{fontSize:9,color:"#78716c"}}>Date: {TODAY}</div>
-              </div>
-            </div>
-            <div style={{marginTop:20,fontSize:9,color:"#a8a29e",letterSpacing:1.5,textTransform:"uppercase"}}>
-              Authorized by HR &amp; Evaluation Board &bull; Digitally Verified
-            </div>
-          </div>
-          <div style={{position:"absolute",bottom:30,left:30,right:30,background:"linear-gradient(90deg,#744210,#b7791f,#744210)",height:3,zIndex:2}}></div>
-        </div>
-      );
-    }
+function dateText(value){
+ if(!value)return "—";
+ const d=new Date(value);
+ return isNaN(d.getTime())?String(value):d.toLocaleString();
+}
 
-    // ── TEMPLATE 3: Industrial Training — Red Left Accent Bar ────
-    function TrainingLetter({ c }) {
-      return (
-        <div className="a4-page" style={{display:"flex",padding:0}}>
-          <div style={{width:12,background:"linear-gradient(180deg,#1a202c 0%,#c53030 50%,#dd6b20 100%)",flexShrink:0}}></div>
-          <div style={{flex:1,display:"flex",flexDirection:"column",padding:"32px 36px 24px"}}>
-            <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:24,paddingBottom:16,borderBottom:"1px solid #e2e8f0"}}>
-              <div>
-                <div style={{fontSize:9,fontWeight:700,color:"#c53030",letterSpacing:3,textTransform:"uppercase",marginBottom:4}}>Industrial Training Programme</div>
-                <div style={{fontSize:22,fontWeight:900,color:"#1a202c",letterSpacing:-0.5,textTransform:"uppercase",lineHeight:1.1}}>Appointment<br/>Letter</div>
-                <div style={{fontSize:10,color:"#718096",marginTop:6,fontFamily:"JetBrains Mono,monospace"}}>Ref: {c.aid} &bull; {TODAY}</div>
-              </div>
-              <div style={{display:"flex",alignItems:"center",gap:10}}>
-                <div style={{textAlign:"right"}}>
-                  <div style={{fontSize:14,fontWeight:800,color:"#1a202c"}}>VR PI Group</div>
-                  <div style={{fontSize:9,color:"#718096"}}>of Companies</div>
-                </div>
-                <VRLogo size={48} />
-              </div>
-            </div>
-            <div style={{background:"#f7fafc",border:"1px solid #e2e8f0",borderLeft:"4px solid #c53030",borderRadius:6,padding:"12px 16px",marginBottom:20,fontSize:11}}>
-              <div style={{fontWeight:700,color:"#1a202c",marginBottom:3}}>To: {c.name}</div>
-              <div style={{color:"#4a5568",fontFamily:"JetBrains Mono,monospace",fontSize:10}}>{c.email}</div>
-              <div style={{color:"#718096",fontSize:10}}>{c.phone}</div>
-            </div>
-            <div style={{fontSize:12,fontWeight:700,color:"#2d3748",marginBottom:10}}>Dear {c.name},</div>
-            <div style={{fontSize:11,color:"#4a5568",lineHeight:1.85,marginBottom:18}}>
-              Following a comprehensive technical assessment, we are pleased to formally appoint you to the <strong style={{color:"#c53030"}}>{c.domain}</strong> Industrial Training Programme at <strong>VR PI Group of Companies</strong>. This appointment recognizes your demonstrated capability and professional commitment.
-            </div>
-            <div style={{marginBottom:20}}>
-              <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:14}}>
-                <div style={{flex:1,height:1,background:"#c53030",opacity:.3}}></div>
-                <span style={{fontSize:9,fontWeight:700,letterSpacing:3,textTransform:"uppercase",color:"#c53030"}}>Programme Particulars</span>
-                <div style={{flex:1,height:1,background:"#c53030",opacity:.3}}></div>
-              </div>
-              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"10px 24px"}}>
-                {[["Programme Domain",c.domain],["Appointment Type","Industrial Training"],["Commencement Date","10 November 2026"],["Programme Duration","4 Weeks"],["Engagement Mode","Virtual / Remote"],["Reporting Division","Engineering & Mentorship Cell"],["Credential Award","Experience Certificate"],["Application Reference",c.aid]].map(([k,v],i)=>(
-                  <div key={i} style={{display:"flex",gap:8,alignItems:"flex-start",fontSize:10.5}}>
-                    <span style={{width:7,height:7,borderRadius:"50%",background:"#c53030",flexShrink:0,marginTop:5}}></span>
-                    <div>
-                      <div style={{fontWeight:700,color:"#2d3748",fontSize:10}}>{k}</div>
-                      <div style={{color:"#718096"}}>{v}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div style={{background:"#1a202c",color:"#e2e8f0",borderRadius:8,padding:"14px 18px",marginBottom:20,fontSize:10.5,lineHeight:1.8}}>
-              <span style={{fontWeight:700,color:"#fc8181"}}>Key Expectations: </span>
-              Maintain professional conduct, submit deliverables on schedule, attend all virtual review sessions, and uphold confidentiality standards. Performance evaluation determines the nature of your credential issued upon programme completion.
-            </div>
-            <div style={{marginTop:"auto",display:"flex",justifyContent:"space-between",paddingTop:18,borderTop:"1px solid #e2e8f0"}}>
-              <div>
-                <div style={{fontSize:10,color:"#718096",marginBottom:26}}>Trainee Acknowledgement</div>
-                <div style={{borderBottom:"1.5px solid #2d3748",width:160,marginBottom:5}}></div>
-                <div style={{fontWeight:700,color:"#1a202c",fontSize:11}}>{c.name}</div>
-                <div style={{fontSize:9,color:"#a0aec0"}}>Signature &amp; Date</div>
-              </div>
-              <div style={{textAlign:"right"}}>
-                <div style={{fontSize:10,color:"#718096",marginBottom:26}}>For VR PI Group of Companies</div>
-                <div style={{borderBottom:"1.5px solid #2d3748",width:160,marginBottom:5}}></div>
-                <div style={{fontWeight:700,color:"#1a202c",fontSize:11}}>Head — Industrial Training Cell</div>
-                <div style={{fontSize:9,color:"#a0aec0"}}>Authorized Signatory</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    }
+async function getAPI(path,signal){
+ const response=await fetch(API_BASE+path,{
+  method:"GET",
+  credentials:"include",
+  headers:{Accept:"application/json"},
+  cache:"no-store",
+  signal
+ });
+ if(!response.ok)throw new Error("API request failed: "+response.status);
+ return response.json();
+}
 
-    // ── MAIN APP ─────────────────────────────────────────────────
-    function App() {
-      const [candidates, setCandidates] = useState(REAL_ROWS);
-      const [syncing, setSyncing]       = useState(false);
-      const [syncMsg, setSyncMsg]       = useState("");
-      const [selTmpl, setSelTmpl]       = useState("offer");
-      const [a4Open, setA4Open]         = useState(false);
-      const [histOpen, setHistOpen]     = useState(false);
-      const [search, setSearch]         = useState("");
-      const [activeCand, setActiveCand] = useState(REAL_ROWS[0]);
+function App(){
+ const [candidates,setCandidates]=useState([]);
+ const [events,setEvents]=useState([]);
+ const [loading,setLoading]=useState(true);
+ const [error,setError]=useState("");
+ const [lastSync,setLastSync]=useState(null);
+ const [query,setQuery]=useState("");
+ const [tab,setTab]=useState("candidates");
+ const [selected,setSelected]=useState(null);
+ const [template,setTemplate]=useState(TEMPLATE_LIST[0][0]);
+ const [historyType,setHistoryType]=useState("ALL");
 
-      const fetchSheet = useCallback(async () => {
-        setSyncing(true); setSyncMsg("Connecting to Google Sheet...");
-        try {
-          const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
-          const r = await fetch(url);
-          if (!r.ok) throw new Error("HTTP " + r.status);
-          const text = await r.text();
-          const json = JSON.parse(text.slice(text.indexOf("{"), text.lastIndexOf("}") + 1));
-          const rows = json?.table?.rows || [];
-          const g = (row, idx) => (row.c && row.c[idx] && row.c[idx].v != null ? String(row.c[idx].v).trim() : "");
-          const parsed = rows.map((row, i) => {
-            const name = g(row,2), email = g(row,3);
-            if (!name && !email) return null;
-            return { timestamp:g(row,0), aid:g(row,1)||`VRPI-INT-${9000+i}`, name:name||"Candidate", email, phone:g(row,4), domain:g(row,7)||"Full Stack Web Development", status:(g(row,17)||"PENDING").toUpperCase(), pdfRecord:g(row,18)||"Pending", lastUpdated:g(row,19)||"", notes:g(row,20)||"" };
-          }).filter(Boolean);
-          if (parsed.length > 0) { setCandidates(parsed); setActiveCand(parsed[0]); setSyncMsg(`✓ Synced ${parsed.length} live records from Google Sheet`); }
-          else setSyncMsg("Sheet returned 0 rows — showing cached records.");
-        } catch (e) {
-          setSyncMsg("Sheet not publicly shared — showing cached records. Set sheet to 'Anyone with link can view'.");
-        }
-        setSyncing(false);
-        setTimeout(() => setSyncMsg(""), 7000);
-      }, []);
+ const refresh=useCallback(async(signal)=>{
+  try{
+   setError("");
+   const [candidateData,historyData]=await Promise.all([
+    getAPI("/api/candidates",signal),
+    getAPI("/api/history",signal)
+   ]);
+   setCandidates(Array.isArray(candidateData.rows)?candidateData.rows:[]);
+   setEvents(Array.isArray(historyData.events)?historyData.events:[]);
+   setLastSync(new Date());
+  }catch(err){
+   if(err.name!=="AbortError")setError(err.message+" — Check your backend API connection.");
+  }finally{setLoading(false)}
+ },[]);
 
-      useEffect(() => { fetchSheet(); }, []);
+ useEffect(()=>{
+  const controller=new AbortController();
+  refresh(controller.signal);
+  const timer=setInterval(()=>refresh(),15000);
+  return ()=>{controller.abort();clearInterval(timer)};
+ },[refresh]);
 
-      const filtered = candidates.filter(c =>
-        c.name.toLowerCase().includes(search.toLowerCase()) ||
-        c.aid.toLowerCase().includes(search.toLowerCase()) ||
-        c.email.toLowerCase().includes(search.toLowerCase())
-      );
-      const count = s => candidates.filter(c => c.status === s).length;
+ const filteredCandidates=useMemo(()=>{
+  const q=query.toLowerCase().trim();
+  if(!q)return candidates;
+  return candidates.filter(row=>Object.values(row).some(v=>String(v??"").toLowerCase().includes(q)));
+ },[candidates,query]);
 
-      const BS = (bg,color,border) => ({display:"inline-flex",alignItems:"center",gap:7,padding:"10px 20px",borderRadius:12,background:bg,color,fontWeight:800,fontSize:11.5,border:border||"none",cursor:"pointer",textDecoration:"none",whiteSpace:"nowrap",boxShadow:bg==="#1e3a5f"?"0 4px 14px rgba(30,58,95,0.25)":"0 1px 5px rgba(0,0,0,0.07)"});
+ const filteredEvents=useMemo(()=>{
+  const q=query.toLowerCase().trim();
+  return events.filter(e=>{
+   const typeMatch=historyType==="ALL"||String(e.eventType).toUpperCase()===historyType;
+   const searchMatch=!q||Object.values(e).some(v=>String(v??"").toLowerCase().includes(q));
+   return typeMatch&&searchMatch;
+  });
+ },[events,query,historyType]);
 
-      return (
-        <div style={{maxWidth:1100,margin:"0 auto",padding:"32px 20px"}}>
+ const sentCount=candidates.filter(row=>
+  String(getValue(row,["Email Status","Letter Sent","Status"])).toLowerCase().includes("sent")
+ ).length;
 
-          {/* HEADER */}
-          <header style={{display:"flex",justifyContent:"space-between",alignItems:"center",paddingBottom:20,marginBottom:28,borderBottom:"1.5px solid #e2e8f0",flexWrap:"wrap",gap:14}}>
-            <div style={{display:"flex",alignItems:"center",gap:14}}>
-              <VRLogo size={50} />
-              <div>
-                <div style={{display:"flex",alignItems:"center",gap:10}}>
-                  <a href={COMPANY_URL} target="_blank" rel="noreferrer" style={{fontSize:15,fontWeight:800,color:"#0f172a",textDecoration:"none"}}>VR PI Group of Companies</a>
-                  <span style={{fontSize:9,fontWeight:700,padding:"3px 9px",borderRadius:20,background:"#fff7ed",color:"#c2410c",border:"1px solid #fed7aa",textTransform:"uppercase",letterSpacing:.5}}>Live Operations</span>
-                </div>
-                <div style={{fontSize:10,color:"#64748b",marginTop:3}}>Talent Acquisition • Document Synthesis • Gmail API Engine</div>
-              </div>
-            </div>
-            <div style={{display:"flex",gap:9,flexWrap:"wrap"}}>
-              <a href={SHEET_URL} target="_blank" rel="noreferrer" style={BS("#fff","#15803d","1.5px solid #e2e8f0")}>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14H6v-2h6v2zm4-4H6v-2h10v2zm0-4H6V7h10v2z"/></svg>
-                Connected Sheet
-              </a>
-              <a href={GMAIL_URL} target="_blank" rel="noreferrer" style={BS("#fff","#dc2626","1.5px solid #e2e8f0")}>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                Gmail Inbox
-              </a>
-              <div style={{display:"flex",alignItems:"center",gap:7,padding:"10px 16px",borderRadius:12,background:"#f0fdf4",border:"1.5px solid #bbf7d0",fontSize:11,fontWeight:700,color:"#15803d"}}>
-                <span style={{width:7,height:7,borderRadius:"50%",background:"#22c55e",display:"inline-block"}}></span>
-                24/7 Engine Active
-              </div>
-            </div>
-          </header>
+ const selectedTemplate=TEMPLATE_LIST.find(x=>x[0]===template)?.[1];
 
-          {/* HERO */}
-          <section style={{textAlign:"center",maxWidth:760,margin:"0 auto 40px",padding:"0 10px"}}>
-            <div style={{display:"inline-flex",alignItems:"center",gap:8,padding:"5px 16px",borderRadius:20,background:"#fff",border:"1px solid #e2e8f0",fontSize:10.5,color:"#64748b",fontWeight:600,marginBottom:18,boxShadow:"0 1px 4px rgba(0,0,0,0.05)"}}>
-              <span style={{width:6,height:6,borderRadius:"50%",background:"#f97316",display:"inline-block"}}></span>
-              Enterprise Automation • Google Sheets • Gmail API • A4 PDF Engine
-            </div>
-            <h1 style={{fontSize:38,fontWeight:900,color:"#0f172a",lineHeight:1.12,marginBottom:14,letterSpacing:-0.5}}>
-              Enterprise Talent<br/>
-              <span style={{color:"#1e3a5f"}}>Excellence Platform</span>
-            </h1>
-            <p style={{fontSize:13,color:"#64748b",lineHeight:1.8,maxWidth:640,margin:"0 auto 28px"}}>
-              A unified enterprise solution for intelligent talent management, official documentation, professional certifications, and automated corporate communication.
-            </p>
-            <div style={{display:"flex",justifyContent:"center",gap:12,flexWrap:"wrap"}}>
-              <button onClick={()=>setA4Open(true)} style={BS("#1e3a5f","#fff")}>
-                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-                Preview A4 Template
-              </button>
-              <button onClick={()=>setHistOpen(true)} style={BS("#fff","#0f172a","1.5px solid #e2e8f0")}>
-                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-                View Sheet History ({candidates.length})
-              </button>
-              <button onClick={fetchSheet} disabled={syncing} style={BS("#fff","#15803d","1.5px solid #bbf7d0")}>
-                {syncing ? "Syncing…" : "↻ Sync Sheet Data"}
-              </button>
-            </div>
-            {syncMsg && (
-              <div style={{marginTop:14,fontSize:11,padding:"9px 20px",borderRadius:10,background:syncMsg.startsWith("✓")?"#f0fdf4":"#fef3c7",color:syncMsg.startsWith("✓")?"#166534":"#92400e",border:`1px solid ${syncMsg.startsWith("✓")?"#bbf7d0":"#fde68a"}`,display:"inline-block"}}>
-                {syncMsg}
-              </div>
-            )}
-          </section>
+ return <div className="app">
+  <header className="header">
+   <a className="brand" href={COMPANY_WEBSITE} target="_blank" rel="noreferrer" style={{textDecoration:"none",color:"inherit"}}>
+    <div className="logo">VR</div>
+    <div>
+     <h2>VR PI Group Of Company</h2>
+     <p>Enterprise Talent & Documentation Operations</p>
+    </div>
+   </a>
+   <div className="header-actions">
+    <a className="btn btn-light" href={COMPANY_WEBSITE} target="_blank" rel="noreferrer" style={{textDecoration:"none"}}>Company Website ↗</a>
+    <a className="btn btn-light" href={SHEET_URL} target="_blank" rel="noreferrer" style={{textDecoration:"none"}}>Open Google Sheet ↗</a>
+    <button className="btn btn-primary" onClick={()=>refresh()}>Refresh Data</button>
+   </div>
+  </header>
 
-          {/* STATS */}
-          <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:14,marginBottom:38}}>
-            {[{l:"Total Applicants",v:candidates.length,s:"Real records from Sheet",c:"#1e3a5f"},{l:"Letters Issued",v:count("SENT"),s:"Gmail API Delivered",c:"#15803d"},{l:"Pending Actions",v:count("PENDING"),s:"Ready to dispatch",c:"#b45309"},{l:"Failed / Retries",v:count("FAILED"),s:"Missing email / API blocks",c:"#dc2626"}].map((x,i)=>(
-              <div key={i} style={{background:"#fff",borderRadius:16,padding:"20px",border:"1.5px solid #e2e8f0",boxShadow:"0 1px 6px rgba(0,0,0,0.04)"}}>
-                <div style={{fontSize:9,fontWeight:700,letterSpacing:1.5,textTransform:"uppercase",color:"#94a3b8",marginBottom:8}}>{x.l}</div>
-                <div style={{fontSize:34,fontWeight:900,color:x.c,lineHeight:1}}>{x.v}</div>
-                <div style={{fontSize:10,color:"#94a3b8",marginTop:7}}>{x.s}</div>
-              </div>
-            ))}
-          </div>
+  <section className="hero">
+   <div className="eyebrow"><span className="dot"></span>VR PI GROUP • ENTERPRISE OPERATIONS SUITE</div>
+   <h1>Enterprise Talent Excellence Platform</h1>
+   <p>A unified enterprise solution for intelligent talent management, official documentation, professional certifications, and automated corporate communication.</p>
+   <small>INTEGRATED TALENT OPERATIONS • CORPORATE DOCUMENTATION • AUTOMATED WORKFLOWS</small>
+  </section>
 
-          {/* TEMPLATE CARDS */}
-          <section style={{marginBottom:50}}>
-            <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:18}}>
-              <div>
-                <h2 style={{fontSize:15,fontWeight:800,color:"#0f172a",margin:0}}>Document Templates</h2>
-                <p style={{fontSize:11,color:"#64748b",marginTop:4}}>3 professionally distinct A4 layouts — click to select &amp; preview</p>
-              </div>
-              <span style={{fontSize:10,fontWeight:700,padding:"4px 14px",borderRadius:20,background:"#fff",border:"1px solid #e2e8f0",color:"#64748b"}}>3 Layouts</span>
-            </div>
-            <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:18}}>
-              {TEMPLATES.map(t=>(
-                <div key={t.id} style={{background:"#fff",borderRadius:18,padding:"22px 22px 18px",border:`2px solid ${selTmpl===t.id?t.color:"#e2e8f0"}`,boxShadow:selTmpl===t.id?`0 0 0 4px ${t.color}22`:"0 1px 6px rgba(0,0,0,0.04)",transition:"all .2s",display:"flex",flexDirection:"column"}}>
-                  <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
-                    <span style={{fontSize:9,fontWeight:700,padding:"3px 10px",borderRadius:20,background:`${t.color}18`,color:t.color,border:`1px solid ${t.color}44`,textTransform:"uppercase",letterSpacing:.5}}>{t.tag}</span>
-                    <span style={{fontSize:10,color:"#94a3b8",fontFamily:"JetBrains Mono,monospace"}}>Style {TEMPLATES.indexOf(t)+1}</span>
-                  </div>
-                  <h3 style={{fontSize:13,fontWeight:800,color:"#0f172a",marginBottom:8}}>{t.title}</h3>
-                  <p style={{fontSize:11,color:"#64748b",lineHeight:1.65,flex:1}}>{t.desc}</p>
-                  <button onClick={()=>{setSelTmpl(t.id);setA4Open(true);}} style={{marginTop:16,padding:"10px 16px",borderRadius:10,background:selTmpl===t.id?t.color:"#0f172a",color:"#fff",fontWeight:700,fontSize:11,border:"none",cursor:"pointer",width:"100%"}}>
-                    {selTmpl===t.id?"✓ View Selected Template":"Select & Preview →"}
-                  </button>
-                </div>
-              ))}
-            </div>
-          </section>
+  {error&&<div className="alert"><b>Live connection unavailable:</b> {error} No sample records are displayed.</div>}
 
-          {/* HISTORY MODAL */}
-          {histOpen && (
-            <div style={{position:"fixed",inset:0,background:"rgba(15,23,42,0.65)",backdropFilter:"blur(5px)",display:"flex",alignItems:"center",justifyContent:"center",padding:20,zIndex:200}}>
-              <div style={{background:"#fff",borderRadius:24,maxWidth:1050,width:"100%",maxHeight:"90vh",display:"flex",flexDirection:"column",boxShadow:"0 24px 80px rgba(0,0,0,0.3)",border:"1px solid #e2e8f0"}}>
-                <div style={{padding:"22px 28px 14px",borderBottom:"1px solid #f1f5f9",display:"flex",justifyContent:"space-between",alignItems:"flex-start"}}>
-                  <div>
-                    <div style={{display:"flex",alignItems:"center",gap:9}}>
-                      <span style={{width:10,height:10,borderRadius:"50%",background:"#22c55e",display:"inline-block"}}></span>
-                      <h3 style={{fontSize:16,fontWeight:800,color:"#0f172a",margin:0}}>Google Sheet Tracking History</h3>
-                    </div>
-                    <p style={{fontSize:11,color:"#64748b",marginTop:4}}>Columns A–E &amp; R–U from <strong>Internship_Students</strong> • {candidates.length} Candidate Records</p>
-                  </div>
-                  <button onClick={()=>setHistOpen(false)} style={{width:32,height:32,borderRadius:"50%",background:"#f1f5f9",border:"none",fontSize:18,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",color:"#64748b",fontWeight:700}}>×</button>
-                </div>
-                <div style={{padding:"12px 28px",display:"flex",gap:10,alignItems:"center",borderBottom:"1px solid #f1f5f9"}}>
-                  <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search by name, App ID, or email…"
-                    style={{flex:1,padding:"9px 14px",borderRadius:10,border:"1.5px solid #e2e8f0",fontSize:11,fontFamily:"JetBrains Mono,monospace",outline:"none",background:"#f8fafc"}} />
-                  <a href={SHEET_URL} target="_blank" rel="noreferrer" style={{padding:"9px 18px",borderRadius:10,background:"#15803d",color:"#fff",fontWeight:700,fontSize:11,textDecoration:"none",whiteSpace:"nowrap"}}>Open Live Sheet</a>
-                  <button onClick={fetchSheet} disabled={syncing} style={{padding:"9px 14px",borderRadius:10,background:"#f1f5f9",border:"1px solid #e2e8f0",fontSize:13,fontWeight:700,cursor:"pointer",color:"#0f172a"}}>{syncing?"…":"↻"}</button>
-                </div>
-                <div style={{flex:1,overflowY:"auto",padding:"0 28px"}}>
-                  <table style={{width:"100%",borderCollapse:"collapse",fontSize:11}}>
-                    <thead style={{position:"sticky",top:0,background:"#fff",zIndex:10}}>
-                      <tr style={{borderBottom:"2px solid #f1f5f9"}}>
-                        {["Timestamp (A)","App ID (B)","Full Name (C)","Email (D)","Phone (E)","Status (R)","PDF Record (S)","Last Updated (T)","Notes (U)"].map(h=>(
-                          <th key={h} style={{padding:"12px 10px",textAlign:"left",fontSize:9,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:1,whiteSpace:"nowrap"}}>{h}</th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {filtered.length===0?(
-                        <tr><td colSpan={9} style={{textAlign:"center",padding:40,color:"#94a3b8",fontSize:13}}>No records match your search</td></tr>
-                      ):filtered.map((c,i)=>(
-                        <tr key={i} onClick={()=>{setActiveCand(c);setHistOpen(false);setA4Open(true);}}
-                          style={{borderBottom:"1px solid #f8fafc",cursor:"pointer"}}
-                          onMouseEnter={e=>e.currentTarget.style.background="#f8faff"}
-                          onMouseLeave={e=>e.currentTarget.style.background=""}>
-                          <td style={{padding:"12px 10px",fontFamily:"JetBrains Mono,monospace",fontSize:9.5,color:"#64748b",whiteSpace:"nowrap"}}>{c.timestamp}</td>
-                          <td style={{padding:"12px 10px",fontFamily:"JetBrains Mono,monospace",fontWeight:700,color:"#1e3a5f",whiteSpace:"nowrap"}}>{c.aid}</td>
-                          <td style={{padding:"12px 10px",fontWeight:700,color:"#0f172a",whiteSpace:"nowrap"}}>{c.name}</td>
-                          <td style={{padding:"12px 10px",fontFamily:"JetBrains Mono,monospace",fontSize:9.5,color:"#64748b"}}>{c.email}</td>
-                          <td style={{padding:"12px 10px",fontFamily:"JetBrains Mono,monospace",fontSize:9.5,color:"#94a3b8",whiteSpace:"nowrap"}}>{c.phone}</td>
-                          <td style={{padding:"12px 10px"}}>
-                            <span className={c.status==="SENT"?"s-sent":c.status==="FAILED"?"s-failed":"s-pending"}>{c.status||"PENDING"}</span>
-                          </td>
-                          <td style={{padding:"12px 10px",fontSize:10,color:"#475569",maxWidth:180,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{c.pdfRecord}</td>
-                          <td style={{padding:"12px 10px",fontFamily:"JetBrains Mono,monospace",fontSize:9.5,color:"#94a3b8",whiteSpace:"nowrap"}}>{c.lastUpdated}</td>
-                          <td style={{padding:"12px 10px",fontSize:10,color:"#64748b",maxWidth:160,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{c.notes}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-                <div style={{padding:"14px 28px",borderTop:"1px solid #f1f5f9",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-                  <span style={{fontSize:11,color:"#94a3b8"}}>Showing {filtered.length} of {candidates.length} records • Click any row to preview its document</span>
-                  <button onClick={()=>setHistOpen(false)} style={{padding:"9px 22px",borderRadius:10,background:"#0f172a",color:"#fff",fontSize:11,fontWeight:700,border:"none",cursor:"pointer"}}>Close History</button>
-                </div>
-              </div>
-            </div>
-          )}
+  <section className="metrics">
+   <Metric label="Candidate Records" value={candidates.length} note="Actual source sheet records"/>
+   <Metric label="History Events" value={events.length} note="Recorded audit events"/>
+   <Metric label="Sent Records" value={sentCount} note="Based on actual returned status"/>
+   <Metric label="Last Synchronization" value={lastSync?lastSync.toLocaleTimeString():"—"} note="Automatic refresh every 15 seconds"/>
+  </section>
 
-          {/* A4 TEMPLATE MODAL */}
-          {a4Open && (
-            <div style={{position:"fixed",inset:0,background:"rgba(15,23,42,0.8)",backdropFilter:"blur(6px)",display:"flex",alignItems:"flex-start",justifyContent:"center",padding:"20px 10px",zIndex:200,overflowY:"auto"}}>
-              <div style={{maxWidth:900,width:"100%"}}>
-                <div style={{background:"#0f172a",borderRadius:16,padding:"12px 20px",marginBottom:12,display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:10}}>
-                  <div style={{display:"flex",alignItems:"center",gap:10}}>
-                    <span style={{width:10,height:10,borderRadius:"50%",background:"#f97316",display:"inline-block"}}></span>
-                    <span style={{color:"#f1f5f9",fontWeight:700,fontSize:11,textTransform:"uppercase",letterSpacing:.8}}>
-                      {selTmpl==="offer"&&"Template 1 — Internship Offer Letter"}
-                      {selTmpl==="certificate"&&"Template 2 — Completion Certificate"}
-                      {selTmpl==="training"&&"Template 3 — Industrial Training Appointment"}
-                    </span>
-                    <span style={{color:"#64748b",fontSize:10}}>• {activeCand.name}</span>
-                  </div>
-                  <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
-                    <select value={activeCand.aid} onChange={e=>setActiveCand(candidates.find(c=>c.aid===e.target.value)||candidates[0])}
-                      style={{padding:"6px 10px",borderRadius:8,background:"#1e293b",color:"#e2e8f0",border:"1px solid #334155",fontSize:10,cursor:"pointer"}}>
-                      {candidates.map(c=><option key={c.aid} value={c.aid}>{c.name} ({c.aid})</option>)}
-                    </select>
-                    <button onClick={()=>window.print()} style={{padding:"7px 16px",borderRadius:10,background:"#f97316",color:"#fff",fontWeight:700,fontSize:11,border:"none",cursor:"pointer"}}>🖨 Print / Save A4 PDF</button>
-                    <button onClick={()=>setA4Open(false)} style={{width:34,height:34,borderRadius:10,background:"#1e293b",color:"#94a3b8",border:"none",fontSize:18,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",fontWeight:700}}>×</button>
-                  </div>
-                </div>
-                <div style={{display:"flex",gap:9,marginBottom:14,justifyContent:"center",flexWrap:"wrap"}}>
-                  {TEMPLATES.map(t=>(
-                    <button key={t.id} onClick={()=>setSelTmpl(t.id)}
-                      style={{padding:"6px 18px",borderRadius:20,fontSize:10.5,fontWeight:700,border:"none",cursor:"pointer",background:selTmpl===t.id?t.color:"#1e293b",color:"#fff"}}>
-                      {t.title}
-                    </button>
-                  ))}
-                </div>
-                {selTmpl==="offer"       && <OfferLetter c={activeCand} />}
-                {selTmpl==="certificate" && <CompletionCert c={activeCand} />}
-                {selTmpl==="training"    && <TrainingLetter c={activeCand} />}
-              </div>
-            </div>
-          )}
+  <section className="panel">
+   <div className="panel-heading">
+    <div>
+     <span className="kicker">ENTERPRISE OPERATIONS CONSOLE</span>
+     <h2>Talent & Documentation Management</h2>
+     <p>Connected Google Sheets records • Read-only dashboard</p>
+    </div>
+    <span className="connected">● Live data view</span>
+   </div>
 
-          {/* FOOTER */}
-          <footer style={{textAlign:"center",fontSize:11,color:"#94a3b8",paddingTop:24,borderTop:"1px solid #e2e8f0",marginTop:24}}>
-            <a href={COMPANY_URL} target="_blank" rel="noreferrer" style={{color:"#1e3a5f",fontWeight:700,textDecoration:"none"}}>VR PI Group of Companies</a>
-            {" "}• Enterprise Talent Excellence Platform • Vercel Serverless Runtime • Gmail API v1
-          </footer>
-        </div>
-      );
-    }
+   <div className="toolbar">
+    <div className="tabs">
+     <button className={"tab "+(tab==="candidates"?"active":"")} onClick={()=>setTab("candidates")}>Candidate Records</button>
+     <button className={"tab "+(tab==="history"?"active":"")} onClick={()=>setTab("history")}>Sheet History</button>
+     <button className={"tab "+(tab==="templates"?"active":"")} onClick={()=>setTab("templates")}>Document Templates</button>
+    </div>
+    <input className="search" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search application ID, name, email, or event..."/>
+   </div>
 
-    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
-  </script>
+   {tab==="candidates"&&<div className="table-wrap">
+    {loading&&candidates.length===0?<Empty>Loading actual Google Sheets records...</Empty>:
+     filteredCandidates.length===0?<Empty>No candidate records returned from the connected sheet.</Empty>:
+     <table>
+      <thead><tr>
+       <th>Application ID</th><th>Full Name</th><th>Email Address</th><th>WhatsApp / Phone</th><th>College</th><th>Domain</th><th>Application Status</th><th>Timestamp</th><th>Details</th>
+      </tr></thead>
+      <tbody>{filteredCandidates.map((row,i)=>{
+       const id=getValue(row,["Application ID"])||"row-"+i;
+       const status=getValue(row,["Application Status","Email Status","Letter Sent","Status"]);
+       return <tr key={id}>
+        <td className="mono">{id||"—"}</td>
+        <td><strong>{getValue(row,["Full Name","Name"])||"—"}</strong></td>
+        <td>{getValue(row,["Email Address","Email"])||"—"}</td>
+        <td>{getValue(row,["WhatsApp / Phone","WhatsApp","Phone"])||"—"}</td>
+        <td>{getValue(row,["College"])||"—"}</td>
+        <td>{getValue(row,["Domain","Internship Domain"])||"—"}</td>
+        <td><Status value={status}/></td>
+        <td>{dateText(getValue(row,["Timestamp","Last Updated"]))}</td>
+        <td><button className="link-btn" onClick={()=>setSelected(row)}>View details</button></td>
+       </tr>
+      })}</tbody>
+     </table>}
+   </div>}
+
+   {tab==="history"&&<div className="history">
+    <div style={{display:"flex",justifyContent:"space-between",gap:15,flexWrap:"wrap",marginBottom:25}}>
+     <p style={{fontSize:11,color:"#8491a5"}}>Chronological changes recorded from the separate Audit_Log. Original candidate records are not modified.</p>
+     <select value={historyType} onChange={e=>setHistoryType(e.target.value)} style={{padding:9,border:"1px solid #e1e7ef",borderRadius:8}}>
+      <option value="ALL">All Events</option>
+      <option value="EDIT">Edits</option>
+      <option value="INSERT_ROW">Inserted Rows</option>
+      <option value="REMOVE_ROW">Removed Rows</option>
+      <option value="FORM_SUBMIT">Form Submissions</option>
+     </select>
+    </div>
+    {filteredEvents.length===0?<Empty>No audit events found. Install the Google Apps Script triggers described below.</Empty>:
+     filteredEvents.map((event,i)=><div className="history-event" key={event.eventId||i}>
+      <div className="event-head">
+       <strong>{event.eventType||"SHEET EVENT"}</strong>
+       <time>{dateText(event.timestamp)}</time>
+      </div>
+      <p>{event.description||"Google Sheet change recorded."}</p>
+      <div className="event-details">
+       <span>Application ID: <b>{event.applicationId||"—"}</b></span>
+       <span>Sheet: <b>{event.sheetName||"—"}</b></span>
+       <span>Cell: <b>{event.rangeA1||"—"}</b></span>
+       <span>Column: <b>{event.columnName||"—"}</b></span>
+       <span>Previous: <b>{event.oldValue??"—"}</b></span>
+       <span>New: <b>{event.newValue??"—"}</b></span>
+       <span>Actor: <b>{event.actor||"—"}</b></span>
+      </div>
+     </div>)}
+   </div>}
+
+   {tab==="templates"&&<div className="templates">
+    <div>
+     <span className="kicker">OFFICIAL CORPORATE DOCUMENT LIBRARY</span>
+     <h3>Professional Document Templates</h3>
+     <p>Select a document type to view its branded A4 preview. Candidate-specific documents must be generated using verified live sheet records and authorized backend processing.</p>
+     <label>Select Document Template</label>
+     <select className="template-select" value={template} onChange={e=>setTemplate(e.target.value)}>
+      {TEMPLATE_LIST.map(t=><option key={t[0]} value={t[0]}>{t[1]}</option>)}
+     </select>
+     <p>Selected: <b>{selectedTemplate}</b></p>
+     <button className="btn btn-dark" onClick={()=>window.print()}>Print / Save Preview as PDF</button>
+    </div>
+    <div className="preview" id="documentPreview">
+     <div className="paper-header">
+      <div className="logo">VR</div>
+      <div><h4>VR PI GROUP OF COMPANY</h4><small>Corporate Talent & Professional Development</small></div>
+     </div>
+     <div className="paper-rule"></div>
+     <div className="preview-meta"><span>Official Corporate Document</span><span>Reference: Preview</span></div>
+     <h2>{selectedTemplate}</h2>
+     <div className="preview-body">
+      <p>To Whom It May Concern,</p>
+      <p>This document is issued by <b>VR PI Group Of Company</b> in connection with its professional talent development and corporate engagement programmes.</p>
+      <p>Candidate information, programme details, dates, and document references will be populated from the verified candidate record when the authorized document-generation service is connected.</p>
+      <p>All information must be reviewed and validated by the authorized company representative before issuance.</p>
+     </div>
+     <div className="signoff">
+      <b>Authorized Signatory</b>
+      <span>VR PI Group Of Company</span>
+      <span>No digital or simulated signature is included.</span>
+     </div>
+     <div className="preview-footer">
+      {COMPANY_WEBSITE}<br/>Official Corporate Documentation
+     </div>
+    </div>
+   </div>}
+  </section>
+
+  <footer className="footer">
+   <b>VR PI Group Of Company</b><br/>
+   Enterprise Talent Excellence Platform<br/>
+   <a href={COMPANY_WEBSITE} target="_blank" rel="noreferrer">Official Company Website ↗</a><br/><br/>
+   Read-only candidate dashboard • Secure enterprise data operations
+  </footer>
+
+  {selected&&<div className="modal-bg" onClick={()=>setSelected(null)}>
+   <div className="modal" onClick={e=>e.stopPropagation()}>
+    <div className="modal-top">
+     <div><span className="kicker">SOURCE GOOGLE SHEET RECORD</span><h2>Candidate Details</h2></div>
+     <button className="btn btn-light" onClick={()=>setSelected(null)}>Close ×</button>
+    </div>
+    <div className="detail-grid">
+     {Object.entries(selected).map(([key,value])=><div className="detail" key={key}>
+      <span>{key}</span><b>{String(value??"—")||"—"}</b>
+     </div>)}
+    </div>
+    <p style={{fontSize:10,color:"#8b97a8",marginTop:18}}>Read-only view. Editing and deletion are disabled.</p>
+   </div>
+  </div>}
+ </div>;
+}
+
+function Metric({label,value,note}){
+ return <div className="metric"><span>{label}</span><h2>{value}</h2><small>{note}</small></div>
+}
+function Empty({children}){return <div className="empty">{children}</div>}
+function Status({value}){
+ const s=String(value||"Not specified");
+ const type=s.toLowerCase().includes("sent")||s.toLowerCase().includes("success")||s.toLowerCase().includes("complete")?"success":s.toLowerCase().includes("fail")||s.toLowerCase().includes("reject")?"failed":"";
+ return <span className={"status "+type}>{s}</span>
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
 </body>
 </html>
