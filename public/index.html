@@ -595,18 +595,8 @@ function App(){
       <label>{label}</label>
       <input name={name} value={manual[name]} onChange={updateManual} placeholder={placeholder}/>
      </div>)}
-     <div className="field">
-      <label>COMPLETION STATUS</label>
-      <select name="completionStatus" value={manual.completionStatus} onChange={updateManual}>
-       <option value="">Not verified</option><option value="Completed">Completed</option><option value="Pending Verification">Pending Verification</option>
-      </select>
-     </div>
-     <div className="field">
-      <label>PARTICIPATION STATUS</label>
-      <select name="participationStatus" value={manual.participationStatus} onChange={updateManual}>
-       <option value="">Not verified</option><option value="Participated">Participated</option><option value="Pending Verification">Pending Verification</option>
-      </select>
-     </div>
+     
+     
     </div>
    </div>}
 
