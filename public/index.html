@@ -5,12 +5,10 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>VR PI Group | Enterprise Talent Excellence Platform</title>
-
 <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
-
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#f3f6fa;color:#17233a;font-family:'Plus Jakarta Sans',sans-serif}
@@ -20,7 +18,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
 .app{max-width:1240px;margin:auto;padding:28px 24px}
 .header{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;padding-bottom:20px;border-bottom:1px solid #e2e8f0}
 .brand{display:flex;align-items:center;text-decoration:none}
-.logo{width:180px;height:75px}
+.logo{width:180px;height:auto;display:block;object-fit:contain}
 .actions{display:flex;gap:8px;flex-wrap:wrap}
 .btn{padding:10px 15px;border:1px solid #dfe6ef;background:white;border-radius:9px;color:#263d5e;text-decoration:none;font-size:10px;font-weight:800}
 .dark{background:#1e3a5f;color:white;border-color:#1e3a5f}
@@ -31,10 +29,10 @@ button:disabled{opacity:.45;cursor:not-allowed}
 .hero p{max-width:750px;margin:auto;color:#74839a;font-size:13px;line-height:1.9}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
 .stat{background:white;border:1px solid #e2e8f0;border-radius:14px;padding:19px 20px;text-align:left}
+.stat button{border:0;background:none;width:100%;padding:0;text-align:left}
 .stat label{font-size:9px;font-weight:800;color:#8795a9;letter-spacing:1px;display:block}
 .stat strong{display:block;font-size:30px;font-weight:800;margin:9px 0 4px}
 .stat small{font-size:10px;color:#94a3b8}
-.stat button{border:0;background:none;padding:0;text-align:left;width:100%}
 .stat.active{border:2px solid #e94b17;background:#fffaf7}
 .panel{background:white;border:1px solid #e1e7ef;border-radius:18px;padding:27px;box-shadow:0 10px 32px #263b5909;margin-bottom:24px}
 .kicker{color:#8291a6;font-size:10px;font-weight:800;letter-spacing:1.5px}
@@ -75,17 +73,20 @@ h2{font-size:20px;color:#172b49;margin:8px 0}
 .empty{padding:35px;text-align:center;color:#8593a7;font-size:11px}
 .footer{text-align:center;padding:26px 0;color:#8491a5;font-size:10px}
 .footer a{color:#0d7377;text-decoration:none}
+.footer-logo{width:145px;height:auto;margin:0 auto 8px;display:block}
 .modal{position:fixed;inset:0;background:rgba(12,23,41,.9);z-index:100;overflow:auto;padding:15px}
 .modal-inner{max-width:920px;width:100%;margin:0 auto}
 .modalbar{background:#111c30;padding:12px 15px;border-radius:11px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
 .modalbar strong{font-size:11px;color:white}
 .modal-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .modal-actions select{padding:8px;border-radius:7px;font-size:10px;max-width:220px}
-.modal-actions button{padding:9px 12px}
+.modal-tabs{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin-bottom:13px}
+.modal-tabs button{padding:8px 13px;border:1px solid #526077;border-radius:20px;background:#26354b;color:white;font-size:9px;font-weight:700}
+.modal-tabs button.active{background:#e94b17;border-color:#e94b17}
 .a4{width:210mm;height:297mm;min-height:297mm;margin:0 auto;background:white;display:flex;flex-direction:column;position:relative;overflow:hidden;color:#26354d;box-shadow:0 15px 50px #0004}
-.doc-logo{width:150px;height:78px;display:block}
+.doc-logo{width:150px;height:auto;display:block}
 .doc-header{padding:21px 32px;display:flex;align-items:center;justify-content:space-between;gap:14px;border-bottom:2px solid #1e3a5f}
-.doc-info{text-align:right;font-size:8.5px;color:#66758c;line-height:1.8}
+.doc-info{text-align:right;font-size:8.5px;color:#66758c;line-height:1.8;overflow-wrap:anywhere}
 .doc-info strong{color:#1e3a5f;font-size:10px}
 .doc-content{padding:25px 38px;flex:1;display:flex;flex-direction:column;font-size:10.5px;line-height:1.8}
 .doc-content p{color:#475569;margin:8px 0;line-height:1.85}
@@ -97,99 +98,56 @@ h2{font-size:20px;color:#172b49;margin:8px 0}
 .doc-table td{border-bottom:1px solid #e5eaf0;padding:7px 9px}
 .doc-table td:first-child{width:36%;background:#f3f6fa;color:#1e3a5f;font-weight:700}
 .doc-footer{padding:10px 18px;background:#1e3a5f;color:white;text-align:center;font-size:8.5px;line-height:1.7}
-.signoff{margin-top:auto;padding-top:20px;border-top:1px solid #e1e7ef}
+.signoff{margin-top:auto;padding-top:18px;border-top:1px solid #e1e7ef}
 .signoff strong{display:block;margin-top:6px;color:#1e3a5f;font-size:11px}
 .signoff small{display:block;color:#8190a5;margin-top:3px;font-size:9px}
-.acceptance{border:1px solid #d5dfe9;border-radius:7px;padding:13px;margin-top:14px;background:#f8fafc}
-.acceptance-line{display:inline-block;border-bottom:1px solid #66758c;width:145px;margin:0 8px}
+.acceptance{border:1px solid #d5dfe9;border-radius:7px;padding:13px;margin-top:12px;background:#f8fafc}
+.acceptance-line{display:inline-block;border-bottom:1px solid #66758c;width:140px;margin:0 7px}
 .training-top{height:8px;background:linear-gradient(90deg,#191928 70%,#e94b17)}
 .draft{padding:7px;text-align:center;background:#fff4e8;color:#aa4b16;border:1px solid #ffd7b5;font-weight:800;font-size:9px;letter-spacing:1px}
 
-/* LANDSCAPE COMPLETION CERTIFICATE */
-.a4.landscape{
- width:297mm;
- height:210mm;
- min-height:210mm;
- background:#fffefa;
- color:#315a32;
- padding:10mm;
-}
-.certificate-frame{
- height:100%;
- border:5px double #79a96d;
- padding:8px;
- position:relative;
- background:
- repeating-linear-gradient(
-  0deg,
-  transparent 0px,
-  transparent 6px,
-  rgba(112,169,103,.09) 7px,
-  transparent 8px
- ),#fffefa;
-}
-.certificate-inner{
- height:100%;
- border:1px solid #83b47b;
- padding:15px 25px;
- display:flex;
- flex-direction:column;
- justify-content:space-between;
- text-align:center;
-}
-.certificate-title{
- font-size:37px;
- line-height:1.15;
- font-weight:800;
- letter-spacing:2px;
- color:#315a32;
- margin:3px 0 4px;
-}
-.certificate-company{
- display:flex;
- justify-content:center;
- align-items:center;
- gap:12px;
- font-size:17px;
- font-weight:800;
- letter-spacing:1px;
-}
-.certificate-company .doc-logo{width:95px;height:48px}
-.certificate-intro{font-size:14px;color:#426343;margin-top:10px}
-.certificate-name{
- font-family:'Playfair Display',serif;
- font-size:36px;
- font-weight:700;
- color:#315a32;
- margin:5px 0;
-}
-.certificate-description{
- font-size:13px;
- line-height:1.75;
- color:#3d6040;
- max-width:690px;
- margin:0 auto;
-}
-.certificate-bottom{
- display:grid;
- grid-template-columns:1fr 1.3fr 1fr;
- align-items:end;
- gap:14px;
- font-size:10px;
- color:#355e37;
-}
-.certificate-bottom strong{display:block;font-size:12px;margin-bottom:4px}
-.certificate-bottom small{font-size:10px}
-.certificate-bottom .center{border-left:1px solid #a8c79e;border-right:1px solid #a8c79e;padding:0 8px}
-.certificate-draft{color:#a34a16;font-size:8px;font-weight:800;letter-spacing:1px;margin-top:4px}
+/* COMPLETION CERTIFICATE */
+.a4.completion-landscape{width:297mm;height:210mm;min-height:210mm;padding:9mm;background:#fffef9;color:#315a32}
+.completion-frame{height:100%;border:5px double #7eac71;padding:7px;background:repeating-linear-gradient(0deg,transparent 0px,transparent 7px,rgba(120,174,111,.10) 8px,transparent 9px)}
+.completion-inner{height:100%;border:1px solid #93bd85;padding:13px 25px;display:flex;flex-direction:column;justify-content:space-between;text-align:center}
+.completion-title{font-size:34px;font-weight:800;letter-spacing:2px;color:#315a32;margin:0}
+.completion-company{display:flex;justify-content:center;align-items:center;gap:13px;font-size:15px;font-weight:800;letter-spacing:1px;color:#315a32}
+.completion-company img{width:100px}
+.completion-intro{font-size:13px;color:#526f50;margin-top:9px}
+.completion-name{font-family:'Playfair Display',serif;font-size:35px;font-weight:700;color:#315a32;margin:6px 0}
+.completion-statement{font-size:12px;line-height:1.8;max-width:710px;margin:auto;color:#426343}
+.completion-meta{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:14px;align-items:end;color:#355e37;font-size:10px}
+.completion-meta strong{display:block;font-size:11px;margin-bottom:5px}
+.completion-meta small{display:block;font-size:9px;line-height:1.7}
+.completion-meta .middle{border-left:1px solid #aac99f;border-right:1px solid #aac99f;padding:0 10px}
+.completion-warning{font-size:8px;color:#a34a16;font-weight:800;letter-spacing:1px}
+
+/* PARTICIPATION CERTIFICATE */
+.a4.participation-landscape{width:297mm;height:210mm;min-height:210mm;padding:9mm;background:#f6f7fa;color:#1a2b46}
+.participation-frame{height:100%;padding:8px;border:4px solid #1e3a5f;position:relative;background:#fff}
+.participation-frame:before{content:"";position:absolute;inset:8px;border:1px solid #c6a96a;pointer-events:none}
+.participation-inner{height:100%;padding:20px 32px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;position:relative}
+.participation-top{width:100%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #d4c18d;padding-bottom:12px}
+.participation-title{font-size:27px;letter-spacing:4px;color:#1e3a5f;font-weight:800;margin:0}
+.participation-subtitle{font-size:10px;letter-spacing:3px;color:#a57d33;font-weight:800}
+.participation-badge{width:83px;height:83px;border:2px solid #c3a15a;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:auto;color:#1e3a5f;font-size:12px;font-weight:800;line-height:1.3;background:#fbf8ed}
+.participation-name{font-family:'Playfair Display',serif;font-size:34px;color:#1e3a5f;margin:3px 0}
+.participation-statement{font-size:12px;line-height:1.85;color:#53647d;max-width:670px;margin:auto}
+.participation-detail{display:flex;justify-content:center;gap:45px;border-top:1px solid #dfd5bc;border-bottom:1px solid #dfd5bc;padding:11px 24px;width:90%;font-size:10px;color:#52637b}
+.participation-detail strong{display:block;color:#1e3a5f;margin-bottom:3px}
+.participation-footer{display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;width:100%;font-size:9px;color:#52637b}
+.participation-footer strong{display:block;color:#1e3a5f;font-size:10px;margin-bottom:4px}
+.participation-footer .company-center{border-left:1px solid #d8c99d;border-right:1px solid #d8c99d;padding:0 10px}
+.certificate-draft{font-size:8px;letter-spacing:1px;color:#a34a16;font-weight:800}
+
 @media(max-width:850px){
  .app{padding:17px 12px}
  .stats{grid-template-columns:repeat(2,1fr)}
  .template-layout{grid-template-columns:1fr}
  .panel{padding:20px}
  .form-grid{grid-template-columns:1fr}
- .a4{width:100%;height:auto;min-height:1000px}
- .a4.landscape{width:100%;height:auto;min-height:650px}
+ .a4{width:100%;min-height:1000px;height:auto}
+ .a4.completion-landscape,.a4.participation-landscape{width:100%;height:auto;min-height:650px}
  .doc-content{padding:22px}
  .doc-header{padding:15px}
 }
@@ -198,10 +156,14 @@ h2{font-size:20px;color:#172b49;margin:8px 0}
  .actions{width:100%}.actions .btn{flex:1}
  .hero{padding:40px 5px 30px}
  .search{width:100%}
+ .completion-title{font-size:20px}
+ .completion-name,.participation-name{font-size:25px}
+ .completion-meta,.participation-footer{gap:5px;font-size:8px}
 }
 @media print{
  @page{size:A4 portrait;margin:0}
- @page certificatePage{size:A4 landscape;margin:0}
+ @page completionPage{size:A4 landscape;margin:0}
+ @page participationPage{size:A4 landscape;margin:0}
  html,body{margin:0!important;padding:0!important;background:white!important}
  body *{visibility:hidden!important}
  #printTarget,#printTarget *{visibility:visible!important}
@@ -209,9 +171,10 @@ h2{font-size:20px;color:#172b49;margin:8px 0}
  .modal-inner{width:210mm!important;max-width:none!important;margin:0!important}
  .modalbar,.modal-tabs,.no-print{display:none!important}
  #printTarget{position:absolute!important;left:0!important;top:0!important}
- .a4{width:210mm!important;height:297mm!important;min-height:297mm!important;margin:0!important;box-shadow:none!important;page:portraitPage;break-after:page;print-color-adjust:exact;-webkit-print-color-adjust:exact}
- .a4.landscape{page:certificatePage;width:297mm!important;height:210mm!important;min-height:210mm!important;margin:0!important}
- .doc-header,.doc-footer,.training-top,.doc-table td:first-child,.certificate-frame,.certificate-inner{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+ .a4.portrait{page:portrait;width:210mm!important;height:297mm!important;min-height:297mm!important;margin:0!important;box-shadow:none!important;break-after:page;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+ .a4.completion-landscape{page:completionPage;width:297mm!important;height:210mm!important;min-height:210mm!important;margin:0!important;box-shadow:none!important;break-after:page;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+ .a4.participation-landscape{page:participationPage;width:297mm!important;height:210mm!important;min-height:210mm!important;margin:0!important;box-shadow:none!important;break-after:page;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+ .doc-header,.doc-footer,.training-top,.doc-table td:first-child,.completion-frame,.participation-frame,.participation-badge{print-color-adjust:exact;-webkit-print-color-adjust:exact}
 }
 </style>
 </head>
@@ -232,28 +195,21 @@ const SHEET_URL=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit?gid=${S
 const GMAIL_URL="https://mail.google.com/mail/?authuser=vrpigroupoftechnology%40gmail.com#inbox";
 const TODAY=()=>new Date().toLocaleDateString("en-IN",{day:"2-digit",month:"long",year:"numeric"});
 
-/* SINGLE-FILE COMPANY BRANDING */
+const LOGO="data:image/png;base64,LOGO_BASE64_PLACEHOLDER";
+
 function CompanyLogo({className="",style={}}){
- return <svg className={className} style={style}
-  viewBox="0 0 480 150" role="img"
-  aria-label="VR PI Group of Companies">
-  <text x="4" y="91" fontSize="104" fontWeight="900" letterSpacing="-10" fill="#d0003c" fontFamily="Arial,sans-serif">VR</text>
-  <text x="235" y="91" fontSize="98" fontWeight="900" letterSpacing="-7" fill="#f05f00" fontFamily="Arial,sans-serif">PI</text>
-  <text x="7" y="132" fontSize="20" fontWeight="700" letterSpacing="1" fill="#d0003c" fontFamily="Arial,sans-serif">GROUP OF COMPANIES</text>
- </svg>;
+ return <img src={LOGO} className={className} style={style} alt="VR PI Group Of Companies"/>;
 }
 
-/* SIX DOCUMENT TEMPLATES */
 const TEMPLATES=[
- {id:"offer",name:"Internship Offer Letter",group:"Internship",style:"offer",color:"#1e3a5f",desc:"Formal internship offer, programme details, terms and candidate acceptance."},
- {id:"intern-completion",name:"Internship Completion Certificate",group:"Internship",style:"certificate",color:"#4f8b55",desc:"Premium landscape certificate with double border and completion statement."},
- {id:"training",name:"Industrial Training Appointment Letter",group:"Training",style:"training",color:"#e94b17",desc:"Professional training appointment with start date and programme details."},
- {id:"training-completion",name:"Training Completion Certificate",group:"Training",style:"certificate",color:"#4f8b55",desc:"Landscape training completion certificate."},
- {id:"participation",name:"Participation Certificate",group:"Certification",style:"certificate",color:"#4f8b55",desc:"Formal participation recognition in a premium certificate layout."},
- {id:"experience",name:"Experience Letter",group:"Certification",style:"experience",color:"#1e3a5f",desc:"Professional experience letter with role and employment dates."}
+ {id:"offer",name:"Internship Offer Letter",group:"Internship",style:"offer",color:"#1e3a5f",desc:"Professional offer letter with programme details, terms and candidate acceptance."},
+ {id:"intern-completion",name:"Internship Completion Certificate",group:"Internship",style:"completion",color:"#4f8b55",desc:"Elegant landscape certificate with green double border and formal completion statement."},
+ {id:"training",name:"Industrial Training Appointment Letter",group:"Training",style:"training",color:"#e94b17",desc:"Corporate training appointment with programme information and trainee acknowledgement."},
+ {id:"training-completion",name:"Training Completion Certificate",group:"Training",style:"completion",color:"#4f8b55",desc:"Premium landscape certificate for verified training completion."},
+ {id:"participation",name:"Participation Certificate",group:"Certification",style:"participation",color:"#1e3a5f",desc:"Distinctive navy and gold participation recognition certificate."},
+ {id:"experience",name:"Experience Letter",group:"Certification",style:"experience",color:"#1e3a5f",desc:"Formal experience letter with role and engagement information."}
 ];
 
-/* FORM FIELDS: START DATE ONLY IN OFFER AND TRAINING APPOINTMENT */
 const FIELDS={
  offer:[
   {key:"name",label:"Candidate Name",required:true},
@@ -298,36 +254,35 @@ const FIELDS={
  ]
 };
 
-const normalize=s=>String(s||"").toLowerCase().replace(/[^a-z0-9]/g,"");
+const norm=s=>String(s||"").toLowerCase().replace(/[^a-z0-9]/g,"");
 
-function getHeaderIndex(columns,names,fallback=-1){
- const labels=columns.map(c=>normalize(c.label||c.id||""));
+function getIndex(columns,names,fallback=-1){
+ const labels=columns.map(c=>norm(c.label||c.id||""));
  for(const name of names){
-  const i=labels.findIndex(x=>x===normalize(name));
+  const i=labels.findIndex(x=>x===norm(name));
   if(i>=0)return i;
  }
  return fallback;
 }
 
-function readCell(cell){
+function cellValue(cell){
  if(!cell||cell.v===null||cell.v===undefined)return "";
  return String(cell.f??cell.v).trim();
 }
 
-/* READ-ONLY GOOGLE SHEETS CONNECTION */
-function getSheetData(){
+function loadSheetData(){
  return new Promise((resolve,reject)=>{
   const callback="vrpiSheetCallback"+Date.now();
   const script=document.createElement("script");
-  let complete=false;
+  let done=false;
 
   const timer=setTimeout(()=>{
-   finish(new Error("Google Sheets timed out. Check sharing access."));
+   finish(new Error("Google Sheets connection timed out. Check the sheet sharing setting."));
   },16000);
 
   function finish(error,result){
-   if(complete)return;
-   complete=true;
+   if(done)return;
+   done=true;
    clearTimeout(timer);
    script.remove();
    try{delete window[callback]}catch(e){}
@@ -352,37 +307,30 @@ function getSheetData(){
   script.onerror=()=>finish(new Error("Google Sheets could not be reached. Check link-view access."));
   document.head.appendChild(script);
  });
-
 }
 
-function convertSheet(table){
+function convertRows(table){
  const columns=table.cols||[];
- return (table.rows||[]).map((row,index)=>{
-  const val=i=>readCell(row.c?.[i]);
-  const get=(names,fallback=-1)=>val(getHeaderIndex(columns,names,fallback));
 
-  // Column R (index 17) is retained as the fallback status field.
-  const rawStatus=get([
-   "Email Status","Email Delivery Status","Letter Sent",
-   "Mail Status","Dispatch Status","Delivery Status",
-   "Application Status","Status"
-  ],17);
+ return (table.rows||[]).map((row,index)=>{
+  const get=(names,fallback=-1)=>{
+   const i=getIndex(columns,names,fallback);
+   return i<0?"":cellValue(row.c?.[i]);
+  };
 
   const raw={};
   columns.forEach((col,i)=>{
-   const name=col.label||col.id||`Column ${i+1}`;
-   raw[name]=val(i);
+   raw[col.label||col.id||`Column ${i+1}`]=cellValue(row.c?.[i]);
   });
 
-  const name=get(["Full Name","Candidate Name","Name"],2);
   const aid=get(["Application ID","Application Id"],1);
 
   return {
    key:aid||`sheet-${index}`,
    source:"sheet",
    raw,
-   name,
    aid,
+   name:get(["Full Name","Candidate Name","Name"],2),
    email:get(["Email Address","Email"],3),
    phone:get(["WhatsApp / Phone","WhatsApp","Phone"],4),
    domain:get(["Domain","Internship Domain","Training Domain","Track"],7),
@@ -391,11 +339,12 @@ function convertSheet(table){
    startDate:get(["Start Date","Joining Date","Commencement Date"]),
    endDate:get(["End Date","Internship End Date"]),
    completionDate:get(["Completion Date"]),
-   eventTitle:get(["Programme / Event","Programme Name","Event Name","Event Title"]),
+   eventTitle:get(["Event Title","Event Name","Programme Name"]),
    participationDate:get(["Participation Date","Event Date"]),
    role:get(["Role","Designation","Job Title"]),
    completionStatus:get(["Completion Status","Training Completion Status","Certificate Status"]),
-   status:rawStatus,
+   participationStatus:get(["Participation Status","Attendance Status"]),
+   status:get(["Email Status","Letter Sent","Mail Status","Dispatch Status","Delivery Status","Application Status","Status"],17),
    pdf:get(["PDF Record","PDF Link"],18),
    timestamp:get(["Timestamp"],0),
    lastUpdated:get(["Last Updated"],19)
@@ -403,49 +352,36 @@ function convertSheet(table){
  }).filter(c=>c.name||c.aid||c.email);
 }
 
-async function loadCandidates(){
- const table=await getSheetData();
- return convertSheet(table);
+async function getCandidates(){
+ const table=await loadSheetData();
+ return convertRows(table);
 }
 
-/* DELIVERY STATUS CLASSIFICATION */
 function classifyStatus(value){
  const s=String(value||"").toUpperCase().trim();
-
- if(/NOT SENT|NOT DELIVERED|PENDING|QUEUED|WAITING|PROCESSING|IN PROGRESS/.test(s))
-  return "PENDING";
-
- if(/FAILED|FAILURE|ERROR|BOUNCED|REJECTED|UNDELIVERED/.test(s))
-  return "FAILED";
-
- if(/SENT|DELIVERED|SUCCESS|ACCEPTED BY GMAIL|TRUE|^YES$|^1$/.test(s))
-  return "SENT";
-
+ if(/FAILED|FAILURE|ERROR|BOUNCED|REJECTED|UNDELIVERED/.test(s))return "FAILED";
+ if(/NOT SENT|NOT DELIVERED|PENDING|QUEUED|WAITING|PROCESSING|IN PROGRESS/.test(s))return "PENDING";
+ if(/SENT|DELIVERED|SUCCESS|ACCEPTED BY GMAIL|TRUE|^YES$|^1$/.test(s))return "SENT";
  return "UNKNOWN";
 }
 
-/* DOCUMENT HELPERS */
-function Logo({style={}}){
- return <CompanyLogo className="doc-logo" style={style}/>;
+function isVerified(c,field){
+ return c.source==="sheet"&&/verified|approved|completed|issued/i.test(String(c[field]||""));
 }
 
 function DocumentHeader({color="#1e3a5f"}){
  return <div className="doc-header" style={{borderColor:color}}>
-  <Logo/>
+  <CompanyLogo className="doc-logo"/>
   <div className="doc-info">
    <strong>{COMPANY}</strong><br/>
-   {LOCATION}<br/>
-   {EMAIL}<br/>
-   {WEBSITE}
+   {LOCATION}<br/>{EMAIL}<br/>{WEBSITE}
   </div>
  </div>;
 }
 
 function DocumentFooter({color="#1e3a5f"}){
  return <div className="doc-footer" style={{background:color}}>
-  <b>{COMPANY}</b><br/>
-  {LOCATION} • {EMAIL}<br/>
-  {WEBSITE}
+  <b>{COMPANY}</b><br/>{LOCATION} • {EMAIL}<br/>{WEBSITE}
  </div>;
 }
 
@@ -462,7 +398,7 @@ const LABELS={
  role:"Role / Designation"
 };
 
-function DetailsTable({candidate,keys}){
+function DetailTable({candidate,keys}){
  return <table className="doc-table"><tbody>
   {keys.map(key=>candidate[key]?(
    <tr key={key}><td>{LABELS[key]||key}</td><td>{candidate[key]}</td></tr>
@@ -470,10 +406,10 @@ function DetailsTable({candidate,keys}){
  </tbody></table>;
 }
 
-function Signoff({department="Talent Acquisition Department"}){
+function Signoff({department="Talent Acquisition Department",color="#1e3a5f"}){
  return <div className="signoff">
-  <div>Regards,</div>
-  <strong>{department}</strong>
+  Regards,
+  <strong style={{color}}>{department}</strong>
   <small>{COMPANY}</small>
   <small>{LOCATION}</small>
   <small>{EMAIL}</small>
@@ -481,208 +417,256 @@ function Signoff({department="Talent Acquisition Department"}){
  </div>;
 }
 
-/* OFFER LETTER WITH TERMS & CANDIDATE ACCEPTANCE */
 function OfferLetter({c}){
  return <div className="a4 portrait">
   <div style={{
-   background:"#1e3a5f",
-   padding:"20px 34px",
-   display:"flex",
-   justifyContent:"space-between",
-   alignItems:"center"
+   background:"#1e3a5f",padding:"20px 34px",
+   display:"flex",justifyContent:"space-between",
+   alignItems:"center",gap:14
   }}>
-   <Logo/>
+   <CompanyLogo className="logo"/>
    <div style={{textAlign:"right",color:"#e2e8f0",fontSize:9,lineHeight:1.9}}>
-    <b style={{color:"#fff"}}>{COMPANY}</b><br/>
-    {LOCATION}<br/>{EMAIL}<br/>{WEBSITE}
+    <b style={{color:"white"}}>{COMPANY}</b><br/>{LOCATION}<br/>{EMAIL}<br/>{WEBSITE}
    </div>
   </div>
   <div style={{height:4,background:"linear-gradient(90deg,#f97316,#fed7aa)"}}/>
-
   <div className="doc-content">
    <div className="doc-title">
     <small>OFFICIAL CORPORATE COMMUNICATION</small>
     <h2>INTERNSHIP OFFER LETTER</h2>
     <small>DATE OF ISSUE: {TODAY()}</small>
    </div>
-
    <p><b>To: {c.name}</b></p>
    <p>Dear {c.name},</p>
-
    <p>We are pleased to offer you the opportunity to join the <b>{c.domain}</b> Internship Programme at <b>{COMPANY}</b>.</p>
-
    <p>Your programme is scheduled in <b>{c.mode}</b> mode for a duration of <b>{c.duration}</b>, commencing on <b>{c.startDate}</b>.</p>
-
    <p>During this engagement, you will have the opportunity to gain practical exposure, develop relevant skills and participate in assigned learning and project activities under the guidance of the programme team.</p>
 
    <div className="doc-section">INTERNSHIP PARTICULARS</div>
-   <DetailsTable candidate={c} keys={["name","domain","mode","duration","startDate"]}/>
+   <DetailTable candidate={c} keys={["name","domain","mode","duration","startDate"]}/>
 
    <div className="doc-section">TERMS AND CONDITIONS</div>
-   <p>1. The candidate is expected to maintain professional conduct and adhere to the applicable organizational policies.</p>
-   <p>2. All assigned learning activities, tasks and deliverables should be completed within the timelines communicated by the programme coordinator.</p>
+   <p>1. The candidate is expected to maintain professional conduct and adhere to applicable organizational policies.</p>
+   <p>2. Assigned learning activities, tasks and deliverables should be completed within the timelines communicated by the programme coordinator.</p>
    <p>3. Confidential company information, internal documents and project-related materials must not be disclosed to unauthorized persons.</p>
    <p>4. The candidate must actively participate in assigned programme activities and follow the guidance of the designated mentor or coordinator.</p>
    <p>5. Any leave, absence or programme-related concern should be communicated to the authorized coordinator.</p>
-   <p>6. The organization reserves the right to review programme participation and take appropriate action in accordance with its applicable policies.</p>
+   <p>6. The organization reserves the right to review programme participation in accordance with its applicable policies.</p>
 
    <div className="acceptance">
     <b style={{color:"#1e3a5f"}}>CANDIDATE ACCEPTANCE</b>
     <p>I, <b>{c.name}</b>, acknowledge receipt of this internship offer and confirm that I have reviewed and understood the programme particulars and terms and conditions stated in this letter.</p>
     <p>I agree to comply with the applicable programme guidelines and professional expectations.</p>
-    <div style={{marginTop:17,fontSize:10}}>
+    <div style={{marginTop:14,fontSize:10}}>
      Candidate Name: <b>{c.name}</b><br/><br/>
      Signature: <span className="acceptance-line"/><br/><br/>
      Date: <span className="acceptance-line"/>
     </div>
    </div>
-
    <Signoff department="Talent Acquisition Department"/>
   </div>
   <DocumentFooter/>
  </div>;
 }
 
-/* TRAINING APPOINTMENT: NO END DATE */
 function TrainingLetter({c}){
  return <div className="a4 portrait">
   <div className="training-top"/>
   <div className="doc-header" style={{borderColor:"#e94b17"}}>
-   <Logo/>
+   <CompanyLogo className="doc-logo"/>
    <div className="doc-info">
     <strong>{COMPANY}</strong><br/>{LOCATION}<br/>{EMAIL}<br/>{WEBSITE}
    </div>
   </div>
-
-  <div className="doc-content" style={{padding:"34px 42px"}}>
+  <div className="doc-content" style={{padding:"32px 42px"}}>
    <div style={{fontSize:10,color:"#e94b17",fontWeight:800,letterSpacing:2}}>
     {COMPANY.toUpperCase()}
    </div>
-
    <h2 style={{fontSize:23,color:"#111827",lineHeight:1.25,margin:"13px 0 22px"}}>
     INDUSTRIAL TRAINING<br/>APPOINTMENT LETTER
    </h2>
-
    <p><b>Date:</b> {TODAY()}</p>
    <p><b>Trainee Name:</b> {c.name}</p>
    <p>Dear {c.name},</p>
-
    <p>We are pleased to welcome you to the <b>{c.domain}</b> Industrial Training Programme at <b>{COMPANY}</b>.</p>
-
    <p>Your training will be conducted in <b>{c.mode}</b> mode for a duration of <b>{c.duration}</b>, commencing on <b>{c.startDate}</b>.</p>
 
    <div className="doc-section" style={{color:"#e94b17"}}>TRAINING PARTICULARS</div>
-   <DetailsTable candidate={c} keys={["name","domain","mode","duration","startDate"]}/>
+   <DetailTable candidate={c} keys={["name","domain","mode","duration","startDate"]}/>
 
    <div style={{background:"#111827",color:"#e2e8f0",padding:17,borderRadius:7,fontSize:10.5,lineHeight:1.9,marginTop:17}}>
     <b style={{color:"#f97316"}}>PROFESSIONAL EXPECTATIONS</b><br/>
-    Maintain professional conduct, participate in assigned learning activities, complete deliverables within the communicated timelines and adhere to organizational confidentiality guidelines.
+    Maintain professional conduct, participate in assigned learning activities, complete deliverables within communicated timelines and follow organizational confidentiality guidelines.
    </div>
 
    <div className="acceptance">
     <b style={{color:"#e94b17"}}>TRAINEE ACKNOWLEDGEMENT</b>
-    <p>I, <b>{c.name}</b>, acknowledge the training appointment and agree to follow the applicable programme guidelines.</p>
+    <p>I, <b>{c.name}</b>, acknowledge this training appointment and agree to follow the applicable programme guidelines.</p>
     <p>Signature: <span className="acceptance-line"/> Date: <span className="acceptance-line"/></p>
    </div>
-
    <Signoff department="Industrial Training Department"/>
   </div>
   <DocumentFooter color="#191928"/>
  </div>;
 }
 
-/* PREMIUM LANDSCAPE COMPLETION CERTIFICATE */
 function CompletionCertificate({c,t}){
- const status=c.completionStatus||"";
- const isVerified=c.source==="sheet"&&/verified|approved|completed/i.test(status);
-
- const statement=t.id==="participation"
-  ?`has participated in ${c.domain||"the professional programme"}.`
-  :`has successfully completed the ${c.domain||"professional development"} programme.`;
-
- return <div className="a4 landscape">
-  <div className="certificate-frame">
-   <div className="certificate-inner">
+ const verified=isVerified(c,"completionStatus");
+ return <div className="a4 completion-landscape">
+  <div className="completion-frame">
+   <div className="completion-inner">
 
     <div>
-     <div className="certificate-title">
-      {t.id==="participation"?"CERTIFICATE OF PARTICIPATION":"COMPLETION CERTIFICATE"}
-     </div>
+     <h1 className="completion-title">COMPLETION CERTIFICATE</h1>
     </div>
 
     <div>
-     <div className="certificate-company">
-      <CompanyLogo style={{width:95,height:48}}/>
+     <div className="completion-company">
+      <CompanyLogo/>
       <span>{COMPANY.toUpperCase()}</span>
      </div>
-     <div style={{fontSize:10,color:"#63835f",marginTop:5}}>
+     <div style={{fontSize:10,color:"#688866",marginTop:4}}>
       {LOCATION}
      </div>
     </div>
 
     <div>
-     <div className="certificate-intro">This certificate is granted to</div>
-     <div className="certificate-name">{c.name}</div>
-     <div className="certificate-description">
-      {t.id==="participation"
-       ?statement
-       :statement}
-      {c.duration?` Programme duration: ${c.duration}.`:""}
-      {c.startDate?` Commencement date: ${c.startDate}.`:""}
-      {c.endDate?` Completion date: ${c.endDate}.`:""}
+     <div className="completion-intro">This certificate is granted to</div>
+     <div className="completion-name">{c.name}</div>
+     <div className="completion-statement">
+      Successfully completed the <b>{c.domain}</b> programme
+      {c.duration?` with a duration of ${c.duration}`:""}.
+      {c.startDate?` Commenced on ${c.startDate}`:""}
+      {c.endDate?` and completed on ${c.endDate}`:""}.
+      The candidate's programme completion is subject to
+      verification by the organization.
      </div>
     </div>
 
-    <div className="certificate-bottom">
+    <div className="completion-meta">
      <div>
-      <strong>VR PI Group Of Companies</strong>
+      <strong>{COMPANY}</strong>
       <small>Talent Excellence Division</small>
-      <br/>
       <small>{LOCATION}</small>
      </div>
-
-     <div className="center">
+     <div className="middle">
       <strong>Certificate Reference</strong>
       <small>{c.aid||"To be assigned by the company"}</small>
-      <br/>
       <strong style={{marginTop:8}}>Date of Issue</strong>
       <small>{TODAY()}</small>
      </div>
-
      <div>
       <strong>Authorized Representative</strong>
       <small>{COMPANY}</small>
-      <br/>
       <small>{EMAIL}</small>
      </div>
     </div>
 
-    {!isVerified&&
-     <div className="certificate-draft">
-      PREVIEW ONLY • COMPLETION / PARTICIPATION REQUIRES COMPANY VERIFICATION
-     </div>
-    }
+    {!verified&&c.source==="manual"&&
+     <div className="completion-warning">
+      DRAFT PREVIEW • COMPLETION REQUIRES COMPANY VERIFICATION
+     </div>}
+    {!verified&&c.source==="sheet"&&
+     <div className="completion-warning">
+      PREVIEW • VERIFY COMPLETION STATUS BEFORE OFFICIAL ISSUE
+     </div>}
    </div>
   </div>
  </div>;
 }
 
-/* EXPERIENCE LETTER */
+function ParticipationCertificate({c}){
+ const verified=isVerified(c,"participationStatus");
+ return <div className="a4 participation-landscape">
+  <div className="participation-frame">
+   <div className="participation-inner">
+
+    <div className="participation-top">
+     <CompanyLogo style={{width:145,height:"auto"}}/>
+     <div style={{textAlign:"right"}}>
+      <div className="participation-subtitle">VR PI GROUP</div>
+      <div style={{fontSize:9,color:"#77869c",marginTop:5}}>{LOCATION}</div>
+     </div>
+    </div>
+
+    <div>
+     <div className="participation-subtitle">RECOGNITION OF PARTICIPATION</div>
+     <h1 className="participation-title">CERTIFICATE OF PARTICIPATION</h1>
+     <div style={{height:2,width:95,background:"#c3a15a",margin:"13px auto"}}/>
+     <div className="participation-badge">VR PI<br/>GROUP</div>
+    </div>
+
+    <div>
+     <div style={{fontSize:13,color:"#687a91"}}>This certificate is proudly presented to</div>
+     <div className="participation-name">{c.name}</div>
+     <div className="participation-statement">
+      In recognition of participation in
+      <b> {c.eventTitle||c.domain}</b>,
+      conducted by <b>{COMPANY}</b>.
+      We appreciate the candidate's interest, involvement
+      and commitment to professional learning and development.
+     </div>
+    </div>
+
+    <div className="participation-detail">
+     <div>
+      <strong>Programme / Event</strong>
+      {c.eventTitle||c.domain}
+     </div>
+     <div>
+      <strong>Participation Date</strong>
+      {c.participationDate||"To be confirmed"}
+     </div>
+     <div>
+      <strong>Date of Issue</strong>
+      {TODAY()}
+     </div>
+    </div>
+
+    <div className="participation-footer">
+     <div>
+      <strong>{COMPANY}</strong>
+      Talent Excellence Division
+     </div>
+     <div className="company-center">
+      <strong>{LOCATION}</strong>
+      {EMAIL}
+     </div>
+     <div>
+      <strong>Authorized Representative</strong>
+      Official Corporate Documentation
+     </div>
+    </div>
+
+    {!verified&&
+     <div className="certificate-draft">
+      PREVIEW ONLY • PARTICIPATION MUST BE VERIFIED BEFORE ISSUE
+     </div>}
+   </div>
+  </div>
+ </div>;
+}
+
 function ExperienceLetter({c}){
  return <div className="a4 portrait">
-  <DocumentHeader color="#1e3a5f"/>
+  <div className="doc-header">
+   <CompanyLogo className="doc-logo"/>
+   <div className="doc-info">
+    <strong>{COMPANY}</strong><br/>{LOCATION}<br/>{EMAIL}<br/>{WEBSITE}
+   </div>
+  </div>
   <div className="doc-content">
    <div className="doc-title">
     <small>OFFICIAL CORPORATE COMMUNICATION</small>
     <h2>EXPERIENCE LETTER</h2>
     <small>{TODAY()}</small>
    </div>
-   <p>To Whom It May Concern,</p>
-   <p>This letter is prepared in relation to <b>{c.name}</b> and the role of <b>{c.role}</b> associated with the <b>{c.domain}</b> department at <b>{COMPANY}</b>.</p>
-   <p>The engagement information is presented below for review and verification by the authorized company representative.</p>
+   <p>TO WHOM IT MAY CONCERN,</p>
+   <p>This letter is prepared in connection with <b>{c.name}</b> and the role of <b>{c.role}</b> within the <b>{c.domain}</b> department at <b>{COMPANY}</b>.</p>
+   <p>The following engagement details are provided for official review and verification.</p>
    <div className="doc-section">PROFESSIONAL DETAILS</div>
-   <DetailsTable candidate={c} keys={["name","role","domain","startDate","endDate"]}/>
-   <p>We appreciate the professional contribution and wish the candidate continued success in future endeavours.</p>
+   <DetailTable candidate={c} keys={["name","role","domain","startDate","endDate"]}/>
+   <p>We appreciate the candidate's professional contribution and wish them continued success in their future endeavours.</p>
    <Signoff department="Human Resources Department"/>
   </div>
   <DocumentFooter/>
@@ -693,10 +677,10 @@ function RenderDocument({candidate,template}){
  if(template.id==="offer")return <OfferLetter c={candidate}/>;
  if(template.id==="training")return <TrainingLetter c={candidate}/>;
  if(template.id==="experience")return <ExperienceLetter c={candidate}/>;
+ if(template.id==="participation")return <ParticipationCertificate c={candidate}/>;
  return <CompletionCertificate c={candidate} t={template}/>;
 }
 
-/* MAIN APP */
 function App(){
  const [records,setRecords]=useState([]);
  const [selectedKey,setSelectedKey]=useState("");
@@ -719,7 +703,7 @@ function App(){
   setError("");
   setNotice("");
   try{
-   const data=await loadCandidates();
+   const data=await getCandidates();
    setRecords(data);
    setSelectedKey(old=>data.some(c=>c.key===old)?old:(data[0]?.key||""));
    setLastSync(new Date().toLocaleTimeString("en-IN"));
@@ -747,44 +731,28 @@ function App(){
  };
 
  const candidate=source==="manual"?manualCandidate:sheetCandidate;
-
  const missing=fields.some(f=>f.required&&!String(manual[f.key]||"").trim());
  const canPreview=source==="sheet"?Boolean(sheetCandidate):!missing;
 
- const sent=records.filter(c=>{
-  const s=classifyStatus(c.status);
-  return s==="SENT";
- }).length;
- const pending=records.filter(c=>{
-  const s=classifyStatus(c.status);
-  return s==="PENDING";
- }).length;
- const failed=records.filter(c=>{
-  const s=classifyStatus(c.status);
-  return s==="FAILED";
- }).length;
-
- const visible=records.filter(c=>{
-  const q=search.toLowerCase().trim();
-  const matches=!q||[c.name,c.aid,c.email,c.domain,c.phone].join(" ").toLowerCase().includes(q);
-  const status=classifyStatus(c.status);
-  const matchesStatus=filter==="ALL"||status===filter;
-  return matches&&matchesStatus;
- });
+ const sent=records.filter(c=>classifyStatus(c.status)==="SENT").length;
+ const pending=records.filter(c=>classifyStatus(c.status)==="PENDING").length;
+ const failed=records.filter(c=>classifyStatus(c.status)==="FAILED").length;
 
  function updateManual(key,value){
-  setManual(prev=>({...prev,[key]:value}));
+  setManual(old=>({...old,[key]:value}));
  }
 
- function selectTemplate(id){
+ function chooseTemplate(id){
   setTemplateId(id);
   setManual({});
   setPreview(false);
  }
 
- function showPreview(){
-  if(canPreview)setPreview(true);
- }
+ const visible=records.filter(c=>{
+  const q=search.trim().toLowerCase();
+  const matches=!q||[c.name,c.aid,c.email,c.phone,c.domain].join(" ").toLowerCase().includes(q);
+  return matches&&(filter==="ALL"||classifyStatus(c.status)===filter);
+ });
 
  return <main className="app">
 
@@ -810,22 +778,20 @@ function App(){
 
   {error&&<div className="alert error no-print">
    <b>Google Sheets connection:</b> {error}
-   <br/>
-   Direct browser access requires the spreadsheet to be link-viewable.
-   Do not make confidential candidate information public.
+   <br/>Direct browser access requires a link-viewable spreadsheet.
+   Confidential candidate records should not be made public.
   </div>}
 
   {notice&&<div className="alert success no-print">
    {notice} • Last sync: {lastSync}
   </div>}
 
-  {/* LIVE STATUS CARDS - CLICK TO FILTER RECORDS */}
   <section className="stats no-print">
    {[
     ["TOTAL APPLICANTS",records.length,"Actual sheet records","ALL","#1e3a5f"],
-    ["LETTERS SENT",sent,"Actual sent / delivered status","SENT","#15803d"],
-    ["PENDING ACTIONS",pending,"Actual pending status","PENDING","#b45309"],
-    ["FAILED RECORDS",failed,"Actual failed status","FAILED","#dc2626"]
+    ["LETTERS SENT",sent,"Recorded sent status","SENT","#15803d"],
+    ["PENDING ACTIONS",pending,"Recorded pending status","PENDING","#b45309"],
+    ["FAILED RECORDS",failed,"Recorded failed status","FAILED","#dc2626"]
    ].map(([label,value,note,key,color])=>(
     <div className={"stat "+(filter===key?"active":"")} key={key}>
      <button onClick={()=>setFilter(key)}>
@@ -837,15 +803,12 @@ function App(){
    ))}
   </section>
 
-  {/* LIVE CANDIDATE RECORDS */}
   <section className="panel no-print">
    <div className="section-head">
     <div>
      <div className="kicker">LIVE DATA MANAGEMENT • READ ONLY</div>
      <h2>Candidate Records</h2>
-     <p className="description">
-      Actual Google Sheet data • Auto-refresh every 30 seconds.
-     </p>
+     <p className="description">Actual Google Sheet data • Automatic refresh every 30 seconds.</p>
     </div>
     <input className="search" value={search}
      onChange={e=>setSearch(e.target.value)}
@@ -859,36 +822,27 @@ function App(){
      <div className="empty">No records match this status or search.</div>:
      <table className="records">
       <thead><tr>
-       <th>Application ID</th>
-       <th>Candidate</th>
-       <th>Email</th>
-       <th>Phone</th>
-       <th>Domain</th>
-       <th>Letter Status</th>
-       <th>PDF Record</th>
-       <th>Timestamp</th>
-       <th>Action</th>
+       <th>Application ID</th><th>Candidate</th><th>Email</th>
+       <th>Phone</th><th>Domain</th><th>Letter Status</th>
+       <th>PDF Record</th><th>Timestamp</th><th>Action</th>
       </tr></thead>
       <tbody>
        {visible.map(c=>{
-        const classification=classifyStatus(c.status);
+        const s=classifyStatus(c.status);
         return <tr key={c.key}>
          <td>{c.aid||"—"}</td>
          <td><b>{c.name||"—"}</b></td>
          <td>{c.email||"—"}</td>
          <td>{c.phone||"—"}</td>
          <td>{c.domain||"—"}</td>
-         <td>
-          <span className={"status "+classification.toLowerCase()}>
-           {c.status||"Not recorded"}
-          </span>
-         </td>
+         <td><span className={"status "+s.toLowerCase()}>{c.status||"Not recorded"}</span></td>
          <td>{c.pdf||"—"}</td>
          <td>{c.timestamp||"—"}</td>
          <td>
           <button className="text-btn" onClick={()=>{
            setSource("sheet");
            setSelectedKey(c.key);
+           setTemplateId("offer");
            setPreview(true);
           }}>Preview</button>
          </td>
@@ -900,28 +854,23 @@ function App(){
    </div>
   </section>
 
-  {/* DOCUMENT GENERATION */}
   <section className="panel no-print">
    <div className="kicker">OFFICIAL CORPORATE DOCUMENT LIBRARY</div>
    <h2>Professional Document Generation</h2>
    <p className="description">
-    Select an existing candidate or manually enter only the details
-    required by your chosen document. Manual details are temporary
-    and are never written to the original Google Sheet.
+    Choose a real Google Sheet record or enter only the details
+    required for the selected document. Manual details are
+    temporary and are never written to the spreadsheet.
    </p>
 
    <div className="source-tabs">
     <button className={"tab "+(source==="sheet"?"active":"")}
-     onClick={()=>setSource("sheet")}>
-     Use Google Sheet Record
-    </button>
+     onClick={()=>setSource("sheet")}>Use Google Sheet Record</button>
     <button className={"tab "+(source==="manual"?"active":"")}
      onClick={()=>{
       setSource("manual");
       setManual({});
-     }}>
-     Enter Details Manually
-    </button>
+     }}>Enter Details Manually</button>
    </div>
 
    <div className="template-layout">
@@ -930,37 +879,27 @@ function App(){
      {source==="sheet"?
       <select value={selectedKey} onChange={e=>setSelectedKey(e.target.value)}>
        <option value="">Select actual candidate</option>
-       {records.map(c=>
-        <option key={c.key} value={c.key}>
-         {c.name} — {c.aid||"No ID"}
-        </option>
-       )}
+       {records.map(c=><option key={c.key} value={c.key}>{c.name} — {c.aid||"No ID"}</option>)}
       </select>
       :
       <div className="alert info">
-       Manual preview mode is active. Only required document
-       information will be collected.
+       Manual preview mode is active. Fill only the information
+       required by the chosen template.
       </div>
      }
     </div>
 
     <div className="field">
      <label>SELECT DOCUMENT TEMPLATE</label>
-     <select value={templateId} onChange={e=>selectTemplate(e.target.value)}>
+     <select value={templateId} onChange={e=>chooseTemplate(e.target.value)}>
       <optgroup label="Internship">
-       {TEMPLATES.filter(t=>t.group==="Internship").map(t=>
-        <option key={t.id} value={t.id}>{t.name}</option>
-       )}
+       {TEMPLATES.filter(t=>t.group==="Internship").map(t=><option key={t.id} value={t.id}>{t.name}</option>)}
       </optgroup>
       <optgroup label="Training">
-       {TEMPLATES.filter(t=>t.group==="Training").map(t=>
-        <option key={t.id} value={t.id}>{t.name}</option>
-       )}
+       {TEMPLATES.filter(t=>t.group==="Training").map(t=><option key={t.id} value={t.id}>{t.name}</option>)}
       </optgroup>
       <optgroup label="Certification">
-       {TEMPLATES.filter(t=>t.group==="Certification").map(t=>
-        <option key={t.id} value={t.id}>{t.name}</option>
-       )}
+       {TEMPLATES.filter(t=>t.group==="Certification").map(t=><option key={t.id} value={t.id}>{t.name}</option>)}
       </optgroup>
      </select>
 
@@ -970,21 +909,20 @@ function App(){
       <p>{template.desc}</p>
       <div className="pills">
        <span className="pill">{template.group}</span>
-       <span className="pill">{template.style==="certificate"?"A4 Landscape":"A4 Portrait"}</span>
+       <span className="pill">{template.style==="completion"||template.style==="participation"?"A4 Landscape":"A4 Portrait"}</span>
        <span className="pill">PDF Preview</span>
       </div>
      </div>
     </div>
    </div>
 
-   {/* TEMPLATE-SPECIFIC MANUAL INPUTS */}
    {source==="manual"&&
     <div className="manual-box">
-     <div className="kicker">REQUIRED DOCUMENT INFORMATION</div>
+     <div className="kicker">TEMPLATE-SPECIFIC DETAILS</div>
      <h2>{template.name}</h2>
      <p className="description">
-      Only the fields required by this document are displayed.
-      These details are used for preview only.
+      Enter only the fields needed for this document.
+      These details will be used for preview only.
      </p>
 
      <div className="form-grid">
@@ -992,14 +930,12 @@ function App(){
        <div className="form-field" key={f.key}>
         <label>{f.label}{f.required?<span style={{color:"#e94b17"}}> *</span>:""}</label>
         {f.type==="select"?
-         <select value={manual[f.key]||""}
-          onChange={e=>updateManual(f.key,e.target.value)}>
+         <select value={manual[f.key]||""} onChange={e=>updateManual(f.key,e.target.value)}>
           <option value="">Select {f.label}</option>
           {f.options.map(o=><option key={o} value={o}>{o}</option>)}
          </select>
          :
-         <input type={f.type||"text"}
-          value={manual[f.key]||""}
+         <input type={f.type||"text"} value={manual[f.key]||""}
           placeholder={"Enter "+f.label.toLowerCase()}
           onChange={e=>updateManual(f.key,e.target.value)}/>
         }
@@ -1008,13 +944,13 @@ function App(){
      </div>
 
      <div className="alert info">
-      <b>Manual preview only:</b> These details remain in temporary
-      page memory. No Google Sheets row is created, updated or deleted.
+      Manual data is held in temporary React state. It is never
+      submitted to Google Sheets or saved to a database.
      </div>
 
      <div className="form-actions">
       <button className="btn" onClick={()=>setManual({})}>Clear Details</button>
-      <button className="btn orange" disabled={!canPreview} onClick={showPreview}>
+      <button className="btn orange" disabled={!canPreview} onClick={()=>setPreview(true)}>
        Preview Document →
       </button>
      </div>
@@ -1024,25 +960,23 @@ function App(){
    {source==="sheet"&&
     <div className="section-head" style={{marginTop:23}}>
      <span className="description">
-      {sheetCandidate?`Selected: ${sheetCandidate.name}`:"Select a candidate from your live sheet."}
+      {sheetCandidate?`Selected: ${sheetCandidate.name}`:"Select a candidate from the live sheet."}
      </span>
-     <button className="btn orange" disabled={!canPreview} onClick={showPreview}>
+     <button className="btn orange" disabled={!canPreview} onClick={()=>setPreview(true)}>
       Preview A4 Document →
      </button>
     </div>
    }
   </section>
 
-  {/* FOOTER */}
   <footer className="footer no-print">
-   <CompanyLogo style={{width:145,height:65}}/>
+   <CompanyLogo className="footer-logo"/>
    <b>{COMPANY}</b><br/>
    {LOCATION}<br/>{EMAIL}<br/>
    <a href={WEBSITE} target="_blank" rel="noreferrer">Official Company Website ↗</a>
    <p>Enterprise Talent Excellence Platform</p>
   </footer>
 
-  {/* PREVIEW WINDOW */}
   {preview&&candidate&&
    <div className="modal">
     <div className="modal-inner">
@@ -1051,22 +985,17 @@ function App(){
       <div className="modal-actions">
        {source==="sheet"&&
         <select value={selectedKey} onChange={e=>setSelectedKey(e.target.value)}>
-         {records.map(c=>
-          <option key={c.key} value={c.key}>{c.name} — {c.aid||""}</option>
-         )}
+         {records.map(c=><option key={c.key} value={c.key}>{c.name} — {c.aid||""}</option>)}
         </select>
        }
-       <button className="btn orange" onClick={()=>window.print()}>
-        Print / Save PDF
-       </button>
+       <button className="btn orange" onClick={()=>window.print()}>Print / Save PDF</button>
        <button className="btn" onClick={()=>setPreview(false)}>Close ×</button>
       </div>
      </div>
 
      <div className="modal-tabs no-print">
       {TEMPLATES.map(t=>
-       <button key={t.id}
-        className={templateId===t.id?"active":""}
+       <button key={t.id} className={templateId===t.id?"active":""}
         onClick={()=>selectTemplate(t.id)}>
         {t.name}
        </button>
