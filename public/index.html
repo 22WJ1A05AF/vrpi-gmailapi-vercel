@@ -3,8 +3,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VR PI Group | Enterprise Talent Platform</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VR PI Group | Corporate Document Platform</title>
 <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -15,29 +15,29 @@ body{margin:0;background:#f3f6fa;color:#17233a;font-family:'Plus Jakarta Sans',s
 button,input,select{font:inherit}
 button{cursor:pointer}
 .app{max-width:1400px;margin:auto;padding:25px}
-header{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;border-bottom:1px solid #dfe6ef;padding-bottom:20px}
-.logo{width:190px;height:90px}
+header{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;border-bottom:1px solid #dfe6ef;padding-bottom:18px}
+.logo{width:205px;height:105px}
 .actions{display:flex;gap:9px;flex-wrap:wrap}
 .btn{padding:11px 16px;background:white;border:1px solid #dfe6ef;border-radius:9px;color:#1e3a5f;text-decoration:none;font-size:11px;font-weight:800}
 .dark{background:#1e3a5f;color:white}
 .orange{background:#e94b17;color:white;border-color:#e94b17}
-.hero{text-align:center;padding:55px 10px 38px}
+.hero{text-align:center;padding:48px 10px 35px}
 .eyebrow{display:inline-block;background:white;border:1px solid #dfe6ef;border-radius:25px;padding:10px 18px;font-size:10px;font-weight:800;letter-spacing:1px;color:#75849a}
-h1{font-size:clamp(34px,5vw,55px);line-height:1.15;letter-spacing:-2px;margin:22px 0;color:#121c30}
+h1{font-size:clamp(34px,5vw,54px);line-height:1.15;margin:20px 0;color:#121c30;letter-spacing:-2px}
 .hero p,.desc{color:#8290a5;font-size:12px;line-height:1.9}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:25px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:24px}
 .stat,.panel{background:white;border:1px solid #dfe6ef;border-radius:16px}
 .stat{padding:22px}
 .stat label{font-size:10px;font-weight:800;color:#8795a9;letter-spacing:1px}
 .stat strong{display:block;font-size:32px;margin:10px 0}
 .stat small{font-size:10px;color:#94a3b8}
-.panel{padding:27px;margin-bottom:24px}
+.panel{padding:26px;margin-bottom:23px}
 .kicker{font-size:10px;letter-spacing:1.5px;font-weight:800;color:#8492a7}
 h2{font-size:21px;color:#172b49;margin:9px 0}
 .section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.search{padding:12px;border:1px solid #dfe6ef;border-radius:9px;min-width:240px;font-size:11px}
-table{width:100%;border-collapse:collapse;white-space:nowrap}
+.search{padding:12px;border:1px solid #dfe6ef;border-radius:9px;min-width:230px;font-size:11px}
 .table-wrap{overflow-x:auto;margin-top:20px}
+table{width:100%;border-collapse:collapse;white-space:nowrap}
 th{background:#f8fafc;text-align:left;padding:14px;color:#8795a9;font-size:9px}
 td{padding:14px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637c}
 .status{padding:5px 9px;border-radius:20px;background:#edf2f7;font-size:9px}
@@ -46,15 +46,14 @@ td{padding:14px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637c}
 .pending{background:#fef3c7;color:#92400e}
 .text-btn{border:0;background:none;color:#087eae;font-weight:800;font-size:10px}
 .mode-switch,.template-pills{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}
-.mode-switch button,.template-pills button{padding:10px 15px;border:1px solid #dfe6ef;background:white;border-radius:9px;font-size:10px;font-weight:800;color:#52637c}
-.mode-switch button.active,.template-pills button.active{background:#1e3a5f;color:white;border-color:#1e3a5f}
+.mode-switch button,.template-pills button{padding:10px 14px;border:1px solid #dfe6ef;background:white;border-radius:9px;font-size:10px;font-weight:800;color:#52637c}
+.mode-switch button.active,.template-pills button.active{background:#1e3a5f;color:white}
 .form-box{padding:22px;background:#f8fafc;border:1px solid #e4eaf1;border-radius:13px;margin-top:18px}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}
 .field label{display:block;font-size:10px;font-weight:800;color:#52637c;margin-bottom:9px}
 .field input,.field select{width:100%;padding:13px;border:1px solid #dfe6ef;border-radius:9px;background:white;color:#30425d;font-size:11px;outline:none}
 .field input:focus,.field select:focus{border-color:#e94b17}
-.field input[type=date]{cursor:pointer;min-height:42px;color-scheme:light}
-.field input[type=date]::-webkit-calendar-picker-indicator{cursor:pointer;opacity:1}
+.field input[type=date]{min-height:42px;cursor:pointer;color-scheme:light}
 .help{font-size:10px;color:#8492a7;margin-top:14px;line-height:1.8}
 .template-info{margin-top:17px;padding:17px;background:white;border:1px solid #e4eaf1;border-radius:10px}
 .template-info strong{display:block;color:#1e3a5f;font-size:13px;margin-bottom:7px}
@@ -62,16 +61,16 @@ td{padding:14px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637c}
 .alert{padding:14px;border-radius:9px;font-size:11px;line-height:1.8;margin-bottom:15px}
 .error{background:#fff5ed;color:#a34a16;border:1px solid #ffdbbd}
 .success{background:#edfaf3;color:#16754c;border:1px solid #c9eedc}
-.info{background:#eff6ff;color:#315b8c;border:1px solid #d7e7fa}
+.no-record{text-align:center;padding:30px;color:#8290a5;font-size:11px}
 footer{text-align:center;color:#8491a5;font-size:10px;padding:25px}
-.modal{position:fixed;inset:0;background:#101b2feF;z-index:100;overflow:auto;padding:15px}
+.modal{position:fixed;inset:0;background:#101b2fee;z-index:100;overflow:auto;padding:15px}
 .modal-inner{max-width:950px;margin:auto}
 .modalbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;background:#17233a;padding:14px;border-radius:10px;margin-bottom:14px}
 .modalbar strong{color:white;font-size:11px}
 .modal-actions{display:flex;gap:8px;flex-wrap:wrap}
 .a4{width:210mm;min-height:297mm;background:white;margin:auto;display:flex;flex-direction:column;color:#26354d;box-shadow:0 15px 40px #0003}
-.doc-header{padding:22px 35px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #1e3a5f;gap:15px}
-.doc-logo{width:150px;height:75px}
+.doc-header{padding:20px 35px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #1e3a5f;gap:15px}
+.doc-logo{width:155px;height:90px}
 .doc-info{text-align:right;font-size:9px;color:#718096;line-height:1.9}
 .doc-info strong{color:#1e3a5f}
 .doc-content{padding:30px 42px;flex:1;display:flex;flex-direction:column;font-size:11px;line-height:1.9}
@@ -88,27 +87,23 @@ footer{text-align:center;color:#8491a5;font-size:10px;padding:25px}
 .signoff strong{display:block;color:#1e3a5f;margin-top:8px}
 .certificate{border:3px double #0d7377;padding:22px;margin:15px 0;flex:1}
 .certificate-inner{border:1px solid #b7dddd;min-height:490px;padding:30px;display:flex;flex-direction:column;justify-content:center;text-align:center}
-.certificate-inner h2{font-family:'Playfair Display',serif;font-size:29px;color:#0d7377}
-.candidate-name{font-family:'Playfair Display',serif;font-size:30px;color:#1e3a5f;margin:20px 0}
-.no-record{text-align:center;padding:35px;color:#8290a5;font-size:11px}
-@media(max-width:850px){
-.app{padding:14px}
+.certificate-inner h2{font-family:'Playfair Display',serif;font-size:28px;color:#0d7377}
+.candidate-name{font-family:'Playfair Display',serif;font-size:32px;color:#1e3a5f;margin:20px 0}
+@media(max-width:800px){
+.app{padding:13px}
 .stats{grid-template-columns:repeat(2,1fr)}
 .grid{grid-template-columns:1fr}
-.panel{padding:18px}
 .a4{width:100%;min-height:1000px}
-.doc-content{padding:23px}
-.doc-header{padding:16px}
+.doc-content{padding:22px}
 }
 @media print{
-@page{size:A4;margin:0}
+@page{size:A4 portrait;margin:0}
 body *{visibility:hidden!important}
 .modal,#printTarget,#printTarget *{visibility:visible!important}
 .modal{position:static!important;padding:0!important;background:white!important;overflow:visible!important}
 .modal-inner{width:210mm!important;max-width:none!important;margin:0!important}
 .modalbar{display:none!important}
-.a4{width:210mm!important;min-height:297mm!important;margin:0!important;box-shadow:none!important;break-after:page;page-break-after:always;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-.doc-footer,.doc-table td:first-child{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+.a4{width:210mm!important;min-height:297mm!important;margin:0!important;box-shadow:none!important;break-after:page;print-color-adjust:exact;-webkit-print-color-adjust:exact}
 }
 </style>
 </head>
@@ -126,15 +121,15 @@ const GMAIL_URL="https://mail.google.com/mail/?authuser=vrpigroupoftechnology%40
 const WEBSITE="https://share.google/Staafq7spnZSStc8n";
 
 const TEMPLATES=[
-{id:"offer",name:"Internship Offer Letter",fields:["name","domain","mode","joining","duration"],desc:"Formal internship offer and programme guidelines.",type:"letter"},
-{id:"internship-completion",name:"Internship Completion Certificate",fields:["name","domain","mode","joining","duration","completionDate"],desc:"Official internship completion recognition.",type:"certificate"},
-{id:"training-appointment",name:"Training Appointment Letter",fields:["name","domain","mode","appointmentDate","duration"],desc:"Professional training appointment and expectations.",type:"letter"},
-{id:"training-completion",name:"Training Completion Certificate",fields:["name","domain","mode","joining","duration","completionDate"],desc:"Formal training completion recognition.",type:"certificate"},
-{id:"participation",name:"Participation Certificate",fields:["name","eventName","domain","participationDate"],desc:"Official programme or event participation certificate.",type:"certificate"},
-{id:"experience",name:"Experience Letter",fields:["name","domain","role","joining","duration"],desc:"Professional experience confirmation and engagement particulars.",type:"experience"}
+{id:"offer",name:"Internship Offer Letter",fields:["name","domain","mode","joining","duration"],desc:"Formal internship offer with professional terms and conditions.",type:"letter"},
+{id:"internship-completion",name:"Internship Completion Certificate",fields:["name","domain","mode","joining","duration","completionDate"],desc:"Official recognition of successful internship completion.",type:"certificate"},
+{id:"training-appointment",name:"Training Appointment Letter",fields:["name","domain","mode","appointmentDate","duration"],desc:"Professional training appointment and responsibilities.",type:"letter"},
+{id:"training-completion",name:"Training Completion Certificate",fields:["name","domain","mode","joining","duration","completionDate"],desc:"Formal recognition of completed training.",type:"certificate"},
+{id:"participation",name:"Participation Certificate",fields:["name","eventName","domain","participationDate"],desc:"Professional programme participation certificate.",type:"certificate"},
+{id:"experience",name:"Experience Letter",fields:["name","domain","role","joining","duration"],desc:"Professional engagement and experience confirmation.",type:"experience"}
 ];
 
-const FIELD_LABELS={
+const LABELS={
 name:"Candidate Full Name",
 domain:"Programme Domain",
 mode:"Programme Mode",
@@ -147,18 +142,17 @@ participationDate:"Participation Date",
 role:"Designation / Role"
 };
 
-const DOMAIN_OPTIONS=[
+const DOMAINS=[
 "Full Stack Development","Java Development","Python Development",
 "Web Development","Artificial Intelligence","Machine Learning",
 "Data Science","Data Analytics","Cloud Computing","Cybersecurity",
 "DevOps","UI UX Design","Software Testing",
 "Mobile Application Development","Digital Marketing","Business Analytics"
 ];
+const MODES=["Online","Offline","Hybrid"];
+const DURATIONS=["1 Month","2 Months","3 Months","4 Months","5 Months","6 Months","9 Months","12 Months"];
 
-const DURATION_OPTIONS=["1 Month","2 Months","3 Months","4 Months","5 Months","6 Months","9 Months","12 Months"];
-const MODE_OPTIONS=["Online","Offline","Hybrid"];
-
-function CompanyLogo({className=""}){
+function Logo({className=""}){
 return <svg className={className} viewBox="0 0 300 145" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="VR PI Group of Companies">
 <path d="M8 5 L42 84 L66 39 L79 16 Q85 5 99 5 L129 5 Q153 5 153 31 Q153 51 130 61 L163 93 L137 93 L105 61 L94 49 L125 49 Q136 49 136 35 Q136 22 125 22 L99 22 Q93 22 90 29 L64 93 L42 93 Z" fill="#d0003c"/>
 <rect x="177" y="5" width="114" height="88" rx="13" fill="#f05f00"/>
@@ -172,172 +166,158 @@ return <svg className={className} viewBox="0 0 300 145" xmlns="http://www.w3.org
 function today(){
 return new Date().toLocaleDateString("en-IN",{day:"2-digit",month:"long",year:"numeric"});
 }
-
-function displayDate(v){
+function dateText(v){
 if(!v)return "";
 const m=String(v).match(/^(\d{4})-(\d{2})-(\d{2})$/);
-if(!m)return v;
-return new Date(+m[1],+m[2]-1,+m[3]).toLocaleDateString("en-IN",{day:"2-digit",month:"long",year:"numeric"});
+return m?new Date(+m[1],+m[2]-1,+m[3]).toLocaleDateString("en-IN",{day:"2-digit",month:"long",year:"numeric"}):v;
 }
-
-function normalize(v){
-return String(v||"").toLowerCase().replace(/[^a-z0-9]/g,"");
-}
-
-function findColumn(cols,names,fallback=-1){
+function norm(v){return String(v||"").toLowerCase().replace(/[^a-z0-9]/g,"");}
+function column(cols,names,fallback=-1){
 for(const n of names){
-const index=cols.findIndex(c=>normalize(c.label||c.id)===normalize(n));
-if(index>=0)return index;
+const i=cols.findIndex(c=>norm(c.label||c.id)===norm(n));
+if(i>=0)return i;
 }
 return fallback;
 }
-
-function getCell(row,i){
-if(i<0)return "";
-const cell=row.c?.[i];
-if(!cell||cell.v==null)return "";
-return String(cell.f||cell.v).trim();
+function cell(row,i){
+return i<0?"":String(row.c?.[i]?.f||row.c?.[i]?.v||"").trim();
 }
 
-function loadSheet(){
+function fetchSheet(){
 return new Promise((resolve,reject)=>{
-const callback="vrpiSheetCallback";
-let finished=false;
+const cb="vrpiReadOnlySheet";
+let done=false;
 const script=document.createElement("script");
-const timer=setTimeout(()=>finish(new Error("Google Sheets connection timed out.")),18000);
+const timer=setTimeout(()=>finish(new Error("Google Sheets connection timed out.")),15000);
 function finish(err,data){
-if(finished)return;
-finished=true;
+if(done)return;
+done=true;
 clearTimeout(timer);
 script.remove();
-try{delete window[callback]}catch(e){}
+delete window[cb];
 err?reject(err):resolve(data);
 }
-window[callback]=response=>{
-if(!response?.table){
-finish(new Error("Sheet unavailable. Check that Anyone with the link has Viewer access."));
-return;
-}
-finish(null,response.table);
+window[cb]=data=>{
+if(!data?.table){finish(new Error("Sheet is not accessible. Enable Anyone with the link – Viewer."));return;}
+finish(null,data.table);
 };
-script.onerror=()=>finish(new Error("Google Sheets could not be reached."));
-const tqx=encodeURIComponent(`out:json;responseHandler:${callback}`);
-script.src=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?gid=${SHEET_GID}&tqx=${tqx}&_=${Date.now()}`;
+script.onerror=()=>finish(new Error("Unable to load Google Sheets."));
+script.src=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?gid=${SHEET_GID}&tqx=${encodeURIComponent("out:json;responseHandler:"+cb)}&t=${Date.now()}`;
 document.head.appendChild(script);
 });
 }
 
-async function fetchRecords(){
-const table=await loadSheet();
+async function getRecords(){
+const table=await fetchSheet();
 const cols=table.cols||[];
-return (table.rows||[]).map((row,i)=>{
-const read=(names,fallback=-1)=>getCell(row,findColumn(cols,names,fallback));
+return (table.rows||[]).map((r,i)=>{
+const read=(names,fallback=-1)=>cell(r,column(cols,names,fallback));
 return {
-key:read(["Application ID","Application Id"],1)||`row-${i}`,
+key:read(["Application ID","Application Id"],1)||"row-"+i,
 aid:read(["Application ID","Application Id"],1),
 name:read(["Full Name","Name"],2),
 email:read(["Email Address","Email"],3),
 phone:read(["WhatsApp / Phone","Phone"],4),
 domain:read(["Domain","Internship Domain"],7),
-status:read(["Letter Sent","Email Sent Status","Email Status","Application Status","Status"],17)||"Not recorded",
-pdf:read(["PDF Record","PDF Link"],18),
-timestamp:read(["Timestamp"],0),
-raw:row
+status:read(["Letter Sent","Email Status","Application Status","Status"],17)||"Not recorded",
+pdf:read(["PDF Record","PDF Link"],18)
 };
-}).filter(c=>c.name||c.email||c.aid);
+}).filter(x=>x.name||x.email||x.aid);
 }
 
-function DetailsTable({candidate,fields}){
-return <table className="doc-table"><tbody>
-{fields.map(([label,key])=>candidate[key]?<tr key={key}><td>{label}</td><td>{["joining","completionDate","appointmentDate","participationDate"].includes(key)?displayDate(candidate[key]):candidate[key]}</td></tr>:null)}
-</tbody></table>;
-}
-
-function DocumentHeader(){
+function Header(){
 return <div className="doc-header">
-<CompanyLogo className="doc-logo"/>
-<div className="doc-info"><strong>{COMPANY}</strong><br/>Corporate Documentation Department<br/>{EMAIL}<br/>{WEBSITE}<br/>{today()}</div>
+<Logo className="doc-logo"/>
+<div className="doc-info"><strong>{COMPANY}</strong><br/>Wanaparthy, Telangana, India<br/>{EMAIL}<br/>{WEBSITE}<br/>{today()}</div>
 </div>;
 }
 
-function DocumentFooter(){
-return <div className="doc-footer"><b>{COMPANY}</b><br/>{EMAIL} • {WEBSITE}</div>;
+function Footer(){
+return <div className="doc-footer"><b>{COMPANY}</b><br/>Wanaparthy, Telangana, India • {EMAIL}</div>;
 }
 
-function Signoff({department="Human Resources Department"}){
-return <div className="signoff">Regards,<br/><strong>{department}</strong>{COMPANY}<br/>Authorized Corporate Representative</div>;
+function Signoff({experience=false}){
+return <div className="signoff">Regards,<strong>{experience?"Human Resources Department":"Talent Excellence Division"}</strong>{COMPANY}<br/>Authorized Corporate Representative</div>;
 }
 
-function Document({candidate:c,template:t}){
-const fields=t.fields.filter(f=>c[f]).map(f=>[FIELD_LABELS[f],f]);
-const isCert=t.type==="certificate";
-const isExperience=t.type==="experience";
+function Document({data,template}){
+const cert=template.type==="certificate";
+const experience=template.id==="experience";
+const rows=template.fields.filter(k=>data[k]).map(k=>[LABELS[k],k]);
 
-let introduction="";
-if(t.id==="offer"){
-introduction=`We are pleased to offer you an internship opportunity with ${COMPANY} in the ${c.domain} programme. The following particulars describe your proposed engagement.`;
-}else if(t.id==="training-appointment"){
-introduction=`We are pleased to communicate your training appointment with ${COMPANY}. Your training programme particulars are provided below.`;
-}else if(t.id==="internship-completion"||t.id==="training-completion"){
-introduction=`This document recognizes the programme details recorded for ${c.name} in connection with ${c.domain}. The particulars below are provided for official reference and verification.`;
-}else if(t.id==="participation"){
-introduction=`This certificate recognizes the participation of ${c.name} in ${c.eventName}, conducted in the area of ${c.domain} by ${COMPANY}.`;
-}else{
-introduction=`This letter is prepared in connection with ${c.name} and the professional role of ${c.role} in the ${c.domain} department at ${COMPANY}. The following engagement details are provided for official review and verification.`;
-}
+let intro="";
+if(template.id==="offer")intro=`We are pleased to offer ${data.name} an internship opportunity with ${COMPANY} in the ${data.domain} programme. The following particulars describe the proposed engagement.`;
+if(template.id==="training-appointment")intro=`We are pleased to offer ${data.name} a training appointment with ${COMPANY} in the ${data.domain} programme.`;
+if(template.id==="internship-completion")intro=`This certificate recognizes ${data.name} for completing the internship programme in ${data.domain} with ${COMPANY}.`;
+if(template.id==="training-completion")intro=`This certificate recognizes ${data.name} for completing the training programme in ${data.domain} with ${COMPANY}.`;
+if(template.id==="participation")intro=`This certificate is awarded to ${data.name} in recognition of participation in ${data.eventName}, associated with ${data.domain}.`;
+if(experience)intro=`This letter is prepared in connection with ${data.name} and the professional role of ${data.role} in the ${data.domain} department at ${COMPANY}.`;
 
 return <div className="a4">
-<DocumentHeader/>
+<Header/>
 <div className="doc-content">
 <div className="doc-title">
 <small>OFFICIAL CORPORATE COMMUNICATION</small>
-<h2>{t.name.toUpperCase()}</h2>
+<h2>{template.name.toUpperCase()}</h2>
 <small>{today().toUpperCase()}</small>
 </div>
-{isCert&&<div className="certificate"><div className="certificate-inner">
+
+{cert?
+<div className="certificate"><div className="certificate-inner">
 <small style={{letterSpacing:3,color:"#0d7377",fontWeight:800}}>{COMPANY.toUpperCase()}</small>
-<h2>{t.name.toUpperCase()}</h2>
-<p>This document is presented to</p>
-<div className="candidate-name">{c.name}</div>
-<p>{introduction}</p>
-<div style={{marginTop:20,fontSize:10,color:"#718096"}}>Issued on {today()}</div>
-</div></div>}
-{!isCert&&<>
-<p>To,</p>
-<p><b>{c.name}</b></p>
-<p>Dear {c.name},</p>
-<p>{introduction}</p>
-<div className="doc-section">{isExperience?"PROFESSIONAL ENGAGEMENT DETAILS":"PROGRAMME PARTICULARS"}</div>
-<DetailsTable candidate={c} fields={fields}/>
-{t.id==="offer"&&<>
+<h2>{template.name.toUpperCase()}</h2>
+<p>This document is proudly presented to</p>
+<div className="candidate-name">{data.name}</div>
+<p>{intro}</p>
+<div className="doc-section">PROGRAMME DETAILS</div>
+<table className="doc-table"><tbody>
+{rows.map(([label,key])=><tr key={key}><td>{label}</td><td>{["joining","completionDate","appointmentDate","participationDate"].includes(key)?dateText(data[key]):data[key]}</td></tr>)}
+</tbody></table>
+<p style={{marginTop:"auto"}}>Issued by {COMPANY}<br/>Wanaparthy, Telangana, India</p>
+</div></div>
+:
+<>
+<p>To Whom It May Concern,</p>
+<p><b>{data.name}</b></p>
+<p>Dear {data.name},</p>
+<p>{intro}</p>
+<div className="doc-section">{experience?"PROFESSIONAL ENGAGEMENT DETAILS":"PROGRAMME PARTICULARS"}</div>
+<table className="doc-table"><tbody>
+{rows.map(([label,key])=><tr key={key}><td>{label}</td><td>{["joining","completionDate","appointmentDate","participationDate"].includes(key)?dateText(data[key]):data[key]}</td></tr>)}
+</tbody></table>
+
+{template.id==="offer"&&<>
 <div className="doc-section">TERMS AND CONDITIONS</div>
-<p>1. The candidate shall maintain professional conduct and comply with applicable company policies.</p>
-<p>2. All assigned activities and deliverables must be completed within communicated timelines.</p>
+<p>1. The candidate is expected to maintain professional conduct and comply with the applicable company policies.</p>
+<p>2. Assigned learning activities and deliverables must be completed within the communicated timelines.</p>
 <p>3. Confidential company, client and project information must not be disclosed to unauthorized persons.</p>
-<p>4. The candidate must follow instructions issued by the authorized programme coordinator.</p>
-<p>5. Any official modification to programme particulars must be communicated through the company's authorized channel.</p>
-<p>6. This offer is subject to the company's final verification and approval.</p>
+<p>4. The candidate must follow instructions provided by the authorized programme coordinator.</p>
+<p>5. Any changes to programme particulars must be communicated through the company's authorized channel.</p>
+<p>6. This offer is subject to the company's verification and approval.</p>
 <div className="doc-section">CANDIDATE ACCEPTANCE</div>
-<p>I acknowledge receipt of this offer and confirm that I have read and understood the programme particulars and terms stated above.</p>
-<p>Candidate Name: {c.name}</p>
-<p>Candidate Signature: ____________________</p>
+<p>I acknowledge receipt of this offer and agree to follow the programme particulars and terms stated above.</p>
+<p>Candidate Name: {data.name}</p>
+<p>Signature: ____________________</p>
 <p>Date: ____________________</p>
 </>}
-{t.id==="training-appointment"&&<>
+
+{template.id==="training-appointment"&&<>
 <div className="doc-section">TRAINING EXPECTATIONS</div>
 <p>1. Maintain punctuality and professional conduct throughout the programme.</p>
-<p>2. Complete assigned learning activities and practical tasks.</p>
-<p>3. Respect confidentiality and company information security requirements.</p>
+<p>2. Complete assigned practical learning activities and tasks.</p>
+<p>3. Respect company confidentiality and information security requirements.</p>
 <p>4. Follow the guidance of the designated training coordinator.</p>
 <div className="doc-section">CANDIDATE ACKNOWLEDGEMENT</div>
-<p>I acknowledge the training appointment and agree to follow the communicated programme guidelines.</p>
-<p>Candidate Signature: ____________________</p>
+<p>I acknowledge the training appointment and agree to follow the programme guidelines.</p>
+<p>Signature: ____________________</p>
 </>}
-{isExperience&&<p>We appreciate the candidate's professional contribution and wish them continued success in their future endeavours.</p>}
+
+{experience&&<p>We appreciate the candidate's professional contribution and wish them continued success in their future endeavours.</p>}
 </>}
-<Signoff department={isExperience?"Human Resources Department":"Talent Excellence Division"}/>
+
+<Signoff experience={experience}/>
 </div>
-<DocumentFooter/>
+<Footer/>
 </div>;
 }
 
@@ -345,35 +325,26 @@ function App(){
 const [records,setRecords]=useState([]);
 const [selected,setSelected]=useState("");
 const [templateId,setTemplateId]=useState("offer");
-const [manual,setManual]=useState(false);
+const [manual,setManual]=useState(true);
 const [form,setForm]=useState({});
+const [previewData,setPreviewData]=useState(null);
 const [preview,setPreview]=useState(false);
 const [search,setSearch]=useState("");
 const [loading,setLoading]=useState(false);
 const [error,setError]=useState("");
-const [sync,setSync]=useState("");
+const [lastSync,setLastSync]=useState("");
 
 const template=TEMPLATES.find(t=>t.id===templateId)||TEMPLATES[0];
-const candidate=records.find(r=>r.key===selected);
-
-const manualCandidate={
-...form,
-name:form.name||"",
-domain:form.domain||"",
-mode:form.mode||"",
-key:"manual-preview"
-};
-
-const activeCandidate=manual?manualCandidate:candidate;
+const selectedRecord=records.find(r=>r.key===selected);
 
 async function refresh(){
 setLoading(true);
-setError("");
 try{
-const data=await fetchRecords();
-setRecords(data);
-setSelected(old=>data.some(c=>c.key===old)?old:(data[0]?.key||""));
-setSync(new Date().toLocaleTimeString("en-IN"));
+const result=await getRecords();
+setRecords(result);
+setSelected(old=>result.some(r=>r.key===old)?old:(result[0]?.key||""));
+setError("");
+setLastSync(new Date().toLocaleTimeString("en-IN"));
 }catch(e){setError(e.message);}
 finally{setLoading(false);}
 }
@@ -384,68 +355,70 @@ const timer=setInterval(refresh,30000);
 return()=>clearInterval(timer);
 },[]);
 
-useEffect(()=>{
-function afterPrint(){
-setPreview(false);
-if(manual)setForm({});
-else refresh();
-}
-window.addEventListener("afterprint",afterPrint);
-return()=>window.removeEventListener("afterprint",afterPrint);
-},[manual]);
-
 const filtered=useMemo(()=>{
 const q=search.toLowerCase();
-return records.filter(c=>[c.aid,c.name,c.email,c.domain].join(" ").toLowerCase().includes(q));
+return records.filter(r=>[r.aid,r.name,r.email,r.domain].join(" ").toLowerCase().includes(q));
 },[records,search]);
 
-const sent=records.filter(c=>/sent|success|delivered/i.test(c.status)).length;
-const failed=records.filter(c=>/fail|error/i.test(c.status)).length;
+const sent=records.filter(r=>/sent|success|delivered/i.test(r.status)).length;
+const failed=records.filter(r=>/failed|error/i.test(r.status)).length;
 const pending=records.length-sent-failed;
 
 function changeTemplate(id){
 setTemplateId(id);
 setForm({});
+setPreviewData(null);
+setPreview(false);
 }
 
 function changeField(e){
-let {name,value}=e.target;
-if(name==="name")value=value.replace(/[^a-zA-Z\s]/g,"");
-if(name==="role"||name==="eventName")value=value.replace(/[^a-zA-Z\s&-]/g,"");
+const {name}=e.target;
+let value=e.target.value;
+if(name==="name"||name==="role"||name==="eventName")value=value.replace(/[^a-zA-Z\s&'-]/g,"");
 setForm(old=>({...old,[name]:value}));
 }
 
-function startPreview(){
-if(!activeCandidate?.name?.trim()){
+function makePreview(){
+const source=manual?{...form}:{...selectedRecord};
+if(!source||!source.name?.trim()){
 alert("Please enter or select a candidate name.");
 return;
 }
-if(!template.fields.every(f=>!["name"].includes(f)||activeCandidate[f]?.trim())){
-alert("Please complete the required candidate name.");
+const missing=template.fields.filter(k=>!String(source[k]||"").trim());
+if(missing.length){
+alert("Please complete: "+missing.map(k=>LABELS[k]).join(", "));
 return;
 }
+setPreviewData({...source});
 setPreview(true);
+if(manual)setForm({});
 }
 
 function closePreview(){
 setPreview(false);
+setPreviewData(null);
 if(manual)setForm({});
 else refresh();
 }
 
-function openSheetRecord(c){
-setManual(false);
-setSelected(c.key);
-setPreview(true);
-}
+useEffect(()=>{
+const afterPrint=()=>{
+setPreview(false);
+setPreviewData(null);
+if(manual)setForm({});
+else refresh();
+};
+window.addEventListener("afterprint",afterPrint);
+return()=>window.removeEventListener("afterprint",afterPrint);
+},[manual]);
 
 return <main className="app">
 <header>
-<a href={WEBSITE} target="_blank" rel="noreferrer"><CompanyLogo className="logo"/></a>
+<a href={WEBSITE} target="_blank" rel="noreferrer"><Logo className="logo"/></a>
 <div className="actions">
-<a className="btn" href={WEBSITE} target="_blank">Company Website ↗</a>
-<a className="btn" href={SHEET_URL} target="_blank">Google Sheet ↗</a>
-<a className="btn dark" href={GMAIL_URL} target="_blank">Company Gmail ↗</a>
+<a className="btn" href={WEBSITE} target="_blank" rel="noreferrer">Company Website ↗</a>
+<a className="btn" href={SHEET_URL} target="_blank" rel="noreferrer">Google Sheet ↗</a>
+<a className="btn dark" href={GMAIL_URL} target="_blank" rel="noreferrer">Company Gmail ↗</a>
 <button className="btn orange" onClick={refresh} disabled={loading}>{loading?"Syncing...":"↻ Refresh"}</button>
 </div>
 </header>
@@ -453,11 +426,11 @@ return <main className="app">
 <section className="hero">
 <div className="eyebrow">VR PI GROUP • ENTERPRISE OPERATIONS SUITE</div>
 <h1>Enterprise Talent<br/><span style={{color:"#1e3a5f"}}>Excellence Platform</span></h1>
-<p>A professional corporate platform for candidate records, official internship documentation, training appointments, experience letters and certificates.</p>
+<p>Professional candidate records, official internship documentation, training appointments, experience letters and certificates.</p>
 </section>
 
-{error&&<div className="alert error"><b>Google Sheets connection:</b> {error}<br/>Set the spreadsheet's General access to Anyone with the link – Viewer.</div>}
-{sync&&<div className="alert success">{records.length} live records synchronized from Google Sheets. • Last sync: {sync}</div>}
+{error&&<div className="alert error">Google Sheets connection: {error}</div>}
+{lastSync&&<div className="alert success">{records.length} live records synchronized from Google Sheets • Last sync: {lastSync}</div>}
 
 <section className="stats">
 {[
@@ -470,17 +443,18 @@ return <main className="app">
 
 <section className="panel">
 <div className="section-head">
-<div><div className="kicker">LIVE DATA MANAGEMENT • READ ONLY</div><h2>Candidate Records</h2><p className="desc">Actual records from your connected Google Sheet. Automatically synchronized every 30 seconds.</p></div>
+<div><div className="kicker">LIVE DATA MANAGEMENT • READ ONLY</div><h2>Candidate Records</h2><p className="desc">Google Sheets records synchronized every 30 seconds.</p></div>
 <input className="search" placeholder="Search ID, name, email..." value={search} onChange={e=>setSearch(e.target.value)}/>
 </div>
 <div className="table-wrap">
-{loading&&!records.length?<div className="no-record">Connecting to Google Sheets...</div>:!filtered.length?<div className="no-record">No candidate records found.</div>:
+{!filtered.length?<div className="no-record">{loading?"Connecting to Google Sheets...":"No records available."}</div>:
 <table>
-<thead><tr><th>Application ID</th><th>Candidate</th><th>Email</th><th>Phone</th><th>Domain</th><th>Status</th><th>PDF</th><th>Action</th></tr></thead>
-<tbody>{filtered.map(c=><tr key={c.key}>
-<td>{c.aid||"—"}</td><td><b>{c.name}</b></td><td>{c.email||"—"}</td><td>{c.phone||"—"}</td><td>{c.domain||"—"}</td>
-<td><span className={"status "+(/sent|success|delivered/i.test(c.status)?"sent":/fail|error/i.test(c.status)?"failed":"pending")}>{c.status}</span></td>
-<td>{c.pdf||"—"}</td><td><button className="text-btn" onClick={()=>openSheetRecord(c)}>Preview</button></td>
+<thead><tr><th>APPLICATION ID</th><th>NAME</th><th>EMAIL</th><th>PHONE</th><th>DOMAIN</th><th>STATUS</th><th>PDF</th><th>ACTION</th></tr></thead>
+<tbody>{filtered.map(r=><tr key={r.key}>
+<td>{r.aid||"—"}</td><td><b>{r.name}</b></td><td>{r.email||"—"}</td><td>{r.phone||"—"}</td><td>{r.domain||"—"}</td>
+<td><span className={"status "+(/sent|success|delivered/i.test(r.status)?"sent":/failed|error/i.test(r.status)?"failed":"pending")}>{r.status}</span></td>
+<td>{r.pdf||"—"}</td>
+<td><button className="text-btn" onClick={()=>{setManual(false);setSelected(r.key);setTemplateId("offer");setPreviewData(null);setPreview(false);}}>Select</button></td>
 </tr>)}</tbody>
 </table>}
 </div>
@@ -489,11 +463,11 @@ return <main className="app">
 <section className="panel">
 <div className="kicker">OFFICIAL CORPORATE DOCUMENT LIBRARY</div>
 <h2>Professional Document Generation</h2>
-<p className="desc">Each template now has its own independent candidate information fields. Changing the template automatically changes the required inputs.</p>
+<p className="desc">Choose a template. Only the fields needed for that specific document will appear.</p>
 
 <div className="mode-switch">
-<button className={!manual?"active":""} onClick={()=>{setManual(false);setForm({});}}>Use Google Sheet Record</button>
-<button className={manual?"active":""} onClick={()=>{setManual(true);setForm({});}}>Enter Candidate Details Manually</button>
+<button className={!manual?"active":""} onClick={()=>{setManual(false);setForm({});setPreviewData(null);setPreview(false);}}>Use Google Sheet Record</button>
+<button className={manual?"active":""} onClick={()=>{setManual(true);setForm({});setPreviewData(null);setPreview(false);}}>Enter Candidate Details Manually</button>
 </div>
 
 <div className="template-pills">
@@ -503,73 +477,70 @@ return <main className="app">
 <div className="template-info">
 <strong>{template.name}</strong>
 <p>{template.desc}</p>
-<span className="kicker">{template.fields.length} TEMPLATE-SPECIFIC FIELDS • A4 PDF</span>
+<span className="kicker">{template.fields.length} TEMPLATE-SPECIFIC FIELDS • A4 FORMAT</span>
 </div>
 
-{!manual&&<div className="form-box">
-<div className="field">
-<label>SELECT CANDIDATE FROM GOOGLE SHEETS</label>
-<select value={selected} onChange={e=>setSelected(e.target.value)}>
-<option value="">Select candidate</option>
-{records.map(c=><option key={c.key} value={c.key}>{c.name} — {c.aid||"No ID"}</option>)}
-</select>
-</div>
-<p className="help">Read-only records. Selecting a candidate does not modify the spreadsheet.</p>
-</div>}
-
-{manual&&<div className="form-box">
-<div className="kicker">TEMPLATE-SPECIFIC CANDIDATE DETAILS</div>
+{manual?
+<div className="form-box">
+<div className="kicker">MANUAL CANDIDATE DETAILS</div>
 <h2>{template.name}</h2>
-<p className="desc">Only the details required by this selected template are displayed.</p>
 <div className="grid">
 {template.fields.map(key=><div className="field" key={key}>
-<label>{FIELD_LABELS[key].toUpperCase()}{key==="name"?" *":""}</label>
+<label>{LABELS[key].toUpperCase()}{key==="name"?" *":""}</label>
 {key==="domain"?
 <select name={key} value={form[key]||""} onChange={changeField}>
 <option value="">Select domain</option>
-{DOMAIN_OPTIONS.map(v=><option key={v}>{v}</option>)}
+{DOMAINS.map(x=><option key={x}>{x}</option>)}
 </select>
 :key==="mode"?
 <select name={key} value={form[key]||""} onChange={changeField}>
 <option value="">Select mode</option>
-{MODE_OPTIONS.map(v=><option key={v}>{v}</option>)}
+{MODES.map(x=><option key={x}>{x}</option>)}
 </select>
 :key==="duration"?
 <select name={key} value={form[key]||""} onChange={changeField}>
 <option value="">Select duration</option>
-{DURATION_OPTIONS.map(v=><option key={v}>{v}</option>)}
+{DURATIONS.map(x=><option key={x}>{x}</option>)}
 </select>
 :["joining","completionDate","appointmentDate","participationDate"].includes(key)?
 <input type="date" name={key} value={form[key]||""} onChange={changeField}/>
-:<input type="text" name={key} value={form[key]||""} onChange={changeField} placeholder={"Enter "+FIELD_LABELS[key].toLowerCase()} autoComplete="off"/>
+:<input type="text" name={key} value={form[key]||""} onChange={changeField} placeholder={"Enter "+LABELS[key].toLowerCase()} autoComplete="off"/>
 }
 </div>)}
 </div>
-<p className="help">Manual details are used only to generate the selected document preview. They are not saved to Google Sheets or a database.</p>
-</div>}
+<p className="help">Your details are used only for this document. They are not saved to Google Sheets or a database. Clicking Preview saves a temporary snapshot for the document and clears the input form.</p>
+</div>
+:
+<div className="form-box">
+<div className="field">
+<label>SELECT CANDIDATE FROM GOOGLE SHEETS</label>
+<select value={selected} onChange={e=>setSelected(e.target.value)}>
+<option value="">Select candidate</option>
+{records.map(r=><option key={r.key} value={r.key}>{r.name} — {r.aid||"No ID"}</option>)}
+</select>
+</div>
+<p className="help">Read-only company records. No spreadsheet values are changed.</p>
+</div>
+}
 
-<div className="section-head" style={{marginTop:23}}>
-<span className="desc">6 professional templates • A4 portrait • PDF preview</span>
-<button className="btn orange" disabled={!activeCandidate?.name?.trim()} onClick={startPreview}>Preview Selected Document →</button>
+<div className="section-head" style={{marginTop:22}}>
+<span className="desc">Six professional templates • A4 PDF preview</span>
+<button className="btn orange" onClick={makePreview}>Preview Document →</button>
 </div>
 </section>
 
-<footer>
-<CompanyLogo style={{width:135,height:65}}/>
-<b>{COMPANY}</b><br/>{EMAIL}<br/>
-<a href={WEBSITE} target="_blank">Official Company Website</a>
-</footer>
+<footer><Logo style={{width:130,height:70}}/><br/><b>{COMPANY}</b><br/>Wanaparthy, Telangana, India<br/>{EMAIL}</footer>
 
-{preview&&activeCandidate&&<div className="modal">
+{preview&&previewData&&<div className="modal">
 <div className="modal-inner">
 <div className="modalbar">
-<strong>{template.name} • {activeCandidate.name}</strong>
+<strong>{template.name} • {previewData.name}</strong>
 <div className="modal-actions">
 <button className="btn orange" onClick={()=>window.print()}>Print / Save PDF</button>
 <button className="btn" onClick={closePreview}>Close ×</button>
 </div>
 </div>
-<div id="printTarget"><Document candidate={activeCandidate} template={template}/></div>
+<div id="printTarget"><Document data={previewData} template={template}/></div>
 </div>
 </div>}
 </main>;
