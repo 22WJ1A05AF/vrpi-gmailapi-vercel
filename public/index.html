@@ -16,37 +16,39 @@
 body{margin:0;background:#f3f6fa;color:#17233a;font-family:'Plus Jakarta Sans',sans-serif}
 button,input,select{font:inherit}
 button{cursor:pointer}
-button:disabled{opacity:.5;cursor:not-allowed}
+button:disabled{opacity:.45;cursor:not-allowed}
 .app{max-width:1240px;margin:auto;padding:28px 24px}
 .header{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;padding-bottom:20px;border-bottom:1px solid #e2e8f0}
-.brand{display:flex;align-items:center;gap:14px;text-decoration:none}
-.logo{width:185px;height:78px;display:block}
-.actions{display:flex;gap:9px;flex-wrap:wrap}
-.btn{padding:10px 15px;border:1px solid #dfe6ef;background:white;border-radius:9px;color:#263d5e;text-decoration:none;font-size:10px;font-weight:800;display:inline-flex;align-items:center;justify-content:center}
-.btn-dark{background:#1e3a5f;color:white;border-color:#1e3a5f}
-.btn-orange{background:#e94b17;color:white;border-color:#e94b17}
-.hero{text-align:center;padding:57px 10px 40px}
+.brand{display:flex;align-items:center;text-decoration:none}
+.logo{width:180px;height:75px}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn{padding:10px 15px;border:1px solid #dfe6ef;background:white;border-radius:9px;color:#263d5e;text-decoration:none;font-size:10px;font-weight:800}
+.dark{background:#1e3a5f;color:white;border-color:#1e3a5f}
+.orange{background:#e94b17;color:white;border-color:#e94b17}
+.hero{text-align:center;padding:55px 10px 38px}
 .eyebrow{display:inline-block;background:white;border:1px solid #e1e7ef;border-radius:30px;padding:9px 17px;color:#687891;font-size:10px;font-weight:800;letter-spacing:1px}
 .hero h1{font-size:clamp(34px,5vw,55px);line-height:1.12;letter-spacing:-2px;color:#111a2d;font-weight:800;margin:22px 0 14px}
 .hero p{max-width:750px;margin:auto;color:#74839a;font-size:13px;line-height:1.9}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
-.stat{background:white;border:1px solid #e2e8f0;border-radius:14px;padding:19px 20px}
-.stat label{font-size:9px;font-weight:800;color:#8795a9;letter-spacing:1px}
+.stat{background:white;border:1px solid #e2e8f0;border-radius:14px;padding:19px 20px;text-align:left}
+.stat label{font-size:9px;font-weight:800;color:#8795a9;letter-spacing:1px;display:block}
 .stat strong{display:block;font-size:30px;font-weight:800;margin:9px 0 4px}
 .stat small{font-size:10px;color:#94a3b8}
+.stat button{border:0;background:none;padding:0;text-align:left;width:100%}
+.stat.active{border:2px solid #e94b17;background:#fffaf7}
 .panel{background:white;border:1px solid #e1e7ef;border-radius:18px;padding:27px;box-shadow:0 10px 32px #263b5909;margin-bottom:24px}
 .kicker{color:#8291a6;font-size:10px;font-weight:800;letter-spacing:1.5px}
 h2{font-size:20px;color:#172b49;margin:8px 0}
 .description{font-size:12px;color:#8290a5;line-height:1.8}
 .alert{padding:13px 15px;border-radius:9px;margin-top:15px;font-size:11px;line-height:1.8}
-.alert-error{background:#fff5ed;color:#a34a16;border:1px solid #ffdbbd}
-.alert-success{background:#edfaf3;color:#16754c;border:1px solid #c9eedc}
-.alert-info{background:#eff6ff;color:#315b8c;border:1px solid #d7e7fa}
+.error{background:#fff5ed;color:#a34a16;border:1px solid #ffdbbd}
+.success{background:#edfaf3;color:#16754c;border:1px solid #c9eedc}
+.info{background:#eff6ff;color:#315b8c;border:1px solid #d7e7fa}
 .section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 .search{padding:11px 13px;border:1px solid #dfe6ef;border-radius:9px;font-size:11px;outline:none;min-width:230px}
-.search:focus,select:focus,input:focus{border-color:#e94b17;outline:none}
+.search:focus,input:focus,select:focus{border-color:#e94b17;outline:none}
 .table-wrap{overflow-x:auto;margin-top:18px}
-table.records{width:100%;border-collapse:collapse;white-space:nowrap}
+.records{width:100%;border-collapse:collapse;white-space:nowrap}
 .records th{background:#f8fafc;text-align:left;padding:13px 12px;color:#8b99ad;font-size:9px;letter-spacing:.7px;text-transform:uppercase}
 .records td{padding:14px 12px;border-bottom:1px solid #eef1f5;font-size:10px;color:#54647a}
 .records td:first-child{font-family:'JetBrains Mono',monospace;font-weight:700;color:#1e3a5f}
@@ -56,36 +58,34 @@ table.records{width:100%;border-collapse:collapse;white-space:nowrap}
 .status.pending{background:#fef3c7;color:#92400e}
 .status.failed{background:#fee2e2;color:#991b1b}
 .text-btn{border:0;background:none;color:#087eae;font-size:10px;font-weight:800}
+.source-tabs,.template-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}
+.tab{border:1px solid #dce4ed;background:white;color:#50617a;padding:10px 16px;border-radius:9px;font-size:10px;font-weight:800}
+.tab.active{background:#1e3a5f;color:white;border-color:#1e3a5f}
 .field label,.form-field label{display:block;font-size:10px;font-weight:800;color:#52637c;margin-bottom:9px}
-.field select,.form-field input,.form-field select,.form-field textarea{width:100%;padding:12px;border:1px solid #dfe6ef;border-radius:9px;background:white;color:#30425d;font-size:11px}
-.form-field textarea{min-height:75px;resize:vertical}
-.template-layout{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:22px}
-.template-description{padding:18px;background:#f8fafc;border:1px solid #e9edf3;border-radius:12px;margin-top:17px}
-.template-description strong{display:block;font-size:13px;color:#1e3a5f;margin-bottom:7px}
-.template-description p{font-size:11px;color:#8290a5;line-height:1.8;margin:0}
-.pills{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}
+.field select,.form-field input,.form-field select{width:100%;padding:12px;border:1px solid #dfe6ef;border-radius:9px;background:white;color:#30425d;font-size:11px}
+.template-layout{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px}
+.template-info{padding:18px;background:#f8fafc;border:1px solid #e9edf3;border-radius:12px;margin-top:15px}
+.template-info strong{display:block;font-size:13px;color:#1e3a5f;margin:8px 0}
+.template-info p{font-size:11px;color:#8290a5;line-height:1.8}
+.pills{display:flex;gap:7px;flex-wrap:wrap}
 .pill{font-size:9px;padding:6px 10px;border:1px solid #e4e9ef;border-radius:20px;color:#718098;background:white}
-.source-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0}
-.source-tab{border:1px solid #dce4ed;background:white;color:#50617a;padding:11px 17px;border-radius:9px;font-size:10px;font-weight:800}
-.source-tab.active{background:#1e3a5f;color:white;border-color:#1e3a5f}
-.manual-box{background:#f8fafc;border:1px solid #e4eaf1;border-radius:14px;padding:23px;margin-top:17px}
+.manual-box{background:#f8fafc;border:1px solid #e4eaf1;border-radius:14px;padding:23px;margin-top:19px}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.form-actions{display:flex;justify-content:flex-end;gap:9px;flex-wrap:wrap;margin-top:20px}
+.form-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:20px;flex-wrap:wrap}
+.empty{padding:35px;text-align:center;color:#8593a7;font-size:11px}
 .footer{text-align:center;padding:26px 0;color:#8491a5;font-size:10px}
 .footer a{color:#0d7377;text-decoration:none}
-.modal{position:fixed;inset:0;background:rgba(12,23,41,.88);z-index:100;overflow:auto;padding:15px}
+.modal{position:fixed;inset:0;background:rgba(12,23,41,.9);z-index:100;overflow:auto;padding:15px}
 .modal-inner{max-width:920px;width:100%;margin:0 auto}
 .modalbar{background:#111c30;padding:12px 15px;border-radius:11px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
 .modalbar strong{font-size:11px;color:white}
 .modal-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.modal-actions select{padding:8px;border-radius:7px;font-size:10px;max-width:230px}
-.modal-tabs{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin-bottom:13px}
-.modal-tabs button{padding:8px 13px;border:1px solid #526077;border-radius:20px;background:#26354b;color:white;font-size:9px;font-weight:700}
-.modal-tabs button.active{background:#e94b17;border-color:#e94b17}
-.a4{width:210mm;min-height:297mm;margin:0 auto;background:white;display:flex;flex-direction:column;position:relative;overflow:hidden;color:#26354d;box-shadow:0 15px 50px #0004}
-.doc-logo{width:155px;height:78px;display:block}
+.modal-actions select{padding:8px;border-radius:7px;font-size:10px;max-width:220px}
+.modal-actions button{padding:9px 12px}
+.a4{width:210mm;height:297mm;min-height:297mm;margin:0 auto;background:white;display:flex;flex-direction:column;position:relative;overflow:hidden;color:#26354d;box-shadow:0 15px 50px #0004}
+.doc-logo{width:150px;height:78px;display:block}
 .doc-header{padding:21px 32px;display:flex;align-items:center;justify-content:space-between;gap:14px;border-bottom:2px solid #1e3a5f}
-.doc-info{text-align:right;font-size:8.5px;color:#66758c;line-height:1.8;overflow-wrap:anywhere}
+.doc-info{text-align:right;font-size:8.5px;color:#66758c;line-height:1.8}
 .doc-info strong{color:#1e3a5f;font-size:10px}
 .doc-content{padding:25px 38px;flex:1;display:flex;flex-direction:column;font-size:10.5px;line-height:1.8}
 .doc-content p{color:#475569;margin:8px 0;line-height:1.85}
@@ -94,41 +94,124 @@ table.records{width:100%;border-collapse:collapse;white-space:nowrap}
 .doc-title small{color:#8491a5;font-size:9px;letter-spacing:2px;font-weight:700}
 .doc-section{font-size:9.5px;letter-spacing:1.2px;color:#1e3a5f;font-weight:800;border-bottom:1px solid #dce3ec;padding-bottom:6px;margin-top:15px}
 .doc-table{width:100%;border-collapse:collapse;margin:9px 0;font-size:9.5px}
-.doc-table td{border-bottom:1px solid #e5eaf0;padding:7px 9px;overflow-wrap:anywhere}
+.doc-table td{border-bottom:1px solid #e5eaf0;padding:7px 9px}
 .doc-table td:first-child{width:36%;background:#f3f6fa;color:#1e3a5f;font-weight:700}
 .doc-footer{padding:10px 18px;background:#1e3a5f;color:white;text-align:center;font-size:8.5px;line-height:1.7}
 .signoff{margin-top:auto;padding-top:20px;border-top:1px solid #e1e7ef}
 .signoff strong{display:block;margin-top:6px;color:#1e3a5f;font-size:11px}
 .signoff small{display:block;color:#8190a5;margin-top:3px;font-size:9px}
-.draft{padding:7px;text-align:center;background:#fff4e8;color:#aa4b16;border:1px solid #ffd7b5;font-weight:800;font-size:9px;letter-spacing:1px}
+.acceptance{border:1px solid #d5dfe9;border-radius:7px;padding:13px;margin-top:14px;background:#f8fafc}
+.acceptance-line{display:inline-block;border-bottom:1px solid #66758c;width:145px;margin:0 8px}
 .training-top{height:8px;background:linear-gradient(90deg,#191928 70%,#e94b17)}
-.empty{padding:35px;text-align:center;color:#8593a7;font-size:11px}
+.draft{padding:7px;text-align:center;background:#fff4e8;color:#aa4b16;border:1px solid #ffd7b5;font-weight:800;font-size:9px;letter-spacing:1px}
+
+/* LANDSCAPE COMPLETION CERTIFICATE */
+.a4.landscape{
+ width:297mm;
+ height:210mm;
+ min-height:210mm;
+ background:#fffefa;
+ color:#315a32;
+ padding:10mm;
+}
+.certificate-frame{
+ height:100%;
+ border:5px double #79a96d;
+ padding:8px;
+ position:relative;
+ background:
+ repeating-linear-gradient(
+  0deg,
+  transparent 0px,
+  transparent 6px,
+  rgba(112,169,103,.09) 7px,
+  transparent 8px
+ ),#fffefa;
+}
+.certificate-inner{
+ height:100%;
+ border:1px solid #83b47b;
+ padding:15px 25px;
+ display:flex;
+ flex-direction:column;
+ justify-content:space-between;
+ text-align:center;
+}
+.certificate-title{
+ font-size:37px;
+ line-height:1.15;
+ font-weight:800;
+ letter-spacing:2px;
+ color:#315a32;
+ margin:3px 0 4px;
+}
+.certificate-company{
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ gap:12px;
+ font-size:17px;
+ font-weight:800;
+ letter-spacing:1px;
+}
+.certificate-company .doc-logo{width:95px;height:48px}
+.certificate-intro{font-size:14px;color:#426343;margin-top:10px}
+.certificate-name{
+ font-family:'Playfair Display',serif;
+ font-size:36px;
+ font-weight:700;
+ color:#315a32;
+ margin:5px 0;
+}
+.certificate-description{
+ font-size:13px;
+ line-height:1.75;
+ color:#3d6040;
+ max-width:690px;
+ margin:0 auto;
+}
+.certificate-bottom{
+ display:grid;
+ grid-template-columns:1fr 1.3fr 1fr;
+ align-items:end;
+ gap:14px;
+ font-size:10px;
+ color:#355e37;
+}
+.certificate-bottom strong{display:block;font-size:12px;margin-bottom:4px}
+.certificate-bottom small{font-size:10px}
+.certificate-bottom .center{border-left:1px solid #a8c79e;border-right:1px solid #a8c79e;padding:0 8px}
+.certificate-draft{color:#a34a16;font-size:8px;font-weight:800;letter-spacing:1px;margin-top:4px}
 @media(max-width:850px){
  .app{padding:17px 12px}
  .stats{grid-template-columns:repeat(2,1fr)}
  .template-layout{grid-template-columns:1fr}
  .panel{padding:20px}
- .a4{width:100%;min-height:1000px}
+ .form-grid{grid-template-columns:1fr}
+ .a4{width:100%;height:auto;min-height:1000px}
+ .a4.landscape{width:100%;height:auto;min-height:650px}
  .doc-content{padding:22px}
- .doc-header{padding:17px}
- .doc-logo{width:125px;height:65px}
+ .doc-header{padding:15px}
 }
 @media(max-width:520px){
  .stats{gap:8px}.stat{padding:13px}.stat strong{font-size:23px}
  .actions{width:100%}.actions .btn{flex:1}
- .hero{padding:40px 5px 30px}.hero h1{letter-spacing:-1px}
- .search{width:100%}.form-grid{grid-template-columns:1fr}
+ .hero{padding:40px 5px 30px}
+ .search{width:100%}
 }
 @media print{
  @page{size:A4 portrait;margin:0}
+ @page certificatePage{size:A4 landscape;margin:0}
  html,body{margin:0!important;padding:0!important;background:white!important}
  body *{visibility:hidden!important}
  #printTarget,#printTarget *{visibility:visible!important}
  .modal{position:static!important;display:block!important;padding:0!important;background:white!important;overflow:visible!important}
  .modal-inner{width:210mm!important;max-width:none!important;margin:0!important}
  .modalbar,.modal-tabs,.no-print{display:none!important}
- #printTarget{position:absolute!important;left:0!important;top:0!important;width:210mm!important}
- .a4{width:210mm!important;min-height:297mm!important;margin:0!important;box-shadow:none!important;break-after:page;page-break-after:always;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+ #printTarget{position:absolute!important;left:0!important;top:0!important}
+ .a4{width:210mm!important;height:297mm!important;min-height:297mm!important;margin:0!important;box-shadow:none!important;page:portraitPage;break-after:page;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+ .a4.landscape{page:certificatePage;width:297mm!important;height:210mm!important;min-height:210mm!important;margin:0!important}
+ .doc-header,.doc-footer,.training-top,.doc-table td:first-child,.certificate-frame,.certificate-inner{print-color-adjust:exact;-webkit-print-color-adjust:exact}
 }
 </style>
 </head>
@@ -139,7 +222,6 @@ table.records{width:100%;border-collapse:collapse;white-space:nowrap}
 
 const {useState,useEffect,useCallback,useMemo}=React;
 
-/* COMPANY SETTINGS */
 const COMPANY="VR PI Group Of Companies";
 const EMAIL="vrpigroupoftechnology@gmail.com";
 const LOCATION="Wanaparthy, Telangana, India";
@@ -148,74 +230,67 @@ const SHEET_ID="1dCJXGZN3dbThvJt5SnMYUSp0uAAsVuWnKuXd1rabBOU";
 const SHEET_GID="0";
 const SHEET_URL=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit?gid=${SHEET_GID}`;
 const GMAIL_URL="https://mail.google.com/mail/?authuser=vrpigroupoftechnology%40gmail.com#inbox";
+const TODAY=()=>new Date().toLocaleDateString("en-IN",{day:"2-digit",month:"long",year:"numeric"});
 
-/* Inline company logo */
+/* SINGLE-FILE COMPANY BRANDING */
 function CompanyLogo({className="",style={}}){
  return <svg className={className} style={style}
   viewBox="0 0 480 150" role="img"
   aria-label="VR PI Group of Companies">
-  <text x="4" y="91" fontSize="104" fontWeight="900"
-   letterSpacing="-10" fill="#d0003c"
-   fontFamily="Arial,sans-serif">VR</text>
-  <text x="235" y="91" fontSize="98" fontWeight="900"
-   letterSpacing="-7" fill="#f05f00"
-   fontFamily="Arial,sans-serif">PI</text>
-  <text x="7" y="132" fontSize="20" fontWeight="700"
-   letterSpacing="1" fill="#d0003c"
-   fontFamily="Arial,sans-serif">GROUP OF COMPANIES</text>
+  <text x="4" y="91" fontSize="104" fontWeight="900" letterSpacing="-10" fill="#d0003c" fontFamily="Arial,sans-serif">VR</text>
+  <text x="235" y="91" fontSize="98" fontWeight="900" letterSpacing="-7" fill="#f05f00" fontFamily="Arial,sans-serif">PI</text>
+  <text x="7" y="132" fontSize="20" fontWeight="700" letterSpacing="1" fill="#d0003c" fontFamily="Arial,sans-serif">GROUP OF COMPANIES</text>
  </svg>;
 }
 
-/* SIX PROFESSIONAL TEMPLATES */
+/* SIX DOCUMENT TEMPLATES */
 const TEMPLATES=[
- {id:"offer",name:"Internship Offer Letter",group:"Internship",style:"offer",color:"#1e3a5f",desc:"Formal corporate offer with internship particulars and programme terms."},
- {id:"intern-completion",name:"Internship Completion Certificate",group:"Internship",style:"certificate",color:"#0d7377",desc:"Premium completion document with programme dates and domain."},
- {id:"training",name:"Industrial Training Appointment",group:"Training",style:"training",color:"#e94b17",desc:"Corporate appointment letter with structured training information."},
- {id:"training-completion",name:"Training Completion Certificate",group:"Training",style:"certificate",color:"#0d7377",desc:"Professional training completion recognition."},
- {id:"participation",name:"Participation Certificate",group:"Certification",style:"certificate",color:"#0d7377",desc:"Corporate programme participation certificate."},
- {id:"experience",name:"Experience Certificate",group:"Certification",style:"experience",color:"#1e3a5f",desc:"Formal professional experience record."}
+ {id:"offer",name:"Internship Offer Letter",group:"Internship",style:"offer",color:"#1e3a5f",desc:"Formal internship offer, programme details, terms and candidate acceptance."},
+ {id:"intern-completion",name:"Internship Completion Certificate",group:"Internship",style:"certificate",color:"#4f8b55",desc:"Premium landscape certificate with double border and completion statement."},
+ {id:"training",name:"Industrial Training Appointment Letter",group:"Training",style:"training",color:"#e94b17",desc:"Professional training appointment with start date and programme details."},
+ {id:"training-completion",name:"Training Completion Certificate",group:"Training",style:"certificate",color:"#4f8b55",desc:"Landscape training completion certificate."},
+ {id:"participation",name:"Participation Certificate",group:"Certification",style:"certificate",color:"#4f8b55",desc:"Formal participation recognition in a premium certificate layout."},
+ {id:"experience",name:"Experience Letter",group:"Certification",style:"experience",color:"#1e3a5f",desc:"Professional experience letter with role and employment dates."}
 ];
 
-/* ONLY FIELDS REQUIRED BY EACH TEMPLATE */
-const TEMPLATE_FIELDS={
+/* FORM FIELDS: START DATE ONLY IN OFFER AND TRAINING APPOINTMENT */
+const FIELDS={
  offer:[
-  {key:"name",label:"Candidate Full Name",required:true},
+  {key:"name",label:"Candidate Name",required:true},
   {key:"domain",label:"Internship Domain",required:true},
   {key:"mode",label:"Programme Mode",type:"select",options:["Virtual / Remote","Hybrid","On-site"],required:true},
   {key:"duration",label:"Duration",required:true},
-  {key:"startDate",label:"Start Date",type:"date",required:true},
-  {key:"endDate",label:"End Date",type:"date",required:true}
+  {key:"startDate",label:"Start Date",type:"date",required:true}
  ],
  "intern-completion":[
-  {key:"name",label:"Candidate Full Name",required:true},
+  {key:"name",label:"Candidate Name",required:true},
   {key:"domain",label:"Internship Domain",required:true},
-  {key:"startDate",label:"Start Date",type:"date",required:true},
+  {key:"startDate",label:"Start Date",type:"date"},
   {key:"endDate",label:"End Date",type:"date",required:true},
-  {key:"duration",label:"Duration",required:true}
+  {key:"duration",label:"Duration"}
  ],
  training:[
-  {key:"name",label:"Candidate Full Name",required:true},
+  {key:"name",label:"Candidate Name",required:true},
   {key:"domain",label:"Training Domain",required:true},
   {key:"mode",label:"Training Mode",type:"select",options:["Virtual / Remote","Hybrid","On-site"],required:true},
   {key:"duration",label:"Duration",required:true},
-  {key:"startDate",label:"Start Date",type:"date",required:true},
-  {key:"endDate",label:"End Date",type:"date",required:true}
+  {key:"startDate",label:"Start Date",type:"date",required:true}
  ],
  "training-completion":[
-  {key:"name",label:"Candidate Full Name",required:true},
+  {key:"name",label:"Candidate Name",required:true},
   {key:"domain",label:"Training Domain",required:true},
-  {key:"startDate",label:"Start Date",type:"date",required:true},
+  {key:"startDate",label:"Start Date",type:"date"},
   {key:"endDate",label:"End Date",type:"date",required:true},
-  {key:"duration",label:"Duration",required:true},
+  {key:"duration",label:"Duration"},
   {key:"completionDate",label:"Completion Date",type:"date",required:true}
  ],
  participation:[
-  {key:"name",label:"Candidate Full Name",required:true},
+  {key:"name",label:"Candidate Name",required:true},
   {key:"eventTitle",label:"Programme / Event Name",required:true},
   {key:"participationDate",label:"Participation Date",type:"date",required:true}
  ],
  experience:[
-  {key:"name",label:"Candidate Full Name",required:true},
+  {key:"name",label:"Candidate Name",required:true},
   {key:"role",label:"Role / Designation",required:true},
   {key:"domain",label:"Department / Domain",required:true},
   {key:"startDate",label:"Start Date",type:"date",required:true},
@@ -223,124 +298,138 @@ const TEMPLATE_FIELDS={
  ]
 };
 
-const TODAY=()=>new Date().toLocaleDateString("en-IN",{
- day:"2-digit",month:"long",year:"numeric"
-});
+const normalize=s=>String(s||"").toLowerCase().replace(/[^a-z0-9]/g,"");
 
-const normal=s=>String(s||"").toLowerCase().replace(/[^a-z0-9]/g,"");
+function getHeaderIndex(columns,names,fallback=-1){
+ const labels=columns.map(c=>normalize(c.label||c.id||""));
+ for(const name of names){
+  const i=labels.findIndex(x=>x===normalize(name));
+  if(i>=0)return i;
+ }
+ return fallback;
+}
 
 function readCell(cell){
  if(!cell||cell.v===null||cell.v===undefined)return "";
  return String(cell.f??cell.v).trim();
 }
 
-/* Read actual Google Sheet through its built-in viewer endpoint */
-function getSheetRows(){
+/* READ-ONLY GOOGLE SHEETS CONNECTION */
+function getSheetData(){
  return new Promise((resolve,reject)=>{
-  const callbackName="vrpiCallback"+Date.now();
+  const callback="vrpiSheetCallback"+Date.now();
   const script=document.createElement("script");
-  let finished=false;
+  let complete=false;
 
-  const timeout=setTimeout(()=>{
-   finish(new Error("Google Sheets timed out. Check the spreadsheet sharing setting."));
-  },15000);
+  const timer=setTimeout(()=>{
+   finish(new Error("Google Sheets timed out. Check sharing access."));
+  },16000);
 
   function finish(error,result){
-   if(finished)return;
-   finished=true;
-   clearTimeout(timeout);
+   if(complete)return;
+   complete=true;
+   clearTimeout(timer);
    script.remove();
-   try{delete window[callbackName]}catch(e){}
-   if(error)reject(error);
-   else resolve(result);
+   try{delete window[callback]}catch(e){}
+   error?reject(error):resolve(result);
   }
 
-  window[callbackName]=(response)=>{
+  window[callback]=response=>{
    if(!response||!response.table){
     finish(new Error("Google Sheets did not return a readable table."));
     return;
    }
    if(response.status&&response.status!=="ok"){
-    finish(new Error(response.errors?.[0]?.detailed_message||"Google Sheets access was denied."));
+    finish(new Error(response.errors?.[0]?.detailed_message||"Google Sheets access denied."));
     return;
    }
    finish(null,response.table);
   };
 
-  const tqx=encodeURIComponent(
-   "out:json;responseHandler:"+callbackName+";reqId:0"
-  );
-
+  const tqx=encodeURIComponent("out:json;responseHandler:"+callback+";reqId:0");
   script.async=true;
-  script.src=
-   `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?gid=${SHEET_GID}&tqx=${tqx}&_=${Date.now()}`;
-
-  script.onerror=()=>finish(
-   new Error("Google Sheets could not be reached. The sheet may be private or unavailable.")
-  );
-
+  script.src=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?gid=${SHEET_GID}&tqx=${tqx}&_=${Date.now()}`;
+  script.onerror=()=>finish(new Error("Google Sheets could not be reached. Check link-view access."));
   document.head.appendChild(script);
  });
+
 }
 
-function tableToObjects(table){
- const cols=table.cols||[];
+function convertSheet(table){
+ const columns=table.cols||[];
  return (table.rows||[]).map((row,index)=>{
-  const obj={};
-  cols.forEach((col,i)=>{
-   const key=String(col.label||col.id||`Column ${i+1}`).trim();
-   if(key)obj[key]=readCell(row.c?.[i]);
+  const val=i=>readCell(row.c?.[i]);
+  const get=(names,fallback=-1)=>val(getHeaderIndex(columns,names,fallback));
+
+  // Column R (index 17) is retained as the fallback status field.
+  const rawStatus=get([
+   "Email Status","Email Delivery Status","Letter Sent",
+   "Mail Status","Dispatch Status","Delivery Status",
+   "Application Status","Status"
+  ],17);
+
+  const raw={};
+  columns.forEach((col,i)=>{
+   const name=col.label||col.id||`Column ${i+1}`;
+   raw[name]=val(i);
   });
-  return obj;
- });
+
+  const name=get(["Full Name","Candidate Name","Name"],2);
+  const aid=get(["Application ID","Application Id"],1);
+
+  return {
+   key:aid||`sheet-${index}`,
+   source:"sheet",
+   raw,
+   name,
+   aid,
+   email:get(["Email Address","Email"],3),
+   phone:get(["WhatsApp / Phone","WhatsApp","Phone"],4),
+   domain:get(["Domain","Internship Domain","Training Domain","Track"],7),
+   mode:get(["Mode","Programme Mode","Training Mode"]),
+   duration:get(["Duration","Programme Duration"]),
+   startDate:get(["Start Date","Joining Date","Commencement Date"]),
+   endDate:get(["End Date","Internship End Date"]),
+   completionDate:get(["Completion Date"]),
+   eventTitle:get(["Programme / Event","Programme Name","Event Name","Event Title"]),
+   participationDate:get(["Participation Date","Event Date"]),
+   role:get(["Role","Designation","Job Title"]),
+   completionStatus:get(["Completion Status","Training Completion Status","Certificate Status"]),
+   status:rawStatus,
+   pdf:get(["PDF Record","PDF Link"],18),
+   timestamp:get(["Timestamp"],0),
+   lastUpdated:get(["Last Updated"],19)
+  };
+ }).filter(c=>c.name||c.aid||c.email);
 }
 
-function findValue(row,names){
- const key=Object.keys(row||{}).find(k=>
-  names.some(n=>normal(k)===normal(n))
- );
- return key?row[key]??"":"";
+async function loadCandidates(){
+ const table=await getSheetData();
+ return convertSheet(table);
 }
 
-function mapCandidate(row,index){
- return {
-  key:String(findValue(row,["Application ID","Application Id"])||`sheet-row-${index}`),
-  source:"sheet",
-  raw:row,
-  name:findValue(row,["Full Name","Candidate Name","Name"]),
-  domain:findValue(row,["Domain","Internship Domain","Training Domain","Track"]),
-  mode:findValue(row,["Mode","Programme Mode","Training Mode","Work Mode"]),
-  duration:findValue(row,["Duration","Programme Duration"]),
-  startDate:findValue(row,["Start Date","Joining Date","Commencement Date"]),
-  endDate:findValue(row,["End Date","Internship End Date"]),
-  completionDate:findValue(row,["Completion Date"]),
-  eventTitle:findValue(row,["Programme Name","Event Name","Event Title"]),
-  participationDate:findValue(row,["Participation Date","Event Date"]),
-  role:findValue(row,["Role","Designation","Job Title"]),
-  status:findValue(row,["Letter Sent","Email Status","Application Status","Status"]),
-  email:findValue(row,["Email Address","Email"]),
-  phone:findValue(row,["WhatsApp / Phone","WhatsApp","Phone"]),
-  aid:findValue(row,["Application ID","Application Id"]),
-  timestamp:findValue(row,["Timestamp"]),
-  pdf:findValue(row,["PDF Record","PDF Link"])
- };
+/* DELIVERY STATUS CLASSIFICATION */
+function classifyStatus(value){
+ const s=String(value||"").toUpperCase().trim();
+
+ if(/NOT SENT|NOT DELIVERED|PENDING|QUEUED|WAITING|PROCESSING|IN PROGRESS/.test(s))
+  return "PENDING";
+
+ if(/FAILED|FAILURE|ERROR|BOUNCED|REJECTED|UNDELIVERED/.test(s))
+  return "FAILED";
+
+ if(/SENT|DELIVERED|SUCCESS|ACCEPTED BY GMAIL|TRUE|^YES$|^1$/.test(s))
+  return "SENT";
+
+ return "UNKNOWN";
 }
 
-function loadSheet(){
- return getSheetRows().then(table=>
-  tableToObjects(table)
-   .map(mapCandidate)
-   .filter(c=>c.name||c.aid||c.email)
- );
+/* DOCUMENT HELPERS */
+function Logo({style={}}){
+ return <CompanyLogo className="doc-logo" style={style}/>;
 }
 
-/* DOCUMENT COMMON COMPONENTS */
-
-function Logo(){
- return <CompanyLogo className="doc-logo"/>;
-}
-
-function DocHeader({color="#1e3a5f"}){
+function DocumentHeader({color="#1e3a5f"}){
  return <div className="doc-header" style={{borderColor:color}}>
   <Logo/>
   <div className="doc-info">
@@ -352,7 +441,7 @@ function DocHeader({color="#1e3a5f"}){
  </div>;
 }
 
-function DocFooter({color="#1e3a5f"}){
+function DocumentFooter({color="#1e3a5f"}){
  return <div className="doc-footer" style={{background:color}}>
   <b>{COMPANY}</b><br/>
   {LOCATION} • {EMAIL}<br/>
@@ -360,33 +449,31 @@ function DocFooter({color="#1e3a5f"}){
  </div>;
 }
 
+const LABELS={
+ name:"Candidate Name",
+ domain:"Programme Domain",
+ mode:"Programme Mode",
+ duration:"Duration",
+ startDate:"Start Date",
+ endDate:"End Date",
+ completionDate:"Completion Date",
+ eventTitle:"Programme / Event",
+ participationDate:"Participation Date",
+ role:"Role / Designation"
+};
+
 function DetailsTable({candidate,keys}){
- const labels={
-  name:"Candidate Name",
-  domain:"Programme Domain",
-  mode:"Programme Mode",
-  duration:"Programme Duration",
-  startDate:"Start Date",
-  endDate:"End Date",
-  completionDate:"Completion Date",
-  eventTitle:"Programme / Event",
-  participationDate:"Participation Date",
-  role:"Role / Designation"
- };
  return <table className="doc-table"><tbody>
   {keys.map(key=>candidate[key]?(
-   <tr key={key}>
-    <td>{labels[key]||key}</td>
-    <td>{candidate[key]}</td>
-   </tr>
+   <tr key={key}><td>{LABELS[key]||key}</td><td>{candidate[key]}</td></tr>
   ):null)}
  </tbody></table>;
 }
 
-function Signoff({department="Talent Acquisition Department",color="#1e3a5f"}){
+function Signoff({department="Talent Acquisition Department"}){
  return <div className="signoff">
-  Regards,
-  <strong style={{color}}>{department}</strong>
+  <div>Regards,</div>
+  <strong>{department}</strong>
   <small>{COMPANY}</small>
   <small>{LOCATION}</small>
   <small>{EMAIL}</small>
@@ -394,18 +481,19 @@ function Signoff({department="Talent Acquisition Department",color="#1e3a5f"}){
  </div>;
 }
 
-/* INTERNSHIP OFFER LETTER */
-
-function OfferDocument({c,t}){
- return <div className="a4">
+/* OFFER LETTER WITH TERMS & CANDIDATE ACCEPTANCE */
+function OfferLetter({c}){
+ return <div className="a4 portrait">
   <div style={{
-   background:"#1e3a5f",padding:"22px 34px",
-   display:"flex",justifyContent:"space-between",
-   alignItems:"center",gap:14
+   background:"#1e3a5f",
+   padding:"20px 34px",
+   display:"flex",
+   justifyContent:"space-between",
+   alignItems:"center"
   }}>
    <Logo/>
    <div style={{textAlign:"right",color:"#e2e8f0",fontSize:9,lineHeight:1.9}}>
-    <b style={{color:"white"}}>{COMPANY}</b><br/>
+    <b style={{color:"#fff"}}>{COMPANY}</b><br/>
     {LOCATION}<br/>{EMAIL}<br/>{WEBSITE}
    </div>
   </div>
@@ -414,46 +502,55 @@ function OfferDocument({c,t}){
   <div className="doc-content">
    <div className="doc-title">
     <small>OFFICIAL CORPORATE COMMUNICATION</small>
-    <h2>{t.name.toUpperCase()}</h2>
+    <h2>INTERNSHIP OFFER LETTER</h2>
     <small>DATE OF ISSUE: {TODAY()}</small>
    </div>
 
    <p><b>To: {c.name}</b></p>
    <p>Dear {c.name},</p>
 
-   <p>We are pleased to offer you an opportunity to participate in the <b>{c.domain}</b> programme at <b>{COMPANY}</b>.</p>
+   <p>We are pleased to offer you the opportunity to join the <b>{c.domain}</b> Internship Programme at <b>{COMPANY}</b>.</p>
 
-   <p>Your programme is scheduled in <b>{c.mode}</b> mode for a duration of <b>{c.duration}</b>, commencing on <b>{c.startDate}</b> and concluding on <b>{c.endDate}</b>.</p>
+   <p>Your programme is scheduled in <b>{c.mode}</b> mode for a duration of <b>{c.duration}</b>, commencing on <b>{c.startDate}</b>.</p>
 
-   <p>We look forward to your participation and encourage you to make the most of the practical learning, professional guidance and project-related activities associated with this programme.</p>
+   <p>During this engagement, you will have the opportunity to gain practical exposure, develop relevant skills and participate in assigned learning and project activities under the guidance of the programme team.</p>
 
-   <div className="doc-section">PROGRAMME PARTICULARS</div>
-   <DetailsTable candidate={c} keys={["name","domain","mode","duration","startDate","endDate"]}/>
+   <div className="doc-section">INTERNSHIP PARTICULARS</div>
+   <DetailsTable candidate={c} keys={["name","domain","mode","duration","startDate"]}/>
 
-   <div className="doc-section">PROGRAMME GUIDELINES</div>
-   <p>1. Maintain professional conduct throughout the programme.</p>
-   <p>2. Complete assigned activities within the communicated timelines.</p>
-   <p>3. Maintain confidentiality of company and project information.</p>
-   <p>4. Follow the guidelines communicated by the programme coordinator.</p>
+   <div className="doc-section">TERMS AND CONDITIONS</div>
+   <p>1. The candidate is expected to maintain professional conduct and adhere to the applicable organizational policies.</p>
+   <p>2. All assigned learning activities, tasks and deliverables should be completed within the timelines communicated by the programme coordinator.</p>
+   <p>3. Confidential company information, internal documents and project-related materials must not be disclosed to unauthorized persons.</p>
+   <p>4. The candidate must actively participate in assigned programme activities and follow the guidance of the designated mentor or coordinator.</p>
+   <p>5. Any leave, absence or programme-related concern should be communicated to the authorized coordinator.</p>
+   <p>6. The organization reserves the right to review programme participation and take appropriate action in accordance with its applicable policies.</p>
 
-   <div className="signoff">
-    <Signoff department="Talent Acquisition Department"/>
+   <div className="acceptance">
+    <b style={{color:"#1e3a5f"}}>CANDIDATE ACCEPTANCE</b>
+    <p>I, <b>{c.name}</b>, acknowledge receipt of this internship offer and confirm that I have reviewed and understood the programme particulars and terms and conditions stated in this letter.</p>
+    <p>I agree to comply with the applicable programme guidelines and professional expectations.</p>
+    <div style={{marginTop:17,fontSize:10}}>
+     Candidate Name: <b>{c.name}</b><br/><br/>
+     Signature: <span className="acceptance-line"/><br/><br/>
+     Date: <span className="acceptance-line"/>
+    </div>
    </div>
+
+   <Signoff department="Talent Acquisition Department"/>
   </div>
-  <DocFooter/>
+  <DocumentFooter/>
  </div>;
 }
 
-/* TRAINING APPOINTMENT LETTER */
-
-function TrainingDocument({c,t}){
- return <div className="a4">
+/* TRAINING APPOINTMENT: NO END DATE */
+function TrainingLetter({c}){
+ return <div className="a4 portrait">
   <div className="training-top"/>
   <div className="doc-header" style={{borderColor:"#e94b17"}}>
    <Logo/>
    <div className="doc-info">
-    <strong>{COMPANY}</strong><br/>
-    {LOCATION}<br/>{EMAIL}<br/>{WEBSITE}
+    <strong>{COMPANY}</strong><br/>{LOCATION}<br/>{EMAIL}<br/>{WEBSITE}
    </div>
   </div>
 
@@ -462,172 +559,144 @@ function TrainingDocument({c,t}){
     {COMPANY.toUpperCase()}
    </div>
 
-   <h2 style={{fontSize:24,color:"#111827",lineHeight:1.25,margin:"13px 0 24px"}}>
-    {t.name.toUpperCase()}
+   <h2 style={{fontSize:23,color:"#111827",lineHeight:1.25,margin:"13px 0 22px"}}>
+    INDUSTRIAL TRAINING<br/>APPOINTMENT LETTER
    </h2>
 
    <p><b>Date:</b> {TODAY()}</p>
    <p><b>Trainee Name:</b> {c.name}</p>
    <p>Dear {c.name},</p>
 
-   <p>We are pleased to welcome you to the <b>{c.domain}</b> training programme at <b>{COMPANY}</b>.</p>
+   <p>We are pleased to welcome you to the <b>{c.domain}</b> Industrial Training Programme at <b>{COMPANY}</b>.</p>
 
-   <p>The programme will be conducted in <b>{c.mode}</b> mode for <b>{c.duration}</b>, from <b>{c.startDate}</b> to <b>{c.endDate}</b>.</p>
+   <p>Your training will be conducted in <b>{c.mode}</b> mode for a duration of <b>{c.duration}</b>, commencing on <b>{c.startDate}</b>.</p>
 
    <div className="doc-section" style={{color:"#e94b17"}}>TRAINING PARTICULARS</div>
-   <DetailsTable candidate={c} keys={["name","domain","mode","duration","startDate","endDate"]}/>
+   <DetailsTable candidate={c} keys={["name","domain","mode","duration","startDate"]}/>
 
-   <div style={{
-    background:"#111827",
-    color:"#e2e8f0",
-    borderRadius:7,
-    padding:17,
-    fontSize:10.5,
-    lineHeight:1.9,
-    marginTop:18
-   }}>
+   <div style={{background:"#111827",color:"#e2e8f0",padding:17,borderRadius:7,fontSize:10.5,lineHeight:1.9,marginTop:17}}>
     <b style={{color:"#f97316"}}>PROFESSIONAL EXPECTATIONS</b><br/>
-    Maintain professional conduct, participate in assigned learning activities, complete deliverables within communicated timelines and follow company confidentiality guidelines.
+    Maintain professional conduct, participate in assigned learning activities, complete deliverables within the communicated timelines and adhere to organizational confidentiality guidelines.
    </div>
 
-   <div style={{marginTop:"auto",paddingTop:25}}>
-    <Signoff department="Industrial Training Department" color="#e94b17"/>
+   <div className="acceptance">
+    <b style={{color:"#e94b17"}}>TRAINEE ACKNOWLEDGEMENT</b>
+    <p>I, <b>{c.name}</b>, acknowledge the training appointment and agree to follow the applicable programme guidelines.</p>
+    <p>Signature: <span className="acceptance-line"/> Date: <span className="acceptance-line"/></p>
    </div>
+
+   <Signoff department="Industrial Training Department"/>
   </div>
-  <DocFooter color="#191928"/>
+  <DocumentFooter color="#191928"/>
  </div>;
 }
 
-/* COMPLETION / PARTICIPATION / EXPERIENCE CERTIFICATES */
+/* PREMIUM LANDSCAPE COMPLETION CERTIFICATE */
+function CompletionCertificate({c,t}){
+ const status=c.completionStatus||"";
+ const isVerified=c.source==="sheet"&&/verified|approved|completed/i.test(status);
 
-function CertificateDocument({c,t}){
- const verified= c.source==="sheet" &&
-  /verified|approved|completed|issued/i.test(
-   String(c.status||c.completionStatus||c.participationStatus||"")
-  );
+ const statement=t.id==="participation"
+  ?`has participated in ${c.domain||"the professional programme"}.`
+  :`has successfully completed the ${c.domain||"professional development"} programme.`;
 
- const isExperience=t.id==="experience";
+ return <div className="a4 landscape">
+  <div className="certificate-frame">
+   <div className="certificate-inner">
 
- let statement;
- if(t.id==="intern-completion"||t.id==="training-completion"){
-  statement=`This document recognizes the successful completion of the ${c.domain} programme at ${COMPANY}, subject to confirmation of the candidate's completion record.`;
- }else if(t.id==="participation"){
-  statement=`This document recognizes the recorded participation of ${c.name} in ${c.eventTitle||c.domain||"the programme"} organized by ${COMPANY}, subject to attendance verification.`;
- }else{
-  statement=`This document records the professional engagement of ${c.name} in the role of ${c.role} within the ${c.domain} department at ${COMPANY}, subject to employment record verification.`;
- }
-
- return <div className="a4">
-  <div style={{padding:"24px 34px",display:"flex",justifyContent:"space-between",alignItems:"center",borderBottom:"2px solid #e7edf1"}}>
-   <Logo/>
-   <div className="doc-info">
-    <strong>{COMPANY}</strong><br/>
-    {LOCATION}<br/>
-    {EMAIL}<br/>
-    {WEBSITE}
-   </div>
-  </div>
-
-  <div style={{height:4,background:"#0d7377"}}/>
-
-  {(!verified||c.source==="manual")&&
-   <div className="draft">DRAFT PREVIEW • ORGANIZATIONAL VERIFICATION REQUIRED</div>}
-
-  <div className="doc-content" style={{padding:"34px 43px"}}>
-   <div style={{fontSize:10,color:"#0d7377",fontWeight:800,letterSpacing:3}}>
-    DATE: {TODAY()}
-   </div>
-
-   <div style={{
-    border:"2px solid #0d7377",
-    padding:17,
-    marginTop:20,
-    flex:1,
-    display:"flex",
-    flexDirection:"column"
-   }}>
-    <div style={{
-     border:"1px solid #b7dddd",
-     padding:"30px 25px",
-     textAlign:"center",
-     flex:1,
-     display:"flex",
-     flexDirection:"column",
-     justifyContent:"center"
-    }}>
-     <Logo style={{width:140,height:70,margin:"0 auto 20px"}}/>
-
-     <div style={{
-      fontSize:10,
-      color:"#0d7377",
-      fontWeight:800,
-      letterSpacing:3
-     }}>{COMPANY.toUpperCase()}</div>
-
-     <h2 style={{
-      fontSize:23,
-      color:"#0d7377",
-      margin:"25px 0"
-     }}>{t.name.toUpperCase()}</h2>
-
-     <p style={{textAlign:"center",fontSize:12}}>This document is issued for</p>
-
-     <div style={{
-      fontFamily:"Playfair Display,serif",
-      fontSize:27,
-      color:"#1e3a5f",
-      margin:"17px 0"
-     }}>{c.name}</div>
-
-     <p style={{
-      fontSize:11,
-      lineHeight:2,
-      textAlign:"center",
-      color:"#53647a"
-     }}>{statement}</p>
-
-     <div style={{
-      borderTop:"1px solid #dce7e7",
-      marginTop:25,
-      paddingTop:17
-     }}>
-      <DetailsTable candidate={c} keys={
-       isExperience
-        ?["role","domain","startDate","endDate"]
-        :t.id==="participation"
-         ?["eventTitle","domain","startDate","endDate"]
-         :["domain","startDate","endDate","duration","completionDate"]
-      }/>
-     </div>
-
-     <div style={{
-      marginTop:25,
-      fontSize:10,
-      color:"#687891",
-      lineHeight:1.8
-     }}>
-      {LOCATION}<br/>
-      {EMAIL}<br/>
-      {WEBSITE}
+    <div>
+     <div className="certificate-title">
+      {t.id==="participation"?"CERTIFICATE OF PARTICIPATION":"COMPLETION CERTIFICATE"}
      </div>
     </div>
+
+    <div>
+     <div className="certificate-company">
+      <CompanyLogo style={{width:95,height:48}}/>
+      <span>{COMPANY.toUpperCase()}</span>
+     </div>
+     <div style={{fontSize:10,color:"#63835f",marginTop:5}}>
+      {LOCATION}
+     </div>
+    </div>
+
+    <div>
+     <div className="certificate-intro">This certificate is granted to</div>
+     <div className="certificate-name">{c.name}</div>
+     <div className="certificate-description">
+      {t.id==="participation"
+       ?statement
+       :statement}
+      {c.duration?` Programme duration: ${c.duration}.`:""}
+      {c.startDate?` Commencement date: ${c.startDate}.`:""}
+      {c.endDate?` Completion date: ${c.endDate}.`:""}
+     </div>
+    </div>
+
+    <div className="certificate-bottom">
+     <div>
+      <strong>VR PI Group Of Companies</strong>
+      <small>Talent Excellence Division</small>
+      <br/>
+      <small>{LOCATION}</small>
+     </div>
+
+     <div className="center">
+      <strong>Certificate Reference</strong>
+      <small>{c.aid||"To be assigned by the company"}</small>
+      <br/>
+      <strong style={{marginTop:8}}>Date of Issue</strong>
+      <small>{TODAY()}</small>
+     </div>
+
+     <div>
+      <strong>Authorized Representative</strong>
+      <small>{COMPANY}</small>
+      <br/>
+      <small>{EMAIL}</small>
+     </div>
+    </div>
+
+    {!isVerified&&
+     <div className="certificate-draft">
+      PREVIEW ONLY • COMPLETION / PARTICIPATION REQUIRES COMPANY VERIFICATION
+     </div>
+    }
    </div>
-
-   <Signoff department={isExperience?"Human Resources Department":"Talent Excellence Division"} color="#0d7377"/>
   </div>
+ </div>;
+}
 
-  <DocFooter color="#0d7377"/>
+/* EXPERIENCE LETTER */
+function ExperienceLetter({c}){
+ return <div className="a4 portrait">
+  <DocumentHeader color="#1e3a5f"/>
+  <div className="doc-content">
+   <div className="doc-title">
+    <small>OFFICIAL CORPORATE COMMUNICATION</small>
+    <h2>EXPERIENCE LETTER</h2>
+    <small>{TODAY()}</small>
+   </div>
+   <p>To Whom It May Concern,</p>
+   <p>This letter is prepared in relation to <b>{c.name}</b> and the role of <b>{c.role}</b> associated with the <b>{c.domain}</b> department at <b>{COMPANY}</b>.</p>
+   <p>The engagement information is presented below for review and verification by the authorized company representative.</p>
+   <div className="doc-section">PROFESSIONAL DETAILS</div>
+   <DetailsTable candidate={c} keys={["name","role","domain","startDate","endDate"]}/>
+   <p>We appreciate the professional contribution and wish the candidate continued success in future endeavours.</p>
+   <Signoff department="Human Resources Department"/>
+  </div>
+  <DocumentFooter/>
  </div>;
 }
 
 function RenderDocument({candidate,template}){
- if(template.style==="offer")return <OfferDocument c={candidate} t={template}/>;
- if(template.style==="training")return <TrainingDocument c={candidate} t={template}/>;
- return <CertificateDocument c={candidate} t={template}/>;
+ if(template.id==="offer")return <OfferLetter c={candidate}/>;
+ if(template.id==="training")return <TrainingLetter c={candidate}/>;
+ if(template.id==="experience")return <ExperienceLetter c={candidate}/>;
+ return <CompletionCertificate c={candidate} t={template}/>;
 }
 
-/* MAIN REACT APPLICATION */
-
+/* MAIN APP */
 function App(){
  const [records,setRecords]=useState([]);
  const [selectedKey,setSelectedKey]=useState("");
@@ -635,6 +704,7 @@ function App(){
  const [source,setSource]=useState("sheet");
  const [manual,setManual]=useState({});
  const [search,setSearch]=useState("");
+ const [filter,setFilter]=useState("ALL");
  const [loading,setLoading]=useState(true);
  const [error,setError]=useState("");
  const [notice,setNotice]=useState("");
@@ -642,25 +712,21 @@ function App(){
  const [preview,setPreview]=useState(false);
 
  const template=TEMPLATES.find(t=>t.id===templateId)||TEMPLATES[0];
- const fields=TEMPLATE_FIELDS[templateId]||[];
+ const fields=FIELDS[templateId]||[];
 
  const refresh=useCallback(async()=>{
   setLoading(true);
   setError("");
   setNotice("");
-
   try{
-   const rows=await loadSheet();
-   setRecords(rows);
-   setSelectedKey(old=>
-    rows.some(c=>c.key===old)?old:(rows[0]?.key||"")
-   );
+   const data=await loadCandidates();
+   setRecords(data);
+   setSelectedKey(old=>data.some(c=>c.key===old)?old:(data[0]?.key||""));
    setLastSync(new Date().toLocaleTimeString("en-IN"));
-   setNotice(`${rows.length} live records synchronized from Google Sheets.`);
+   setNotice(`${data.length} live records synchronized from Google Sheets.`);
   }catch(e){
-   setRecords([]);
-   setSelectedKey("");
-   setError(e.message||"Google Sheets connection failed.");
+   setError(e.message);
+   setNotice("");
   }finally{
    setLoading(false);
   }
@@ -672,139 +738,125 @@ function App(){
   return()=>clearInterval(timer);
  },[refresh]);
 
- const filtered=useMemo(()=>{
-  const q=search.trim().toLowerCase();
-  if(!q)return records;
-  return records.filter(c=>
-   Object.values(c.raw||{}).join(" ").toLowerCase().includes(q)||
-   [c.name,c.aid,c.email,c.phone,c.domain].join(" ").toLowerCase().includes(q)
-  );
- },[records,search]);
-
  const sheetCandidate=records.find(c=>c.key===selectedKey)||null;
 
  const manualCandidate={
   ...manual,
   source:"manual",
-  name:manual.name||"",
-  domain:manual.domain||"",
-  mode:manual.mode||"",
-  duration:manual.duration||"",
-  startDate:manual.startDate||"",
-  endDate:manual.endDate||""
+  name:manual.name||""
  };
 
  const candidate=source==="manual"?manualCandidate:sheetCandidate;
 
- const requiredMissing=fields.some(f=>
-  f.required&&!String(manual[f.key]||"").trim()
- );
+ const missing=fields.some(f=>f.required&&!String(manual[f.key]||"").trim());
+ const canPreview=source==="sheet"?Boolean(sheetCandidate):!missing;
 
- const canPreview=source==="sheet"
-  ?Boolean(sheetCandidate)
-  :!requiredMissing;
+ const sent=records.filter(c=>{
+  const s=classifyStatus(c.status);
+  return s==="SENT";
+ }).length;
+ const pending=records.filter(c=>{
+  const s=classifyStatus(c.status);
+  return s==="PENDING";
+ }).length;
+ const failed=records.filter(c=>{
+  const s=classifyStatus(c.status);
+  return s==="FAILED";
+ }).length;
 
- const sent=records.filter(c=>/sent/i.test(c.status||"")).length;
- const pending=records.filter(c=>/pending/i.test(c.status||"")).length;
- const failed=records.filter(c=>/failed|fail/i.test(c.status||"")).length;
+ const visible=records.filter(c=>{
+  const q=search.toLowerCase().trim();
+  const matches=!q||[c.name,c.aid,c.email,c.domain,c.phone].join(" ").toLowerCase().includes(q);
+  const status=classifyStatus(c.status);
+  const matchesStatus=filter==="ALL"||status===filter;
+  return matches&&matchesStatus;
+ });
 
  function updateManual(key,value){
-  setManual(old=>({...old,[key]:value}));
+  setManual(prev=>({...prev,[key]:value}));
  }
 
- function chooseTemplate(id){
+ function selectTemplate(id){
   setTemplateId(id);
   setManual({});
   setPreview(false);
  }
 
- function openPreview(){
+ function showPreview(){
   if(canPreview)setPreview(true);
  }
 
  return <main className="app">
 
-  {/* HEADER */}
-
   <header className="header no-print">
    <a className="brand" href={WEBSITE} target="_blank" rel="noreferrer">
     <CompanyLogo className="logo"/>
    </a>
-
    <div className="actions">
     <a className="btn" href={WEBSITE} target="_blank" rel="noreferrer">Company Website ↗</a>
     <a className="btn" href={SHEET_URL} target="_blank" rel="noreferrer">Google Sheet ↗</a>
-    <a className="btn btn-dark" href={GMAIL_URL} target="_blank" rel="noreferrer">Company Gmail ↗</a>
-    <button className="btn btn-orange" onClick={refresh} disabled={loading}>
+    <a className="btn dark" href={GMAIL_URL} target="_blank" rel="noreferrer">Company Gmail ↗</a>
+    <button className="btn orange" onClick={refresh} disabled={loading}>
      {loading?"Syncing...":"↻ Refresh"}
     </button>
    </div>
   </header>
 
-  {/* HERO */}
-
   <section className="hero no-print">
    <div className="eyebrow">VR PI GROUP • ENTERPRISE OPERATIONS SUITE</div>
-   <h1>Enterprise Talent<br/>
-    <span style={{color:"#1e3a5f"}}>Excellence Platform</span>
-   </h1>
+   <h1>Enterprise Talent<br/><span style={{color:"#1e3a5f"}}>Excellence Platform</span></h1>
    <p>A unified enterprise solution for intelligent talent management, official documentation, professional certifications, and automated corporate communication.</p>
   </section>
 
-  {/* CONNECTION STATUS */}
-
-  {error&&<div className="alert alert-error no-print">
+  {error&&<div className="alert error no-print">
    <b>Google Sheets connection:</b> {error}
-   <br/><br/>
-   Direct sheet reading requires the spreadsheet to be link-viewable.
-   A private sheet cannot be accessed by this HTML-only connection.
-   Making a candidate spreadsheet public exposes its contents.
+   <br/>
+   Direct browser access requires the spreadsheet to be link-viewable.
+   Do not make confidential candidate information public.
   </div>}
 
-  {notice&&<div className="alert alert-success no-print">
+  {notice&&<div className="alert success no-print">
    {notice} • Last sync: {lastSync}
   </div>}
 
-  {/* STATISTICS */}
-
+  {/* LIVE STATUS CARDS - CLICK TO FILTER RECORDS */}
   <section className="stats no-print">
    {[
-    ["TOTAL APPLICANTS",records.length,"Actual sheet records","#1e3a5f"],
-    ["LETTERS ISSUED",sent,"Recorded sent status","#15803d"],
-    ["PENDING ACTIONS",pending,"Recorded pending status","#b45309"],
-    ["FAILED RECORDS",failed,"Recorded failed status","#dc2626"]
-   ].map(([label,value,note,color])=>(
-    <div className="stat" key={label}>
-     <label>{label}</label>
-     <strong style={{color}}>{value}</strong>
-     <small>{note}</small>
+    ["TOTAL APPLICANTS",records.length,"Actual sheet records","ALL","#1e3a5f"],
+    ["LETTERS SENT",sent,"Actual sent / delivered status","SENT","#15803d"],
+    ["PENDING ACTIONS",pending,"Actual pending status","PENDING","#b45309"],
+    ["FAILED RECORDS",failed,"Actual failed status","FAILED","#dc2626"]
+   ].map(([label,value,note,key,color])=>(
+    <div className={"stat "+(filter===key?"active":"")} key={key}>
+     <button onClick={()=>setFilter(key)}>
+      <label>{label}</label>
+      <strong style={{color}}>{value}</strong>
+      <small>{note}</small>
+     </button>
     </div>
    ))}
   </section>
 
-  {/* CANDIDATE TABLE */}
-
+  {/* LIVE CANDIDATE RECORDS */}
   <section className="panel no-print">
    <div className="section-head">
     <div>
      <div className="kicker">LIVE DATA MANAGEMENT • READ ONLY</div>
      <h2>Candidate Records</h2>
      <p className="description">
-      Actual Google Sheet records • Automatic refresh every 30 seconds.
+      Actual Google Sheet data • Auto-refresh every 30 seconds.
      </p>
     </div>
-
-    <input className="search"
-     value={search}
+    <input className="search" value={search}
      onChange={e=>setSearch(e.target.value)}
-     placeholder="Search name, email, application ID..."/>
+     placeholder="Search name, ID or email..."/>
    </div>
 
    <div className="table-wrap">
     {loading&&records.length===0?
      <div className="empty">Connecting to Google Sheets...</div>:
-     filtered.length===0?
-     <div className="empty">No actual records returned from the connected sheet.</div>:
+     visible.length===0?
+     <div className="empty">No records match this status or search.</div>:
      <table className="records">
       <thead><tr>
        <th>Application ID</th>
@@ -812,22 +864,25 @@ function App(){
        <th>Email</th>
        <th>Phone</th>
        <th>Domain</th>
-       <th>Status</th>
+       <th>Letter Status</th>
        <th>PDF Record</th>
        <th>Timestamp</th>
        <th>Action</th>
       </tr></thead>
       <tbody>
-       {filtered.map(c=>{
-        const s=String(c.status||"Not recorded");
-        const cls=/sent/i.test(s)?"sent":/fail/i.test(s)?"failed":/pending/i.test(s)?"pending":"";
+       {visible.map(c=>{
+        const classification=classifyStatus(c.status);
         return <tr key={c.key}>
          <td>{c.aid||"—"}</td>
          <td><b>{c.name||"—"}</b></td>
          <td>{c.email||"—"}</td>
          <td>{c.phone||"—"}</td>
          <td>{c.domain||"—"}</td>
-         <td><span className={"status "+cls}>{s}</span></td>
+         <td>
+          <span className={"status "+classification.toLowerCase()}>
+           {c.status||"Not recorded"}
+          </span>
+         </td>
          <td>{c.pdf||"—"}</td>
          <td>{c.timestamp||"—"}</td>
          <td>
@@ -846,22 +901,21 @@ function App(){
   </section>
 
   {/* DOCUMENT GENERATION */}
-
   <section className="panel no-print">
    <div className="kicker">OFFICIAL CORPORATE DOCUMENT LIBRARY</div>
    <h2>Professional Document Generation</h2>
    <p className="description">
-    Select a real Google Sheet candidate or enter only the information
-    required by your chosen template. Manual entries are temporary
-    and are never written to the spreadsheet.
+    Select an existing candidate or manually enter only the details
+    required by your chosen document. Manual details are temporary
+    and are never written to the original Google Sheet.
    </p>
 
    <div className="source-tabs">
-    <button className={"source-tab "+(source==="sheet"?"active":"")}
+    <button className={"tab "+(source==="sheet"?"active":"")}
      onClick={()=>setSource("sheet")}>
      Use Google Sheet Record
     </button>
-    <button className={"source-tab "+(source==="manual"?"active":"")}
+    <button className={"tab "+(source==="manual"?"active":"")}
      onClick={()=>{
       setSource("manual");
       setManual({});
@@ -873,27 +927,26 @@ function App(){
    <div className="template-layout">
     <div className="field">
      <label>SELECT CANDIDATE</label>
-
      {source==="sheet"?
       <select value={selectedKey} onChange={e=>setSelectedKey(e.target.value)}>
-       <option value="">Select real candidate</option>
+       <option value="">Select actual candidate</option>
        {records.map(c=>
         <option key={c.key} value={c.key}>
-         {c.name||"Candidate"} — {c.aid||"No ID"}
+         {c.name} — {c.aid||"No ID"}
         </option>
        )}
       </select>
       :
-      <div className="alert alert-info">
-       Manual mode is active. Fill in only the fields required
-       for {template.name}.
+      <div className="alert info">
+       Manual preview mode is active. Only required document
+       information will be collected.
       </div>
      }
     </div>
 
     <div className="field">
      <label>SELECT DOCUMENT TEMPLATE</label>
-     <select value={templateId} onChange={e=>chooseTemplate(e.target.value)}>
+     <select value={templateId} onChange={e=>selectTemplate(e.target.value)}>
       <optgroup label="Internship">
        {TEMPLATES.filter(t=>t.group==="Internship").map(t=>
         <option key={t.id} value={t.id}>{t.name}</option>
@@ -911,67 +964,57 @@ function App(){
       </optgroup>
      </select>
 
-     <div className="template-description">
+     <div className="template-info">
       <span className="kicker" style={{color:template.color}}>VR PI • OFFICIAL DOCUMENT</span>
       <strong>{template.name}</strong>
       <p>{template.desc}</p>
       <div className="pills">
        <span className="pill">{template.group}</span>
-       <span className="pill">A4 Portrait</span>
+       <span className="pill">{template.style==="certificate"?"A4 Landscape":"A4 Portrait"}</span>
        <span className="pill">PDF Preview</span>
       </div>
      </div>
     </div>
    </div>
 
-   {/* TEMPLATE-SPECIFIC MANUAL FIELDS */}
-
+   {/* TEMPLATE-SPECIFIC MANUAL INPUTS */}
    {source==="manual"&&
     <div className="manual-box">
-     <div className="kicker">TEMPLATE-SPECIFIC DETAILS</div>
+     <div className="kicker">REQUIRED DOCUMENT INFORMATION</div>
      <h2>{template.name}</h2>
      <p className="description">
-      Only the details required for this document are displayed.
-      Enter the information to generate a temporary preview.
+      Only the fields required by this document are displayed.
+      These details are used for preview only.
      </p>
 
      <div className="form-grid">
-      {fields.map(field=>(
-       <div className="form-field" key={field.key}>
-        <label>
-         {field.label}{field.required?<span style={{color:"#e94b17"}}> *</span>:""}
-        </label>
-
-        {field.type==="select"?
-         <select value={manual[field.key]||""}
-          onChange={e=>updateManual(field.key,e.target.value)}>
-          <option value="">Select {field.label}</option>
-          {field.options.map(option=>
-           <option key={option} value={option}>{option}</option>
-          )}
+      {fields.map(f=>(
+       <div className="form-field" key={f.key}>
+        <label>{f.label}{f.required?<span style={{color:"#e94b17"}}> *</span>:""}</label>
+        {f.type==="select"?
+         <select value={manual[f.key]||""}
+          onChange={e=>updateManual(f.key,e.target.value)}>
+          <option value="">Select {f.label}</option>
+          {f.options.map(o=><option key={o} value={o}>{o}</option>)}
          </select>
          :
-         <input
-          type={field.type||"text"}
-          value={manual[field.key]||""}
-          onChange={e=>updateManual(field.key,e.target.value)}
-          placeholder={"Enter "+field.label.toLowerCase()}
-         />
+         <input type={f.type||"text"}
+          value={manual[f.key]||""}
+          placeholder={"Enter "+f.label.toLowerCase()}
+          onChange={e=>updateManual(f.key,e.target.value)}/>
         }
        </div>
       ))}
      </div>
 
-     <div className="alert alert-info">
-      These values are kept only in React's temporary page state.
-      They are not submitted to Google Sheets or stored in a database.
+     <div className="alert info">
+      <b>Manual preview only:</b> These details remain in temporary
+      page memory. No Google Sheets row is created, updated or deleted.
      </div>
 
      <div className="form-actions">
       <button className="btn" onClick={()=>setManual({})}>Clear Details</button>
-      <button className="btn btn-orange"
-       disabled={!canPreview}
-       onClick={()=>setPreview(true)}>
+      <button className="btn orange" disabled={!canPreview} onClick={showPreview}>
        Preview Document →
       </button>
      </div>
@@ -979,41 +1022,32 @@ function App(){
    }
 
    {source==="sheet"&&
-    <div className="section-head" style={{marginTop:25}}>
+    <div className="section-head" style={{marginTop:23}}>
      <span className="description">
-      {sheetCandidate
-       ?`Selected: ${sheetCandidate.name} • ${sheetCandidate.aid||""}`
-       :"Select a candidate from the actual sheet records."}
+      {sheetCandidate?`Selected: ${sheetCandidate.name}`:"Select a candidate from your live sheet."}
      </span>
-     <button className="btn btn-orange"
-      disabled={!canPreview}
-      onClick={()=>setPreview(true)}>
-      Preview Selected Document →
+     <button className="btn orange" disabled={!canPreview} onClick={showPreview}>
+      Preview A4 Document →
      </button>
     </div>
    }
-
   </section>
 
   {/* FOOTER */}
-
   <footer className="footer no-print">
-   <CompanyLogo className="footer-logo"/>
+   <CompanyLogo style={{width:145,height:65}}/>
    <b>{COMPANY}</b><br/>
-   {LOCATION}<br/>
-   {EMAIL}<br/>
+   {LOCATION}<br/>{EMAIL}<br/>
    <a href={WEBSITE} target="_blank" rel="noreferrer">Official Company Website ↗</a>
    <p>Enterprise Talent Excellence Platform</p>
   </footer>
 
-  {/* A4 PREVIEW MODAL */}
-
+  {/* PREVIEW WINDOW */}
   {preview&&candidate&&
    <div className="modal">
     <div className="modal-inner">
      <div className="modalbar no-print">
       <strong>{template.name} • {candidate.name}</strong>
-
       <div className="modal-actions">
        {source==="sheet"&&
         <select value={selectedKey} onChange={e=>setSelectedKey(e.target.value)}>
@@ -1022,14 +1056,10 @@ function App(){
          )}
         </select>
        }
-
-       <button className="btn btn-orange" onClick={()=>window.print()}>
-        Print / Save A4 PDF
+       <button className="btn orange" onClick={()=>window.print()}>
+        Print / Save PDF
        </button>
-
-       <button className="btn" onClick={()=>setPreview(false)}>
-        Close ×
-       </button>
+       <button className="btn" onClick={()=>setPreview(false)}>Close ×</button>
       </div>
      </div>
 
@@ -1037,21 +1067,14 @@ function App(){
       {TEMPLATES.map(t=>
        <button key={t.id}
         className={templateId===t.id?"active":""}
-        onClick={()=>chooseTemplate(t.id)}>
+        onClick={()=>selectTemplate(t.id)}>
         {t.name}
        </button>
       )}
      </div>
 
      <div id="printTarget">
-      {template.style==="offer"&&
-       <OfferDocument c={candidate} t={template}/>}
-
-      {template.style==="training"&&
-       <TrainingDocument c={candidate} t={template}/>}
-
-      {template.style==="certificate"&&
-       <CertificateDocument c={candidate} t={template}/>}
+      <RenderDocument candidate={candidate} template={template}/>
      </div>
     </div>
    </div>
