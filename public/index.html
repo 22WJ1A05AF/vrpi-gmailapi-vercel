@@ -3,918 +3,668 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VR PI Group | Enterprise Talent Excellence Platform</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VR PI Group | Enterprise Talent Platform</title>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#f3f6fa;color:#17233a;font-family:'Plus Jakarta Sans',Arial,sans-serif}
+body{margin:0;background:#f2f5fa;color:#17243b;font-family:'Plus Jakarta Sans',sans-serif}
 button,input,select{font:inherit}
 button{cursor:pointer}
 button:disabled{opacity:.45;cursor:not-allowed}
-.app{max-width:1240px;margin:auto;padding:28px 24px}
-.header{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;padding-bottom:20px;border-bottom:1px solid #e2e8f0}
-.logo{width:180px;height:auto;display:block}
-.actions{display:flex;gap:8px;flex-wrap:wrap}
-.btn{padding:10px 15px;border:1px solid #dfe6ef;background:white;border-radius:9px;color:#263d5e;text-decoration:none;font-size:10px;font-weight:800}
-.dark{background:#1e3a5f;color:white;border-color:#1e3a5f}
-.orange{background:#e94b17;color:white;border-color:#e94b17}
-.hero{text-align:center;padding:55px 10px 38px}
-.eyebrow{display:inline-block;background:white;border:1px solid #e1e7ef;border-radius:30px;padding:9px 17px;color:#687891;font-size:10px;font-weight:800;letter-spacing:1px}
-.hero h1{font-size:clamp(34px,5vw,55px);line-height:1.12;letter-spacing:-2px;color:#111a2d;font-weight:800;margin:22px 0 14px}
-.hero p{max-width:750px;margin:auto;color:#74839a;font-size:13px;line-height:1.9}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
-.stat{background:white;border:1px solid #e2e8f0;border-radius:14px;padding:19px 20px}
-.stat button{border:0;background:none;width:100%;padding:0;text-align:left}
-.stat label{font-size:9px;font-weight:800;color:#8795a9;letter-spacing:1px;display:block}
-.stat strong{display:block;font-size:30px;font-weight:800;margin:9px 0 4px}
-.stat small{font-size:10px;color:#94a3b8}
-.stat.active{border:2px solid #e94b17;background:#fffaf7}
-.panel{background:white;border:1px solid #e1e7ef;border-radius:18px;padding:27px;box-shadow:0 10px 32px #263b5909;margin-bottom:24px}
-.kicker{color:#8291a6;font-size:10px;font-weight:800;letter-spacing:1.5px}
-h2{font-size:20px;color:#172b49;margin:8px 0}
-.description{font-size:12px;color:#8290a5;line-height:1.8}
-.alert{padding:13px 15px;border-radius:9px;margin-top:15px;font-size:11px;line-height:1.8;overflow-wrap:anywhere}
-.error{background:#fff5ed;color:#a34a16;border:1px solid #ffdbbd}
-.success{background:#edfaf3;color:#16754c;border:1px solid #c9eedc}
-.info{background:#eff6ff;color:#315b8c;border:1px solid #d7e7fa}
-.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.search{padding:11px 13px;border:1px solid #dfe6ef;border-radius:9px;font-size:11px;outline:none;min-width:230px}
-.search:focus,input:focus,select:focus{border-color:#e94b17;outline:none}
+.app{max-width:1450px;margin:auto;padding:28px 32px}
+.header{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding:12px 0 24px;border-bottom:1px solid #dfe6ef}
+.logo{width:190px;height:auto;display:block;object-fit:contain}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{border:1px solid #dce4ef;background:#fff;color:#263c5e;border-radius:9px;padding:12px 17px;font-size:11px;font-weight:800;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.btn.primary{background:#1e3a5f;color:#fff;border-color:#1e3a5f}
+.btn.orange{background:#ed4d18;color:#fff;border-color:#ed4d18}
+.btn:hover{transform:translateY(-1px)}
+.hero{text-align:center;padding:57px 10px 42px}
+.eyebrow{display:inline-block;background:#fff;border:1px solid #dce4ef;border-radius:30px;padding:10px 18px;color:#72829a;font-size:10px;font-weight:800;letter-spacing:1.4px}
+.hero h1{font-size:clamp(35px,5vw,58px);line-height:1.12;letter-spacing:-2.5px;color:#111b30;margin:22px 0 15px;font-weight:800}
+.hero h1 span{color:#1e3a5f}
+.hero p{max-width:780px;margin:auto;color:#8190a6;font-size:13px;line-height:1.9}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:15px 0 30px}
+.stat{background:white;border:1px solid #dfe6ef;border-radius:17px;padding:23px 25px;min-height:135px}
+.stat label{font-size:10px;color:#8492a8;font-weight:800;letter-spacing:1px}
+.stat strong{display:block;font-size:37px;margin:10px 0 3px;color:#1e3a5f}
+.stat small{color:#91a0b5;font-size:11px}
+.stat:nth-child(2) strong{color:#128348}
+.stat:nth-child(3) strong{color:#bd5700}
+.stat:nth-child(4) strong{color:#e32929}
+.panel{background:#fff;border:1px solid #dfe6ef;border-radius:19px;padding:30px;margin-bottom:25px;box-shadow:0 10px 35px #233b5908}
+.kicker{font-size:10px;font-weight:800;letter-spacing:1.6px;color:#8795aa}
+h2{font-size:22px;color:#172d4d;margin:10px 0}
+.desc{font-size:12px;line-height:1.8;color:#8492a8}
+.notice{padding:14px 17px;background:#f0f5fb;border:1px solid #dce6f2;color:#526780;border-radius:10px;font-size:11px;line-height:1.8;margin:16px 0}
+.notice.success{background:#edfaf3;border-color:#c9eedc;color:#16764c}
+.notice.warning{background:#fff5ed;border-color:#ffd9bd;color:#a64a13}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:20px 0}
+.toolbar input[type=file]{display:none}
+.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:17px;margin-top:23px}
+.field label{display:block;font-size:11px;font-weight:800;color:#52647f;margin-bottom:8px}
+.field input,.field select{width:100%;padding:14px 15px;border:1px solid #dce4ef;border-radius:10px;background:#fff;color:#243b5c;outline:none;font-size:12px}
+.field input:focus,.field select:focus{border-color:#ed4d18;box-shadow:0 0 0 3px #ed4d1810}
+.field small{display:block;color:#9aa6b7;font-size:10px;margin-top:6px}
+.templates{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+.template{border:1px solid #dfe6ef;border-radius:14px;padding:22px;display:flex;flex-direction:column;min-height:210px;transition:.2s}
+.template.active{border:2px solid #ed4d18;background:#fffaf7}
+.template h3{font-size:14px;color:#1e3a5f;margin:13px 0 8px}
+.template p{font-size:11px;line-height:1.8;color:#8391a5;flex:1}
+.template .btn{width:100%;margin-top:14px}
+.template-color{font-size:9px;font-weight:800;letter-spacing:1.5px}
 .table-wrap{overflow-x:auto;margin-top:18px}
-.records{width:100%;border-collapse:collapse;white-space:nowrap}
-.records th{background:#f8fafc;text-align:left;padding:13px 12px;color:#8b99ad;font-size:9px;letter-spacing:.7px;text-transform:uppercase}
-.records td{padding:14px 12px;border-bottom:1px solid #eef1f5;font-size:10px;color:#54647a}
-.records td:first-child{font-family:'JetBrains Mono',monospace;font-weight:700;color:#1e3a5f}
-.records tr:hover{background:#f8faff}
-.status{display:inline-block;padding:5px 9px;border-radius:20px;font-size:9px;font-weight:800;background:#edf2f7;color:#52637b}
-.status.sent{background:#dcfce7;color:#166534}
-.status.pending{background:#fef3c7;color:#92400e}
-.status.failed{background:#fee2e2;color:#991b1b}
-.text-btn{border:0;background:none;color:#087eae;font-size:10px;font-weight:800}
-.source-tabs,.modal-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}
-.tab{border:1px solid #dce4ed;background:white;color:#50617a;padding:10px 16px;border-radius:9px;font-size:10px;font-weight:800}
-.tab.active{background:#1e3a5f;color:white;border-color:#1e3a5f}
-.field label,.form-field label{display:block;font-size:10px;font-weight:800;color:#52637c;margin-bottom:9px}
-.field select,.form-field input,.form-field select{width:100%;padding:12px;border:1px solid #dfe6ef;border-radius:9px;background:white;color:#30425d;font-size:11px}
-.template-layout{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px}
-.template-info{padding:18px;background:#f8fafc;border:1px solid #e9edf3;border-radius:12px;margin-top:15px}
-.template-info strong{display:block;font-size:13px;color:#1e3a5f;margin:8px 0}
-.template-info p{font-size:11px;color:#8290a5;line-height:1.8}
-.pills{display:flex;gap:7px;flex-wrap:wrap}
-.pill{font-size:9px;padding:6px 10px;border:1px solid #e4e9ef;border-radius:20px;color:#718098;background:white}
-.manual-box{background:#f8fafc;border:1px solid #e4eaf1;border-radius:14px;padding:23px;margin-top:19px}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.form-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:20px;flex-wrap:wrap}
-.empty{padding:35px;text-align:center;color:#8593a7;font-size:11px}
-.footer{text-align:center;padding:26px 0;color:#8491a5;font-size:10px}
-.footer-logo{width:145px;height:auto;margin:0 auto 8px;display:block}
-.footer a{color:#0d7377;text-decoration:none}
-.modal{position:fixed;inset:0;background:rgba(12,23,41,.92);z-index:100;overflow:auto;padding:15px}
-.modal-inner{max-width:920px;width:100%;margin:0 auto}
-.modalbar{background:#111c30;padding:12px 15px;border-radius:11px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
-.modalbar strong{font-size:11px;color:white}
-.modal-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.modal-tabs{justify-content:center;margin-bottom:13px}
-.modal-tabs button{padding:8px 13px;border:1px solid #526077;border-radius:20px;background:#26354b;color:white;font-size:9px;font-weight:700}
-.modal-tabs button.active{background:#e94b17;border-color:#e94b17}
-.a4{width:210mm;height:297mm;min-height:297mm;margin:0 auto;background:white;display:flex;flex-direction:column;position:relative;overflow:hidden;color:#26354d;box-shadow:0 15px 50px #0004}
-.doc-logo{width:155px;height:auto;display:block;object-fit:contain}
-.doc-header{padding:21px 32px;display:flex;align-items:center;justify-content:space-between;gap:14px;border-bottom:2px solid #1e3a5f}
-.doc-info{text-align:right;font-size:8.5px;color:#66758c;line-height:1.8;overflow-wrap:anywhere}
-.doc-info strong{color:#1e3a5f;font-size:10px}
-.doc-content{padding:25px 38px;flex:1;display:flex;flex-direction:column;font-size:10.5px;line-height:1.8}
-.doc-content p{color:#475569;margin:8px 0;line-height:1.85}
-.doc-title{text-align:center;margin:12px 0 21px}
-.doc-title h2{font-size:18px;letter-spacing:1.5px;color:#1e3a5f;margin:8px}
-.doc-title small{color:#8491a5;font-size:9px;letter-spacing:2px;font-weight:700}
-.doc-section{font-size:9.5px;letter-spacing:1.2px;color:#1e3a5f;font-weight:800;border-bottom:1px solid #dce3ec;padding-bottom:6px;margin-top:15px}
-.doc-table{width:100%;border-collapse:collapse;margin:9px 0;font-size:9.5px}
-.doc-table td{border-bottom:1px solid #e5eaf0;padding:7px 9px;overflow-wrap:anywhere}
+table.records{width:100%;border-collapse:collapse;min-width:760px;font-size:11px}
+.records th{background:#f5f7fa;color:#8492a8;text-align:left;padding:14px 12px;font-size:9px;letter-spacing:.5px}
+.records td{padding:14px 12px;border-bottom:1px solid #edf0f5;color:#50627b}
+.records tr:hover td{background:#fafbfd}
+.status{display:inline-block;padding:5px 9px;border-radius:20px;font-size:9px;font-weight:800;background:#f0f3f7;color:#63758d}
+.status.sent{background:#eaf8ef;color:#13804a}
+.status.failed{background:#fff0f0;color:#cf2929}
+.status.pending{background:#fff5e9;color:#ad600b}
+.modal{position:fixed;inset:0;background:#101827ed;z-index:1000;overflow:auto;padding:18px;display:flex;justify-content:center;align-items:flex-start}
+.modal-inner{width:100%;max-width:1100px;margin:auto}
+.modalbar{background:#17243a;border-radius:12px;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.modalbar strong{font-size:11px;color:#fff}
+.modal-actions{display:flex;gap:8px;flex-wrap:wrap}
+.modalbar select{padding:9px;border-radius:8px;border:0;font-size:10px}
+.a4{width:210mm;height:297mm;min-height:297mm;margin:0 auto;background:#fff;position:relative;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 12px 45px #0004;color:#34445d}
+.doc-head{padding:22px 34px;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:2px solid #1e3a5f}
+.doc-head .logo{width:155px}
+.doc-company{text-align:right;font-size:9px;line-height:1.9;color:#697990}
+.doc-company strong{color:#1e3a5f;font-size:10px}
+.doc-topline{height:5px;background:linear-gradient(90deg,#d0003c 0 50%,#f05f00 50% 100%)}
+.doc-body{padding:29px 39px 24px;flex:1;display:flex;flex-direction:column;font-size:10.5px;line-height:1.85}
+.doc-title{text-align:center;margin:12px 0 23px}
+.doc-title .overline{font-size:9px;font-weight:800;letter-spacing:2.3px;color:#8492a8}
+.doc-title h2{font-size:20px;letter-spacing:1px;color:#1e3a5f;margin:10px 0}
+.doc-title small{font-size:9px;color:#8391a5;letter-spacing:1px}
+.doc-body p{margin:8px 0;color:#53647c}
+.doc-body b{color:#1e3a5f}
+.doc-section{font-size:10px;letter-spacing:1.3px;font-weight:800;color:#1e3a5f;border-bottom:1px solid #dce4ef;padding-bottom:7px;margin:16px 0 7px}
+.doc-table{width:100%;border-collapse:collapse;margin:8px 0 12px;font-size:10px}
+.doc-table td{padding:8px 10px;border-bottom:1px solid #e5eaf0}
 .doc-table td:first-child{width:36%;background:#f3f6fa;color:#1e3a5f;font-weight:700}
-.doc-footer{padding:10px 18px;background:#1e3a5f;color:white;text-align:center;font-size:8.5px;line-height:1.7}
-.signoff{margin-top:auto;padding-top:16px;border-top:1px solid #e1e7ef}
-.signoff strong{display:block;margin-top:6px;color:#1e3a5f;font-size:11px}
-.signoff small{display:block;color:#8190a5;margin-top:3px;font-size:9px}
-.acceptance{border:1px solid #d5dfe9;border-radius:7px;padding:12px;margin-top:12px;background:#f8fafc}
-.acceptance-line{display:inline-block;border-bottom:1px solid #66758c;width:140px;margin:0 7px}
-.training-top{height:8px;background:linear-gradient(90deg,#191928 70%,#e94b17)}
-.draft{padding:7px;text-align:center;background:#fff4e8;color:#aa4b16;border:1px solid #ffd7b5;font-weight:800;font-size:9px;letter-spacing:1px}
-.completion-landscape{width:297mm;height:210mm;min-height:210mm;padding:9mm;background:#fffefa;color:#315a32}
-.completion-frame{height:100%;border:5px double #7eac71;padding:7px;background:repeating-linear-gradient(0deg,transparent 0px,transparent 7px,rgba(120,174,111,.1) 8px,transparent 9px)}
-.completion-inner{height:100%;border:1px solid #93bd85;padding:13px 25px;display:flex;flex-direction:column;justify-content:space-between;text-align:center}
-.completion-title{font-size:34px;font-weight:800;letter-spacing:2px;color:#315a32;margin:0}
-.completion-company{display:flex;justify-content:center;align-items:center;gap:13px;font-size:15px;font-weight:800;letter-spacing:1px;color:#315a32}
-.completion-company img{width:105px}
-.completion-intro{font-size:13px;color:#526f50;margin-top:9px}
-.completion-name{font-family:'Playfair Display',serif;font-size:35px;font-weight:700;color:#315a32;margin:6px 0}
-.completion-statement{font-size:12px;line-height:1.8;max-width:710px;margin:auto;color:#426343}
-.completion-meta{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:14px;align-items:end;color:#355e37;font-size:10px}
-.completion-meta strong{display:block;font-size:11px;margin-bottom:5px}
-.completion-meta small{display:block;font-size:9px;line-height:1.7}
-.completion-meta .middle{border-left:1px solid #aac99f;border-right:1px solid #aac99f;padding:0 10px}
-.participation-landscape{width:297mm;height:210mm;min-height:210mm;padding:9mm;background:#f6f7fa;color:#1a2b46}
-.participation-frame{height:100%;padding:8px;border:4px solid #1e3a5f;background:white;position:relative}
-.participation-frame:before{content:"";position:absolute;inset:8px;border:1px solid #c6a96a;pointer-events:none}
-.participation-inner{height:100%;padding:20px 32px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;position:relative}
-.participation-top{width:100%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #d4c18d;padding-bottom:12px}
-.participation-title{font-size:27px;letter-spacing:4px;color:#1e3a5f;font-weight:800;margin:0}
-.participation-subtitle{font-size:10px;letter-spacing:3px;color:#a57d33;font-weight:800}
-.participation-badge{width:83px;height:83px;border:2px solid #c3a15a;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:auto;color:#1e3a5f;font-size:12px;font-weight:800;line-height:1.3;background:#fbf8ed}
-.participation-name{font-family:'Playfair Display',serif;font-size:34px;color:#1e3a5f;margin:3px 0}
-.participation-statement{font-size:12px;line-height:1.85;color:#53647d;max-width:670px;margin:auto}
-.participation-detail{display:flex;justify-content:center;gap:45px;border-top:1px solid #dfd5bc;border-bottom:1px solid #dfd5bc;padding:11px 24px;width:90%;font-size:10px;color:#52637b}
-.participation-detail strong{display:block;color:#1e3a5f;margin-bottom:3px}
-.participation-footer{display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;width:100%;font-size:9px;color:#52637b}
-.participation-footer strong{display:block;color:#1e3a5f;font-size:10px;margin-bottom:4px}
-.participation-footer .company-center{border-left:1px solid #d8c99d;border-right:1px solid #d8c99d;padding:0 10px}
-.boot-error{max-width:650px;margin:80px auto;padding:25px;border-radius:12px;background:#fff1f0;border:1px solid #ffccc7;color:#a8071a;font-family:Arial,sans-serif;line-height:1.8}
+.doc-list{padding-left:18px;margin:5px 0;color:#53647c}
+.doc-list li{padding:3px 0}
+.acceptance{border:1px solid #cfd9e5;border-radius:7px;padding:12px 15px;margin-top:14px;background:#f9fbfd}
+.acceptance strong{color:#1e3a5f}
+.signoff{margin-top:auto;padding-top:22px}
+.signoff strong{display:block;color:#1e3a5f;margin-top:5px;font-size:11px}
+.signoff small{display:block;color:#8492a8;font-size:9px}
+.doc-footer{padding:11px 20px;background:#1e3a5f;color:#fff;text-align:center;font-size:9px;line-height:1.8}
+.certificate{border:9px double #8ab77f;margin:13mm;width:calc(100% - 26mm);height:calc(100% - 26mm);min-height:0;flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:28px 34px;position:relative;background:repeating-linear-gradient(0deg,#fff 0,#fff 10px,#f7fbf5 11px,#fff 12px);color:#315533}
+.certificate.completion{border-color:#80aa76}
+.certificate.participation{border-color:#b28b55;background:repeating-linear-gradient(0deg,#fff 0,#fff 12px,#fbf8f1 13px,#fff 14px);color:#72552d}
+.certificate h1{font-size:34px;letter-spacing:2px;margin:10px 0 12px;color:inherit}
+.certificate .cert-company{font-size:15px;font-weight:800;margin:10px 0 30px}
+.certificate .cert-intro{font-size:14px;margin-top:8px}
+.certificate .cert-name{font-family:'DM Serif Display',serif;font-size:39px;margin:12px 0 15px;color:inherit}
+.certificate .cert-copy{font-size:14px;line-height:1.9;max-width:600px}
+.cert-bottom{width:100%;display:flex;justify-content:space-between;align-items:flex-end;margin-top:auto;font-size:11px}
+.cert-bottom div{width:30%}
+.cert-line{border-top:1px solid currentColor;padding-top:7px;margin-top:36px}
+.experience-band{background:#1e3a5f;color:white;padding:18px 25px;display:flex;justify-content:space-between;align-items:center}
+.experience-band .logo{width:145px;background:white;padding:5px;border-radius:4px}
+.experience-band .company-white{text-align:right;font-size:9px;line-height:1.8}
+.footer{text-align:center;padding:25px 0;color:#8996a9;font-size:10px;line-height:2}
+.footer .logo{width:150px;margin:0 auto 10px}
+.empty{text-align:center;padding:30px;color:#93a0b3;font-size:12px}
+.search{padding:11px 14px;border:1px solid #dce4ef;border-radius:9px;min-width:220px;font-size:11px}
 @media(max-width:850px){
- .app{padding:17px 12px}.stats{grid-template-columns:repeat(2,1fr)}
- .template-layout{grid-template-columns:1fr}.panel{padding:20px}
- .form-grid{grid-template-columns:1fr}
- .a4{width:100%;height:auto;min-height:1000px}
- .completion-landscape,.participation-landscape{width:100%;height:auto;min-height:650px}
- .doc-content{padding:22px}.doc-header{padding:15px}
+ .app{padding:16px}
+ .stats{grid-template-columns:1fr 1fr}
+ .templates{grid-template-columns:1fr 1fr}
+ .field-grid{grid-template-columns:1fr}
+ .panel{padding:20px}
+ .header{align-items:flex-start}
+ .a4{width:100%;height:auto;min-height:1050px}
+ .certificate{min-height:950px}
 }
-@media(max-width:520px){
- .stats{gap:8px}.stat{padding:13px}.stat strong{font-size:23px}
- .actions{width:100%}.actions .btn{flex:1}
- .hero{padding:40px 5px 30px}
- .completion-title{font-size:20px}
- .completion-name,.participation-name{font-size:25px}
- .completion-meta,.participation-footer{gap:5px;font-size:8px}
- .participation-title{font-size:19px;letter-spacing:2px}
+@media(max-width:540px){
+ .templates,.stats{grid-template-columns:1fr}
+ .hero{padding:35px 5px}
+ .hero h1{letter-spacing:-1px}
+ .logo{width:145px}
 }
 @media print{
  @page{size:A4 portrait;margin:0}
- @page completionPage{size:A4 landscape;margin:0}
- @page participationPage{size:A4 landscape;margin:0}
  html,body{margin:0!important;padding:0!important;background:white!important}
  body *{visibility:hidden!important}
  #printTarget,#printTarget *{visibility:visible!important}
- .modal{position:static!important;display:block!important;padding:0!important;background:white!important;overflow:visible!important}
- .modal-inner{width:297mm!important;max-width:none!important;margin:0!important}
- .modalbar,.modal-tabs,.no-print{display:none!important}
- #printTarget{position:absolute!important;left:0!important;top:0!important;width:297mm!important}
- .a4.portrait{page:portrait;width:210mm!important;height:297mm!important;min-height:297mm!important;margin:0!important;box-shadow:none!important;break-after:page;print-color-adjust:exact;-webkit-print-color-adjust:exact}
- .completion-landscape{page:completionPage;width:297mm!important;height:210mm!important;min-height:210mm!important;margin:0!important;box-shadow:none!important;print-color-adjust:exact;-webkit-print-color-adjust:exact}
- .participation-landscape{page:participationPage;width:297mm!important;height:210mm!important;min-height:210mm!important;margin:0!important;box-shadow:none!important;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+ .modal{position:static!important;display:block!important;background:white!important;padding:0!important;overflow:visible!important}
+ .modal-inner{width:210mm!important;max-width:none!important;margin:0!important}
+ .modalbar,.no-print{display:none!important}
+ #printTarget{position:absolute!important;top:0!important;left:0!important;width:210mm!important}
+ .a4{width:210mm!important;height:297mm!important;min-height:297mm!important;margin:0!important;box-shadow:none!important;break-after:page;page-break-after:always}
+ .certificate{width:calc(100% - 26mm)!important;height:calc(100% - 26mm)!important;min-height:0!important}
 }
 </style>
 </head>
 <body>
-<div id="root">
-<div style="padding:30px;text-align:center">Starting VR PI Group platform...</div>
-</div>
-<script>
-(function(){
- function loadScript(urls,callback){
-  let index=0;
-  function attempt(){
-   if(index>=urls.length){callback(new Error("Could not load React from the available CDN sources."));return;}
-   const script=document.createElement("script");
-   script.src=urls[index++];
-   script.onload=()=>callback(null);
-   script.onerror=()=>{script.remove();attempt();};
-   document.head.appendChild(script);
-  }
-  attempt();
+<div id="root"></div>
+
+<script type="text/babel">
+const {useState,useMemo,useRef}=React;
+
+const COMPANY="VR PI Group Of Companies";
+const EMAIL="vrpigroupoftechnology@gmail.com";
+const LOCATION="Wanaparthy, Telangana, India";
+const WEBSITE="https://share.google/Staafq7spnZSStc8n";
+const SHEET_URL="https://docs.google.com/spreadsheets/d/1dCJXGZN3dbThvJt5SnMYUSp0uAAsVuWnKuXd1rabBOU/edit";
+const GMAIL_URL="https://mail.google.com/mail/?authuser=vrpigroupoftechnology%40gmail.com#inbox";
+const LOGO="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATIAAACbCAYAAADhohdXAAAl/UlEQVR42u2dbWxc15nff+eSw5dQtEkptrNNoV0tLS8EUxS5TeWWs4IAw+UWgbQjcV0LRkDJFQz7Qz4UKayIsWORki1Hqt0NFkU+xDAcy8QikGuoHksIuoyhlHDJ1lqgM6JoGGtZUWMgaGyvRNoULYrkzOmHOZc8vLx35t55ufPC8wcGEmfmnjkvz/mf53nOc54jMAgFv+eh5jb+SF7l8yaArdw7f5XPm7qZmKmG+rqh0ttQrZAgBEjTE/4hkvS2ScSTwFWBHDNCWRhUf25Wf24Btqr/DwhE52qBlVPASIU2ZU193SfdmjasezmaeZw2GeH7WCySJhLoYYuNpPlT4EPgduAfzzx/O69nKwuTYpH3236JLzkSEkSS6IsCMaiE8tg01q8e5v1FQ0uBCexJvwRQ2xqFnAIuAGd7GJ9cbwTWWMcLZkYUhoUUSIhj8Ya4w1guQhPaJByzJ6C9ygrka0ZD80dgAnHa9IYrqcWB4VontOkn+GGj4JQ+EQ3yR0PdakKTkqGNI0xmJTKABNFnnJPREFp2JIh2ZfpnfWtgPgntlEXLqR2MztYciR3kOVsLMwRWUkKLtb/J+axE5tTK3AQRuARcv8Z9Hz7KuXU9ZIbE8jY5B2pJO5s+yN7GOuKGxMIhtDspnm9/k5OeROallWUxF85c474L65HQDIkZ7cyQWFnJbI1mtorIfs9DzZ9T/7/9TtD1SGiGxIx2BnBzgC5LkGyoMyQWNpktpLjyTyn+1f1/t7IzK1wmakwgzgUUyjgwQY1vvRsSKz6ZCeTuapMXRWIjDXVsNyRWGVqZtdbWlGNqtfQNgYgJxGmBOCcRYwmisVrrwIvsigDDhsSKB4HolIjXk/S2VVW9BccNiZUHdp8LeHHmcdo8NbJ8tTI3P4j676UexuM1oI0V3CcG3hr9NNaBaohdnHmcNiLcNCZl+TUz3fFvua+UwbUyl9V2UL3OJYieU2ZZVUJpDIeM+JRMM4u1kx6uBs1MNrLbkFilyA2P2VqZK5Epn8WFYgqqQCQSRE8miHZVmykhEbsFImZEp6RkNigRR4Y8ZLJikOZfmtGqDBOzoY7tMsL3PYlM4WwphFUgEhLxeoLoM9WgpSnf2AkjOuGQ2T6ieyvZrBSw14xURaE5K5H1MD4pkUdLZUqozYFEpZud7aS/axz8oeJEhWvs280QVRRu59LIsGj5eaG+Mj+kBoxcpq+10npITSijjYWrlXWqw/cGNYCGOu9XMZGVyFTk9YUwhDfN3JZKGwTlGzPaWPgYqDY/apAJXK5XOdq+kPJ+FbNefhyrZ0Nq/7BkqGIcvUpDNNpY+bSyI9VMYtkmcLleYZCa3fY7KeJ3UsSammhjkY3OV1MTbXdSPL+Q4kox6iT8fClB9KRADJZeA5L9lRJz5vfcqUFJ5aGnko4w+Ykhsz+TFvvFHcbKXed0PZsBhOCPgYfUZsV2PatEsUksLenOlnLH2acywi4BLwYNMtZjyer9sZ18WcKeEMysE0l6y37EKZMJhAFDJWXHAaDqzmJKiLe/QaUEgdtzaRI4/8n3OLmpjkfupDgsIFasmLjlciwe2viG/zFTCRPP3xzgdwup/I99+TLlFLGUPCWzMil2l18QxZPGN1YRJuZgNQZSC4jpx2cqCff/Hbfb3+R82x/zqISYbdoVSmKQ0ULb3uAf8tm42zjCZFoykG99gvikRkPq651v019XroFWTmajjVUOhqvd8V+RZPsCqfY3OV8IeegkdifF8+1vEE/S25ZmbtA5ZhJEgmiXih99JkE0pv7uShCNJelt08gssM/MN5E9wD0fqywXJV+FO/jsB0YbM1DyENMuczEoMgrVhBSJveRIdrjH+Z3L9N4tEAnldx4gs5E2rNwHWwUbUnZ9JLwUtA71fr/YwjvzSXoPg7gRQv8OvE3/T8POcVYO35idAkkgX6tUYVfm/qEyHtPaQhX6yqqJzG4OMBDUR7W8sSF5K/eCtCEl+RqJ7BHITzN/36pz84dLyVsLKZ4N4r+rD9LgbiZmEkT7S50FQiA6O/jswbCFN0xtTGUHOfsA93zcwjvzFS7rcSCu/FV9hH9T1FZDN5VJZsAVa4lPc8v7rTqJmBLIT7uZmEnS2+a1qbdxhMnpg8QB3wunFZxkCs+M4RMHwtbGCEkbk8hT3Yz/uIfxySogsWX0MD7Zw/grFi1/oaVpCgPthmpCNTN9+6gkvOV2VZttKrr97bj71Quv21pfSYis2Jkxsmhlg2EmaAxLG5PIuEXLqWq+SXoHo7MWLafC8JkqbJM+Yx4NCiczPz4qm2CEFWwTULAh1c3ETK74wMVp/keQMIz6PNt7FhgMoV9DiSvLaGOlD35VqZ0P18KVaDsYnU3Se1jC6yH4zjou03s35krCUCAs4n58VAspYJGrLkpIZ5q5MwmiH9kLUZq5Dpf3AaaBUSexNWwg0NZDXkeCSpkZw9khYcSVhXhIeaCW7jPoZmJGIA+HkFigUyKOGK0sHDQ18I/AlcIWbBFTp4H2AB22taO9v00gBjfR8DIwUmiIjZW/cMnXQvKV7Sy1NibC0cbitXjbtiLmY6FoClVsjlcVkb3KV5LcO5FZFrfdkN4E6U3TWN8BBiSyX82DfnX0rF8ie26wMOnm0lm4RaCIBatAAQ7LV9ZVOoIJ7XDymZo1RZBjZvrX2Jgu8jM/Tn/7LKeTG7qZmLlJ3Vw76W09jE/am4QWLRftBV39O5CRodWbA6GYlhpCy4zxex5qLnahCaJdIR2Gn7JouWimR0HYZrogPLT9kplsTn+b5ITgMa/vbKK5ae1cuFXnWAQ/lcgp5/sywveDxJEVRGQh+spin1P//RIUHVaIx0AtOPjLjbegzvRCeFCBqVm1MgF7vc6V7mB01ta+JGKzQHQ6NS/Xcf531AHfCVLX+kIbm8ki+3UY6W4GkvS+VixneVjamL3q1LTAIzaH4IXv+DP6vkEVLwjOCd/USnp+FuvzaW5v3kzj/CzW3fczK17I7h9yI47RJWYf+68U9SSMtcSnRLw/ty8AuWOxm0zQtB0jdsRFGRl008jUZ526+7OvhT8nTaCd8IKJ7Aa359uR8VJvwWd2rtgMzBSpyAPhTHLZ383ElzW+ePcZ/cUx7hF+MX2QDx1v72Ul5/+V+XkgAvfeC/PzICP8duZ3MH1w1TMfuhT/7JoBaOTd6Sf4RXMDv5mfxXILUi3Z3ExzYv4pfpPZJHCPMlAB1Je6+TdfwYQ2rzek0sydspSmJkHMpIk1BkwvVJSFVGk3iRBIId7NI48KjqerpL5T17jvz8M+Mxo2wupPwTfaymmiB7mct6EMRrBtBi5JLi+lOOQ3uWGh7VUJDuNikX//f365ay7oRcuSIUtwPP35Xloj7RxtrONZPySmJ1YsSmrpMH1lSd4rxnVcofnGap3EwupPiZz6Jl8uVUuHlCuVNUC9YIclGLk5QFdYbW2sIyYj/KL3qfebg8/r4+mZx2lr2MSIXxJb6+IqEu5l6WchxZUVdF1YiDuVp2oxbkzHEEOWSgkehq/xwrf54LYxWv2RZ0Md2y3BSFgJHm0yuz3PDxNPZ/OsuWt+MsIvGgR/lW+22qIRmRKykgdGqijvQvJThaWNna31ibOfX98V4r0G28qZcLMaSU3dxL0rzN9srOPZjjtcmj7Ic7lIdP4p7po+yF4ijDXWESsk5XZ9MRuSCXpjKoTD13nlcjfaWDHbOGQlee9ImGeG7ucPrRCeE7tG8BBwPmQC3VFfx44FeGH6IC9JyVt6qp90PZuF4LH5efY21mU2Pwq9N6Co169VQWaMYaONFY4E0a4k770dVviKfdi+2xwaryoTt6Euo6FZgiQRbtovS5BsrONZO+9ZMS4/qS/RJK64zBhKG4uFMOlqThuzfZLKpD8QFoFpuGZIrDoJDdx3cBeKvAVWdCLrZvxKkmhYcWVPAq/kJhdEskK1MaVZ7qxkgbSvAixj6omPDC3kjQ/K+eNeoRvFuoauZEQmQCZgWCI7QvCV+cocmiS6vYK1sesCcW4jEesmi2kz71xxyXRBXgRypbmpfJcE23WQ8GOxyPvL8yTCrjspDhfq4NdhlaIBajJXRGaMIYYsKtg3pmLwem6wYC7XyEL2pguCEYjSpN9qepWvylWHOyleampiV/ubnG/7JTP2q/1Nzjc3cehOinixAoetErYlrFU0azjFPt7rDEkbi3cznlcyOjudSUhxeFUFiYxX41nVhrryvSAT8d52Jvi1asU0J6X0JtKmV/mquYlDS5LLxSCzkhHZNNavwroH00srU3FHYWljw4Uk/jNk5t2v1ejoL0dk/0KKK3dSvDS/RHf7m5wUonyJKCXEcx2RanqVr1LpTOxpoWRWX6qGPMz7iwmiZ4AwLhBxjSvr4LM94Wljj0zBeMEmeYLogESOmEuCq3MH2NZG0pJuP9ekFRNNraTLZUquUTAsf9pgcxNj8/MVTGS2VtZOOowdzMEE0bO60M+xr+ljvjgU0ridKfQguyEzt3GVL1dr3a0lPg0zA0VJ0MhWAkq1TeRNTfxjqP1dysLVKfiwUjwPD2nt+Zgvng9LG3uAe/4+n2cTRLsu09dqzEzXfj1qYsfKPAZp+vIMk/DtK56fxaKAi05CITJbKwvJVxbbR7RTEcTJsFJYA8MFXLJ7IM3coNvtQOuZzFRq8J8bKikfPv63NAq801jnwlf/L1z/XMmJLGytLCwSUzhWqA+nlciPkkRf9DIz1ymZHTOpwcuLe79FFytJIAPjrj8K9+o+K4wf6WE8Hla+shDP/8WLcXvQLZak8vGdzEZm68mk7GE8bqikas1KJPz2I4GvlEt372dWwm+rgsgyJCNfq7GxPlNMH04uMpPInnVCYq8YGikvPvkezYWYlQDdP8dfEszHKMommRWyoMZrZMKV5Hq39UxmEtlvSKwysKmO/9hQl79ZmZFlfz6yYl26HBqRKe2lVi6pLZkPZz2SmSIxY05WAKYPsrexjhegoEPdH4Zd71A1srB2MEutjd3L0mhpzfD1Q2aGxCoHNwfoEvBigSRWFuILlchC3sEsFUbCyB1f62SWuV1a9hgSqwzMP8VdQnDcTnZYbbDC/sFq1spUptLQNi1qlczUHYcDtZ4OvGrG43nqbs/zw6Kl1bHCPyYVOpFVuVY2Ena0eS2RmdLC+nsYf86QWGVg5nHaZn7H8XyvYXNFOtgtSlLyln6dXVUQWbVqZWFrY7VEZorAjgrkbmNKVg6mnyCmbjB6tqjmpEWgC3qLcbi+LESmtLLhKotYHynn2b9qJDOJjEtkvyKwV8zZyfJjCKybA3RNP8F/bhT8t5L4xAJqZMVAfbk6VGV5OAacM9pYIDKjm/EfO+NvVH/2C8S5cvcVMAKMGvMxP3zyPZr/eUuGDBpfZTZIrNXM47Q1tZJWh7FXj00ju0nzhIBYgzpAVBLHvkXoCkp9eSemHANRDbI1UinahEAMJokC48+5LA7xcpKZOrZlrm0rRGMawtp0nefSizy7kOLK7YP8djpYeMLe9CLb3XSiRgHUlY7AtCNNod89UVYi62ZiJhHCjUu1oI25aWY9lUdmHerKOENkeeIHH3MXEZ5VxLCdzMHtWD6k4kQ1hlX4VwLLj0r3lR2rRA0jh88sLpH9ZahTJzCS60IYA38odirs0BZ/ye/WHZEpP8pIhWpjpyp5l82QmYFB5WhkAKMV2j/TlT6AhswMDCqEyKaxPqo087ISfWOGzNYNrlRz5b/RzP9dl0Sm4soqzbw8Vk27b4bMagNtv2RGwvlqrb+ElxrvYy6P5wpy4VSKack7jP+NOoNXCdpYUbK/lovMPO4AKCuZJeltMzTle1Z+VcW1vy1eINDWgrpt6sPCuqxCcBzSFXT915lqjYVScWYvSoasSiIziRgzZOYTae6q4to35/ncB4Wct7QqqQe6mZgpt1aWuWx3/N1qngcCMXiZX99VaWamITMDT/lY5P2a0MhWBL7sWtlwsdLvVioMmRnUnjVeYSinVqYuv1gX5wMNmRkYIqtBrWw9XgpryMzAEFnptbKjIf/surwUtsxk9rohM4OaJTKF0KL9S3W9myGznGQWM2RWG9B2G2+X4/crlsgsWq6HGO1/YT1qY4bMDIqJhRSIRX5miEyDIpaBELSxeAXFrxkyMyibVmNMy9JNrMkQdjDPmESAhswqBfJ56sg/qNQQWQXjbAm1sXXtGzNkVnn48hNaBZnEigY1RGQl1sqOrXffmCEzgwpC3lk/rCppYNG1MpWmZ8zIjiGzSpqQP32AryS8tN5krdCsH1aVTKhSaGUjxjfmm8zCjulbJrPL9LVWW59JOK8yOgTG8eOkWa/O/gKyflhV1MyzxRO06kmaWCFk9kq5yCzN3Jlq08wE7J15HGMaB0UBWT+sKppMxdTKjDZWRWRWhWbm9nQ9mwt4vmp3LZtaC7oKLm9N1KqyfipYKzPaWPWSWTWYmXZOLSHYa7/nRztLPE3k5gBd0wd5rpp3Lb++zZ8Emo+ZcBPmn+Iu4DsFaMHVhQTRc4XcgymRPZWS4SJB9KRADJZIT99UKq0zQfQZgTgddn+V+wLgmcdpI8JN7SJaV9if2+mbBfypD0f2gwJiDSW8QLfUUO2+EsBp/6DdNwL2NtSxPUi7G+rgTorn29/kZH31dRfD5HFhqT0R1kuanlJrZgmihE1mGc2M13/PQ9/7Nh9UrENcy3Sqy+l2v89WK1S7t/ttq7NvCml7tZmWvMP4lETme1HBhKGh6jczP6f+x5XuM6v0S3Qrrd2Ftr3qiOw4pJVWFlQbM76x2iGzQYk4cpFdkfDNW+Jm5CsKzVVJZAAPcM/HeWhlx8xOZW2RWTvp4TDJrBi3/RgUHberlshaeGceOBNAG4s/wD1/b8a8NsksZDPzg1owAasdyxsqMrOxYFXx5AkScT6syM+gRs3MsEIz1G0/V/K9tsygqGb+SxtHmKxqIstUPneOfYk8VcE7ldOGzIpDZmnmBsPQzNSZwLdsrcCgrNrYWytcUNWMfKsuWxZZ5eCv2KSJtbj5sB42AJqb+C93UsbpX2ZtLN7+Jyv+yqomMuW8H8nyFePgX2dk1k56WJY40LvpVb6SkqFCbsY2yF8bA5CSIfECqZogMlur8dLKTNLE9UlmSaIvlprMNo4wKeF5Y2KGT2J3UsRs31jNEJnSuI65mJXxG9w2Dn5DZiVD+5ucvLMyZBYqiUn2t7+59giUVQuNnMb6lTOuzKLl0MO8v2hEwJBZyclMst+QWekIzHbu35EMtr/h7pusCSJThDWsaWP9JoW1IbPQyOwN4vNLdC+kMmEZ+sugCASWIi4h1v4G/8l7rGsICaIngW3dPPKo4Hi60uubCRewbmygXtxiSRajzJWySpf9ooDxCT1rxgbqxSyLPxHIl0vdHzOP0yYjfF/AY2gHpw2hBYfKHvKSsIi3vcE/5F60agh2HFG17FQm6W2TiCeB9iIXfambR85XIpkniMaAnWX46bNhxRN+8j2avxmhM2Md8M+APyPNv8Ycb/KL21Jy3unQNzAwKDeBP03E9IKBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYEGke3DBNGY+u91oA9o1z6eFsjXupmY8Xo+SW9b9h/fkNrB6GzQSruVKxGbAXoYn8z1/GX6Wr/Jl0tfUNeYrf6ZchGX6b0b4BO+Nfso51JhtNFvndwQpE1+kavMXEgQ7cr0h/zUOW4C+amf8i+yK9JO+rvAdb0cNfZbrnHfBef45Gq7n9/V5cXrGcmQdZlf31VMObBly2/fu41rrmeHwNpP713O7+WSkR1MfClA+m1/EJlK0tsmEbsFcswhK7sFcsztOZFF6A4IxGD2jpP9PYzHvcoQiETuzpdxYCIXKWr1GhaImEdZU8AF4KwXoalOer2VyL5ZFn/Yw/gruYXJuqHKP+r8foLoMwJxOkv7ctYpD0LI1Qcj2dql+mBMIDr9TZC17Q5Y55hAnMshA2eA692MX9EniKPOR7LJpCpnOFs/O9sukae6Gf+x22/aEzTJe2/r/S2RPc7fyNVGv/VzKBEn1J/XgDNecy3buOaYozHgENAhkLv1+afLvZuMOb/vp/1+ZMqnfB/rZvxdfcwsj4JGfJDYVI669vlTCUVMIE5LxJi9amfp9BGvBqqyOluJ/AgYyVaWVka7347fQL3w+H67+syzTqovs9bJz+qcIHpSIBK5+kAgTieInszR752UGJfpa1V1zirgrUT2CcQ5gUi4aQH24pNLJlW/jOTWklfaLhCDSaLbvfv9vU6X/naT7Z3Z5EBrZ0KzdLJpYifUWHa2EtkHnHib/jof88k5riey9MfOTTTsz0MWLrgoHTnb75hLa7RJRYZZ5buVyHaBOOeUE8uDxHRGPyqRPerffvX/foHcnWuF0ElPPWe/+lV5R21CVL857NbpNttrq+iURPZAehOkN2llxm+xJNX3CiIOp8l6iyXp9R37M4k85ajP0cx7y+3Lq04X2RVxTmSJPOr4rf7MeysTNEH0pMzhPtDGxq7vcr+q8vsF8rV8NMc0c2ccdT6ll22XP8viO9nKUVpGzC5Dq68uT8v9LBGvX2RXJEB1D+T5mZccxB1165fIo7MsXlF1PJcg+kwWmdutz0Fbpjv47MHgviPRKRFPen2+gJRepqM973WNUiL7LVpO+ZkH9vg6uKNnlsX9Fi0/X73o9d6tL3jaM6t4x0tW6vXVM83ciEYWTjVYV4eDmkgjDnV6UhPUUYkcUatPTMJuIK5PYkgfcmiCA47yZoDJJL1jEsbUKrZ9lsUDedQ1MDZQLzLCJl9WK9WMo43TAnE6I1RyeIihR49zPO23/HbS33WYNrpa7vytq7ZAKG3jLNlNmWuqL72+E8+HeCE9rJFPHDjTzSPnxdp2xyW8myT6V8Ah4V7OskxOYw0/zPuLLvIY1/o51k56+G36j+Xyma30U+/LTi0js6i6aoGjOYo84zZvEkRHAdvdMvA2/T/1qN+hLFZOPvI8kKT3tSB+zozZNj6ZpPdTEKc3UC9mWZzIpry4zAMv+Zl0UxiEtuB5uDImJUPnk7y317k6L2tkaeae1v0GAnm4GD4dhateH6jfuKC9dd1rEnuQmNN5OKKtDnuKoZUVih7GX9E0htj+AE5RpVkc8uuv6mE8bv+Wl0YhEbu1Pz8qdnudxKtkKS48yFuA7GE83s34X+9g4kuvsRfIw4rE/PTzYAef/SCA5v2kn/cUtuQobqfbmyke/Ei3QNw0rCS9bXqbJbJfJyQ/5qWmucY1rexIUYa2dNiiycvL3gR7PJ2RldWkbGk2+YBeUKG7VA5cz/H5tG0367tRql766nQsF7kqYT5q29NBTIMSY9qvDyELkcf9ON2nsYY1H+YeF3N966qvFx9bdWezX1kSIB1Od50QRnyWc9bvxFMmy5SmtSz30+95qNmeE4oUTuWQ55z9+C94dUk57j19bY5FZkRfmPyal0rOpgXysMPV0EWNwnLa5JldnKKQ2NViMH02x5/3M6t8OoVO1C1F6ut8VzN9Mnf4WZGV1jKirca7s4xNUVdZRQa9KwLWcrEQ8g9gzimtfPyKRMbVZN6W47vvAse0ftpsf/Y59X3KFTClfEKui22QflQk/VGONh1ykeOzefjs2ruZmNF9XBW0qOdY/MSRy/S1AvjVQOtdVuhtQwxZQXw4Pp2pkx7O3Biw5xZLMmM+eK6ecWdciU/na+9FdkWymSSlhtqsGFRtPNUTcKGwfQ/Asb/mnN9xaffQwJwaxZ4EUU8i8RMW4zTHdNPoHr5cyrPPunRC9CAPV7JIwEcNiP2QiZM6Dq59lnEwyzEJcVXnA8rX2iZXQh+O7WB0NkHUk6gyk+2zbbkWT9WmPbY8X+O+D118cpr2nel3gfxUwpRSNvb49f3ZZChhwN49TxA9W0SXkdt8QyJeTxDN5bK45PC3jUrkcj3TzO1JEL0An21LED1jz323WE6dyHR0PMV/bzwOt4vYxm2KsLaqVWiLmkx9jhisAbdJYzsa89EUleP3PwCvaKQ4BWwPicS6HOEHZ/NXn1suesU75QuB6NxIpMtt9yojmIF3LPUJf+3bfJCvHPWt9o8Fg2pPRz99LcezBKJ2MzGTIDoMxNREvyRhp62N+Vk8H+VcSk3cNWE9F9kV2URzU5q5LayOCJhwTsiMZbSMM446jgCnNfPSFxmpZ48BtgwOJ+k9XGTX0Zo5t5HIfl2mGhCrhvAGCy+hbQT0MD6ZIDqgbfx1AnZfxezN9w4+iyeIrompcyOya/+Lby94rCYH8lm5lUDag3zay19RipVCkaBzYC80IIrmL8iyEm1zbFQcK6SNklt1eT56NYufaOoGC9fcTPh8CMSBYm0kXAgS3Z6EbfaYfNOHRqhrPI5F50KACT/touVugzRp5jocIU1xZ/iBblZK5NS9LI2udZcsL/qBdi97GI8niJ4SiMHMOMtS+kdXyZTmg7zmkIlLLvW0yewAsMctvs3mkgTRVZtebkQ24aG2btlEw7Muq16+K7fe8KPZtnVtE1EyZImAJu8si+/oPjNlNuxRdfczkFv9/lYrkX22SWPjJotptQtc8AaKYEMqz0evOyeuFl52zaLlkBtJCjLxRPksHtni7nxiVCJ71QkM3w+pQMkOW9v8J+6u96m1XNA0gHy053anluucI/apC4F8zXlcSTcrgWtfUNeYpLdR09Y2a4tKttANL5wFBm3zX1ko7UUYJzcMXOO+D7dy6xtiWQO7Pe/HvWOHAl1k1/BGUi3Kb2kfj1xWDFTQ91WbN+r9On8FcuwGC0ccn+/JEhV8XWdoi5a/sCeLYEMqzdz/1J69mnsSi5g6yzUTZEI5TdJP+NZsB59dU6ZlXuSYjTRdtJCCfRK2sKWZG5QMPe+zvr5X2y5GbxXRZL2kTY49bvFZPrWIyQTRCWBfkHLuIXXnc219TjP3MP5i4ZYnur24djN+Jd9OUKaTb6tFNytVPOXrDm1+lTsgiHmpaZ1x+yRNguhVcmyGFAJFsnmfMVakN4MWJ6nO2m6zTXQVWNzTw/hkvU1SujPRTWjU385zhmygfrsPVh9xrkC63a5XaK1QCrtevjUSe/VS9Wp38WdMAPvyIMfpbBqIQJbC96Cr4Nu+5nIDMO/juZyOcpvoi+l3c5gxnRI2B1l8nFqOHdXut5wvqGvUA2ivcd+FAMTZLxDnsgRk+rUw+v2eenGalbp2by9iKozIebokkHnZzcRMkt7DIOzzkydK6BreQgkC0e1AaFt7VvLbB0xaGkldsNk+QPCc31V/1E3gHcF+w/aWqw3lKL6gra5P5/ohtV17wIMIXMyAQObaKCEjs8isrMgfcCNnfdUGgx5V78skKiJ0uShkyz9w2IEdxKpCJSaCmF/djL8rkT3TWMMFtjkQ9CBYNWanZln8ySyLP3H+XzffnPPFD5npMWklPG+7tcTTYhqHomK5CY19Ti+IXyCXWuu1eusR72nm3I6DnNWioU9nC+pL0tvWwWcn7PN96kjLr9w6QjPXHs5GCKwERU5ZtFwPm8j00wpqB/ZstkPR9sFb7a0zpdyh8hjv17Socl+ylCAaSxB9Rm9bD+OTeqR+rnJU209rQj4arN7IHsYng4bqqMWzV3trZzANbiXOT2mDz3m9dCLKJrs+F4egflm/ZH01H7lJEO3yGbTb66yTpa1GV9wOHSfpbUvS2+Y8hKvHfxUi9BYtpzSiGnRmBnAeYVLZA55xrkYeGRLOuAml7vxXZm3MGXinncTv9DKPQyaGqRX/iRhzy6CgUgrpB2+9iLwomkQO8h12kyUP4T2pkgKcdmn7yw75OHmZvla9LMmQ5Uh7Y28gTYYxPvfzh1bUBkOeOBSAaPTPDwU8HL8cMOyfZDN+bXvDzf9zQ5aT7C+yK+IcOxuqHcNqfi/LSpLeNntuahlglq0Ney4Lj8lw2mHzT+HYPl2bUiW9yTuf0erPPFbSc/ZvOXMdqQPtT+v1UoOhO9b3OLN2ZPNzONvpLM+ZaaKbR/7GzcmeIHqylciPMgOdvZ2FwCMzySmHE3jQ0R7X3Ff22Cgfw096GH+uRHVek6MqW529ZMWjHFsmP8I9zMV1sl6mr1Xy9YwfuQwyzmqCDfqRvSxj8U4P4/0+6nJOa++yP87vuLrnDls7f5WLaY+LzK3ZuNDb7zKf7E0FnexXnZn2yKUWV8/Y47xHz4Cj80S9i7n3itrROCQQMeVr2M5KAOk+3fG4kugs+Da97ptIrnYQH9Gjl5Um9IrKHjAiEJ2baNgPLIc63GQx7UeQHe1cLs8OnVhASl3LXBHKccoJLcZmOauEHQ6zOgxm+dB/zl2+le8jih1oa7sOEkT7dVlqQCzX2dHPKkPGWjlyKwfYfoulzg3UL8ujn8SFaea2CPKKjptWQZ1e/XQpH1+qvVup+sKvb26YlbjMnTh2ZVVZ0znG5ahQWS28rCqBGNxIxLLnli1zN1iYvEnd3zq/r3/XOT+dciqRqzYE7MBdiTwhEJ1KVvYvIKWK+dyvzfE4MKzLt/DuYIRKrbJTY1WdUY8J5JhXCl/1/HZgi1d6WhfTcLdOblkyhT7pYjN3oGJ0gmhFWnntdhtVVHccH1k5labUB4x6ZTctJrRx2ar5KfeoVWsCGM1lUukpo6exPir18S0vWdL72W+aaq3tdrux2z6N9be52qLGezPQF0RWNDm56paOSJPf60FMWl1+8nhui/57c+xr+pgv/lK5bC7mcoVop23WtMljni37wJzzQmuHLx+aFydo/bjVxR+/zUtWRBBhnKRvg20zh+1AzuVsvZ8/tBZaJwniN+yq30Rz01U2fB0w4LBsuExfa5FjwUIZL8GGVCH9HDSnvUF1I5vl8P8BR66beJ4FaIUAAAAASUVORK5CYII=";
+
+const TEMPLATES=[
+{id:"offer",name:"Internship Offer Letter",desc:"Formal internship appointment with programme particulars, responsibilities and clear terms and conditions.",color:"#1e3a5f"},
+{id:"training",name:"Industrial Training Appointment",desc:"Structured training appointment with professional expectations, training scope and acceptance.",color:"#ed4d18"},
+{id:"completion",name:"Completion Certificate",desc:"Elegant formal certificate recognizing successful completion of the programme.",color:"#3f7545"},
+{id:"participation",name:"Participation Certificate",desc:"Distinctive certificate recognizing active participation in a company programme.",color:"#9b7139"},
+{id:"experience",name:"Experience Letter",desc:"Corporate experience confirmation with role, domain, duration and company details.",color:"#1e3a5f"},
+{id:"interncompletion",name:"Internship Completion Letter",desc:"Detailed completion communication with programme details and professional acknowledgement.",color:"#087b7b"}
+];
+
+const today=()=>new Date().toLocaleDateString("en-IN",{day:"2-digit",month:"long",year:"numeric"});
+const cleanLetters=v=>v.replace(/[^a-zA-Z\s]/g,"").replace(/\s{2,}/g," ");
+const cleanDuration=v=>v.replace(/[^a-zA-Z0-9\s]/g,"").replace(/\s{2,}/g," ");
+
+function Logo({className="",style={}}){
+ return <img src={LOGO} className={"logo "+className} style={style} alt="VR PI Group Of Companies"/>;
+}
+
+function csvParse(text){
+ const rows=[];
+ let row=[],cell="",quoted=false;
+ for(let i=0;i<text.length;i++){
+  const ch=text[i],next=text[i+1];
+  if(ch==='"'&&quoted&&next==='"'){cell+='"';i++}
+  else if(ch==='"'){quoted=!quoted}
+  else if(ch===","&&!quoted){row.push(cell.trim());cell=""}
+  else if((ch==="\n"||ch==="\r")&&!quoted){
+   if(ch==="\r"&&next==="\n")i++;
+   row.push(cell.trim());
+   if(row.some(x=>x!==""))rows.push(row);
+   row=[];cell="";
+  }else cell+=ch;
  }
+ row.push(cell.trim());
+ if(row.some(x=>x!==""))rows.push(row);
+ if(rows.length<2)return [];
+ const headers=rows[0].map(h=>h.toLowerCase().replace(/[^a-z0-9]/g,""));
+ const find=(obj,names)=>{
+  const idx=headers.findIndex(h=>names.some(n=>h===n));
+  return idx>=0?obj[idx]||"":"";
+ };
+ return rows.slice(1).map(r=>({
+  name:find(r,["fullname","name","candidatename"]),
+  email:find(r,["email","emailaddress"]),
+  domain:find(r,["domain","internshipdomain","trainingdomain","track"]),
+  mode:find(r,["mode","programmemode"]),
+  duration:find(r,["duration","programmeduration"]),
+  startDate:find(r,["startdate","joiningdate","commencementdate"]),
+  endDate:find(r,["enddate","internshipenddate"]),
+  status:find(r,["applicationstatus","emailstatus","letterstatus","status","lettersent"]),
+  pdf:find(r,["pdflink","pdfrecord"])
+ })).filter(r=>r.name||r.email);
+}
 
- function showFatal(message){
-  document.getElementById("root").innerHTML=
-   '<div class="boot-error"><h2>VR PI Group platform could not start</h2><p>'+message+'</p><p>Check your internet connection and reload the page. React libraries are loaded from external CDNs; this file does not need a separate JavaScript file.</p></div>';
- }
+function CompanyHeader(){
+ return <div className="doc-head">
+  <Logo/>
+  <div className="doc-company">
+   <strong>{COMPANY}</strong><br/>
+   {LOCATION}<br/>
+   {EMAIL}<br/>
+   {WEBSITE}
+  </div>
+ </div>;
+}
 
- loadScript([
-  "https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js",
-  "https://unpkg.com/react@18.2.0/umd/react.production.min.js",
-  "https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"
- ],function(error){
-  if(error){showFatal(error.message);return;}
+function CompanyFooter({color="#1e3a5f"}){
+ return <div className="doc-footer" style={{background:color}}>
+  {COMPANY} • {LOCATION}<br/>{EMAIL} • {WEBSITE}
+ </div>;
+}
 
-  loadScript([
-   "https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js",
-   "https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js",
-   "https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"
-  ],function(domError){
-   if(domError){showFatal(domError.message);return;}
-   startApp();
-  });
+function DetailTable({data,fields}){
+ return <table className="doc-table"><tbody>
+  {fields.map(([label,key])=>data[key]?<tr key={key}><td>{label}</td><td>{data[key]}</td></tr>:null)}
+ </tbody></table>;
+}
+
+function Signoff({department="Human Resources Department"}){
+ return <div className="signoff">
+  Regards,
+  <strong>{department}</strong>
+  <small>{COMPANY}</small>
+  <small>{LOCATION} • {EMAIL}</small>
+  <small>Authorized company representative</small>
+ </div>;
+}
+
+function OfferDocument({data}){
+ return <div className="a4" id="printPage">
+  <div className="doc-topline"/>
+  <CompanyHeader/>
+  <div className="doc-body">
+   <div className="doc-title">
+    <div className="overline">OFFICIAL CORPORATE COMMUNICATION</div>
+    <h2>INTERNSHIP OFFER LETTER</h2>
+    <small>{today()}</small>
+   </div>
+   <p>To,</p>
+   <p><b>{data.name}</b></p>
+   <p>Dear {data.name},</p>
+   <p>We are pleased to offer you an internship opportunity with <b>{COMPANY}</b> in the <b>{data.domain}</b> domain. We appreciate your interest and look forward to your contribution, professional development and active participation in the programme.</p>
+   <p>Your internship will be conducted in <b>{data.mode}</b> mode for a duration of <b>{data.duration}</b>, commencing on <b>{data.startDate}</b>.</p>
+   <div className="doc-section">INTERNSHIP PARTICULARS</div>
+   <DetailTable data={data} fields={[
+    ["Candidate Name","name"],
+    ["Programme Domain","domain"],
+    ["Programme Mode","mode"],
+    ["Duration","duration"],
+    ["Start Date","startDate"]
+   ]}/>
+   <div className="doc-section">SCOPE AND RESPONSIBILITIES</div>
+   <p>During the programme, you are expected to participate in assigned learning activities, practical tasks, project work and professional development sessions relevant to your selected domain. You should maintain regular communication with the designated programme coordinator and complete assigned work within the communicated timelines.</p>
+   <div className="doc-section">TERMS AND CONDITIONS</div>
+   <ol className="doc-list">
+    <li>You must maintain professional conduct, punctuality and respectful communication throughout the programme.</li>
+    <li>All assigned tasks, assessments and deliverables must be completed within the specified timelines.</li>
+    <li>Company documents, internal information, project materials and confidential information must not be disclosed to unauthorized persons.</li>
+    <li>All work submitted must be original and must comply with the organization's guidelines.</li>
+    <li>Any absence, delay or programme-related concern must be communicated to the designated coordinator.</li>
+    <li>The organization may review programme participation and performance in accordance with its applicable policies.</li>
+   </ol>
+   <div className="acceptance">
+    <strong>CANDIDATE ACCEPTANCE</strong>
+    <p>I, <b>{data.name}</b>, acknowledge receipt of this internship offer and agree to follow the programme responsibilities, terms and conditions stated above.</p>
+    <p>Candidate Signature: __________________________</p>
+    <p>Date: ____________________</p>
+   </div>
+   <Signoff/>
+  </div>
+  <CompanyFooter/>
+ </div>;
+}
+
+function TrainingDocument({data}){
+ return <div className="a4">
+  <div className="doc-topline"/>
+  <CompanyHeader/>
+  <div className="doc-body" style={{padding:"37px 43px"}}>
+   <div className="doc-title">
+    <div className="overline" style={{color:"#ed4d18"}}>TRAINING AND DEVELOPMENT DIVISION</div>
+    <h2>INDUSTRIAL TRAINING APPOINTMENT</h2>
+    <small>Issued on {today()}</small>
+   </div>
+   <p><b>To: {data.name}</b></p>
+   <p>Dear {data.name},</p>
+   <p>We are pleased to confirm your appointment for the industrial training programme at <b>{COMPANY}</b>. This programme is designed to provide structured exposure, practical learning and an opportunity to develop professional skills in your chosen area.</p>
+   <div className="doc-section" style={{color:"#ed4d18"}}>TRAINING PARTICULARS</div>
+   <DetailTable data={data} fields={[
+    ["Trainee Name","name"],
+    ["Training Domain","domain"],
+    ["Training Mode","mode"],
+    ["Training Duration","duration"],
+    ["Commencement Date","startDate"]
+   ]}/>
+   <div className="doc-section" style={{color:"#ed4d18"}}>TRAINING OBJECTIVES</div>
+   <p>The training programme will focus on domain-specific knowledge, practical implementation, structured assignments, problem-solving and professional communication. You are expected to participate actively and seek guidance whenever required.</p>
+   <div className="doc-section" style={{color:"#ed4d18"}}>PROFESSIONAL GUIDELINES</div>
+   <ol className="doc-list">
+    <li>Follow all instructions and schedules communicated by the training coordinator.</li>
+    <li>Maintain confidentiality of internal documents, systems and project information.</li>
+    <li>Complete assigned activities honestly and within the communicated timelines.</li>
+    <li>Maintain respectful conduct and professional communication.</li>
+    <li>Report any programme-related concerns to the designated company representative.</li>
+   </ol>
+   <div className="acceptance">
+    <strong>ACCEPTANCE OF TRAINING APPOINTMENT</strong>
+    <p>I, {data.name}, accept the training appointment and agree to comply with the programme guidelines and applicable company policies.</p>
+    <p>Signature: _______________________ &nbsp;&nbsp; Date: ______________</p>
+   </div>
+   <Signoff department="Industrial Training Department"/>
+  </div>
+  <CompanyFooter color="#ed4d18"/>
+ </div>;
+}
+
+function Certificate({data,participation=false}){
+ const title=participation?"CERTIFICATE OF PARTICIPATION":"CERTIFICATE OF COMPLETION";
+ const message=participation?
+  "has actively participated in the programme conducted by VR PI Group Of Companies.":
+  "has successfully completed the programme with VR PI Group Of Companies.";
+ return <div className="a4" style={{padding:0}}>
+  <div className={"certificate "+(participation?"participation":"completion")}>
+   <div style={{width:"100%",display:"flex",justifyContent:"center"}}>
+    <Logo style={{width:185}}/>
+   </div>
+   <h1>{title}</h1>
+   <div className="cert-company">{COMPANY.toUpperCase()}</div>
+   <div className="cert-intro">{participation?"This certificate is proudly presented to":"This certificate is awarded to"}</div>
+   <div className="cert-name">{data.name}</div>
+   <div className="cert-copy">
+    {message}<br/><br/>
+    Programme Domain: <b>{data.domain}</b><br/>
+    Programme Mode: <b>{data.mode}</b><br/>
+    Duration: <b>{data.duration}</b><br/>
+    {data.startDate&&<>Programme Start Date: <b>{data.startDate}</b></>}
+   </div>
+   <div className="cert-bottom">
+    <div><div className="cert-line"><b>Authorized Signatory</b><br/>{COMPANY}</div></div>
+    <div><div className="cert-line"><b>Date of Issue</b><br/>{today()}</div></div>
+    <div><div className="cert-line"><b>Company Location</b><br/>{LOCATION}</div></div>
+   </div>
+  </div>
+ </div>;
+}
+
+function ExperienceDocument({data}){
+ return <div className="a4">
+  <div className="experience-band">
+   <Logo/>
+   <div className="company-white">
+    <b>{COMPANY}</b><br/>{LOCATION}<br/>{EMAIL}
+   </div>
+  </div>
+  <div className="doc-body" style={{padding:"43px 43px"}}>
+   <div className="doc-title">
+    <div className="overline">OFFICIAL CORPORATE COMMUNICATION</div>
+    <h2>EXPERIENCE LETTER</h2>
+    <small>{today()}</small>
+   </div>
+   <p>TO WHOM IT MAY CONCERN,</p>
+   <p>This is to certify that <b>{data.name}</b> has been associated with <b>{COMPANY}</b> in the capacity of a participant in the <b>{data.domain}</b> programme.</p>
+   <p>The engagement was conducted in <b>{data.mode}</b> mode for a duration of <b>{data.duration}</b>, commencing on <b>{data.startDate}</b>.</p>
+   <p>During this engagement, the candidate was involved in domain-related activities, practical assignments and professional learning initiatives. The programme provided opportunities to apply relevant concepts, strengthen technical understanding and develop workplace skills.</p>
+   <div className="doc-section">PROFESSIONAL DETAILS</div>
+   <DetailTable data={data} fields={[
+    ["Candidate Name","name"],
+    ["Programme Domain","domain"],
+    ["Programme Mode","mode"],
+    ["Duration","duration"],
+    ["Start Date","startDate"]
+   ]}/>
+   <p>We appreciate the candidate's participation and contribution during the engagement and wish them success in their future academic and professional endeavours.</p>
+   <p>This letter is issued upon request for professional record and verification purposes.</p>
+   <Signoff department="Human Resources and Corporate Relations"/>
+  </div>
+  <CompanyFooter/>
+ </div>;
+}
+
+function InternshipCompletionDocument({data}){
+ return <div className="a4">
+  <div className="doc-topline"/>
+  <CompanyHeader/>
+  <div className="doc-body" style={{padding:"38px 44px"}}>
+   <div className="doc-title">
+    <div className="overline" style={{color:"#087b7b"}}>OFFICIAL PROGRAMME RECORD</div>
+    <h2>INTERNSHIP COMPLETION LETTER</h2>
+    <small>{today()}</small>
+   </div>
+   <p>Dear <b>{data.name}</b>,</p>
+   <p>We are pleased to acknowledge the successful completion of your internship programme with <b>{COMPANY}</b> in the domain of <b>{data.domain}</b>.</p>
+   <p>Throughout the programme, you participated in learning activities and practical assignments designed to strengthen your domain knowledge, professional capabilities and understanding of workplace practices.</p>
+   <div className="doc-section" style={{color:"#087b7b"}}>PROGRAMME RECORD</div>
+   <DetailTable data={data} fields={[
+    ["Candidate Name","name"],
+    ["Programme Domain","domain"],
+    ["Programme Mode","mode"],
+    ["Duration","duration"],
+    ["Start Date","startDate"]
+   ]}/>
+   <p>We acknowledge your participation and appreciate the time and effort invested during the programme. We encourage you to continue developing your skills and applying your learning in future professional opportunities.</p>
+   <p>We wish you every success in your future endeavours.</p>
+   <Signoff department="Talent Development Department"/>
+  </div>
+  <CompanyFooter color="#087b7b"/>
+ </div>;
+}
+
+function DocumentView({template,data}){
+ if(template==="offer")return <OfferDocument data={data}/>;
+ if(template==="training")return <TrainingDocument data={data}/>;
+ if(template==="completion")return <Certificate data={data}/>;
+ if(template==="participation")return <Certificate data={data} participation/>;
+ if(template==="experience")return <ExperienceDocument data={data}/>;
+ return <InternshipCompletionDocument data={data}/>;
+}
+
+function App(){
+ const [records,setRecords]=useState([]);
+ const [mode,setMode]=useState("manual");
+ const [templateId,setTemplateId]=useState("offer");
+ const [preview,setPreview]=useState(false);
+ const [search,setSearch]=useState("");
+ const [selectedIndex,setSelectedIndex]=useState("");
+ const [message,setMessage]=useState("Import the latest CSV export from your Google Sheet to display live candidate records here.");
+ const [data,setData]=useState({
+  name:"",domain:"",mode:"Online",duration:"3 Months",startDate:""
  });
+ const fileRef=useRef(null);
 
- function startApp(){
-  const h=React.createElement;
-  const E=(tag,props,...children)=>{
-   const flat=children.flat(Infinity).filter(x=>x!==null&&x!==undefined&&x!==false);
-   return h(tag,props,...flat);
+ const template=TEMPLATES.find(t=>t.id===templateId);
+ const update=(key,value)=>setData(old=>({...old,[key]:value}));
+
+ const filtered=useMemo(()=>records.filter(r=>
+  [r.name,r.email,r.domain,r.status].join(" ").toLowerCase().includes(search.toLowerCase())
+ ),[records,search]);
+
+ const sent=records.filter(r=>/sent|success|issued|completed/i.test(r.status)).length;
+ const failed=records.filter(r=>/fail|error/i.test(r.status)).length;
+ const pending=records.length-sent-failed;
+
+ function importCSV(file){
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=()=>{
+   const parsed=csvParse(String(reader.result||""));
+   if(!parsed.length){
+    setMessage("No candidate rows were found. Check that the CSV has a header row containing Full Name, Domain, Mode, Duration and Start Date.");
+    return;
+   }
+   setRecords(parsed);
+   setSelectedIndex("");
+   setMessage(parsed.length+" candidate records imported successfully from the Google Sheets CSV. Import a new CSV whenever the Sheet changes.");
   };
-
-  const COMPANY="VR PI Group Of Companies";
-  const EMAIL="vrpigroupoftechnology@gmail.com";
-  const LOCATION="Wanaparthy, Telangana, India";
-  const WEBSITE="https://share.google/Staafq7spnZSStc8n";
-  const SHEET_ID="1dCJXGZN3dbThvJt5SnMYUSp0uAAsVuWnKuXd1rabBOU";
-  const SHEET_GID="0";
-  const SHEET_URL="https://docs.google.com/spreadsheets/d/"+SHEET_ID+"/edit?gid="+SHEET_GID;
-  const GMAIL_URL="https://mail.google.com/mail/?authuser=vrpigroupoftechnology%40gmail.com#inbox";
-  const TODAY=()=>new Date().toLocaleDateString("en-IN",{day:"2-digit",month:"long",year:"numeric"});
-
-  const LOGO_DATA="data:image/png;base64,LOGO_BASE64";
-
-  const TEMPLATES=[
-   {id:"offer",name:"Internship Offer Letter",group:"Internship",style:"offer",color:"#1e3a5f",desc:"Formal internship offer with programme particulars, terms and acceptance."},
-   {id:"intern-completion",name:"Internship Completion Certificate",group:"Internship",style:"completion",color:"#4f8b55",desc:"Premium green landscape completion certificate."},
-   {id:"training",name:"Industrial Training Appointment Letter",group:"Training",style:"training",color:"#e94b17",desc:"Professional training appointment with programme particulars."},
-   {id:"training-completion",name:"Training Completion Certificate",group:"Training",style:"completion",color:"#4f8b55",desc:"Landscape training completion certificate."},
-   {id:"participation",name:"Participation Certificate",group:"Certification",style:"participation",color:"#1e3a5f",desc:"Distinctive navy and gold participation recognition."},
-   {id:"experience",name:"Experience Letter",group:"Certification",style:"experience",color:"#1e3a5f",desc:"Formal professional experience letter with company branding."}
-  ];
-
-  const FIELDS={
-   offer:[
-    {key:"name",label:"Candidate Name",required:true},
-    {key:"domain",label:"Internship Domain",required:true},
-    {key:"mode",label:"Programme Mode",type:"select",options:["Virtual / Remote","Hybrid","On-site"],required:true},
-    {key:"duration",label:"Duration",required:true},
-    {key:"joining",label:"Start Date",type:"date",required:true}
-   ],
-   "intern-completion":[
-    {key:"name",label:"Candidate Name",required:true},
-    {key:"domain",label:"Internship Domain",required:true},
-    {key:"joining",label:"Start Date",type:"date"},
-    {key:"endDate",label:"End Date",type:"date",required:true},
-    {key:"duration",label:"Duration"}
-   ],
-   training:[
-    {key:"name",label:"Candidate Name",required:true},
-    {key:"domain",label:"Training Domain",required:true},
-    {key:"mode",label:"Training Mode",type:"select",options:["Virtual / Remote","Hybrid","On-site"],required:true},
-    {key:"duration",label:"Duration",required:true},
-    {key:"joining",label:"Start Date",type:"date",required:true}
-   ],
-   "training-completion":[
-    {key:"name",label:"Candidate Name",required:true},
-    {key:"domain",label:"Training Domain",required:true},
-    {key:"joining",label:"Start Date",type:"date"},
-    {key:"endDate",label:"End Date",type:"date",required:true},
-    {key:"duration",label:"Duration"},
-    {key:"completionDate",label:"Completion Date",type:"date"}
-   ],
-   participation:[
-    {key:"name",label:"Candidate Name",required:true},
-    {key:"eventTitle",label:"Programme / Event Name",required:true},
-    {key:"participationDate",label:"Participation Date",type:"date",required:true}
-   ],
-   experience:[
-    {key:"name",label:"Candidate Name",required:true},
-    {key:"role",label:"Role / Designation",required:true},
-    {key:"domain",label:"Department / Domain",required:true},
-    {key:"joining",label:"Start Date",type:"date",required:true},
-    {key:"endDate",label:"End Date",type:"date",required:true}
-   ]
-  };
-
-  const LABELS={
-   name:"Candidate Name",domain:"Programme Domain",mode:"Programme Mode",
-   duration:"Duration",joining:"Start Date",endDate:"End Date",
-   completionDate:"Completion Date",eventTitle:"Programme / Event",
-   participationDate:"Participation Date",role:"Role / Designation"
-  };
-
-  const normalize=s=>String(s||"").toLowerCase().replace(/[^a-z0-9]/g,"");
-
-  function sanitize(key,value){
-   if(["name","domain","role"].includes(key))return value.replace(/[^a-zA-Z ]/g,"").replace(/\s+/g," ");
-   if(["duration","eventTitle"].includes(key))return value.replace(/[^a-zA-Z0-9 ]/g,"").replace(/\s+/g," ");
-   return value;
-  }
-
-  function readCell(cell){
-   if(!cell||cell.v===null||cell.v===undefined)return "";
-   if(cell.f!==undefined&&cell.f!==null)return String(cell.f).trim();
-   const value=String(cell.v);
-   const match=value.match(/^Date\((\d+),(\d+),(\d+)(?:,(\d+),(\d+),(\d+))?\)$/);
-   if(match){
-    return new Date(+match[1],+match[2],+match[3]).toLocaleDateString("en-IN");
-   }
-   return value.trim();
-  }
-
-  function getIndex(columns,names,fallback=-1){
-   const labels=columns.map(c=>normalize(c.label||c.id||""));
-   for(const name of names){
-    const index=labels.findIndex(x=>x===normalize(name));
-    if(index>=0)return index;
-   }
-   return fallback;
-  }
-
-  function getStatus(c){
-   const s=String(c||"").toUpperCase().trim();
-   if(/FAILED|FAILURE|ERROR|BOUNCED|REJECTED|UNDELIVERED/.test(s))return "FAILED";
-   if(/NOT SENT|NOT DELIVERED|PENDING|QUEUED|WAITING|PROCESSING|IN PROGRESS/.test(s))return "PENDING";
-   if(/SENT|DELIVERED|SUCCESS|ACCEPTED BY GMAIL|TRUE|^YES$|^1$/.test(s))return "SENT";
-   return "UNKNOWN";
-  }
-
-  function loadSheet(){
-   return new Promise((resolve,reject)=>{
-    const callback="vrpiSheet_"+Date.now();
-    const script=document.createElement("script");
-    let done=false;
-
-    const timer=setTimeout(()=>finish(new Error("Google Sheets did not respond. Check sheet access.")),15000);
-
-    function finish(error,result){
-     if(done)return;
-     done=true;
-     clearTimeout(timer);
-     script.remove();
-     try{delete window[callback]}catch(e){}
-     error?reject(error):resolve(result);
-    }
-
-    window[callback]=response=>{
-     if(!response||!response.table){
-      const msg=response?.errors?.[0]?.detailed_message||"Google Sheets returned no readable table.";
-      finish(new Error(msg));
-      return;
-     }
-     finish(null,response.table);
-    };
-
-    const tqx=encodeURIComponent("out:json;responseHandler:"+callback+";reqId:0");
-    script.src="https://docs.google.com/spreadsheets/d/"+SHEET_ID+"/gviz/tq?gid="+SHEET_GID+"&tqx="+tqx+"&_="+Date.now();
-    script.async=true;
-    script.onerror=()=>finish(new Error("Google Sheets cannot be reached. Check link-view access."));
-    document.head.appendChild(script);
-   });
-  }
-
-  function parseSheet(table){
-   const columns=table.cols||[];
-   const rows=table.rows||[];
-
-   function field(row,names,fallback){
-    return readCell(row.c?.[getIndex(columns,names,fallback)]);
-   }
-
-   return rows.map((row,index)=>{
-    const aid=field(row,["Application ID","Application Id"],1);
-    return {
-     key:aid||"sheet-row-"+index,
-     source:"sheet",
-     timestamp:field(row,["Timestamp"],0),
-     aid:aid,
-     name:field(row,["Full Name","Candidate Name","Name"],2),
-     email:field(row,["Email Address","Email"],3),
-     phone:field(row,["WhatsApp / Phone","WhatsApp","Phone"],4),
-     domain:field(row,["Domain","Internship Domain","Training Domain","Track"],7),
-     mode:field(row,["Mode","Programme Mode","Training Mode"]),
-     duration:field(row,["Duration","Programme Duration"]),
-     joining:field(row,["Joining Date","Start Date","Commencement Date"]),
-     endDate:field(row,["End Date","Internship End Date"]),
-     completionDate:field(row,["Completion Date"]),
-     eventTitle:field(row,["Event Title","Event Name","Programme Name"]),
-     participationDate:field(row,["Participation Date","Event Date"]),
-     role:field(row,["Role","Designation","Job Title"]),
-     completionStatus:field(row,["Completion Status","Training Completion Status","Certificate Status"]),
-     participationStatus:field(row,["Participation Status","Attendance Status"]),
-     status:field(row,["Letter Sent","Email Status","Mail Status","Dispatch Status","Delivery Status","Application Status","Status"],17)||"Not recorded",
-     pdf:field(row,["PDF Record","PDF Link"],18),
-     updated:field(row,["Last Updated","Updated At"],19)
-    };
-   }).filter(c=>c.name||c.aid||c.email);
-  }
-
-  function loadCandidates(){
-   return loadSheet().then(parseSheet);
-  }
-
-  function CompanyLogo(props){
-   return E("img",{src:LOGO_DATA,alt:"VR PI Group Of Companies",className:props.className||"",style:Object.assign({width:"100%",height:"auto",display:"block",objectFit:"contain"},props.style||{})});
-  }
-
-  function DetailTable(props){
-   return E("table",{className:"doc-table"},
-    E("tbody",{},props.keys.map(key=>props.candidate[key]?E("tr",{key:key},
-     E("td",{},LABELS[key]||key),
-     E("td",{},props.candidate[key])
-    ):null))
-   );
-  }
-
-  function DocHeader(){
-   return E("div",{className:"doc-header"},
-    E(CompanyLogo,{className:"doc-logo"}),
-    E("div",{className:"doc-info"},
-     E("strong",{},COMPANY),E("br"),
-     LOCATION,E("br"),EMAIL,E("br"),WEBSITE
-    )
-   );
-  }
-
-  function DocFooter(props){
-   return E("div",{className:"doc-footer",style:{background:props.color||"#1e3a5f"}},
-    E("b",{},COMPANY),E("br"),
-    LOCATION+" • "+EMAIL,E("br"),WEBSITE
-   );
-  }
-
-  function Signoff(props){
-   return E("div",{className:"signoff"},
-    "Regards,",
-    E("strong",{},props.department||"Talent Acquisition Department"),
-    E("small",{},COMPANY),
-    E("small",{},LOCATION),
-    E("small",{},EMAIL),
-    E("small",{},"Authorized Corporate Representative")
-   );
-  }
-
-  function OfferLetter(props){
-   const c=props.candidate;
-   return E("div",{className:"a4 portrait"},
-    E("div",{className:"doc-header",style:{background:"#1e3a5f",borderColor:"#e94b17"}},
-     E(CompanyLogo,{className:"doc-logo"}),
-     E("div",{className:"doc-info",style:{color:"white"}},
-      E("strong",{style:{color:"white"}},COMPANY),E("br"),
-      LOCATION,E("br"),EMAIL,E("br"),WEBSITE
-     )
-    ),
-    E("div",{style:{height:4,background:"linear-gradient(90deg,#f97316,#fed7aa)"}}),
-    E("div",{className:"doc-content"},
-     E("div",{className:"doc-title"},
-      E("small",{},"OFFICIAL CORPORATE COMMUNICATION"),
-      E("h2",{},"INTERNSHIP OFFER LETTER"),
-      E("small",{},"DATE OF ISSUE: "+TODAY())
-     ),
-     E("p",{},E("b",{},"To,"),E("br"),c.name,E("br"),"Subject: Offer of Internship"),
-     E("p",{},"Dear ",E("b",{},c.name),","),
-     E("p",{},"We are pleased to offer you an internship opportunity with ",E("b",{},COMPANY)," in the domain of ",E("b",{},c.domain),". We welcome you to this professional learning programme."),
-     E("p",{},"The programme will provide practical exposure, skill development and participation in guided assignments and project activities. It will be conducted in ",E("b",{},c.mode)," mode for ",E("b",{},c.duration),", commencing on ",E("b",{},c.joining),"."),
-     E("div",{className:"doc-section"},"INTERNSHIP PARTICULARS"),
-     E(DetailTable,{candidate:c,keys:["name","domain","mode","duration","joining"]}),
-     E("div",{className:"doc-section"},"TERMS AND CONDITIONS"),
-     E("p",{},E("b",{},"1. Professional Conduct: "),"Maintain professional behaviour, discipline and integrity throughout the programme."),
-     E("p",{},E("b",{},"2. Assigned Responsibilities: "),"Complete assigned projects, tasks and learning activities within the timelines communicated by the coordinator."),
-     E("p",{},E("b",{},"3. Attendance and Participation: "),"Participate in scheduled sessions, meetings and assigned programme activities."),
-     E("p",{},E("b",{},"4. Confidentiality: "),"Company information, internal documents and project materials must not be disclosed to unauthorized persons."),
-     E("p",{},E("b",{},"5. Performance Evaluation: "),"Progress may be evaluated based on task completion, participation and learning outcomes."),
-     E("p",{},E("b",{},"6. Organizational Guidelines: "),"Follow organizational policies and instructions communicated by the authorized programme coordinator."),
-     E("p",{},E("b",{},"7. Programme Communication: "),"Any absence or programme-related concern should be communicated to the designated coordinator."),
-     E("div",{className:"acceptance"},
-      E("b",{style:{color:"#1e3a5f"}},"CANDIDATE ACCEPTANCE"),
-      E("p",{},"I, ",E("b",{},c.name),", acknowledge receipt of this internship offer and confirm that I have reviewed and understood the programme particulars and terms and conditions stated in this letter."),
-      E("p",{},"I agree to comply with the applicable programme guidelines and professional expectations."),
-      E("div",{style:{marginTop:12,fontSize:10}},
-       "Candidate Name: ",E("b",{},c.name),E("br"),E("br"),
-       "Signature: ",E("span",{className:"acceptance-line"}),E("br"),E("br"),
-       "Date: ",E("span",{className:"acceptance-line"})
-      )
-     ),
-     E(Signoff,{department:"Talent Acquisition Department"})
-    ),
-    E(DocFooter)
-   );
-  }
-
-  function TrainingLetter(props){
-   const c=props.candidate;
-   return E("div",{className:"a4 portrait"},
-    E("div",{className:"training-top"}),
-    E(DocHeader),
-    E("div",{className:"doc-content"},
-     E("div",{style:{fontSize:10,color:"#e94b17",fontWeight:800,letterSpacing:2}},COMPANY.toUpperCase()),
-     E("h2",{style:{fontSize:23,color:"#111827",lineHeight:1.25,margin:"13px 0 22px"}},"INDUSTRIAL TRAINING",E("br"),"APPOINTMENT LETTER"),
-     E("p",{},E("b",{},"Date: "),TODAY()),
-     E("p",{},E("b",{},"Trainee Name: "),c.name),
-     E("p",{},"Dear ",E("b",{},c.name),","),
-     E("p",{},"We are pleased to welcome you to the ",E("b",{},c.domain)," Industrial Training Programme at ",E("b",{},COMPANY),"."),
-     E("p",{},"Your training will be conducted in ",E("b",{},c.mode)," mode for ",E("b",{},c.duration),", commencing on ",E("b",{},c.joining),"."),
-     E("div",{className:"doc-section",style:{color:"#e94b17"}},"TRAINING PARTICULARS"),
-     E(DetailTable,{candidate:c,keys:["name","domain","mode","duration","joining"]}),
-     E("div",{style:{background:"#111827",color:"#e2e8f0",padding:16,borderRadius:7,fontSize:10,lineHeight:1.9,marginTop:15}},
-      E("b",{style:{color:"#f97316"}},"PROFESSIONAL EXPECTATIONS"),E("br"),
-      "Maintain professional conduct, participate in assigned learning activities, complete deliverables within communicated timelines and follow organizational confidentiality guidelines."
-     ),
-     E("div",{className:"acceptance"},
-      E("b",{style:{color:"#e94b17"}},"TRAINEE ACKNOWLEDGEMENT"),
-      E("p",{},"I, ",E("b",{},c.name),", acknowledge this training appointment and agree to follow the applicable programme guidelines."),
-      "Signature: ",E("span",{className:"acceptance-line"})," Date: ",E("span",{className:"acceptance-line"})
-     ),
-     E(Signoff,{department:"Industrial Training Department"})
-    ),
-    E(DocFooter,{color:"#191928"})
-   );
-  }
-
-  function CompletionCertificate(props){
-   const c=props.candidate;
-   const verified=c.source==="sheet"&&/completed|verified|approved|issued/i.test(c.completionStatus||"");
-   return E("div",{className:"completion-landscape"},
-    E("div",{className:"completion-frame"},
-     E("div",{className:"completion-inner"},
-      E("h1",{className:"completion-title"},props.template.id==="intern-completion"?"INTERNSHIP COMPLETION CERTIFICATE":"TRAINING COMPLETION CERTIFICATE"),
-      E("div",{},
-       E("div",{className:"completion-company"},
-        E(CompanyLogo,{style:{width:105}}),
-        E("span",{},COMPANY.toUpperCase())
-       ),
-       E("div",{style:{fontSize:10,color:"#688866",marginTop:5}},LOCATION)
-      ),
-      E("div",{},
-       E("div",{className:"completion-intro"},"This certificate is granted to"),
-       E("div",{className:"completion-name"},c.name),
-       E("div",{className:"completion-statement"},
-        "Has successfully completed the ",
-        E("b",{},c.domain),
-        " programme. ",
-        c.duration?"Programme duration: "+c.duration+". ":"",
-        c.joining?"Commencement date: "+c.joining+". ":"",
-        c.endDate?"Completion date: "+c.endDate+".":""
-       )
-      ),
-      E("div",{className:"completion-meta"},
-       E("div",{},
-        E("strong",{},COMPANY),
-        E("small",{},"Talent Excellence Division"),
-        E("small",{},LOCATION)
-       ),
-       E("div",{className:"middle"},
-        E("strong",{},"Certificate Reference"),
-        E("small",{},c.aid||"To be assigned by the company"),
-        E("strong",{style:{marginTop:8}},"Date of Issue"),
-        E("small",{},TODAY())
-       ),
-       E("div",{},
-        E("strong",{},"Authorized Representative"),
-        E("small",{},COMPANY),
-        E("small",{},EMAIL)
-       )
-      ),
-      !verified?E("div",{className:"draft"},"PREVIEW ONLY • VERIFY COMPLETION BEFORE OFFICIAL ISSUE"):null
-     )
-    )
-   );
-  }
-
-  function ParticipationCertificate(props){
-   const c=props.candidate;
-   const verified=c.source==="sheet"&&/participated|verified|approved|issued|present/i.test(c.participationStatus||"");
-   return E("div",{className:"participation-landscape"},
-    E("div",{className:"participation-frame"},
-     E("div",{className:"participation-inner"},
-      E("div",{className:"participation-top"},
-       E(CompanyLogo,{style:{width:145}}),
-       E("div",{style:{textAlign:"right"}},
-        E("div",{className:"participation-subtitle"},"VR PI GROUP"),
-        E("div",{style:{fontSize:9,color:"#77869c",marginTop:5}},LOCATION)
-       )
-      ),
-      E("div",{},
-       E("div",{className:"participation-subtitle"},"RECOGNITION OF PARTICIPATION"),
-       E("h1",{className:"participation-title"},"CERTIFICATE OF PARTICIPATION"),
-       E("div",{style:{height:2,width:95,background:"#c3a15a",margin:"13px auto"}}),
-       E("div",{className:"participation-badge"},"VR PI",E("br"),"GROUP")
-      ),
-      E("div",{},
-       E("div",{style:{fontSize:13,color:"#687a91"}},"This certificate is proudly presented to"),
-       E("div",{className:"participation-name"},c.name),
-       E("div",{className:"participation-statement"},
-        "In recognition of participation in ",E("b",{},c.eventTitle||c.domain),
-        ", conducted by ",E("b",{},COMPANY),
-        ". We appreciate the candidate's interest, involvement and commitment to professional learning and development."
-       )
-      ),
-      E("div",{className:"participation-detail"},
-       E("div",{},E("strong",{},"Programme / Event"),c.eventTitle||c.domain),
-       E("div",{},E("strong",{},"Participation Date"),c.participationDate||"To be confirmed"),
-       E("div",{},E("strong",{},"Date of Issue"),TODAY())
-      ),
-      E("div",{className:"participation-footer"},
-       E("div",{},E("strong",{},COMPANY),"Talent Excellence Division"),
-       E("div",{className:"company-center"},E("strong",{},LOCATION),EMAIL),
-       E("div",{},E("strong",{},"Authorized Representative"),"Official Corporate Documentation")
-      ),
-      !verified?E("div",{className:"draft"},"PREVIEW ONLY • VERIFY PARTICIPATION BEFORE OFFICIAL ISSUE"):null
-     )
-    )
-   );
-  }
-
-  function ExperienceLetter(props){
-   const c=props.candidate;
-   return E("div",{className:"a4 portrait"},
-    E(DocHeader),
-    E("div",{style:{height:4,background:"linear-gradient(90deg,#1e3a5f,#e94b17)"}}),
-    E("div",{className:"doc-content",style:{padding:"29px 39px"}},
-     E("div",{className:"doc-title"},
-      E("small",{},"OFFICIAL CORPORATE COMMUNICATION"),
-      E("h2",{},"EXPERIENCE LETTER"),
-      E("small",{},"DATE OF ISSUE: "+TODAY())
-     ),
-     E("div",{style:{display:"flex",justifyContent:"space-between",fontSize:10,color:"#64748b",marginBottom:18}},
-      E("strong",{},"TO WHOM IT MAY CONCERN"),
-      E("span",{},TODAY())
-     ),
-     E("p",{},"Dear Sir/Madam,"),
-     E("p",{},"This letter is prepared in connection with ",E("b",{},c.name)," and the role of ",E("b",{},c.role)," within the ",E("b",{},c.domain)," department at ",E("b",{},COMPANY),"."),
-     E("p",{},"The engagement particulars are provided for formal organizational reference and must be checked against authorized company records before issuance as an official experience credential."),
-     E("div",{className:"doc-section"},"PROFESSIONAL ENGAGEMENT DETAILS"),
-     E(DetailTable,{candidate:c,keys:["name","role","domain","joining","endDate"]}),
-     E("div",{className:"doc-section"},"PROFESSIONAL RESPONSIBILITIES"),
-     E("p",{},"Throughout the engagement, the individual was expected to:"),
-     E("p",{},"1. Demonstrate professional conduct, accountability and responsibility in assigned activities."),
-     E("p",{},"2. Follow organizational procedures and instructions communicated by the designated supervisor."),
-     E("p",{},"3. Maintain confidentiality of company information and project-related materials."),
-     E("p",{},"4. Complete assigned responsibilities with appropriate attention to quality and timelines."),
-     E("div",{className:"doc-section"},"ORGANIZATIONAL ACKNOWLEDGEMENT"),
-     E("p",{},"We appreciate the individual's association with ",E("b",{},COMPANY)," and wish them continued success in their future professional endeavours."),
-     E("p",{},"This letter is issued for professional reference purposes, subject to verification by the authorized company representative."),
-     E(Signoff,{department:"Human Resources Department"})
-    ),
-    E(DocFooter)
-   );
-  }
-
-  function RenderDocument(props){
-   const id=props.template.id;
-   if(id==="offer")return E(OfferLetter,{candidate:props.candidate});
-   if(id==="training")return E(TrainingLetter,{candidate:props.candidate});
-   if(id==="experience")return E(ExperienceLetter,{candidate:props.candidate});
-   if(id==="participation")return E(ParticipationCertificate,{candidate:props.candidate});
-   return E(CompletionCertificate,{candidate:props.candidate,template:props.template});
-  }
-
-  function App(){
-   const [records,setRecords]=React.useState([]);
-   const [selectedKey,setSelectedKey]=React.useState("");
-   const [templateId,setTemplateId]=React.useState("offer");
-   const [source,setSource]=React.useState("sheet");
-   const [manual,setManual]=React.useState({});
-   const [search,setSearch]=React.useState("");
-   const [filter,setFilter]=React.useState("ALL");
-   const [loading,setLoading]=React.useState(true);
-   const [error,setError]=React.useState("");
-   const [notice,setNotice]=React.useState("");
-   const [lastSync,setLastSync]=React.useState("");
-   const [preview,setPreview]=React.useState(false);
-
-   const template=TEMPLATES.find(t=>t.id===templateId)||TEMPLATES[0];
-   const fields=FIELDS[templateId]||[];
-
-   const refresh=React.useCallback(async()=>{
-    setLoading(true);
-    setError("");
-    try{
-     const data=await loadCandidates();
-     setRecords(data);
-     setSelectedKey(old=>data.some(c=>c.key===old)?old:(data[0]?.key||""));
-     setLastSync(new Date().toLocaleTimeString("en-IN"));
-     setNotice(data.length+" actual candidate records synchronized from Google Sheets.");
-    }catch(e){
-     setError(e.message||"Unable to read Google Sheets.");
-     setNotice("");
-    }finally{
-     setLoading(false);
-    }
-   },[]);
-
-   React.useEffect(()=>{
-    refresh();
-    const timer=setInterval(refresh,30000);
-    return()=>clearInterval(timer);
-   },[refresh]);
-
-   const sheetCandidate=records.find(c=>c.key===selectedKey)||null;
-   const candidate=source==="manual"?Object.assign({},manual,{source:"manual"}):sheetCandidate;
-   const missing=fields.some(f=>f.required&&!String(manual[f.key]||"").trim());
-   const canPreview=source==="sheet"?Boolean(sheetCandidate):!missing;
-
-   const sent=records.filter(c=>getStatus(c.status)==="SENT").length;
-   const pending=records.filter(c=>getStatus(c.status)==="PENDING").length;
-   const failed=records.filter(c=>getStatus(c.status)==="FAILED").length;
-
-   function updateManual(key,value){
-    setManual(old=>Object.assign({},old,{[key]:sanitize(key,value)}));
-   }
-
-   function chooseTemplate(id){
-    setTemplateId(id);
-    setPreview(false);
-    if(source==="manual")setManual({});
-   }
-
-   const visible=records.filter(c=>{
-    const query=search.trim().toLowerCase();
-    const match=!query||[c.name,c.aid,c.email,c.phone,c.domain].join(" ").toLowerCase().includes(query);
-    return match&&(filter==="ALL"||getStatus(c.status)===filter);
-   });
-
-   function sourceTab(mode){
-    setSource(mode);
-    setPreview(false);
-    if(mode==="manual")setManual({});
-   }
-
-   return E("main",{className:"app"},
-    E("header",{className:"header no-print"},
-     E("a",{href:WEBSITE,target:"_blank",rel:"noreferrer"},
-      E(CompanyLogo,{className:"logo"})
-     ),
-     E("div",{className:"actions"},
-      E("a",{className:"btn",href:WEBSITE,target:"_blank",rel:"noreferrer"},"Company Website ↗"),
-      E("a",{className:"btn",href:SHEET_URL,target:"_blank",rel:"noreferrer"},"Google Sheet ↗"),
-      E("a",{className:"btn dark",href:GMAIL_URL,target:"_blank",rel:"noreferrer"},"Company Gmail ↗"),
-      E("button",{className:"btn orange",onClick:refresh,disabled:loading},loading?"Syncing...":"↻ Refresh")
-     )
-    ),
-
-    E("section",{className:"hero no-print"},
-     E("div",{className:"eyebrow"},"VR PI GROUP • ENTERPRISE OPERATIONS SUITE"),
-     E("h1",{},"Enterprise Talent",E("br"),E("span",{style:{color:"#1e3a5f"}},"Excellence Platform")),
-     E("p",{},"A unified enterprise solution for intelligent talent management, official documentation, professional certifications, and automated corporate communication.")
-    ),
-
-    error?E("div",{className:"alert error no-print"},
-     E("b",{},"Google Sheets connection: "),error,
-     E("br"),E("br"),
-     "Direct HTML access requires a spreadsheet that is link-viewable. No sample records are displayed. Private candidate information should not be made public."
-    ):null,
-
-    notice?E("div",{className:"alert success no-print"},notice," • Last sync: ",lastSync):null,
-
-    E("section",{className:"stats no-print"},
-     [
-      ["TOTAL APPLICANTS",records.length,"Actual sheet records","ALL","#1e3a5f"],
-      ["LETTERS SENT",sent,"Actual sent status","SENT","#15803d"],
-      ["PENDING ACTIONS",pending,"Actual pending status","PENDING","#b45309"],
-      ["FAILED RECORDS",failed,"Actual failed status","FAILED","#dc2626"]
-     ].map(([label,value,note,key,color])=>
-      E("div",{className:"stat "+(filter===key?"active":""),key:key},
-       E("button",{onClick:()=>setFilter(key)},
-        E("label",{},label),
-        E("strong",{style:{color}},String(value)),
-        E("small",{},note)
-       )
-      )
-     )
-    ),
-
-    E("section",{className:"panel no-print"},
-     E("div",{className:"section-head"},
-      E("div",{},
-       E("div",{className:"kicker"},"LIVE DATA MANAGEMENT • READ ONLY"),
-       E("h2",{},"Candidate Records"),
-       E("p",{className:"description"},"Actual Google Sheet records • Automatic synchronization every 30 seconds.")
-      ),
-      E("input",{className:"search",value:search,onChange:e=>setSearch(e.target.value),placeholder:"Search name, ID or email..."})
-     ),
-     E("div",{className:"table-wrap"},
-      loading&&records.length===0?
-       E("div",{className:"empty"},"Connecting to Google Sheets..."):
-       visible.length===0?
-        E("div",{className:"empty"},error?"Sheet data unavailable. Check the connection.":"No actual records match the selected filter."):
-        E("table",{className:"records"},
-         E("thead",{},E("tr",{},
-          ["Application ID","Candidate","Email","Phone","Domain","Status","PDF Record","Timestamp","Action"].map(x=>E("th",{key:x},x))
-         )),
-         E("tbody",{},visible.map(c=>{
-          const status=getStatus(c.status);
-          return E("tr",{key:c.key},
-           E("td",{},c.aid||"—"),
-           E("td",{},E("b",{},c.name||"—")),
-           E("td",{},c.email||"—"),
-           E("td",{},c.phone||"—"),
-           E("td",{},c.domain||"—"),
-           E("td",{},E("span",{className:"status "+status.toLowerCase()},c.status||"Not recorded")),
-           E("td",{},c.pdf||"—"),
-           E("td",{},c.timestamp||"—"),
-           E("td",{},E("button",{className:"text-btn",onClick:()=>{
-            setSource("sheet");
-            setSelectedKey(c.key);
-            setTemplateId("offer");
-            setPreview(true);
-           }},"Preview"))
-          );
-         }))
-        )
-     ),
-     E("div",{style:{fontSize:9,color:"#94a3b8",marginTop:12}},
-      records.length+" actual records • Read-only access • 30-second refresh"
-     )
-    ),
-
-    E("section",{className:"panel no-print"},
-     E("div",{className:"kicker"},"OFFICIAL CORPORATE DOCUMENT LIBRARY"),
-     E("h2",{},"Professional Document Generation"),
-     E("p",{className:"description"},"Select an actual sheet candidate or enter only the information needed by the selected template. Manual preview details never update the spreadsheet."),
-
-     E("div",{className:"source-tabs"},
-      E("button",{className:"tab "+(source==="sheet"?"active":""),onClick:()=>sourceTab("sheet")},"Use Google Sheet Record"),
-      E("button",{className:"tab "+(source==="manual"?"active":""),onClick:()=>sourceTab("manual")},"Enter Details Manually")
-     ),
-
-     E("div",{className:"template-layout"},
-      E("div",{className:"field"},
-       E("label",{},"SELECT CANDIDATE"),
-       source==="sheet"?
-        E("select",{value:selectedKey,onChange:e=>setSelectedKey(e.target.value)},
-         E("option",{value:""},"Select actual candidate"),
-         records.map(c=>E("option",{key:c.key,value:c.key},c.name+" — "+(c.aid||"No ID")))
-        ):
-        E("div",{className:"alert info"},"Manual preview mode. Only template-specific fields will appear below.")
-      ),
-      E("div",{className:"field"},
-       E("label",{},"SELECT DOCUMENT TEMPLATE"),
-       E("select",{value:templateId,onChange:e=>chooseTemplate(e.target.value)},
-        E("optgroup",{label:"Internship"},TEMPLATES.filter(t=>t.group==="Internship").map(t=>E("option",{key:t.id,value:t.id},t.name))),
-        E("optgroup",{label:"Training"},TEMPLATES.filter(t=>t.group==="Training").map(t=>E("option",{key:t.id,value:t.id},t.name))),
-        E("optgroup",{label:"Certification"},TEMPLATES.filter(t=>t.group==="Certification").map(t=>E("option",{key:t.id,value:t.id},t.name)))
-       ),
-       E("div",{className:"template-info"},
-        E("span",{className:"kicker",style:{color:template.color}},"VR PI • OFFICIAL DOCUMENT"),
-        E("strong",{},template.name),
-        E("p",{},template.desc),
-        E("div",{className:"pills"},
-         E("span",{className:"pill"},template.group),
-         E("span",{className:"pill"},["intern-completion","training-completion","participation"].includes(template.id)?"A4 Landscape":"A4 Portrait"),
-         E("span",{className:"pill"},"PDF Preview")
-        )
-       )
-      )
-     ),
-
-     source==="manual"?
-      E("div",{className:"manual-box"},
-       E("div",{className:"kicker"},"TEMPLATE-SPECIFIC DETAILS"),
-       E("h2",{},template.name),
-       E("p",{className:"description"},"Only the required information is displayed for this document."),
-       E("div",{className:"form-grid"},
-        fields.map(f=>
-         E("div",{className:"form-field",key:f.key},
-          E("label",{},f.label,f.required?" *":""),
-          f.type==="select"?
-           E("select",{value:manual[f.key]||"",onChange:e=>updateManual(f.key,e.target.value)},
-            E("option",{value:""},"Select "+f.label),
-            f.options.map(o=>E("option",{key:o,value:o},o))
-           ):
-           E("input",{type:f.type||"text",value:manual[f.key]||"",placeholder:"Enter "+f.label.toLowerCase(),onChange:e=>updateManual(f.key,e.target.value)})
-         )
-        )
-       ),
-       E("div",{className:"alert info"},"Manual details are held in temporary page memory only. No spreadsheet row or database record is created."),
-       E("div",{className:"form-actions"},
-        E("button",{className:"btn",onClick:()=>setManual({})},"Clear Details"),
-        E("button",{className:"btn orange",disabled:missing,onClick:()=>setPreview(true)},"Preview Document →")
-       )
-      ):
-      E("div",{className:"section-head",style:{marginTop:22}},
-       E("span",{className:"description"},sheetCandidate?"Selected: "+sheetCandidate.name:"Select an actual sheet candidate."),
-       E("button",{className:"btn orange",disabled:!sheetCandidate,onClick:()=>setPreview(true)},"Preview A4 Document →")
-      )
-    ),
-
-    E("footer",{className:"footer no-print"},
-     E(CompanyLogo,{className:"footer-logo"}),
-     E("b",{},COMPANY),E("br"),LOCATION,E("br"),EMAIL,E("br"),
-     E("a",{href:WEBSITE,target:"_blank",rel:"noreferrer"},"Official Company Website ↗"),
-     E("p",{},"Enterprise Talent Excellence Platform")
-    ),
-
-    preview&&candidate?E("div",{className:"modal"},
-     E("div",{className:"modal-inner"},
-      E("div",{className:"modalbar no-print"},
-       E("strong",{},template.name+" • "+candidate.name),
-       E("div",{className:"modal-actions"},
-        source==="sheet"?E("select",{value:selectedKey,onChange:e=>setSelectedKey(e.target.value)},
-         records.map(c=>E("option",{key:c.key,value:c.key},c.name+" — "+(c.aid||"")))
-        ):null,
-        E("button",{className:"btn orange",onClick:()=>window.print()},"Print / Save PDF"),
-        E("button",{className:"btn",onClick:()=>setPreview(false)},"Close ×")
-       )
-      ),
-      E("div",{className:"modal-tabs no-print"},
-       TEMPLATES.map(t=>E("button",{key:t.id,className:templateId===t.id?"active":"",onClick:()=>chooseTemplate(t.id)},t.name))
-      ),
-      E("div",{id:"printTarget"},
-       E(RenderDocument,{candidate,template})
-      )
-     )
-    ):null
-   );
-  }
-
-  try{
-   ReactDOM.createRoot(document.getElementById("root")).render(E(App));
-  }catch(error){
-   showFatal("React application error: "+error.message);
-  }
+  reader.onerror=()=>setMessage("Unable to read this CSV file. Please export it again from Google Sheets.");
+  reader.readAsText(file);
  }
-})();
+
+ function chooseRecord(index){
+  const c=records[Number(index)];
+  if(!c)return;
+  setSelectedIndex(index);
+  setMode("sheet");
+  setData({
+   name:cleanLetters(c.name||""),
+   domain:cleanLetters(c.domain||""),
+   mode:cleanLetters(c.mode||"Online")||"Online",
+   duration:cleanDuration(c.duration||"3 Months"),
+   startDate:c.startDate||""
+  });
+ }
+
+ function valid(){
+  if(!data.name.trim()||!data.domain.trim()||!data.mode.trim()||!data.duration.trim()||!data.startDate){
+   setMessage("Please complete all required fields before previewing the document.");
+   return false;
+  }
+  return true;
+ }
+
+ function openPreview(id){
+  if(id)setTemplateId(id);
+  if(!valid())return;
+  setPreview(true);
+ }
+
+ return <main className="app">
+  <header className="header no-print">
+   <Logo style={{width:190}}/>
+   <div className="actions">
+    <a className="btn" href={WEBSITE} target="_blank" rel="noreferrer">Company Website ↗</a>
+    <a className="btn" href={SHEET_URL} target="_blank" rel="noreferrer">Google Sheet ↗</a>
+    <a className="btn primary" href={GMAIL_URL} target="_blank" rel="noreferrer">Company Gmail ↗</a>
+   </div>
+  </header>
+
+  <section className="hero no-print">
+   <div className="eyebrow">VR PI GROUP • ENTERPRISE OPERATIONS SUITE</div>
+   <h1>Enterprise Talent<br/><span>Excellence Platform</span></h1>
+   <p>A professional corporate platform for candidate records, official internship documentation, training appointments, experience letters and certificates.</p>
+  </section>
+
+  <section className="stats no-print">
+   <div className="stat"><label>TOTAL APPLICANTS</label><strong>{records.length}</strong><small>Imported Google Sheet records</small></div>
+   <div className="stat"><label>LETTERS SENT</label><strong>{sent}</strong><small>Based on imported status values</small></div>
+   <div className="stat"><label>PENDING ACTIONS</label><strong>{pending}</strong><small>Records not marked sent or failed</small></div>
+   <div className="stat"><label>FAILED RECORDS</label><strong>{failed}</strong><small>Based on imported status values</small></div>
+  </section>
+
+  <section className="panel no-print">
+   <div className="kicker">LIVE DATA MANAGEMENT • CSV IMPORT</div>
+   <h2>Candidate Records</h2>
+   <p className="desc">Import the latest CSV downloaded from your company Google Sheet. The dashboard reads the imported records without a database or backend.</p>
+   <div className="notice warning">{message}<br/><br/>Private Google Sheets cannot be read directly by a local HTML file without an authenticated integration. This page does not make your candidate data public.</div>
+   <div className="toolbar">
+    <button className="btn primary" onClick={()=>fileRef.current.click()}>Import Google Sheet CSV</button>
+    <input ref={fileRef} type="file" accept=".csv,text/csv" onChange={e=>importCSV(e.target.files[0])}/>
+    <a className="btn" href={SHEET_URL} target="_blank" rel="noreferrer">Open Company Sheet ↗</a>
+    <input className="search" placeholder="Search name, email or domain..." value={search} onChange={e=>setSearch(e.target.value)}/>
+   </div>
+   <div className="table-wrap">
+    <table className="records">
+     <thead><tr><th>FULL NAME</th><th>EMAIL</th><th>DOMAIN</th><th>MODE</th><th>DURATION</th><th>STATUS</th><th>ACTION</th></tr></thead>
+     <tbody>
+      {filtered.map((r,i)=>{
+       const original=records.indexOf(r);
+       const s=/sent|success|issued|completed/i.test(r.status)?"sent":/fail|error/i.test(r.status)?"failed":"pending";
+       return <tr key={original}>
+        <td><b>{r.name||"—"}</b></td>
+        <td>{r.email||"—"}</td>
+        <td>{r.domain||"—"}</td>
+        <td>{r.mode||"—"}</td>
+        <td>{r.duration||"—"}</td>
+        <td><span className={"status "+s}>{r.status||"Not specified"}</span></td>
+        <td><button className="btn" onClick={()=>chooseRecord(String(original))}>Use Record</button></td>
+       </tr>;
+      })}
+      {!filtered.length&&<tr><td colSpan="7"><div className="empty">No imported candidate records. Import your Google Sheet CSV to display records.</div></td></tr>}
+     </tbody>
+    </table>
+   </div>
+  </section>
+
+  <section className="panel no-print">
+   <div className="kicker">CORPORATE DOCUMENT LIBRARY</div>
+   <h2>Professional Document Generation</h2>
+   <p className="desc">Choose a candidate record or enter details manually. Manual details are used only to generate the preview and are not added to your Google Sheet.</p>
+
+   <div className="toolbar">
+    <button className={"btn "+(mode==="sheet"?"primary":"")} onClick={()=>setMode("sheet")}>Use Google Sheet Record</button>
+    <button className={"btn "+(mode==="manual"?"primary":"")} onClick={()=>{setMode("manual");setSelectedIndex("");setData({name:"",domain:"",mode:"Online",duration:"3 Months",startDate:""})}}>Enter Candidate Details Manually</button>
+   </div>
+
+   {mode==="sheet"&&<div className="notice">
+    <b>Select an imported candidate</b>
+    <div className="field" style={{marginTop:10}}>
+     <select value={selectedIndex} onChange={e=>chooseRecord(e.target.value)}>
+      <option value="">Select candidate from imported records</option>
+      {records.map((r,i)=><option value={i} key={i}>{r.name} {r.email?"— "+r.email:""}</option>)}
+     </select>
+    </div>
+    {!records.length&&<p>No imported records. Import your Google Sheet CSV above first.</p>}
+   </div>}
+
+   <div className="kicker" style={{marginTop:25}}>CANDIDATE DOCUMENT DETAILS</div>
+   <h2>Create a document from your details</h2>
+   <p className="desc">Only the information required for professional document generation is requested.</p>
+
+   <div className="field-grid">
+    <div className="field">
+     <label>FULL NAME *</label>
+     <input value={data.name} maxLength="70" placeholder="Enter candidate full name" onChange={e=>update("name",cleanLetters(e.target.value))}/>
+     <small>Letters and spaces only.</small>
+    </div>
+    <div className="field">
+     <label>PROGRAMME DOMAIN *</label>
+     <input value={data.domain} maxLength="80" placeholder="Example: Cloud Computing" onChange={e=>update("domain",cleanLetters(e.target.value))}/>
+     <small>Letters and spaces only.</small>
+    </div>
+    <div className="field">
+     <label>PROGRAMME MODE *</label>
+     <input value={data.mode} maxLength="30" placeholder="Online, Offline or Hybrid" onChange={e=>update("mode",cleanLetters(e.target.value))}/>
+     <small>Letters and spaces only.</small>
+    </div>
+    <div className="field">
+     <label>PROGRAMME DURATION *</label>
+     <input value={data.duration} maxLength="30" placeholder="Example: 3 Months" onChange={e=>update("duration",cleanDuration(e.target.value))}/>
+     <small>Letters, numbers and spaces only.</small>
+    </div>
+    <div className="field">
+     <label>START DATE *</label>
+     <input type="date" value={data.startDate} onChange={e=>update("startDate",e.target.value)}/>
+    </div>
+    <div className="field">
+     <label>DOCUMENT ISSUE DATE</label>
+     <input value={today()} disabled/>
+    </div>
+   </div>
+
+   <div className="notice success">Company details are automatically included in the documents: {COMPANY}, {LOCATION} and {EMAIL}. Your exact uploaded logo is embedded in this HTML file.</div>
+
+   <div className="kicker" style={{marginTop:30}}>SELECT DOCUMENT TEMPLATE</div>
+   <div className="templates">
+    {TEMPLATES.map(t=><article className={"template "+(templateId===t.id?"active":"")} key={t.id}>
+     <span className="template-color" style={{color:t.color}}>VR PI • OFFICIAL DOCUMENT</span>
+     <h3>{t.name}</h3>
+     <p>{t.desc}</p>
+     <button className="btn primary" onClick={()=>openPreview(t.id)}>Preview A4 Document →</button>
+    </article>)}
+   </div>
+
+   <div style={{display:"flex",justifyContent:"flex-end",marginTop:23}}>
+    <button className="btn orange" onClick={()=>openPreview(templateId)}>Open A4 / PDF Preview</button>
+   </div>
+  </section>
+
+  <footer className="footer no-print">
+   <Logo/>
+   <b>{COMPANY}</b><br/>
+   {LOCATION}<br/>
+   {EMAIL}<br/>
+   <a href={WEBSITE} target="_blank" rel="noreferrer">Official Company Website ↗</a>
+   <p>Enterprise Talent Excellence Platform</p>
+  </footer>
+
+  {preview&&<div className="modal">
+   <div className="modal-inner">
+    <div className="modalbar no-print">
+     <strong>{template.name} • {data.name}</strong>
+     <div className="modal-actions">
+      <select value={templateId} onChange={e=>setTemplateId(e.target.value)}>
+       {TEMPLATES.map(t=><option key={t.id} value={t.id}>{t.name}</option>)}
+      </select>
+      <button className="btn orange" onClick={()=>window.print()}>Print / Save PDF</button>
+      <button className="btn" onClick={()=>setPreview(false)}>Close ×</button>
+     </div>
+    </div>
+    <div id="printTarget">
+     <DocumentView template={templateId} data={data}/>
+    </div>
+   </div>
+  </div>}
+ </main>;
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
 </script>
 </body>
 </html>
