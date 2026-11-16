@@ -84,7 +84,7 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
 .preview-stage{background:#94a3b8;padding:16px 8px;border-radius:0 0 10px 10px;border:1px solid #94a3b8;overflow:auto;max-height:820px;display:flex;justify-content:center}
 .preview-scaled-wrap{transform-origin:top center;transition:transform .12s ease}
 
-/* Single A4 Clean Layout (Fitted to 1 page max 270mm) */
+/* Single A4 Clean Layout */
 .a4{width:210mm;height:296mm;max-height:296mm;overflow:hidden;background:white;margin:auto;display:flex;flex-direction:column;color:#26354d;box-shadow:0 6px 20px #00000020;page-break-inside:avoid;break-inside:avoid}
 .doc-header{padding:12px 28px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #1e3a5f;gap:12px}
 .doc-logo{width:130px;height:65px;object-fit:contain;display:block}
@@ -130,7 +130,7 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
 .well-done .star{font-size:15px;color:#bc923f}
 .completion-footer{background:#132e50;color:#fff;padding:8px 14px;text-align:center;font-size:7.5px;line-height:1.6;border-top:3px solid #c69f4d;margin-top:auto}
 
-/* Participation Certificate (Landscape Exact 1 Page) */
+/* Participation Certificate */
 .participation-page{width:297mm;height:208mm;max-height:208mm;position:relative;overflow:hidden;background:#fffdf8;border:7px double #cba85a;padding:8mm 12mm;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;page-break-inside:avoid;break-inside:avoid}
 .participation-page:before{content:"";position:absolute;left:-5%;top:-45px;width:110%;height:65px;background:#17395c;border-bottom:7px solid #e6ce8f;border-radius:0 0 50% 50%;z-index:0}
 .participation-page:after{content:"";position:absolute;left:-5%;bottom:-45px;width:110%;height:75px;background:#17395c;border-top:7px solid #e6ce8f;border-radius:50% 50% 0 0;z-index:0}
@@ -150,20 +150,28 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
 
 /* Modal Overlay */
 .modal-overlay{position:fixed;inset:0;background:#090d16cc;backdrop-filter:blur(3px);z-index:200;display:flex;align-items:center;justify-content:center;padding:14px;overflow-y:auto}
-.cred-card{background:white;border-radius:16px;max-width:600px;width:100%;box-shadow:0 25px 60px #00000040;overflow:hidden}
+.cred-card{background:white;border-radius:16px;max-width:620px;width:100%;box-shadow:0 25px 60px #00000040;overflow:hidden}
 .cred-header{padding:18px 22px;color:white;display:flex;justify-content:space-between;align-items:center}
 .cred-title-row{display:flex;align-items:center;gap:12px}
 .cred-g-icon{width:38px;height:38px;background:#ffffff20;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px}
 .cred-header h3{margin:0;font-size:16px;font-weight:700}
 .cred-header p{margin:2px 0 0;font-size:10.5px;opacity:.9}
-.close-round{background:#ffffff20;border:0;color:white;width:30px;height:30px;border-radius:50%;font-size:17px}
+.close-round{background:#ffffff20;border:0;color:white;width:30px;height:30px;border-radius:50%;font-size:17px;cursor:pointer}
 .cred-body{padding:18px 22px}
 .cred-field{margin-bottom:13px}
 .cred-field label{display:flex;justify-content:space-between;align-items:center;font-size:10.5px;font-weight:700;color:#334155;margin-bottom:5px}
+.cred-input-wrap{display:flex;gap:6px;align-items:center}
 .cred-input{width:100%;padding:10px 12px;border:1px solid #cbd5e1;border-radius:8px;font-size:11.5px;outline:none;background:#f8fafc}
 .cred-input:focus{border-color:#4338ca;background:white}
+.btn-sm{padding:7px 10px;border-radius:7px;font-size:10px;font-weight:700;border:1px solid #cbd5e1;background:#f1f5f9;color:#334155;white-space:nowrap;cursor:pointer}
+.btn-sm:hover{background:#e2e8f0}
 .app-pwd-help{background:#f8fafc;border:1px dashed #cbd5e1;border-radius:10px;padding:11px 14px;font-size:9.5px;color:#475569;line-height:1.6}
-.cred-footer{padding:14px 22px;background:#f8fafc;border-top:1px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center}
+.cred-footer{padding:14px 22px;background:#f8fafc;border-top:1px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+
+/* Account Presets Pill Bar */
+.acc-presets{display:flex;gap:8px;margin-bottom:14px}
+.acc-pill{padding:7px 12px;border-radius:20px;font-size:10.5px;font-weight:700;border:1px solid #cbd5e1;background:#f8fafc;color:#475569;cursor:pointer}
+.acc-pill.active{background:#1e3a5f;color:white;border-color:#1e3a5f}
 
 footer{text-align:center;color:#8491a5;font-size:9.5px;padding:22px}
 footer .logo{width:80px;height:auto;margin:0 auto 6px}
@@ -337,7 +345,7 @@ function StandardDocument({data,template,senderEmail,displayName}){
   const intro=offer
   ?`We are pleased to offer ${candidateName} an internship opportunity with ${COMPANY} in the ${candidateDomain} programme. We are delighted to welcome you to our professional team.`
   :training
-  ?`We are pleased to appoint ${candidateName} to the ${candidateDomain} training programme with ${COMPANY}. This appointment provides structured learning and hands-on skills.`
+  ?`We are pleased to appoint ${candidateName} to the ${candidateDomain} training programme with ${COMPANY}. This appointment provides structured learning and practical technical exposure.`
   :`This letter confirms the professional engagement of ${candidateName} with ${COMPANY} in the capacity of ${candidateRole} within the ${candidateDomain} domain.`;
 
   return <div className="a4">
@@ -520,17 +528,18 @@ function DocumentRenderer({data,template,senderEmail,displayName}){
   return <StandardDocument data={data} template={template} senderEmail={senderEmail} displayName={displayName}/>;
 }
 
-/* Gmail Credentials Modal */
+/* Enhanced Gmail Credentials Modal with Account Switcher & Direct Launch */
 function GmailModal({open,onClose,credentials,onSave}){
   const [form,setForm]=useState({
     email:"vrpigroupoftechnology@gmail.com",
-    password:"",
+    password:"Vrpi_1234",
     displayName:"VR PI TECH SOLUTIONS HR",
     active:true,
     ...credentials
   });
   const [showPassword,setShowPassword]=useState(false);
-  const [testResult,setTestResult]=useState(null);
+  const [copiedField,setCopiedField]=useState("");
+  const [notice,setNotice]=useState("");
 
   useEffect(()=>{
     if(credentials)setForm(prev=>({...prev,...credentials}));
@@ -538,17 +547,28 @@ function GmailModal({open,onClose,credentials,onSave}){
 
   if(!open)return null;
 
-  function handleTest(){
-    if(!form.email || !form.email.includes("@")){
-      setTestResult({type:"error",msg:"Please enter a valid Gmail address."});
-      return;
-    }
-    setTestResult({type:"success",msg:`Verified! Dispatcher ready as "${form.displayName}" <${form.email}>.`});
+  function copyText(txt,name){
+    navigator.clipboard.writeText(txt);
+    setCopiedField(name);
+    setTimeout(()=>setCopiedField(""),2000);
+  }
+
+  function launchThisGmail(){
+    if(!form.email)return;
+    // Uses Google's Account Chooser to target this specific email directly
+    const url = `https://accounts.google.com/AccountChooser?service=mail&continue=${encodeURIComponent('https://mail.google.com/mail/')}&Email=${encodeURIComponent(form.email)}`;
+    window.open(url, "_blank");
+  }
+
+  function launchAddAccount(){
+    // Direct Google add session URL
+    window.open(`https://accounts.google.com/AddSession?service=mail&continue=https://mail.google.com/`, "_blank");
   }
 
   function handleSave(){
     onSave(form);
-    onClose();
+    setNotice("Credentials saved and set as primary sender!");
+    setTimeout(()=>setNotice(""),3000);
   }
 
   return <div className="modal-overlay" onClick={e=>{if(e.target===e.currentTarget)onClose();}}>
@@ -557,29 +577,67 @@ function GmailModal({open,onClose,credentials,onSave}){
         <div className="cred-title-row">
           <div className="cred-g-icon">✉</div>
           <div>
-            <h3>Google Gmail Credentials</h3>
-            <p>Recruitment Dispatcher & Custom Email Setup</p>
+            <h3>Google Gmail Credentials & Account Hub</h3>
+            <p>Access, switch, or dispatch from any Gmail account</p>
           </div>
         </div>
         <button className="close-round" onClick={onClose}>×</button>
       </div>
 
       <div className="cred-body">
-        <div className="cred-field">
-          <label>Sender Gmail Address *</label>
-          <input className="cred-input" placeholder="e.g. srijayelleni@gmail.com" value={form.email} onChange={e=>setForm({...form,email:e.target.value})}/>
+        {/* Quick Presets */}
+        <div className="acc-presets">
+          <button
+            type="button"
+            className={`acc-pill ${form.email==="vrpigroupoftechnology@gmail.com"?"active":""}`}
+            onClick={()=>setForm({
+              email:"vrpigroupoftechnology@gmail.com",
+              password:"Vrpi_1234",
+              displayName:"VR PI TECH SOLUTIONS HR",
+              active:true
+            })}
+          >
+            🏢 Company Gmail
+          </button>
+          <button
+            type="button"
+            className={`acc-pill ${form.email!=="vrpigroupoftechnology@gmail.com"?"active":""}`}
+            onClick={()=>setForm(prev=>({
+              ...prev,
+              email:prev.email==="vrpigroupoftechnology@gmail.com"?"srijayelleni@gmail.com":prev.email,
+              displayName:"HR Department",
+              active:true
+            }))}
+          >
+            👤 Custom / Other Gmail
+          </button>
         </div>
 
         <div className="cred-field">
           <label>
-            <span>Password (Google App Password or Account Password)</span>
-            <a href="https://myaccount.google.com/apppasswords" target="_blank" rel="noreferrer" style={{color:"#4f46e5",textDecoration:"none",fontSize:10,fontWeight:700}}>Generate App Password ↗</a>
+            <span>Sender Gmail Address *</span>
+            {form.email&&<button type="button" className="btn-sm" onClick={()=>copyText(form.email,"email")}>
+              {copiedField==="email"?"✓ Copied!":"📋 Copy Email"}
+            </button>}
+          </label>
+          <input className="cred-input" placeholder="e.g. srijayelleni@gmail.com or hr@vrpigroup.co.in" value={form.email} onChange={e=>setForm({...form,email:e.target.value})}/>
+        </div>
+
+        <div className="cred-field">
+          <label>
+            <span>Account Password or Google App Password</span>
+            <div style={{display:"flex",gap:6}}>
+              {form.password&&<button type="button" className="btn-sm" onClick={()=>copyText(form.password,"pwd")}>
+                {copiedField==="pwd"?"✓ Copied!":"📋 Copy Password"}
+              </button>}
+              <a href="https://myaccount.google.com/apppasswords" target="_blank" rel="noreferrer" style={{color:"#4f46e5",textDecoration:"none",fontSize:10,fontWeight:700,alignSelf:"center"}}>Generate App Password ↗</a>
+            </div>
           </label>
           <div style={{position:"relative"}}>
             <input
               type={showPassword?"text":"password"}
               className="cred-input"
-              placeholder="Enter App Password (16 letters) or Account Password"
+              placeholder="Enter password (e.g. Vrpi_1234 or 16-letter app password)"
               value={form.password}
               onChange={e=>setForm({...form,password:e.target.value})}
             />
@@ -595,19 +653,29 @@ function GmailModal({open,onClose,credentials,onSave}){
         </div>
 
         <div className="app-pwd-help">
-          <strong>💡 About Gmail Authentication:</strong>
-          <p style={{margin:"4px 0"}}>• You can input your Google App Password (recommended by Google for 2FA accounts) or standard account password.</p>
-          <p style={{margin:"4px 0"}}>• You can also use the <b>"Compose in Gmail"</b> button anytime to send documents directly from your currently signed-in browser Gmail with zero login blocks.</p>
+          <strong>💡 How to open & avoid Google's "We couldn't verify it's you" block:</strong>
+          <p style={{margin:"3px 0"}}>1. Click <b>"🚀 Open This Gmail Account"</b> below to launch Google Account Chooser for <b>{form.email}</b>.</p>
+          <p style={{margin:"3px 0"}}>2. If prompted, click <b>"📋 Copy Password"</b> above and paste it directly into Google.</p>
+          <p style={{margin:"3px 0"}}>3. If it's a shared email blocked by 2-step verification, select <b>"👤 Custom / Other Gmail"</b> above and use your own Gmail account.</p>
         </div>
 
-        {testResult&&<div style={{padding:"8px 12px",borderRadius:8,marginTop:10,background:testResult.type==="error"?"#fef2f2":"#ecfdf5",color:testResult.type==="error"?"#991b1b":"#065f46",fontSize:11}}>
-          {testResult.msg}
+        {notice&&<div style={{padding:"8px 12px",borderRadius:8,marginTop:10,background:"#ecfdf5",color:"#065f46",fontSize:11}}>
+          {notice}
         </div>}
       </div>
 
       <div className="cred-footer">
-        <button className="btn" onClick={handleTest}>✈ Test Setup</button>
-        <button className="btn dark" style={{background:"#4338ca",borderColor:"#4338ca"}} onClick={handleSave}>💾 Save Credentials</button>
+        <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
+          <button type="button" className="btn" style={{background:"#1e3a5f",color:"white"}} onClick={launchThisGmail}>
+            🚀 Open {form.email.split("@")[0]} In Gmail ↗
+          </button>
+          <button type="button" className="btn" onClick={launchAddAccount}>
+            ➕ Add Google Session ↗
+          </button>
+        </div>
+        <button type="button" className="btn dark" style={{background:"#4338ca",borderColor:"#4338ca"}} onClick={handleSave}>
+          💾 Save Credentials
+        </button>
       </div>
     </div>
   </div>;
@@ -724,8 +792,8 @@ function App(){
   const [gmailCreds,setGmailCreds]=useState(()=>{
     try{
       const s=localStorage.getItem("vrpi_gmail_creds");
-      return s?JSON.parse(s):{email:"srijayelleni@gmail.com",password:"",displayName:"VR PI TECH SOLUTIONS HR",active:true};
-    }catch(e){return {email:"srijayelleni@gmail.com",password:"",displayName:"VR PI TECH SOLUTIONS HR",active:true};}
+      return s?JSON.parse(s):{email:"vrpigroupoftechnology@gmail.com",password:"Vrpi_1234",displayName:"VR PI TECH SOLUTIONS HR",active:true};
+    }catch(e){return {email:"vrpigroupoftechnology@gmail.com",password:"Vrpi_1234",displayName:"VR PI TECH SOLUTIONS HR",active:true};}
   });
   const [gmailModalOpen,setGmailModalOpen]=useState(false);
 
@@ -806,7 +874,14 @@ function App(){
     try{localStorage.setItem("vrpi_teams_creds",JSON.stringify(c));}catch(e){}
   }
 
-  /* One-Click Gmail Composer - Bypasses login verification roadblocks! */
+  /* Opens whichever Gmail account is active in credentials */
+  function openCurrentGmailAccount(){
+    const target = gmailCreds.email || "vrpigroupoftechnology@gmail.com";
+    const url = `https://accounts.google.com/AccountChooser?service=mail&continue=${encodeURIComponent('https://mail.google.com/mail/')}&Email=${encodeURIComponent(target)}`;
+    window.open(url, "_blank");
+  }
+
+  /* One-Click Gmail Composer */
   function composeInGmail(){
     const to = activeData.email || "";
     const subject = encodeURIComponent(`${template.name} - ${activeData.name} - ${COMPANY}`);
@@ -826,14 +901,14 @@ function App(){
           <a className="btn" href={WEBSITE} target="_blank" rel="noreferrer">Company Website ↗</a>
           <a className="btn" href={SHEET_URL} target="_blank" rel="noreferrer">Google Sheet ↗</a>
           <button className="btn gmail-btn" onClick={()=>setGmailModalOpen(true)}>
-            ⚙ Gmail Settings
+            ⚙ Gmail Settings ({gmailCreds.email.split("@")[0]})
           </button>
           <button className="btn teams-btn" onClick={()=>setTeamsModalOpen(true)}>
             👥 Teams Settings
           </button>
-          <a className="btn dark" href="https://mail.google.com/" target="_blank" rel="noreferrer">
-            ✉ Open Gmail ↗
-          </a>
+          <button className="btn dark" onClick={openCurrentGmailAccount}>
+            ✉ Open {gmailCreds.email.split("@")[0]} ↗
+          </button>
           <a className="btn" style={{background:"#5b5fc7",color:"white",borderColor:"#5b5fc7"}} href={teamsCreds.meetingLink||"https://teams.microsoft.com/"} target="_blank" rel="noreferrer">
             👥 Open Teams ↗
           </a>
@@ -844,7 +919,7 @@ function App(){
       <section className="hero">
         <div className="eyebrow">VR PI GROUP • ENTERPRISE HR & DOCUMENT PLATFORM</div>
         <h1>Enterprise Talent<br/><span style={{color:"#1e3a5f"}}>Excellence Platform</span></h1>
-        <p className="desc">100% Single-Page Guaranteed Clean Printing • Multi-Account Gmail & Microsoft Teams Integration</p>
+        <p className="desc">Single-Page Guaranteed Print • Multi-Account Gmail Switcher • Microsoft Teams Integration</p>
       </section>
 
       {error&&<div style={{padding:"10px 14px",background:"#fff5ed",color:"#a34a16",borderRadius:8,marginBottom:14,fontSize:11}}>
@@ -855,7 +930,7 @@ function App(){
         {[
           ["TOTAL APPLICANTS",records.length,"Synchronized sheet records","#1e3a5f"],
           ["LETTERS SENT",sent,"Recorded sent status","#15803d"],
-          ["GMAIL SENDER",gmailCreds.email.split("@")[0],gmailCreds.displayName,"#4338ca"],
+          ["CURRENT GMAIL SENDER",gmailCreds.email.split("@")[0],gmailCreds.displayName,"#4338ca"],
           ["TEAMS STATUS",teamsCreds.active?"ACTIVE":"READY","Microsoft Teams Ready","#5b5fc7"]
         ].map(([label,value,note,color])=><div className="stat" key={label}>
           <label>{label}</label><strong style={{color}}>{value}</strong><small>{note}</small>
@@ -1031,7 +1106,7 @@ function App(){
       />
     </main>
 
-    {/* Dedicated Isolation Container For Print: Guaranteed Clean 1-Page Output Without Overwrite */}
+    {/* Dedicated Isolation Container For Print: Guaranteed Clean 1-Page Output */}
     <div id="print-only-container">
       <DocumentRenderer
         data={activeData}
