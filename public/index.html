@@ -19,7 +19,7 @@ button{cursor:pointer}
 header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border-bottom:1px solid #dfe6ef;padding-bottom:14px}
 .logo{width:180px;height:85px;object-fit:contain;display:block}
 .actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.btn{padding:9px 14px;background:white;border:1px solid #dfe6ef;border-radius:9px;color:#1e3a5f;text-decoration:none;font-size:11px;font-weight:800;display:inline-flex;align-items:center;gap:6px;transition:all .15s ease}
+.btn{padding:9px 15px;background:white;border:1px solid #dfe6ef;border-radius:9px;color:#1e3a5f;text-decoration:none;font-size:11px;font-weight:800;display:inline-flex;align-items:center;gap:6px;transition:all .15s ease}
 .btn:hover{background:#f8fafc;border-color:#cbd5e1}
 .dark{background:#1e3a5f;color:white;border-color:#1e3a5f}
 .dark:hover{background:#152d4c}
@@ -29,9 +29,9 @@ header{display:flex;justify-content:space-between;align-items:center;gap:12px;fl
 .teams-btn{background:linear-gradient(135deg,#464eb8 0%,#5b5fc7 100%);color:white;border:1px solid #5b5fc7}
 
 /* Hero */
-.hero{text-align:center;padding:28px 10px 18px}
+.hero{text-align:center;padding:26px 10px 16px}
 .eyebrow{display:inline-flex;align-items:center;gap:6px;background:white;border:1px solid #dfe6ef;border-radius:25px;padding:6px 16px;font-size:10px;font-weight:800;letter-spacing:1px;color:#64748b}
-h1{font-size:clamp(28px,4vw,44px);line-height:1.15;margin:14px 0;color:#121c30;letter-spacing:-1px}
+h1{font-size:clamp(28px,4vw,44px);line-height:1.15;margin:12px 0;color:#121c30;letter-spacing:-1px}
 .desc{color:#8290a5;font-size:11.5px;line-height:1.7}
 
 /* Stats */
@@ -66,7 +66,7 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
 .mode-switch button,.template-pills button{padding:8px 12px;border:1px solid #dfe6ef;background:white;border-radius:8px;font-size:10px;font-weight:800;color:#52637c;transition:all .15s ease}
 .mode-switch button.active,.template-pills button.active{background:#1e3a5f;color:white;border-color:#1e3a5f}
 
-.form-box{padding:16px;background:#f8fafc;border:1px solid #e4eaf1;border-radius:12px;margin-top:12px}
+.form-box{padding:18px;background:#f8fafc;border:1px solid #e4eaf1;border-radius:12px;margin-top:12px}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .field label{display:block;font-size:9.5px;font-weight:800;color:#52637c;margin-bottom:6px}
 .field input,.field select{width:100%;padding:9px 11px;border:1px solid #dfe6ef;border-radius:8px;background:white;color:#30425d;font-size:11px;outline:none}
@@ -84,54 +84,61 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
 .preview-stage{background:#94a3b8;padding:16px 8px;border-radius:0 0 10px 10px;border:1px solid #94a3b8;overflow:auto;max-height:820px;display:flex;justify-content:center}
 .preview-scaled-wrap{transform-origin:top center;transition:transform .12s ease}
 
-/* Single A4 Clean Layout */
-.a4{width:210mm;height:296mm;max-height:296mm;overflow:hidden;background:white;margin:auto;display:flex;flex-direction:column;color:#26354d;box-shadow:0 6px 20px #00000020;page-break-inside:avoid;break-inside:avoid}
-.doc-header{padding:12px 28px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #1e3a5f;gap:12px}
-.doc-logo{width:130px;height:65px;object-fit:contain;display:block}
+/* Fullscreen Preview Modal */
+.modal-overlay{position:fixed;inset:0;background:#090d16cc;backdrop-filter:blur(4px);z-index:200;display:flex;flex-direction:column;align-items:center;overflow-y:auto;padding:15px}
+.modal-container{max-width:980px;width:100%;margin:auto}
+.modalbar{display:flex;justify-content:space-between;align-items:center;gap:12px;background:#17233a;padding:12px 18px;border-radius:12px;margin-bottom:14px;color:white}
+.modalbar strong{font-size:12px}
+.modal-actions{display:flex;gap:8px}
+
+/* Professional A4 Document Styles (Exact 1-Page Fit) */
+.a4{width:210mm;height:296mm;max-height:296mm;overflow:hidden;background:white;margin:auto;display:flex;flex-direction:column;color:#26354d;box-shadow:0 6px 25px #00000020}
+.doc-header{padding:14px 28px;display:flex;justify-content:space-between;align-items:center;border-bottom:2.5px solid #1e3a5f;gap:12px}
+.doc-logo{width:135px;height:65px;object-fit:contain;display:block}
 .doc-info{text-align:right;font-size:8.5px;color:#718096;line-height:1.6}
-.doc-info strong{color:#1e3a5f;font-size:11px}
+.doc-info strong{color:#1e3a5f;font-size:11.5px}
 .doc-content{padding:14px 28px;flex:1;display:flex;flex-direction:column;font-size:9.5px;line-height:1.55}
 .doc-title{text-align:center;margin:4px 0 10px}
-.doc-title h2{font-size:16px;letter-spacing:1.2px;color:#152d4c;margin:2px 0}
+.doc-title h2{font-size:17px;letter-spacing:1.2px;color:#152d4c;margin:2px 0}
 .doc-title small{font-size:8.5px;color:#8492a7;letter-spacing:1.5px;font-weight:800}
-.doc-section{font-size:9px;letter-spacing:1px;font-weight:800;color:#1e3a5f;border-bottom:1px solid #dfe6ef;padding-bottom:4px;margin-top:10px}
-.doc-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:9px}
-.doc-table td{padding:6px 8px;border-bottom:1px solid #e4eaf1}
+.doc-section{font-size:9px;letter-spacing:1px;font-weight:800;color:#1e3a5f;border-bottom:1px solid #dfe6ef;padding-bottom:3px;margin-top:9px}
+.doc-table{width:100%;border-collapse:collapse;margin:7px 0;font-size:9px}
+.doc-table td{padding:5px 8px;border-bottom:1px solid #e4eaf1}
 .doc-table td:first-child{background:#f2f5f9;color:#1e3a5f;font-weight:700;width:34%}
-.doc-content p{color:#475569;line-height:1.55;margin:5px 0}
+.doc-content p{color:#475569;line-height:1.55;margin:4px 0}
 .terms-list{margin:4px 0;padding-left:16px}
-.terms-list li{margin-bottom:3px;color:#475569}
-.doc-footer{background:#1e3a5f;color:white;text-align:center;padding:8px 12px;font-size:8px;line-height:1.6;margin-top:auto}
-.signoff{margin-top:8px;padding-top:8px}
-.signoff strong{display:block;color:#1e3a5f;margin-top:3px}
+.terms-list li{margin-bottom:2px;color:#475569}
+.doc-footer{background:#1e3a5f;color:white;text-align:center;padding:8px 12px;font-size:8px;line-height:1.5;margin-top:auto}
+.signoff{margin-top:auto;padding-top:8px}
+.signoff strong{display:block;color:#1e3a5f;margin-top:2px}
 .acceptance-box{border:1px solid #1e3a5f;border-radius:6px;padding:6px 12px;margin-top:6px}
 .acceptance-box p{margin:2px 0}
 
 /* Completion Template */
 .completion-page{border:1px solid #e5e9ef}
 .completion-head{padding:12px 24px 10px;display:flex;justify-content:space-between;align-items:center;gap:15px;border-bottom:4px solid #d6ad59}
-.completion-head .doc-logo{width:125px;height:65px}
+.completion-head .doc-logo{width:130px;height:65px}
 .completion-company{text-align:right;font-size:8.5px;line-height:1.6;color:#52637c}
 .completion-company strong{font-size:11.5px;color:#1e3a5f}
 .completion-accent{height:5px;background:linear-gradient(90deg,#172f50 0%,#d5ae61 48%,#172f50 100%)}
 .completion-body{padding:16px 28px;flex:1;display:flex;flex-direction:column;font-size:9.5px;line-height:1.6}
-.completion-title{text-align:center;margin:4px 0 12px}
+.completion-title{text-align:center;margin:4px 0 10px}
 .completion-title h2{font-family:'Playfair Display',serif;font-size:19px;color:#152d4c;margin:4px 0}
 .completion-title small{font-size:8.5px;font-weight:800;letter-spacing:1.5px;color:#9a7b39}
-.completion-body p{font-size:9.5px;color:#36465d;line-height:1.65;margin:5px 0}
-.completion-recipient{border-bottom:1px solid #d9e0e9;padding-bottom:6px;margin-bottom:8px}
+.completion-body p{font-size:9.5px;color:#36465d;line-height:1.65;margin:4px 0}
+.completion-recipient{border-bottom:1px solid #d9e0e9;padding-bottom:5px;margin-bottom:7px}
 .completion-recipient b{color:#1e3a5f}
-.completion-details{width:100%;border-collapse:collapse;margin:8px 0;font-size:9px}
+.completion-details{width:100%;border-collapse:collapse;margin:7px 0;font-size:9px}
 .completion-details td{border-bottom:1px solid #e3e8ee;padding:5px 8px}
 .completion-details td:first-child{width:34%;background:#f4f6f9;color:#1e3a5f;font-weight:800}
-.completion-signoff{margin-top:auto;padding-top:10px;position:relative;min-height:90px}
-.completion-signoff strong{display:block;color:#1e3a5f;margin-top:3px}
-.well-done{position:absolute;right:10px;bottom:5px;width:80px;height:80px;border:4px double #c49b46;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#1e3a5f;background:#fffdf6;font-size:7px;font-weight:800;line-height:1.25;transform:rotate(7deg)}
-.well-done .star{font-size:15px;color:#bc923f}
+.completion-signoff{margin-top:auto;padding-top:8px;position:relative;min-height:85px}
+.completion-signoff strong{display:block;color:#1e3a5f;margin-top:2px}
+.well-done{position:absolute;right:10px;bottom:5px;width:78px;height:78px;border:4px double #c49b46;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#1e3a5f;background:#fffdf6;font-size:7px;font-weight:800;line-height:1.2;transform:rotate(7deg)}
+.well-done .star{font-size:14px;color:#bc923f}
 .completion-footer{background:#132e50;color:#fff;padding:8px 14px;text-align:center;font-size:7.5px;line-height:1.6;border-top:3px solid #c69f4d;margin-top:auto}
 
-/* Participation Certificate */
-.participation-page{width:297mm;height:208mm;max-height:208mm;position:relative;overflow:hidden;background:#fffdf8;border:7px double #cba85a;padding:8mm 12mm;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;page-break-inside:avoid;break-inside:avoid}
+/* Participation Certificate (Landscape Exact 1 Page) */
+.participation-page{width:297mm;height:208mm;max-height:208mm;position:relative;overflow:hidden;background:#fffdf8;border:7px double #cba85a;padding:8mm 12mm;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center}
 .participation-page:before{content:"";position:absolute;left:-5%;top:-45px;width:110%;height:65px;background:#17395c;border-bottom:7px solid #e6ce8f;border-radius:0 0 50% 50%;z-index:0}
 .participation-page:after{content:"";position:absolute;left:-5%;bottom:-45px;width:110%;height:75px;background:#17395c;border-top:7px solid #e6ce8f;border-radius:50% 50% 0 0;z-index:0}
 .participation-content{position:relative;z-index:2;width:100%;display:flex;flex-direction:column;align-items:center}
@@ -148,9 +155,8 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
 .participation-meta span{display:block;color:#687789}
 .participation-foot{font-size:8px;color:#17395c;font-weight:700;position:relative;z-index:2;margin-bottom:0}
 
-/* Modal Overlay */
-.modal-overlay{position:fixed;inset:0;background:#090d16cc;backdrop-filter:blur(3px);z-index:200;display:flex;align-items:center;justify-content:center;padding:14px;overflow-y:auto}
-.cred-card{background:white;border-radius:16px;max-width:620px;width:100%;box-shadow:0 25px 60px #00000040;overflow:hidden}
+/* Dialog Modals */
+.cred-card{background:white;border-radius:16px;max-width:600px;width:100%;box-shadow:0 25px 60px #00000040;overflow:hidden;margin:auto}
 .cred-header{padding:18px 22px;color:white;display:flex;justify-content:space-between;align-items:center}
 .cred-title-row{display:flex;align-items:center;gap:12px}
 .cred-g-icon{width:38px;height:38px;background:#ffffff20;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px}
@@ -160,36 +166,67 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
 .cred-body{padding:18px 22px}
 .cred-field{margin-bottom:13px}
 .cred-field label{display:flex;justify-content:space-between;align-items:center;font-size:10.5px;font-weight:700;color:#334155;margin-bottom:5px}
-.cred-input-wrap{display:flex;gap:6px;align-items:center}
 .cred-input{width:100%;padding:10px 12px;border:1px solid #cbd5e1;border-radius:8px;font-size:11.5px;outline:none;background:#f8fafc}
 .cred-input:focus{border-color:#4338ca;background:white}
-.btn-sm{padding:7px 10px;border-radius:7px;font-size:10px;font-weight:700;border:1px solid #cbd5e1;background:#f1f5f9;color:#334155;white-space:nowrap;cursor:pointer}
-.btn-sm:hover{background:#e2e8f0}
+.btn-sm{padding:6px 10px;border-radius:6px;font-size:10px;font-weight:700;border:1px solid #cbd5e1;background:#f1f5f9;color:#334155;cursor:pointer}
 .app-pwd-help{background:#f8fafc;border:1px dashed #cbd5e1;border-radius:10px;padding:11px 14px;font-size:9.5px;color:#475569;line-height:1.6}
-.cred-footer{padding:14px 22px;background:#f8fafc;border-top:1px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
-
-/* Account Presets Pill Bar */
-.acc-presets{display:flex;gap:8px;margin-bottom:14px}
-.acc-pill{padding:7px 12px;border-radius:20px;font-size:10.5px;font-weight:700;border:1px solid #cbd5e1;background:#f8fafc;color:#475569;cursor:pointer}
-.acc-pill.active{background:#1e3a5f;color:white;border-color:#1e3a5f}
+.cred-footer{padding:14px 22px;background:#f8fafc;border-top:1px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center}
 
 footer{text-align:center;color:#8491a5;font-size:9.5px;padding:22px}
 footer .logo{width:80px;height:auto;margin:0 auto 6px}
 
-/* Guaranteed 1-Page Clean Print Without Overwrite */
+/* Guaranteed 1-Page Crisp Print View (Zero Blank Screen) */
 @media print{
   @page{size:A4 portrait;margin:0}
   @page certPage{size:A4 landscape;margin:0}
   
-  html,body{margin:0!important;padding:0!important;background:white!important;height:100%!important;overflow:visible!important}
-  body > *{display:none!important}
-  #print-only-container{display:block!important;position:static!important;margin:0!important;padding:0!important}
+  body *{visibility:hidden!important}
+  #printTarget,#printTarget *{visibility:visible!important}
   
-  .a4{width:210mm!important;height:296mm!important;max-height:296mm!important;margin:0 auto!important;box-shadow:none!important;overflow:hidden!important;page-break-inside:avoid!important;break-inside:avoid!important;page-break-after:avoid!important;break-after:avoid!important;print-color-adjust:exact;-webkit-print-color-adjust:exact}
-  .participation-page{page:certPage;width:297mm!important;height:208mm!important;max-height:208mm!important;margin:0 auto!important;overflow:hidden!important;page-break-inside:avoid!important;break-inside:avoid!important;page-break-after:avoid!important;break-after:avoid!important;print-color-adjust:exact;-webkit-print-color-adjust:exact}
-  .completion-page,.completion-footer,.doc-table td:first-child{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+  #printTarget{
+    position:absolute!important;
+    left:0!important;
+    top:0!important;
+    width:100%!important;
+    margin:0!important;
+    padding:0!important;
+    background:white!important;
+  }
+  
+  .modal-overlay{position:static!important;padding:0!important;background:white!important;overflow:visible!important}
+  .modal-container{max-width:none!important;width:100%!important;margin:0!important}
+  .modalbar{display:none!important}
+  
+  .a4{
+    width:210mm!important;
+    height:296mm!important;
+    max-height:296mm!important;
+    margin:0 auto!important;
+    box-shadow:none!important;
+    page-break-inside:avoid!important;
+    break-inside:avoid!important;
+    page-break-after:avoid!important;
+    break-after:avoid!important;
+    print-color-adjust:exact!important;
+    -webkit-print-color-adjust:exact!important;
+  }
+  
+  .participation-page{
+    page:certPage;
+    width:297mm!important;
+    height:208mm!important;
+    max-height:208mm!important;
+    margin:0 auto!important;
+    page-break-inside:avoid!important;
+    break-inside:avoid!important;
+    page-break-after:avoid!important;
+    break-after:avoid!important;
+    print-color-adjust:exact!important;
+    -webkit-print-color-adjust:exact!important;
+  }
+  
+  .completion-page,.completion-footer,.doc-table td:first-child{print-color-adjust:exact!important;-webkit-print-color-adjust:exact!important}
 }
-#print-only-container{display:none}
 </style>
 </head>
 <body>
@@ -308,10 +345,9 @@ function DocHeader({senderEmail}){
     <Logo className="doc-logo"/>
     <div className="doc-info">
       <strong>{COMPANY}</strong><br/>
-      Wanaparthy, Telangana, India<br/>
-      {senderEmail||"vrpigroupoftechnology@gmail.com"}<br/>
-      {WEBSITE}<br/>
-      {today()}
+      Corporate Office • Wanaparthy, Telangana, India<br/>
+      Official Email: {senderEmail||"vrpigroupoftechnology@gmail.com"}<br/>
+      Web: {WEBSITE} • Date: {today()}
     </div>
   </div>;
 }
@@ -324,7 +360,7 @@ function DocFooter({senderEmail}){
 
 function Signoff({experience=false,displayName=""}){
   return <div className="signoff">
-    Regards,
+    Sincerely,
     <strong>{experience?"Human Resources Department":(displayName||"Talent Excellence Division")}</strong>
     {COMPANY} • Authorized Corporate Signatory
   </div>;
@@ -352,6 +388,7 @@ function StandardDocument({data,template,senderEmail,displayName}){
     <DocHeader senderEmail={senderEmail}/>
     <div className="doc-content">
       <div className="doc-title">
+        <small>REF: VRPI/HR/2026/{data.aid||"OFFER"}</small>
         <h2>{template.name.toUpperCase()}</h2>
         <small>{today().toUpperCase()}</small>
       </div>
@@ -375,11 +412,11 @@ function StandardDocument({data,template,senderEmail,displayName}){
       </tbody></table>
 
       {offer&&<>
-        <p>Your internship commences on <b>{candidateDate}</b> for <b>{candidateDuration}</b> ({candidateMode} mode). Please adhere to the programme guidelines under your designated coordinator.</p>
+        <p>Your internship commences on <b>{candidateDate}</b> for a duration of <b>{candidateDuration}</b> in <b>{candidateMode}</b> mode. Please adhere to the corporate guidelines under your designated coordinator.</p>
 
         <div className="doc-section">KEY TERMS AND CONDITIONS</div>
         <ol className="terms-list">
-          <li><b>Professional Conduct:</b> Maintain punctuality, active participation, and respectful professional communication.</li>
+          <li><b>Professional Conduct:</b> Maintain punctuality, regular active participation, and respectful professional communication.</li>
           <li><b>Responsibilities & Project Work:</b> Complete designated learning assignments and project milestones within assigned deadlines.</li>
           <li><b>Confidentiality:</b> Keep company and client project data confidential and strictly refrain from unauthorized disclosure.</li>
           <li><b>Documentation & Certificate:</b> Official completion credentials are provided upon verified attendance and satisfactory task evaluation.</li>
@@ -387,8 +424,8 @@ function StandardDocument({data,template,senderEmail,displayName}){
 
         <div className="doc-section">CANDIDATE ACCEPTANCE</div>
         <div className="acceptance-box">
-          <p>I, <b>{candidateName}</b>, confirm acceptance of the internship terms and conditions stated above.</p>
-          <p style={{marginTop:4}}><b>Signature:</b> ___________________________ &nbsp;&nbsp;&nbsp;&nbsp; <b>Date:</b> ______________</p>
+          <p>I, <b>{candidateName}</b>, acknowledge and accept the terms and conditions stated in this offer letter.</p>
+          <p style={{marginTop:3}}><b>Signature:</b> ___________________________ &nbsp;&nbsp;&nbsp;&nbsp; <b>Date:</b> ______________</p>
         </div>
       </>}
 
@@ -405,7 +442,7 @@ function StandardDocument({data,template,senderEmail,displayName}){
         <div className="doc-section">CANDIDATE ACKNOWLEDGEMENT</div>
         <div className="acceptance-box">
           <p>I acknowledge this training appointment and agree to follow all instructions.</p>
-          <p style={{marginTop:4}}><b>Signature:</b> ___________________________ &nbsp;&nbsp;&nbsp;&nbsp; <b>Date:</b> ______________</p>
+          <p style={{marginTop:3}}><b>Signature:</b> ___________________________ &nbsp;&nbsp;&nbsp;&nbsp; <b>Date:</b> ______________</p>
         </div>
       </>}
 
@@ -435,14 +472,14 @@ function CompletionDocument({data,template,senderEmail,displayName}){
       <Logo className="doc-logo"/>
       <div className="completion-company">
         <strong>{COMPANY}</strong><br/>
-        Wanaparthy, Telangana, India<br/>
-        {senderEmail||"vrpigroupoftechnology@gmail.com"}<br/>{WEBSITE}
+        Corporate Office • Wanaparthy, Telangana, India<br/>
+        Official Email: {senderEmail||"vrpigroupoftechnology@gmail.com"}<br/>Web: {WEBSITE}
       </div>
     </div>
     <div className="completion-accent"/>
     <div className="completion-body">
       <div className="completion-title">
-        <small>OFFICIAL CORPORATE DOCUMENTATION</small>
+        <small>OFFICIAL CORPORATE DOCUMENTATION • REF: VRPI/COMP/{data.aid||"2026"}</small>
         <h2>{training?"TRAINING COMPLETION LETTER":"INTERNSHIP COMPLETION LETTER"}</h2>
         <small>{today().toUpperCase()}</small>
       </div>
@@ -528,7 +565,7 @@ function DocumentRenderer({data,template,senderEmail,displayName}){
   return <StandardDocument data={data} template={template} senderEmail={senderEmail} displayName={displayName}/>;
 }
 
-/* Enhanced Gmail Credentials Modal with Account Switcher & Direct Launch */
+/* Gmail Credentials Modal */
 function GmailModal({open,onClose,credentials,onSave}){
   const [form,setForm]=useState({
     email:"vrpigroupoftechnology@gmail.com",
@@ -538,7 +575,6 @@ function GmailModal({open,onClose,credentials,onSave}){
     ...credentials
   });
   const [showPassword,setShowPassword]=useState(false);
-  const [copiedField,setCopiedField]=useState("");
   const [notice,setNotice]=useState("");
 
   useEffect(()=>{
@@ -547,22 +583,10 @@ function GmailModal({open,onClose,credentials,onSave}){
 
   if(!open)return null;
 
-  function copyText(txt,name){
-    navigator.clipboard.writeText(txt);
-    setCopiedField(name);
-    setTimeout(()=>setCopiedField(""),2000);
-  }
-
   function launchThisGmail(){
     if(!form.email)return;
-    // Uses Google's Account Chooser to target this specific email directly
     const url = `https://accounts.google.com/AccountChooser?service=mail&continue=${encodeURIComponent('https://mail.google.com/mail/')}&Email=${encodeURIComponent(form.email)}`;
     window.open(url, "_blank");
-  }
-
-  function launchAddAccount(){
-    // Direct Google add session URL
-    window.open(`https://accounts.google.com/AddSession?service=mail&continue=https://mail.google.com/`, "_blank");
   }
 
   function handleSave(){
@@ -577,67 +601,29 @@ function GmailModal({open,onClose,credentials,onSave}){
         <div className="cred-title-row">
           <div className="cred-g-icon">✉</div>
           <div>
-            <h3>Google Gmail Credentials & Account Hub</h3>
-            <p>Access, switch, or dispatch from any Gmail account</p>
+            <h3>Google Gmail Credentials</h3>
+            <p>Access and switch between company and custom accounts</p>
           </div>
         </div>
         <button className="close-round" onClick={onClose}>×</button>
       </div>
 
       <div className="cred-body">
-        {/* Quick Presets */}
-        <div className="acc-presets">
-          <button
-            type="button"
-            className={`acc-pill ${form.email==="vrpigroupoftechnology@gmail.com"?"active":""}`}
-            onClick={()=>setForm({
-              email:"vrpigroupoftechnology@gmail.com",
-              password:"Vrpi_1234",
-              displayName:"VR PI TECH SOLUTIONS HR",
-              active:true
-            })}
-          >
-            🏢 Company Gmail
-          </button>
-          <button
-            type="button"
-            className={`acc-pill ${form.email!=="vrpigroupoftechnology@gmail.com"?"active":""}`}
-            onClick={()=>setForm(prev=>({
-              ...prev,
-              email:prev.email==="vrpigroupoftechnology@gmail.com"?"srijayelleni@gmail.com":prev.email,
-              displayName:"HR Department",
-              active:true
-            }))}
-          >
-            👤 Custom / Other Gmail
-          </button>
+        <div className="cred-field">
+          <label>Sender Gmail Address *</label>
+          <input className="cred-input" placeholder="e.g. vrpigroupoftechnology@gmail.com or srijayelleni@gmail.com" value={form.email} onChange={e=>setForm({...form,email:e.target.value})}/>
         </div>
 
         <div className="cred-field">
           <label>
-            <span>Sender Gmail Address *</span>
-            {form.email&&<button type="button" className="btn-sm" onClick={()=>copyText(form.email,"email")}>
-              {copiedField==="email"?"✓ Copied!":"📋 Copy Email"}
-            </button>}
-          </label>
-          <input className="cred-input" placeholder="e.g. srijayelleni@gmail.com or hr@vrpigroup.co.in" value={form.email} onChange={e=>setForm({...form,email:e.target.value})}/>
-        </div>
-
-        <div className="cred-field">
-          <label>
-            <span>Account Password or Google App Password</span>
-            <div style={{display:"flex",gap:6}}>
-              {form.password&&<button type="button" className="btn-sm" onClick={()=>copyText(form.password,"pwd")}>
-                {copiedField==="pwd"?"✓ Copied!":"📋 Copy Password"}
-              </button>}
-              <a href="https://myaccount.google.com/apppasswords" target="_blank" rel="noreferrer" style={{color:"#4f46e5",textDecoration:"none",fontSize:10,fontWeight:700,alignSelf:"center"}}>Generate App Password ↗</a>
-            </div>
+            <span>Password (Account Password or Google App Password)</span>
+            <a href="https://myaccount.google.com/apppasswords" target="_blank" rel="noreferrer" style={{color:"#4f46e5",textDecoration:"none",fontSize:10,fontWeight:700}}>Generate App Password ↗</a>
           </label>
           <div style={{position:"relative"}}>
             <input
               type={showPassword?"text":"password"}
               className="cred-input"
-              placeholder="Enter password (e.g. Vrpi_1234 or 16-letter app password)"
+              placeholder="Enter password"
               value={form.password}
               onChange={e=>setForm({...form,password:e.target.value})}
             />
@@ -653,10 +639,9 @@ function GmailModal({open,onClose,credentials,onSave}){
         </div>
 
         <div className="app-pwd-help">
-          <strong>💡 How to open & avoid Google's "We couldn't verify it's you" block:</strong>
-          <p style={{margin:"3px 0"}}>1. Click <b>"🚀 Open This Gmail Account"</b> below to launch Google Account Chooser for <b>{form.email}</b>.</p>
-          <p style={{margin:"3px 0"}}>2. If prompted, click <b>"📋 Copy Password"</b> above and paste it directly into Google.</p>
-          <p style={{margin:"3px 0"}}>3. If it's a shared email blocked by 2-step verification, select <b>"👤 Custom / Other Gmail"</b> above and use your own Gmail account.</p>
+          <strong>💡 Accessing Multiple Accounts:</strong>
+          <p style={{margin:"4px 0"}}>• Enter your account details above and click <b>"Open in Gmail"</b> to launch Google directly for this email address.</p>
+          <p style={{margin:"4px 0"}}>• Click <b>"Save Credentials"</b> to set this as your default sender for generated certificates and letters.</p>
         </div>
 
         {notice&&<div style={{padding:"8px 12px",borderRadius:8,marginTop:10,background:"#ecfdf5",color:"#065f46",fontSize:11}}>
@@ -665,14 +650,9 @@ function GmailModal({open,onClose,credentials,onSave}){
       </div>
 
       <div className="cred-footer">
-        <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
-          <button type="button" className="btn" style={{background:"#1e3a5f",color:"white"}} onClick={launchThisGmail}>
-            🚀 Open {form.email.split("@")[0]} In Gmail ↗
-          </button>
-          <button type="button" className="btn" onClick={launchAddAccount}>
-            ➕ Add Google Session ↗
-          </button>
-        </div>
+        <button type="button" className="btn" style={{background:"#1e3a5f",color:"white"}} onClick={launchThisGmail}>
+          🚀 Open in Gmail ({form.email.split("@")[0]}) ↗
+        </button>
         <button type="button" className="btn dark" style={{background:"#4338ca",borderColor:"#4338ca"}} onClick={handleSave}>
           💾 Save Credentials
         </button>
@@ -690,21 +670,12 @@ function TeamsModal({open,onClose,credentials,onSave}){
     active:true,
     ...credentials
   });
-  const [testResult,setTestResult]=useState(null);
 
   useEffect(()=>{
     if(credentials)setForm(prev=>({...prev,...credentials}));
   },[credentials]);
 
   if(!open)return null;
-
-  function handleTest(){
-    if(!form.meetingLink || !form.meetingLink.includes("teams")){
-      setTestResult({type:"error",msg:"Please enter a valid Teams URL or meeting link."});
-      return;
-    }
-    setTestResult({type:"success",msg:"Teams link verified! Ready for interview dispatches."});
-  }
 
   function handleSave(){
     onSave(form);
@@ -742,23 +713,17 @@ function TeamsModal({open,onClose,credentials,onSave}){
 
         <div className="app-pwd-help">
           <strong>👥 Microsoft Teams Integration:</strong>
-          <p style={{margin:"4px 0"}}>• Used for candidate interviews, technical assessment meetings, and calendar invites (.ics).</p>
-          <p style={{margin:"4px 0"}}>• Click <b>"Open Teams"</b> in the top bar anytime to launch the official Microsoft Teams web or desktop client.</p>
+          <p style={{margin:"4px 0"}}>• Connect your organization's Teams meeting link for candidate interview appointments.</p>
         </div>
-
-        {testResult&&<div style={{padding:"8px 12px",borderRadius:8,marginTop:10,background:testResult.type==="error"?"#fef2f2":"#ecfdf5",color:testResult.type==="error"?"#991b1b":"#065f46",fontSize:11}}>
-          {testResult.msg}
-        </div>}
       </div>
 
       <div className="cred-footer">
         <a className="btn" href={form.meetingLink||"https://teams.microsoft.com/"} target="_blank" rel="noreferrer">
-          ↗ Launch Teams Link
+          ↗ Open Teams Web
         </a>
-        <div style={{display:"flex",gap:8}}>
-          <button className="btn" onClick={handleTest}>✈ Test Link</button>
-          <button className="btn dark" style={{background:"#5b5fc7",borderColor:"#5b5fc7"}} onClick={handleSave}>💾 Save Teams Setup</button>
-        </div>
+        <button className="btn dark" style={{background:"#5b5fc7",borderColor:"#5b5fc7"}} onClick={handleSave}>
+          💾 Save Teams Setup
+        </button>
       </div>
     </div>
   </div>;
@@ -787,6 +752,9 @@ function App(){
   const [loading,setLoading]=useState(false);
   const [error,setError]=useState("");
   const [lastSync,setLastSync]=useState("");
+
+  /* Full Screen Preview Modal State */
+  const [previewModalOpen,setPreviewModalOpen]=useState(false);
 
   /* Saved Gmail Credentials */
   const [gmailCreds,setGmailCreds]=useState(()=>{
@@ -874,21 +842,10 @@ function App(){
     try{localStorage.setItem("vrpi_teams_creds",JSON.stringify(c));}catch(e){}
   }
 
-  /* Opens whichever Gmail account is active in credentials */
   function openCurrentGmailAccount(){
     const target = gmailCreds.email || "vrpigroupoftechnology@gmail.com";
     const url = `https://accounts.google.com/AccountChooser?service=mail&continue=${encodeURIComponent('https://mail.google.com/mail/')}&Email=${encodeURIComponent(target)}`;
     window.open(url, "_blank");
-  }
-
-  /* One-Click Gmail Composer */
-  function composeInGmail(){
-    const to = activeData.email || "";
-    const subject = encodeURIComponent(`${template.name} - ${activeData.name} - ${COMPANY}`);
-    const body = encodeURIComponent(
-      `Dear ${activeData.name},\n\nPlease find attached your official ${template.name} for the ${activeData.domain} programme with ${COMPANY}.\n\nBest Regards,\n${gmailCreds.displayName}\n${COMPANY}`
-    );
-    window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(to)}&su=${subject}&body=${body}`, "_blank");
   }
 
   return <>
@@ -907,7 +864,7 @@ function App(){
             👥 Teams Settings
           </button>
           <button className="btn dark" onClick={openCurrentGmailAccount}>
-            ✉ Open {gmailCreds.email.split("@")[0]} ↗
+            ✉ Open Gmail ↗
           </button>
           <a className="btn" style={{background:"#5b5fc7",color:"white",borderColor:"#5b5fc7"}} href={teamsCreds.meetingLink||"https://teams.microsoft.com/"} target="_blank" rel="noreferrer">
             👥 Open Teams ↗
@@ -919,7 +876,7 @@ function App(){
       <section className="hero">
         <div className="eyebrow">VR PI GROUP • ENTERPRISE HR & DOCUMENT PLATFORM</div>
         <h1>Enterprise Talent<br/><span style={{color:"#1e3a5f"}}>Excellence Platform</span></h1>
-        <p className="desc">Single-Page Guaranteed Print • Multi-Account Gmail Switcher • Microsoft Teams Integration</p>
+        <p className="desc">Professional Corporate Document Library • Full-Screen Instant Preview & PDF Export</p>
       </section>
 
       {error&&<div style={{padding:"10px 14px",background:"#fff5ed",color:"#a34a16",borderRadius:8,marginBottom:14,fontSize:11}}>
@@ -937,7 +894,7 @@ function App(){
         </div>)}
       </section>
 
-      {/* Candidate Records */}
+      {/* Candidate Records Table */}
       <section className="panel">
         <div className="section-head">
           <div>
@@ -971,7 +928,7 @@ function App(){
                     joining:r.joining||prev.joining,
                     duration:r.duration||prev.duration
                   }));
-                }}>Load Candidate ↗</button>
+                }}>Select Candidate ↗</button>
               </td>
             </tr>)}</tbody>
           </table>}
@@ -983,7 +940,7 @@ function App(){
         <section className="panel" style={{marginBottom:0}}>
           <div className="kicker"><span style={{color:"#059669"}}>● Real-Time Studio</span></div>
           <h2>Document Customizer</h2>
-          <p className="desc">Choose your template. Every keystroke updates the live single-page document preview instantly.</p>
+          <p className="desc">Choose a template. Enter details or select a candidate to customize.</p>
 
           <div className="mode-switch">
             <button className={!manual?"active":""} onClick={()=>setManual(false)}>Use Google Sheet Record</button>
@@ -1032,34 +989,29 @@ function App(){
             </div>
           </div>
 
-          <div style={{display:"flex",gap:8,marginTop:16,flexWrap:"wrap",justifyContent:"space-between",alignItems:"center"}}>
-            <div style={{display:"flex",gap:8}}>
-              <button className="btn gmail-btn" onClick={composeInGmail}>
-                ✉ Compose in Gmail
-              </button>
-              <a className="btn teams-btn" href={teamsCreds.meetingLink} target="_blank" rel="noreferrer">
-                👥 Send Teams Invite
-              </a>
-            </div>
-            <button className="btn orange" onClick={()=>window.print()}>
-              🖨 Print / Save PDF (1-Page)
+          {/* Clean Candidate Action: Single Professional Preview Button */}
+          <div style={{display:"flex",justifyContent:"flex-end",marginTop:18}}>
+            <button className="btn orange" style={{padding:"12px 24px",fontSize:12}} onClick={()=>setPreviewModalOpen(true)}>
+              Preview Document →
             </button>
           </div>
         </section>
 
-        {/* Live Preview Sticky Pane */}
+        {/* Live Preview Side Panel */}
         <div className="preview-column">
           <div className="preview-topbar">
             <div className="sync-badge">
               <span className="sync-dot"></span>
-              <span>1-Page Clean Live Preview</span>
+              <span>Live Preview • Instant Sync</span>
             </div>
             <div className="preview-controls">
               <span style={{fontSize:9.5,color:"#94a3b8"}}>Scale:</span>
               <button className="preview-scale-btn" onClick={()=>setPreviewScale(s=>Math.max(0.35,+(s-0.05).toFixed(2)))}>-</button>
               <span style={{fontSize:9.5,fontWeight:700,minWidth:30,textAlign:"center"}}>{Math.round(previewScale*100)}%</span>
               <button className="preview-scale-btn" onClick={()=>setPreviewScale(s=>Math.min(1.0,+(s+0.05).toFixed(2)))}>+</button>
-              <button className="btn orange" style={{padding:"5px 10px",fontSize:9.5}} onClick={()=>window.print()}>Print PDF</button>
+              <button className="btn orange" style={{padding:"5px 10px",fontSize:9.5}} onClick={()=>setPreviewModalOpen(true)}>
+                Full Preview ↗
+              </button>
             </div>
           </div>
 
@@ -1089,6 +1041,31 @@ function App(){
         <a href={WEBSITE} target="_blank" rel="noreferrer">Official Company Website</a>
       </footer>
 
+      {/* Full-Screen Document Preview Modal */}
+      {previewModalOpen&&<div className="modal-overlay" onClick={e=>{if(e.target===e.currentTarget)setPreviewModalOpen(false);}}>
+        <div className="modal-container">
+          <div className="modalbar">
+            <strong>{template.name} • {activeData.name}</strong>
+            <div className="modal-actions">
+              <button className="btn orange" onClick={()=>window.print()}>
+                🖨 Print / Save PDF
+              </button>
+              <button className="btn" onClick={()=>setPreviewModalOpen(false)}>
+                Close ×
+              </button>
+            </div>
+          </div>
+          <div id="printTarget">
+            <DocumentRenderer
+              data={activeData}
+              template={template}
+              senderEmail={gmailCreds.email}
+              displayName={gmailCreds.displayName}
+            />
+          </div>
+        </div>
+      </div>}
+
       {/* Gmail Modal */}
       <GmailModal
         open={gmailModalOpen}
@@ -1105,16 +1082,6 @@ function App(){
         onSave={saveTeamsCreds}
       />
     </main>
-
-    {/* Dedicated Isolation Container For Print: Guaranteed Clean 1-Page Output */}
-    <div id="print-only-container">
-      <DocumentRenderer
-        data={activeData}
-        template={template}
-        senderEmail={gmailCreds.email}
-        displayName={gmailCreds.displayName}
-      />
-    </div>
   </>;
 }
 
