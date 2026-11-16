@@ -39,7 +39,7 @@ h1{font-size:clamp(28px,4vw,44px);line-height:1.15;margin:12px 0;color:#121c30;l
 .stat,.panel{background:white;border:1px solid #dfe6ef;border-radius:14px}
 .stat{padding:16px}
 .stat label{font-size:9.5px;font-weight:800;color:#8795a9;letter-spacing:1px}
-.stat strong{display:block;font-size:24px;margin:6px 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.stat strong{display:block;font-size:22px;margin:6px 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .stat small{font-size:9.5px;color:#94a3b8}
 
 /* Panels */
@@ -58,7 +58,7 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
 .pending{background:#fef3c7;color:#92400e}
 .text-btn{border:0;background:none;color:#0284c7;font-weight:800;font-size:10px;cursor:pointer}
 
-/* Two-Column Studio */
+/* Two-Column Studio Layout */
 .studio-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
 @media(max-width:1150px){.studio-grid{grid-template-columns:1fr}}
 
@@ -73,7 +73,7 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
 .field input:focus,.field select:focus{border-color:#e94b17;box-shadow:0 0 0 3px #e94b1712}
 .field input[type=date]{min-height:37px;cursor:pointer;color-scheme:light}
 
-/* Live Preview Side */
+/* Live Preview Side Panel */
 .preview-column{position:sticky;top:15px}
 .preview-topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;background:#0f172a;color:white;padding:10px 16px;border-radius:10px 10px 0 0}
 .sync-badge{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:800;color:#4ade80}
@@ -119,10 +119,17 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
 .terms-list{margin:4px 0 6px;padding-left:18px}
 .terms-list li{margin-bottom:3px;color:#1f2937;line-height:1.45}
 
-.signoff-row{display:flex;justify-content:space-between;align-items:flex-end;margin-top:auto;padding-top:8px}
-.signoff-col{font-size:11.5px;line-height:1.4}
+/* Authentic Corporate Stamp / Notary Seal */
+.signoff-row{display:flex;justify-content:space-between;align-items:flex-end;margin-top:auto;padding-top:10px}
+.signoff-col{font-size:11.5px;line-height:1.45}
 .signoff-col strong{display:block;color:#1e3a5f;font-size:12px;margin-top:2px}
-.seal-badge{width:76px;height:76px;border:2px double #1e3a5f;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:6.5px;font-weight:bold;color:#1e3a5f;line-height:1.2;transform:rotate(-4deg);background:#f8fafc}
+
+.corp-seal-svg{
+  width:88px;
+  height:88px;
+  display:block;
+  transform:rotate(-4deg);
+}
 
 .acceptance-box{border:1px solid #1e3a5f;border-radius:4px;padding:5px 10px;margin-top:6px;font-size:11px;background:#fcfdfd}
 .acceptance-box p{margin:2px 0}
@@ -144,12 +151,10 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
 .completion-details td{border:1px solid #cbd5e1;padding:5.5px 10px}
 .completion-details td:first-child{width:32%;background:#f8fafc;color:#1e3a5f;font-weight:bold}
 .completion-signoff{margin-top:auto;padding-top:12px;position:relative;display:flex;justify-content:space-between;align-items:flex-end}
-.well-done{width:78px;height:78px;border:3px double #c49b46;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#1e3a5f;background:#fffdf6;font-size:6.5px;font-weight:800;line-height:1.2;transform:rotate(5deg)}
-.well-done .star{font-size:14px;color:#bc923f}
 .completion-footer{background:#132e50;color:#fff;padding:7px 14px;text-align:center;font-size:7.5px;line-height:1.5;border-top:2.5px solid #c69f4d;margin-top:auto;font-family:'Plus Jakarta Sans',sans-serif}
 
 /* ========================================================
-   LUXURY BALANCED PARTICIPATION CERTIFICATE (NO EMPTY SPACES)
+   RE-ENGINEERED PARTICIPATION CERTIFICATE (NO GAP)
    ======================================================== */
 .participation-page{
   width:297mm;
@@ -158,8 +163,8 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
   position:relative;
   overflow:hidden;
   background:#fffdf8;
-  border:10px double #cba85a;
-  padding:10mm 14mm;
+  border:8px double #cba85a;
+  padding:12mm 16mm 10mm;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -168,7 +173,7 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
 }
 .participation-frame{
   position:absolute;
-  inset:6px;
+  inset:5px;
   border:1.5px solid #1e3a5f;
   pointer-events:none;
 }
@@ -176,8 +181,10 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
   position:relative;
   z-index:2;
   width:100%;
+  height:100%;
   display:flex;
   flex-direction:column;
+  justify-content:space-between;
   align-items:center;
 }
 .participation-header-row{
@@ -185,24 +192,23 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
   justify-content:space-between;
   align-items:center;
   width:100%;
-  padding:0 15px 6px;
+  padding-bottom:6px;
   border-bottom:1.5px solid #d4b26f;
-  margin-bottom:6px;
 }
-.participation-logo{width:130px;height:55px;object-fit:contain}
-.participation-institution{text-align:right;font-size:8.5px;line-height:1.45;color:#334155}
+.participation-logo{width:125px;height:55px;object-fit:contain}
+.participation-institution{text-align:right;font-size:9px;line-height:1.45;color:#334155}
 .participation-institution strong{font-size:12px;color:#17395c;letter-spacing:1px}
 
-.participation-heading-wrap{margin:6px 0 2px}
+.participation-heading-wrap{margin:8px 0 2px}
 .participation-heading-wrap small{font-size:10px;font-weight:800;letter-spacing:3px;color:#9a7832}
-.participation-heading{font-family:'Playfair Display',serif;font-size:35px;letter-spacing:4px;color:#17395c;margin:2px 0}
-.participation-subtitle{font-size:12.5px;letter-spacing:3.5px;color:#a58038;font-weight:700}
+.participation-heading{font-family:'Playfair Display',serif;font-size:36px;letter-spacing:4px;color:#17395c;margin:2px 0}
+.participation-subtitle{font-size:12px;letter-spacing:3.5px;color:#a58038;font-weight:700}
 
-.participation-intro{font-size:12px;color:#475569;margin-top:8px}
-.participation-name{font-family:'Playfair Display',serif;font-style:italic;font-size:36px;color:#b48c3b;border-bottom:1.5px solid #caa962;padding:0 35px 3px;margin:5px 0 8px;min-width:320px;max-width:85%}
+.participation-intro{font-size:12px;color:#475569;margin-top:6px}
+.participation-name{font-family:'Playfair Display',serif;font-style:italic;font-size:36px;color:#b48c3b;border-bottom:1.5px solid #caa962;padding:0 35px 2px;margin:4px 0 6px;min-width:320px;max-width:85%}
 
-.participation-copy{font-size:12px;color:#1e293b;line-height:1.65;max-width:760px;margin:4px auto;text-align:center}
-.participation-citation{font-size:11.5px;color:#475569;line-height:1.6;max-width:740px;margin:4px auto;font-style:italic}
+.participation-copy{font-size:12px;color:#1e293b;line-height:1.6;max-width:760px;margin:4px auto;text-align:center}
+.participation-citation{font-size:11.5px;color:#475569;line-height:1.55;max-width:740px;margin:4px auto;font-style:italic}
 
 .participation-meta-box{
   display:grid;
@@ -212,42 +218,36 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
   background:#f9f8f4;
   border:1px solid #e2d7be;
   border-radius:6px;
-  padding:7px 12px;
-  margin:10px auto 6px;
+  padding:8px 14px;
+  margin:8px auto;
   color:#17395c;
-  font-size:10.5px;
+  font-size:11px;
 }
-.participation-meta-box strong{display:block;font-size:11px}
-.participation-meta-box span{display:block;color:#64748b;font-size:9px}
+.participation-meta-box strong{display:block;font-size:11.5px}
+.participation-meta-box span{display:block;color:#64748b;font-size:9.5px}
 
 .participation-signoff-row{
   display:flex;
   justify-content:space-between;
   align-items:flex-end;
   width:95%;
-  margin-top:auto;
-  padding-top:10px;
+  margin-top:6px;
+  padding-bottom:4px;
 }
-.part-sign-col{text-align:center;font-size:10.5px;line-height:1.35;color:#1e3a5f}
-.part-sign-col .sign-line{width:160px;height:1px;background:#1e3a5f;margin:22px auto 4px}
-.gold-seal{
-  width:64px;
-  height:64px;
-  border-radius:50%;
-  background:radial-gradient(circle at 35% 30%,#fff5cc,#d4b26f 55%,#997327 95%);
-  border:2.5px double #fff8dc;
-  box-shadow:0 3px 8px #00000025;
+.part-sign-col{text-align:center;font-size:11px;line-height:1.35;color:#1e3a5f}
+.part-sign-col .sign-line{width:165px;height:1px;background:#1e3a5f;margin:22px auto 4px}
+
+.gold-seal-wrap{
   display:flex;
   flex-direction:column;
   align-items:center;
-  justify-content:center;
-  color:#172b49;
-  font-size:7px;
-  font-weight:bold;
-  line-height:1.15;
 }
-.gold-seal span{font-size:13px;color:#785816}
-.participation-foot{font-size:8px;color:#17395c;font-weight:700;position:relative;z-index:2;margin-bottom:0;letter-spacing:1px}
+.gold-seal-svg{
+  width:82px;
+  height:82px;
+  display:block;
+}
+.participation-foot{font-size:8px;color:#17395c;font-weight:700;position:relative;z-index:2;margin-top:4px;letter-spacing:1px}
 
 /* Dialog Modals */
 .cred-card{background:white;border-radius:16px;max-width:600px;width:100%;box-shadow:0 25px 60px #00000040;overflow:hidden;margin:auto}
@@ -332,9 +332,56 @@ const SHEET_ID="1dCJXGZN3dbThvJt5SnMYUSp0uAAsVuWnKuXd1rabBOU";
 const SHEET_GID="0";
 const SHEET_URL=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit?gid=${SHEET_GID}`;
 const WEBSITE="https://share.google/Staafq7spnZSStc8n";
+const OFFICIAL_EMAIL="vrpigroupoftechnology@gmail.com";
 
 function Logo({className="",style={}}){
   return <img src="./vrpi-logo.png" alt="VR PI Group" className={className} style={{objectFit:"contain",display:"block",...style}} onError={e=>{e.target.style.display='none';}}/>;
+}
+
+/* Professional Corporate Registrar Stamp / Seal */
+function CorporateSeal(){
+  return <svg viewBox="0 0 100 100" className="corp-seal-svg">
+    <circle cx="50" cy="50" r="47" fill="none" stroke="#1e3a5f" strokeWidth="2.5"/>
+    <circle cx="50" cy="50" r="43.5" fill="none" stroke="#1e3a5f" strokeWidth="0.8" strokeDasharray="2,2"/>
+    <circle cx="50" cy="50" r="33" fill="none" stroke="#1e3a5f" strokeWidth="1.5"/>
+    <path id="sealPathOuter" d="M 50 14 A 36 36 0 1 1 49.9 14" fill="none"/>
+    <path id="sealPathInner" d="M 18 50 A 32 32 0 0 0 82 50" fill="none"/>
+    <text fill="#1e3a5f" fontSize="7.8" fontWeight="bold" letterSpacing="1.2">
+      <textPath href="#sealPathOuter" startOffset="50%" textAnchor="middle">
+        VR PI GROUP OF COMPANIES
+      </textPath>
+    </text>
+    <text fill="#1e3a5f" fontSize="6.8" fontWeight="bold" letterSpacing="1">
+      <textPath href="#sealPathInner" startOffset="50%" textAnchor="middle">
+        ★ CORPORATE SEAL ★
+      </textPath>
+    </text>
+    <circle cx="50" cy="50" r="16" fill="#1e3a5f" fillOpacity="0.08"/>
+    <text x="50" y="47" fill="#1e3a5f" fontSize="9" fontWeight="900" textAnchor="middle">VR PI</text>
+    <text x="50" y="56" fill="#1e3a5f" fontSize="5.5" fontWeight="bold" textAnchor="middle">OFFICIAL</text>
+  </svg>;
+}
+
+/* Gold Excellence Medallion for Participation Certificate */
+function GoldSealBadge(){
+  return <div className="gold-seal-wrap">
+    <svg viewBox="0 0 100 100" className="gold-seal-svg">
+      <defs>
+        <radialGradient id="goldGrad" cx="35%" cy="30%" r="70%">
+          <stop offset="0%" stopColor="#fff8e1"/>
+          <stop offset="45%" stopColor="#d4af37"/>
+          <stop offset="100%" stopColor="#997018"/>
+        </radialGradient>
+      </defs>
+      <circle cx="50" cy="50" r="48" fill="url(#goldGrad)" stroke="#6b4c10" strokeWidth="2"/>
+      <circle cx="50" cy="50" r="43" fill="none" stroke="#fff8dc" strokeWidth="1.2" strokeDasharray="3,2"/>
+      <circle cx="50" cy="50" r="35" fill="none" stroke="#fff8dc" strokeWidth="1.5"/>
+      <text x="50" y="32" fill="#fff" fontSize="13" fontWeight="bold" textAnchor="middle">★</text>
+      <text x="50" y="46" fill="#fff" fontSize="8" fontWeight="bold" letterSpacing="1" textAnchor="middle">EXCELLENCE</text>
+      <text x="50" y="55" fill="#fff" fontSize="7" fontWeight="bold" letterSpacing="0.8" textAnchor="middle">IN MERIT</text>
+      <text x="50" y="66" fill="#fff8dc" fontSize="5.8" fontWeight="bold" textAnchor="middle">VR PI GROUP</text>
+    </svg>
+  </div>;
 }
 
 const TEMPLATES=[
@@ -433,46 +480,42 @@ async function getRecords(){
   }).filter(x=>x.name||x.email||x.aid);
 }
 
-function DocHeader({senderEmail}){
+function DocHeader(){
   return <div className="doc-header">
     <Logo className="doc-logo"/>
     <div className="doc-info">
       <strong>{COMPANY}</strong><br/>
       (Registered Enterprise & Corporate Technology Operations)<br/>
       Corporate Office: Wanaparthy, Telangana, India • PIN: 509103<br/>
-      Official Communications: {senderEmail||"vrpigroupoftechnology@gmail.com"}<br/>
+      Official Communications: {OFFICIAL_EMAIL}<br/>
       Web Portal: {WEBSITE}
     </div>
   </div>;
 }
 
-function DocFooter({senderEmail}){
+function DocFooter(){
   return <div className="doc-footer">
-    <b>{COMPANY}</b> • Registered Corporate Office: Wanaparthy, Telangana, India • {senderEmail||"vrpigroupoftechnology@gmail.com"}<br/>
+    <b>{COMPANY}</b> • Registered Corporate Office: Wanaparthy, Telangana, India • {OFFICIAL_EMAIL}<br/>
     This is an authentic, system-generated corporate document. Validity may be verified at {WEBSITE}.
   </div>;
 }
 
-function SignoffBlock({experience=false,displayName=""}){
+/* Formal Corporate Signatory without personal name tags */
+function SignoffBlock({experience=false}){
   return <div className="signoff-row">
     <div className="signoff-col">
       Respectfully issued on behalf of,<br/>
       <strong>{COMPANY}</strong><br/>
-      <div style={{height:28}}></div>
+      <div style={{height:26}}></div>
       <b>Authorized Corporate Signatory</b><br/>
-      <span>{experience?"Human Resources & Operations":"Talent Acquisition & Academic Board"}</span><br/>
-      <small style={{color:"#64748b"}}>{displayName||"Talent Excellence Division"}</small>
+      <span>{experience?"Human Resources & Corporate Operations":"Talent Acquisition & Academic Board"}</span><br/>
+      <small style={{color:"#475569"}}>VR PI Group Of Companies</small>
     </div>
-    <div className="seal-badge">
-      <span>★ OFFICIAL ★</span>
-      <span style={{fontSize:7,letterSpacing:0.5}}>VR PI GROUP</span>
-      <span>CORPORATE</span>
-      <span>SEAL</span>
-    </div>
+    <CorporateSeal/>
   </div>;
 }
 
-function StandardDocument({data,template,senderEmail,displayName}){
+function StandardDocument({data,template}){
   const experience=template.id==="experience";
   const offer=template.id==="offer";
   const training=template.id==="training-appointment";
@@ -486,7 +529,7 @@ function StandardDocument({data,template,senderEmail,displayName}){
   const refCode = data.aid || ("VRPI-" + Math.floor(1000 + Math.random()*9000));
 
   return <div className="a4 doc-serif">
-    <DocHeader senderEmail={senderEmail}/>
+    <DocHeader/>
     <div className="doc-content">
       <div className="doc-ref-row">
         <span>REF NO: VRPI/CORP/{template.id.toUpperCase()}/{refCode}</span>
@@ -599,16 +642,13 @@ function StandardDocument({data,template,senderEmail,displayName}){
         </p>
       </>}
 
-      <SignoffBlock experience={experience} displayName={displayName}/>
+      <SignoffBlock experience={experience}/>
     </div>
-    <DocFooter senderEmail={senderEmail}/>
+    <DocFooter/>
   </div>;
 }
 
-/* ========================================================
-   COMPLETION CERTIFICATE (Without "TO WHOMSOEVER" & Performance Row)
-   ======================================================== */
-function CompletionDocument({data,template,senderEmail,displayName}){
+function CompletionDocument({data,template}){
   const training=template.programme==="training";
   const type=training?"Industrial Training":"Internship";
   const candidateName = data.name || "[Candidate Full Name]";
@@ -626,7 +666,7 @@ function CompletionDocument({data,template,senderEmail,displayName}){
         <strong>{COMPANY}</strong><br/>
         (Certified Enterprise Technology & Human Resources Group)<br/>
         Corporate Office: Wanaparthy, Telangana, India • PIN: 509103<br/>
-        Official Verification Desk: {senderEmail||"vrpigroupoftechnology@gmail.com"}
+        Official Verification Desk: {OFFICIAL_EMAIL}
       </div>
     </div>
     <div className="completion-accent"/>
@@ -637,7 +677,7 @@ function CompletionDocument({data,template,senderEmail,displayName}){
         <small>DATE OF ISSUANCE: {today().toUpperCase()}</small>
       </div>
 
-      <p style={{fontSize:13,marginTop:12}}>
+      <p style={{fontSize:13,marginTop:10}}>
         This is to formally certify that <b>{candidateName}</b> has satisfactorily and successfully completed a comprehensive tenure of <b>{type}</b> with <b>{COMPANY}</b> in the specialized domain of <b>{candidateDomain}</b>.
       </p>
 
@@ -661,30 +701,22 @@ function CompletionDocument({data,template,senderEmail,displayName}){
 
       <div className="completion-signoff">
         <div>
-          Respectfully issued by,<br/>
+          Respectfully issued on behalf of,<br/>
           <strong>{COMPANY}</strong><br/>
-          <div style={{height:28}}></div>
+          <div style={{height:26}}></div>
           <b>Director of Human Resources & Talent Excellence</b><br/>
           <span>Academic & Industry Review Board • Wanaparthy, Telangana</span>
         </div>
-        <div className="well-done">
-          <span className="star">★</span>
-          EXEMPLARY
-          <span>PERFORMANCE</span>
-          <span>VR PI GROUP</span>
-        </div>
+        <CorporateSeal/>
       </div>
     </div>
     <div className="completion-footer">
-      {COMPANY} • Wanaparthy, Telangana, India • Verification Email: {senderEmail||"vrpigroupoftechnology@gmail.com"} • Web: {WEBSITE}
+      {COMPANY} • Wanaparthy, Telangana, India • Verification Email: {OFFICIAL_EMAIL} • Web: {WEBSITE}
     </div>
   </div>;
 }
 
-/* ========================================================
-   RICH, BALANCED PARTICIPATION CERTIFICATE (NO EMPTY SPACES)
-   ======================================================== */
-function ParticipationDocument({data,template,senderEmail}){
+function ParticipationDocument({data}){
   const candidateName = data.name || "[Candidate Full Name]";
   const eventName = data.eventName || "[Event / Workshop Name]";
   const candidateDomain = data.domain || "[Programme Domain]";
@@ -733,11 +765,7 @@ function ParticipationDocument({data,template,senderEmail}){
           <span>Talent Excellence Division</span>
         </div>
         
-        <div className="gold-seal">
-          <span>★</span>
-          EXCELLENCE
-          <span>IN MERIT</span>
-        </div>
+        <GoldSealBadge/>
 
         <div className="part-sign-col">
           <div className="sign-line"></div>
@@ -745,45 +773,34 @@ function ParticipationDocument({data,template,senderEmail}){
           <span>{COMPANY}</span>
         </div>
       </div>
-    </div>
-    <div className="participation-foot">
-      WANAPARTHY, TELANGANA, INDIA • OFFICIAL VERIFICATION DESK: {senderEmail||"vrpigroupoftechnology@gmail.com"} • DATE: {today()}
+
+      <div className="participation-foot">
+        WANAPARTHY, TELANGANA, INDIA • OFFICIAL VERIFICATION DESK: {OFFICIAL_EMAIL} • DATE: {today()}
+      </div>
     </div>
   </div>;
 }
 
-function DocumentRenderer({data,template,senderEmail,displayName}){
-  if(template.type==="completion")return <CompletionDocument data={data} template={template} senderEmail={senderEmail} displayName={displayName}/>;
-  if(template.type==="participation")return <ParticipationDocument data={data} template={template} senderEmail={senderEmail}/>;
-  return <StandardDocument data={data} template={template} senderEmail={senderEmail} displayName={displayName}/>;
+function DocumentRenderer({data,template}){
+  if(template.type==="completion")return <CompletionDocument data={data} template={template}/>;
+  if(template.type==="participation")return <ParticipationDocument data={data}/>;
+  return <StandardDocument data={data} template={template}/>;
 }
 
-/* Gmail Modal with Real-Time Sender State Update */
-function GmailModal({open,onClose,credentials,onSave}){
-  const [form,setForm]=useState({
-    email:"srijayelleni@gmail.com",
-    password:"Vrpi_1234",
-    displayName:"VR PI TECH SOLUTIONS HR",
-    active:true,
-    ...credentials
-  });
-  const [showPassword,setShowPassword]=useState(false);
-
-  useEffect(()=>{
-    if(credentials)setForm(prev=>({...prev,...credentials}));
-  },[credentials]);
+/* Gmail Settings Dialog: cleanly lets user open any other Gmail account */
+function GmailModal({open,onClose}){
+  const [targetEmail,setTargetEmail]=useState("");
 
   if(!open)return null;
 
-  function launchThisGmail(){
-    if(!form.email)return;
-    const url = `https://accounts.google.com/AccountChooser?service=mail&continue=${encodeURIComponent('https://mail.google.com/mail/')}&Email=${encodeURIComponent(form.email)}`;
+  function launchSpecificEmail(){
+    const emailToOpen = targetEmail.trim() || OFFICIAL_EMAIL;
+    const url = `https://accounts.google.com/AccountChooser?service=mail&continue=${encodeURIComponent('https://mail.google.com/mail/')}&Email=${encodeURIComponent(emailToOpen)}`;
     window.open(url, "_blank");
   }
 
-  function handleSave(){
-    onSave(form);
-    onClose();
+  function launchGeneralGmail(){
+    window.open("https://mail.google.com/", "_blank");
   }
 
   return <div className="modal-overlay" onClick={e=>{if(e.target===e.currentTarget)onClose();}}>
@@ -792,87 +809,54 @@ function GmailModal({open,onClose,credentials,onSave}){
         <div className="cred-title-row">
           <div className="cred-g-icon">✉</div>
           <div>
-            <h3>Google Gmail Credentials</h3>
-            <p>Set custom sender address and launch email account</p>
+            <h3>Google Gmail Access Hub</h3>
+            <p>Access official company mailbox or launch other accounts</p>
           </div>
         </div>
         <button className="close-round" onClick={onClose}>×</button>
       </div>
 
       <div className="cred-body">
-        <div style={{display:"flex",gap:8,marginBottom:12}}>
-          <button
-            type="button"
-            className="btn"
-            style={{fontSize:10,background:form.email==="srijayelleni@gmail.com"?"#1e3a5f":"#f1f5f9",color:form.email==="srijayelleni@gmail.com"?"white":"#334155"}}
-            onClick={()=>setForm(f=>({...f,email:"srijayelleni@gmail.com",displayName:"Srija HR"}))}
-          >
-            👤 srijayelleni@gmail.com
-          </button>
-          <button
-            type="button"
-            className="btn"
-            style={{fontSize:10,background:form.email==="vrpigroupoftechnology@gmail.com"?"#1e3a5f":"#f1f5f9",color:form.email==="vrpigroupoftechnology@gmail.com"?"white":"#334155"}}
-            onClick={()=>setForm(f=>({...f,email:"vrpigroupoftechnology@gmail.com",displayName:"VR PI TECH SOLUTIONS HR"}))}
-          >
-            🏢 vrpigroupoftechnology@gmail.com
-          </button>
+        <div style={{background:"#f8fafc",border:"1px solid #e2e8f0",borderRadius:10,padding:14,marginBottom:16}}>
+          <span style={{fontSize:10,fontWeight:800,color:"#64748b",letterSpacing:1}}>OFFICIAL COMPANY GMAIL</span>
+          <div style={{fontSize:13,fontWeight:700,color:"#1e3a5f",margin:"4px 0"}}>{OFFICIAL_EMAIL}</div>
+          <small style={{color:"#059669",fontWeight:700}}>✓ Connected Corporate Dispatcher</small>
         </div>
 
         <div className="cred-field">
-          <label>Active Sender Gmail Address *</label>
-          <input className="cred-input" placeholder="e.g. srijayelleni@gmail.com" value={form.email} onChange={e=>setForm({...form,email:e.target.value})}/>
-        </div>
-
-        <div className="cred-field">
-          <label>
-            <span>Password (Account Password or Google App Password)</span>
-            <a href="https://myaccount.google.com/apppasswords" target="_blank" rel="noreferrer" style={{color:"#4f46e5",textDecoration:"none",fontSize:10,fontWeight:700}}>Generate App Password ↗</a>
-          </label>
-          <div style={{position:"relative"}}>
-            <input
-              type={showPassword?"text":"password"}
-              className="cred-input"
-              placeholder="Enter password"
-              value={form.password}
-              onChange={e=>setForm({...form,password:e.target.value})}
-            />
-            <button type="button" onClick={()=>setShowPassword(!showPassword)} style={{position:"absolute",right:8,top:7,background:"none",border:"none",cursor:"pointer"}}>
-              {showPassword?"👁️":"👁️‍🗨️"}
-            </button>
-          </div>
-        </div>
-
-        <div className="cred-field">
-          <label>Sender Display Name</label>
-          <input className="cred-input" placeholder="e.g. VR PI TECH SOLUTIONS HR" value={form.displayName} onChange={e=>setForm({...form,displayName:e.target.value})}/>
+          <label>Open Another Gmail Account</label>
+          <input
+            className="cred-input"
+            placeholder="Enter any other Gmail address to open..."
+            value={targetEmail}
+            onChange={e=>setTargetEmail(e.target.value)}
+          />
         </div>
 
         <div className="app-pwd-help">
-          <strong>💡 Instant Real-Time Switch:</strong>
-          <p style={{margin:"4px 0"}}>Saving will immediately update the <b>Current Gmail Sender</b> stat card, header actions, and letterheads.</p>
+          <strong>💡 Account Chooser:</strong>
+          <p style={{margin:"3px 0"}}>Click below to launch Google's account launcher for the specific address you entered, or open your default active Gmail inbox.</p>
         </div>
       </div>
 
       <div className="cred-footer">
-        <button type="button" className="btn" style={{background:"#1e3a5f",color:"white"}} onClick={launchThisGmail}>
-          🚀 Open in Gmail ({form.email}) ↗
+        <button type="button" className="btn" onClick={launchGeneralGmail}>
+          ✉ Open Default Gmail Inbox ↗
         </button>
-        <button type="button" className="btn dark" style={{background:"#4338ca",borderColor:"#4338ca"}} onClick={handleSave}>
-          💾 Save & Update Sender
+        <button type="button" className="btn dark" style={{background:"#4338ca",borderColor:"#4338ca"}} onClick={launchSpecificEmail}>
+          🚀 Open This Account in Gmail ↗
         </button>
       </div>
     </div>
   </div>;
 }
 
-/* Teams Modal */
+/* Microsoft Teams Modal */
 function TeamsModal({open,onClose,credentials,onSave}){
   const [form,setForm]=useState({
     email:"hr@vrpigroup.co.in",
     meetingLink:"https://teams.microsoft.com/meet",
     displayName:"VR PI Interview Panel",
-    active:true,
     ...credentials
   });
 
@@ -893,7 +877,7 @@ function TeamsModal({open,onClose,credentials,onSave}){
         <div className="cred-title-row">
           <div className="cred-g-icon">👥</div>
           <div>
-            <h3>Microsoft Teams Credentials</h3>
+            <h3>Microsoft Teams Settings</h3>
             <p>Interview Scheduler & Meeting Dispatcher</p>
           </div>
         </div>
@@ -954,22 +938,13 @@ function App(){
   const [lastSync,setLastSync]=useState("");
 
   const [previewModalOpen,setPreviewModalOpen]=useState(false);
-
-  /* Saved Gmail Credentials - Defaults to User Account or Saved */
-  const [gmailCreds,setGmailCreds]=useState(()=>{
-    try{
-      const s=localStorage.getItem("vrpi_gmail_creds");
-      return s?JSON.parse(s):{email:"srijayelleni@gmail.com",password:"Vrpi_1234",displayName:"Srija HR",active:true};
-    }catch(e){return {email:"srijayelleni@gmail.com",password:"Vrpi_1234",displayName:"Srija HR",active:true};}
-  });
   const [gmailModalOpen,setGmailModalOpen]=useState(false);
 
-  /* Saved Teams Credentials */
   const [teamsCreds,setTeamsCreds]=useState(()=>{
     try{
       const s=localStorage.getItem("vrpi_teams_creds");
-      return s?JSON.parse(s):{email:"hr@vrpigroup.co.in",meetingLink:"https://teams.microsoft.com/",displayName:"VR PI Interview Panel",active:true};
-    }catch(e){return {email:"hr@vrpigroup.co.in",meetingLink:"https://teams.microsoft.com/",displayName:"VR PI Interview Panel",active:true};}
+      return s?JSON.parse(s):{email:"hr@vrpigroup.co.in",meetingLink:"https://teams.microsoft.com/",displayName:"VR PI Interview Panel"};
+    }catch(e){return {email:"hr@vrpigroup.co.in",meetingLink:"https://teams.microsoft.com/",displayName:"VR PI Interview Panel"};}
   });
   const [teamsModalOpen,setTeamsModalOpen]=useState(false);
 
@@ -1031,20 +1006,13 @@ function App(){
     setForm(old=>({...old,[name]:value}));
   }
 
-  function saveGmailCreds(c){
-    setGmailCreds(c);
-    try{localStorage.setItem("vrpi_gmail_creds",JSON.stringify(c));}catch(e){}
-  }
-
   function saveTeamsCreds(c){
     setTeamsCreds(c);
     try{localStorage.setItem("vrpi_teams_creds",JSON.stringify(c));}catch(e){}
   }
 
-  function openCurrentGmailAccount(){
-    const target = gmailCreds.email || "srijayelleni@gmail.com";
-    const url = `https://accounts.google.com/AccountChooser?service=mail&continue=${encodeURIComponent('https://mail.google.com/mail/')}&Email=${encodeURIComponent(target)}`;
-    window.open(url, "_blank");
+  function openCompanyGmail(){
+    window.open("https://mail.google.com/", "_blank");
   }
 
   return <>
@@ -1057,13 +1025,13 @@ function App(){
           <a className="btn" href={WEBSITE} target="_blank" rel="noreferrer">Company Website ↗</a>
           <a className="btn" href={SHEET_URL} target="_blank" rel="noreferrer">Google Sheet ↗</a>
           <button className="btn gmail-btn" onClick={()=>setGmailModalOpen(true)}>
-            ⚙ Gmail: {gmailCreds.email}
+            ⚙ Gmail Settings
           </button>
           <button className="btn teams-btn" onClick={()=>setTeamsModalOpen(true)}>
             👥 Teams Settings
           </button>
-          <button className="btn dark" onClick={openCurrentGmailAccount}>
-            ✉ Open Gmail ({gmailCreds.email.split("@")[0]}) ↗
+          <button className="btn dark" onClick={openCompanyGmail}>
+            ✉ Open Gmail ↗
           </button>
           <a className="btn" style={{background:"#5b5fc7",color:"white",borderColor:"#5b5fc7"}} href={teamsCreds.meetingLink||"https://teams.microsoft.com/"} target="_blank" rel="noreferrer">
             👥 Open Teams ↗
@@ -1075,7 +1043,7 @@ function App(){
       <section className="hero">
         <div className="eyebrow">VR PI GROUP • ENTERPRISE HR & DOCUMENT PLATFORM</div>
         <h1>Enterprise Talent<br/><span style={{color:"#1e3a5f"}}>Excellence Platform</span></h1>
-        <p className="desc">Executive Times New Roman Corporate Templates • Guaranteed 1-Page Clean Print Preview</p>
+        <p className="desc">Official Executive Document Platform • Official Corporate Notary Seals & Single-Page Print</p>
       </section>
 
       {error&&<div style={{padding:"10px 14px",background:"#fff5ed",color:"#a34a16",borderRadius:8,marginBottom:14,fontSize:11}}>
@@ -1086,8 +1054,8 @@ function App(){
         {[
           ["TOTAL APPLICANTS",records.length,"Synchronized sheet records","#1e3a5f"],
           ["LETTERS SENT",sent,"Recorded sent status","#15803d"],
-          ["CURRENT GMAIL SENDER",gmailCreds.email,gmailCreds.displayName,"#4338ca"],
-          ["TEAMS STATUS",teamsCreds.active?"ACTIVE":"READY","Microsoft Teams Ready","#5b5fc7"]
+          ["COMPANY GMAIL SENDER",OFFICIAL_EMAIL,"VR PI TECH SOLUTIONS HR","#4338ca"],
+          ["TEAMS STATUS","ACTIVE","Microsoft Teams Ready","#5b5fc7"]
         ].map(([label,value,note,color])=><div className="stat" key={label}>
           <label>{label}</label><strong style={{color}} title={String(value)}>{value}</strong><small>{note}</small>
         </div>)}
@@ -1224,8 +1192,6 @@ function App(){
               <DocumentRenderer
                 data={activeData}
                 template={template}
-                senderEmail={gmailCreds.email}
-                displayName={gmailCreds.displayName}
               />
             </div>
           </div>
@@ -1235,7 +1201,7 @@ function App(){
       <footer>
         <Logo style={{width:80,height:"auto",margin:"0 auto 6px"}}/>
         <b>{COMPANY}</b><br/>
-        Wanaparthy, Telangana, India • {gmailCreds.email}<br/>
+        Wanaparthy, Telangana, India • {OFFICIAL_EMAIL}<br/>
         <a href={WEBSITE} target="_blank" rel="noreferrer">Official Company Website</a>
       </footer>
 
@@ -1257,8 +1223,6 @@ function App(){
             <DocumentRenderer
               data={activeData}
               template={template}
-              senderEmail={gmailCreds.email}
-              displayName={gmailCreds.displayName}
             />
           </div>
         </div>
@@ -1268,8 +1232,6 @@ function App(){
       <GmailModal
         open={gmailModalOpen}
         onClose={()=>setGmailModalOpen(false)}
-        credentials={gmailCreds}
-        onSave={saveGmailCreds}
       />
 
       {/* Microsoft Teams Modal */}
