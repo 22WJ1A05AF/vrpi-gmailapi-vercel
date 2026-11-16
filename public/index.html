@@ -58,7 +58,7 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
 .pending{background:#fef3c7;color:#92400e}
 .text-btn{border:0;background:none;color:#0284c7;font-weight:800;font-size:10px;cursor:pointer}
 
-/* Two-Column Studio */
+/* Two-Column Studio Layout */
 .studio-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
 @media(max-width:1150px){.studio-grid{grid-template-columns:1fr}}
 
@@ -72,9 +72,8 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
 .field input,.field select{width:100%;padding:9px 11px;border:1px solid #dfe6ef;border-radius:8px;background:white;color:#30425d;font-size:11px;outline:none}
 .field input:focus,.field select:focus{border-color:#e94b17;box-shadow:0 0 0 3px #e94b1712}
 .field input[type=date]{min-height:37px;cursor:pointer;color-scheme:light}
-.help{font-size:9.5px;color:#8492a7;margin-top:10px;line-height:1.6}
 
-/* Live Preview Side */
+/* Live Preview Side Panel */
 .preview-column{position:sticky;top:15px}
 .preview-topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;background:#0f172a;color:white;padding:10px 16px;border-radius:10px 10px 0 0}
 .sync-badge{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:800;color:#4ade80}
@@ -91,51 +90,64 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
 .modalbar strong{font-size:12px}
 .modal-actions{display:flex;gap:8px}
 
-/* Professional A4 Document Styles (Exact 1-Page Fit) */
-.a4{width:210mm;height:296mm;max-height:296mm;overflow:hidden;background:white;margin:auto;display:flex;flex-direction:column;color:#26354d;box-shadow:0 6px 25px #00000020}
-.doc-header{padding:14px 28px;display:flex;justify-content:space-between;align-items:center;border-bottom:2.5px solid #1e3a5f;gap:12px}
+/* ========================================================
+   PROFESSIONAL TIMES NEW ROMAN A4 DOCUMENT ENGINE
+   ======================================================== */
+.doc-serif{font-family:'Times New Roman',Times,'Georgia',serif;color:#111827}
+.a4{width:210mm;height:296mm;max-height:296mm;overflow:hidden;background:white;margin:auto;display:flex;flex-direction:column;box-shadow:0 6px 25px #00000020}
+
+/* Official Corporate Letterhead */
+.doc-header{padding:14px 28px 10px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #1e3a5f;gap:12px}
 .doc-logo{width:135px;height:65px;object-fit:contain;display:block}
-.doc-info{text-align:right;font-size:8.5px;color:#718096;line-height:1.6}
-.doc-info strong{color:#1e3a5f;font-size:11.5px}
-.doc-content{padding:14px 28px;flex:1;display:flex;flex-direction:column;font-size:9.5px;line-height:1.55}
-.doc-title{text-align:center;margin:4px 0 10px}
-.doc-title h2{font-size:17px;letter-spacing:1.2px;color:#152d4c;margin:2px 0}
-.doc-title small{font-size:8.5px;color:#8492a7;letter-spacing:1.5px;font-weight:800}
-.doc-section{font-size:9px;letter-spacing:1px;font-weight:800;color:#1e3a5f;border-bottom:1px solid #dfe6ef;padding-bottom:3px;margin-top:9px}
-.doc-table{width:100%;border-collapse:collapse;margin:7px 0;font-size:9px}
-.doc-table td{padding:5px 8px;border-bottom:1px solid #e4eaf1}
-.doc-table td:first-child{background:#f2f5f9;color:#1e3a5f;font-weight:700;width:34%}
-.doc-content p{color:#475569;line-height:1.55;margin:4px 0}
-.terms-list{margin:4px 0;padding-left:16px}
-.terms-list li{margin-bottom:2px;color:#475569}
-.doc-footer{background:#1e3a5f;color:white;text-align:center;padding:8px 12px;font-size:8px;line-height:1.5;margin-top:auto}
-.signoff{margin-top:auto;padding-top:8px}
-.signoff strong{display:block;color:#1e3a5f;margin-top:2px}
-.acceptance-box{border:1px solid #1e3a5f;border-radius:6px;padding:6px 12px;margin-top:6px}
+.doc-info{text-align:right;font-size:8.5px;color:#374151;line-height:1.55}
+.doc-info strong{color:#1e3a5f;font-size:11.5px;font-weight:bold}
+
+.doc-content{padding:14px 28px;flex:1;display:flex;flex-direction:column;font-size:12px;line-height:1.5;text-align:justify}
+.doc-ref-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:11px;font-weight:bold;color:#1e3a5f}
+.doc-title{text-align:center;margin:6px 0 10px}
+.doc-title h2{font-size:17.5px;letter-spacing:1px;color:#152d4c;margin:2px 0;font-weight:bold;text-decoration:underline}
+
+.doc-recipient{margin-bottom:6px;font-size:12px;line-height:1.45}
+.doc-subject{font-size:12px;font-weight:bold;color:#111827;margin:5px 0 7px;text-decoration:underline}
+
+.doc-section{font-size:11px;font-weight:bold;color:#1e3a5f;border-bottom:1px solid #1e3a5f;padding-bottom:2px;margin:8px 0 4px;text-transform:uppercase;letter-spacing:.5px}
+.doc-table{width:100%;border-collapse:collapse;margin:6px 0 8px;font-size:11.5px}
+.doc-table td{padding:4.5px 8px;border:1px solid #cbd5e1;vertical-align:middle}
+.doc-table td:first-child{background:#f8fafc;color:#1e3a5f;font-weight:bold;width:32%}
+
+.doc-content p{margin:4px 0;color:#1f2937}
+.terms-list{margin:4px 0 6px;padding-left:18px}
+.terms-list li{margin-bottom:3px;color:#1f2937;line-height:1.45}
+.terms-list li b{color:#111827}
+
+.signoff-row{display:flex;justify-content:space-between;align-items:flex-end;margin-top:auto;padding-top:8px}
+.signoff-col{font-size:11.5px;line-height:1.4}
+.signoff-col strong{display:block;color:#1e3a5f;font-size:12px;margin-top:2px}
+.seal-badge{width:76px;height:76px;border:2px double #1e3a5f;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:6.5px;font-weight:bold;color:#1e3a5f;line-height:1.2;transform:rotate(-4deg);background:#f8fafc}
+
+.acceptance-box{border:1px solid #1e3a5f;border-radius:4px;padding:5px 10px;margin-top:6px;font-size:11px;background:#fcfdfd}
 .acceptance-box p{margin:2px 0}
 
-/* Completion Template */
+.doc-footer{background:#1e3a5f;color:white;text-align:center;padding:7px 12px;font-size:8px;line-height:1.5;margin-top:auto;font-family:'Plus Jakarta Sans',sans-serif}
+
+/* Completion Certificate Template */
 .completion-page{border:1px solid #e5e9ef}
-.completion-head{padding:12px 24px 10px;display:flex;justify-content:space-between;align-items:center;gap:15px;border-bottom:4px solid #d6ad59}
+.completion-head{padding:12px 24px 8px;display:flex;justify-content:space-between;align-items:center;gap:15px;border-bottom:3.5px solid #d6ad59}
 .completion-head .doc-logo{width:130px;height:65px}
-.completion-company{text-align:right;font-size:8.5px;line-height:1.6;color:#52637c}
+.completion-company{text-align:right;font-size:8.5px;line-height:1.55;color:#475569}
 .completion-company strong{font-size:11.5px;color:#1e3a5f}
-.completion-accent{height:5px;background:linear-gradient(90deg,#172f50 0%,#d5ae61 48%,#172f50 100%)}
-.completion-body{padding:16px 28px;flex:1;display:flex;flex-direction:column;font-size:9.5px;line-height:1.6}
-.completion-title{text-align:center;margin:4px 0 10px}
-.completion-title h2{font-family:'Playfair Display',serif;font-size:19px;color:#152d4c;margin:4px 0}
-.completion-title small{font-size:8.5px;font-weight:800;letter-spacing:1.5px;color:#9a7b39}
-.completion-body p{font-size:9.5px;color:#36465d;line-height:1.65;margin:4px 0}
-.completion-recipient{border-bottom:1px solid #d9e0e9;padding-bottom:5px;margin-bottom:7px}
-.completion-recipient b{color:#1e3a5f}
-.completion-details{width:100%;border-collapse:collapse;margin:7px 0;font-size:9px}
-.completion-details td{border-bottom:1px solid #e3e8ee;padding:5px 8px}
-.completion-details td:first-child{width:34%;background:#f4f6f9;color:#1e3a5f;font-weight:800}
-.completion-signoff{margin-top:auto;padding-top:8px;position:relative;min-height:85px}
-.completion-signoff strong{display:block;color:#1e3a5f;margin-top:2px}
-.well-done{position:absolute;right:10px;bottom:5px;width:78px;height:78px;border:4px double #c49b46;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#1e3a5f;background:#fffdf6;font-size:7px;font-weight:800;line-height:1.2;transform:rotate(7deg)}
-.well-done .star{font-size:14px;color:#bc923f}
-.completion-footer{background:#132e50;color:#fff;padding:8px 14px;text-align:center;font-size:7.5px;line-height:1.6;border-top:3px solid #c69f4d;margin-top:auto}
+.completion-accent{height:4px;background:linear-gradient(90deg,#172f50 0%,#d5ae61 48%,#172f50 100%)}
+.completion-body{padding:14px 28px;flex:1;display:flex;flex-direction:column;font-size:12px;line-height:1.55;text-align:justify}
+.completion-title{text-align:center;margin:4px 0 8px}
+.completion-title h2{font-family:'Playfair Display',serif;font-size:19.5px;color:#152d4c;margin:2px 0;font-weight:bold;letter-spacing:.5px}
+.completion-title small{font-size:9px;font-weight:bold;letter-spacing:1px;color:#9a7b39}
+.completion-details{width:100%;border-collapse:collapse;margin:6px 0;font-size:11.5px}
+.completion-details td{border:1px solid #cbd5e1;padding:4.5px 8px}
+.completion-details td:first-child{width:32%;background:#f8fafc;color:#1e3a5f;font-weight:bold}
+.completion-signoff{margin-top:auto;padding-top:8px;position:relative;display:flex;justify-content:space-between;align-items:flex-end}
+.well-done{width:76px;height:76px;border:3px double #c49b46;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#1e3a5f;background:#fffdf6;font-size:6.5px;font-weight:800;line-height:1.2;transform:rotate(5deg)}
+.well-done .star{font-size:13px;color:#bc923f}
+.completion-footer{background:#132e50;color:#fff;padding:7px 14px;text-align:center;font-size:7.5px;line-height:1.5;border-top:2.5px solid #c69f4d;margin-top:auto;font-family:'Plus Jakarta Sans',sans-serif}
 
 /* Participation Certificate (Landscape Exact 1 Page) */
 .participation-page{width:297mm;height:208mm;max-height:208mm;position:relative;overflow:hidden;background:#fffdf8;border:7px double #cba85a;padding:8mm 12mm;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center}
@@ -143,15 +155,15 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
 .participation-page:after{content:"";position:absolute;left:-5%;bottom:-45px;width:110%;height:75px;background:#17395c;border-top:7px solid #e6ce8f;border-radius:50% 50% 0 0;z-index:0}
 .participation-content{position:relative;z-index:2;width:100%;display:flex;flex-direction:column;align-items:center}
 .participation-logo{width:125px;height:55px;object-fit:contain;margin:0 auto 4px}
-.participation-company{font-size:9px;font-weight:800;letter-spacing:2.5px;color:#17395c}
-.participation-heading{margin:5px 0 1px;font-family:'Playfair Display',serif;font-size:30px;letter-spacing:3px;color:#17395c}
-.participation-subtitle{font-size:11px;letter-spacing:3px;color:#a58038;font-weight:700}
+.participation-company{font-size:9.5px;font-weight:800;letter-spacing:2.5px;color:#17395c}
+.participation-heading{margin:5px 0 1px;font-family:'Playfair Display',serif;font-size:32px;letter-spacing:3px;color:#17395c}
+.participation-subtitle{font-size:11.5px;letter-spacing:3px;color:#a58038;font-weight:700}
 .participation-medal{position:absolute;left:15px;top:15px;width:48px;height:48px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff2b8,#cfac56 45%,#9f722d 80%);border:3px double #f8e9b7}
-.participation-intro{font-size:10.5px;color:#45566c;margin-top:10px}
-.participation-name{font-family:'Playfair Display',serif;font-style:italic;font-size:32px;color:#bd974c;border-bottom:1px solid #bca66f;padding:0 30px 2px;margin:4px 0 6px;max-width:85%}
-.participation-copy{font-size:9.5px;color:#344861;line-height:1.6;max-width:640px;margin:4px auto}
-.participation-meta{display:flex;justify-content:space-around;width:100%;gap:15px;margin-top:10px;color:#17395c;font-size:8.5px}
-.participation-meta strong{display:block;font-size:9.5px}
+.participation-intro{font-size:11px;color:#45566c;margin-top:10px}
+.participation-name{font-family:'Playfair Display',serif;font-style:italic;font-size:34px;color:#bd974c;border-bottom:1px solid #bca66f;padding:0 30px 2px;margin:4px 0 6px;max-width:85%}
+.participation-copy{font-size:11px;color:#344861;line-height:1.6;max-width:640px;margin:4px auto}
+.participation-meta{display:flex;justify-content:space-around;width:100%;gap:15px;margin-top:10px;color:#17395c;font-size:9px}
+.participation-meta strong{display:block;font-size:10px}
 .participation-meta span{display:block;color:#687789}
 .participation-foot{font-size:8px;color:#17395c;font-weight:700;position:relative;z-index:2;margin-bottom:0}
 
@@ -168,14 +180,13 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
 .cred-field label{display:flex;justify-content:space-between;align-items:center;font-size:10.5px;font-weight:700;color:#334155;margin-bottom:5px}
 .cred-input{width:100%;padding:10px 12px;border:1px solid #cbd5e1;border-radius:8px;font-size:11.5px;outline:none;background:#f8fafc}
 .cred-input:focus{border-color:#4338ca;background:white}
-.btn-sm{padding:6px 10px;border-radius:6px;font-size:10px;font-weight:700;border:1px solid #cbd5e1;background:#f1f5f9;color:#334155;cursor:pointer}
 .app-pwd-help{background:#f8fafc;border:1px dashed #cbd5e1;border-radius:10px;padding:11px 14px;font-size:9.5px;color:#475569;line-height:1.6}
 .cred-footer{padding:14px 22px;background:#f8fafc;border-top:1px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center}
 
 footer{text-align:center;color:#8491a5;font-size:9.5px;padding:22px}
 footer .logo{width:80px;height:auto;margin:0 auto 6px}
 
-/* Guaranteed 1-Page Crisp Print View (Zero Blank Screen) */
+/* Guaranteed 1-Page Clean Print Isolation */
 @media print{
   @page{size:A4 portrait;margin:0}
   @page certPage{size:A4 landscape;margin:0}
@@ -245,12 +256,12 @@ function Logo({className="",style={}}){
 }
 
 const TEMPLATES=[
-  {id:"offer",name:"Internship Offer Letter",fields:["name","domain","mode","joining","duration"],desc:"Formal internship offer with professional terms and conditions.",type:"letter"},
-  {id:"internship-completion",name:"Internship Completion Certificate",fields:["name","domain","mode","joining","duration","completionDate"],desc:"Corporate internship completion letter with personalized company details.",type:"completion",programme:"internship"},
-  {id:"training-appointment",name:"Training Appointment Letter",fields:["name","domain","mode","appointmentDate","duration"],desc:"Professional training appointment and responsibilities.",type:"letter"},
-  {id:"training-completion",name:"Training Completion Certificate",fields:["name","domain","mode","joining","duration","completionDate"],desc:"Formal training completion letter with company branding.",type:"completion",programme:"training"},
-  {id:"participation",name:"Participation Certificate",fields:["name","eventName","domain","participationDate"],desc:"Elegant navy-and-gold participation certificate.",type:"participation"},
-  {id:"experience",name:"Experience Letter",fields:["name","domain","role","joining","duration"],desc:"Professional engagement and experience confirmation.",type:"experience"}
+  {id:"offer",name:"Internship Offer Letter",fields:["name","domain","mode","joining","duration"],desc:"Executive corporate internship appointment and terms of engagement.",type:"letter"},
+  {id:"internship-completion",name:"Internship Completion Certificate",fields:["name","domain","mode","joining","duration","completionDate"],desc:"Official corporate credential certifying performance and project completion.",type:"completion",programme:"internship"},
+  {id:"training-appointment",name:"Training Appointment Letter",fields:["name","domain","mode","appointmentDate","duration"],desc:"Structured technical industrial training appointment and curriculum agreement.",type:"letter"},
+  {id:"training-completion",name:"Training Completion Certificate",fields:["name","domain","mode","joining","duration","completionDate"],desc:"Formal technical completion credential and competence verification.",type:"completion",programme:"training"},
+  {id:"participation",name:"Participation Certificate",fields:["name","eventName","domain","participationDate"],desc:"Elegant navy-and-gold certificate for corporate summit and workshop participation.",type:"participation"},
+  {id:"experience",name:"Experience Letter",fields:["name","domain","role","joining","duration"],desc:"Formal service and tenure verification letter for career progression.",type:"experience"}
 ];
 
 const LABELS={
@@ -345,26 +356,43 @@ function DocHeader({senderEmail}){
     <Logo className="doc-logo"/>
     <div className="doc-info">
       <strong>{COMPANY}</strong><br/>
-      Corporate Office • Wanaparthy, Telangana, India<br/>
-      Official Email: {senderEmail||"vrpigroupoftechnology@gmail.com"}<br/>
-      Web: {WEBSITE} • Date: {today()}
+      (Registered Enterprise & Corporate Technology Operations)<br/>
+      Corporate Office: Wanaparthy, Telangana, India • PIN: 509103<br/>
+      Official Communications: {senderEmail||"vrpigroupoftechnology@gmail.com"}<br/>
+      Web Portal: {WEBSITE}
     </div>
   </div>;
 }
 
 function DocFooter({senderEmail}){
   return <div className="doc-footer">
-    <b>{COMPANY}</b> • Wanaparthy, Telangana, India • {senderEmail||"vrpigroupoftechnology@gmail.com"}<br/>{WEBSITE}
+    <b>{COMPANY}</b> • Registered Corporate Office: Wanaparthy, Telangana, India • {senderEmail||"vrpigroupoftechnology@gmail.com"}<br/>
+    This is an authentic, system-generated corporate document. Validity may be verified at {WEBSITE}.
   </div>;
 }
 
-function Signoff({experience=false,displayName=""}){
-  return <div className="signoff">
-    Sincerely,
-    <strong>{experience?"Human Resources Department":(displayName||"Talent Excellence Division")}</strong>
-    {COMPANY} • Authorized Corporate Signatory
+function SignoffBlock({experience=false,displayName=""}){
+  return <div className="signoff-row">
+    <div className="signoff-col">
+      Respectfully issued on behalf of,<br/>
+      <strong>{COMPANY}</strong><br/>
+      <div style={{height:28}}></div>
+      <b>Authorized Corporate Signatory</b><br/>
+      <span>{experience?"Human Resources & Operations":"Talent Acquisition & Academic Board"}</span><br/>
+      <small style={{color:"#64748b"}}>{displayName||"Talent Excellence Division"}</small>
+    </div>
+    <div className="seal-badge">
+      <span>★ OFFICIAL ★</span>
+      <span style={{fontSize:7,letterSpacing:0.5}}>VR PI GROUP</span>
+      <span>CORPORATE</span>
+      <span>SEAL</span>
+    </div>
   </div>;
 }
+
+/* ========================================================
+   TEMPLATES WITH EXPANDED PROFESSIONAL LEGAL MATTER
+   ======================================================== */
 
 function StandardDocument({data,template,senderEmail,displayName}){
   const experience=template.id==="experience";
@@ -377,81 +405,123 @@ function StandardDocument({data,template,senderEmail,displayName}){
   const candidateDuration = data.duration || "3 Months";
   const candidateRole = data.role || "[Designation / Role]";
   const candidateDate = dateText(training ? (data.appointmentDate || "2026-06-01") : (data.joining || "2026-06-01"));
+  const refCode = data.aid || ("VRPI-" + Math.floor(1000 + Math.random()*9000));
 
-  const intro=offer
-  ?`We are pleased to offer ${candidateName} an internship opportunity with ${COMPANY} in the ${candidateDomain} programme. We are delighted to welcome you to our professional team.`
-  :training
-  ?`We are pleased to appoint ${candidateName} to the ${candidateDomain} training programme with ${COMPANY}. This appointment provides structured learning and practical technical exposure.`
-  :`This letter confirms the professional engagement of ${candidateName} with ${COMPANY} in the capacity of ${candidateRole} within the ${candidateDomain} domain.`;
-
-  return <div className="a4">
+  return <div className="a4 doc-serif">
     <DocHeader senderEmail={senderEmail}/>
     <div className="doc-content">
-      <div className="doc-title">
-        <small>REF: VRPI/HR/2026/{data.aid||"OFFER"}</small>
-        <h2>{template.name.toUpperCase()}</h2>
-        <small>{today().toUpperCase()}</small>
+      <div className="doc-ref-row">
+        <span>REF NO: VRPI/CORP/{template.id.toUpperCase()}/{refCode}</span>
+        <span>DATE: {today().toUpperCase()}</span>
       </div>
 
-      <p><b>To,</b><br/>{candidateName}</p>
-      {offer&&<p><b>Subject: Official Internship Offer – {candidateDomain}</b></p>}
-      {training&&<p><b>Subject: Official Training Appointment – {candidateDomain}</b></p>}
-      {experience&&<p><b>Subject: Experience Confirmation Letter</b></p>}
+      <div className="doc-title">
+        <h2>{template.name.toUpperCase()}</h2>
+      </div>
+
+      <div className="doc-recipient">
+        <b>To,</b><br/>
+        <b>{candidateName}</b><br/>
+        Candidate ID / Ref: {refCode}
+      </div>
+
+      {offer&&<div className="doc-subject">SUBJECT: FORMAL OFFER OF INTERNSHIP IN {candidateDomain.toUpperCase()}</div>}
+      {training&&<div className="doc-subject">SUBJECT: FORMAL APPOINTMENT FOR INDUSTRIAL TECHNICAL TRAINING – {candidateDomain.toUpperCase()}</div>}
+      {experience&&<div className="doc-subject">SUBJECT: PROFESSIONAL SERVICE & EXPERIENCE CONFIRMATION LETTER</div>}
+
       <p>Dear {candidateName},</p>
-      <p>{intro}</p>
-
-      <div className="doc-section">{experience?"PROFESSIONAL EXPERIENCE DETAILS":training?"TRAINING APPOINTMENT DETAILS":"INTERNSHIP OFFER DETAILS"}</div>
-
-      <table className="doc-table"><tbody>
-        <tr><td>Candidate Name</td><td>{candidateName}</td></tr>
-        {experience&&<tr><td>Designation / Role</td><td>{candidateRole}</td></tr>}
-        <tr><td>Programme Domain</td><td>{candidateDomain}</td></tr>
-        {!experience&&<tr><td>Programme Mode</td><td>{candidateMode}</td></tr>}
-        <tr><td>{training?"Appointment Date":"Start Date"}</td><td>{candidateDate}</td></tr>
-        <tr><td>Duration</td><td>{candidateDuration}</td></tr>
-      </tbody></table>
 
       {offer&&<>
-        <p>Your internship commences on <b>{candidateDate}</b> for a duration of <b>{candidateDuration}</b> in <b>{candidateMode}</b> mode. Please adhere to the corporate guidelines under your designated coordinator.</p>
+        <p>
+          Following your application and the subsequent technical evaluation, the Academic and Recruitment Board of <b>{COMPANY}</b> is pleased to extend this formal offer of Internship to you in the <b>{candidateDomain}</b> division. We commend your dedication and technical aptitude, and look forward to fostering your professional competencies during this corporate tenure.
+        </p>
 
-        <div className="doc-section">KEY TERMS AND CONDITIONS</div>
+        <div className="doc-section">SCHEDULE & PROGRAMME SPECIFICATIONS</div>
+        <table className="doc-table"><tbody>
+          <tr><td>Candidate Full Name</td><td><b>{candidateName}</b></td></tr>
+          <tr><td>Assigned Specialization / Domain</td><td>{candidateDomain}</td></tr>
+          <tr><td>Mode of Engagement</td><td>{candidateMode} (Subject to Mentor Supervision)</td></tr>
+          <tr><td>Date of Commencement</td><td>{candidateDate}</td></tr>
+          <tr><td>Tenure Duration</td><td>{candidateDuration}</td></tr>
+          <tr><td>Designation</td><td>Intern – {candidateDomain}</td></tr>
+        </tbody></table>
+
+        <div className="doc-section">TERMS OF ENGAGEMENT & PROFESSIONAL OBLIGATIONS</div>
         <ol className="terms-list">
-          <li><b>Professional Conduct:</b> Maintain punctuality, regular active participation, and respectful professional communication.</li>
-          <li><b>Responsibilities & Project Work:</b> Complete designated learning assignments and project milestones within assigned deadlines.</li>
-          <li><b>Confidentiality:</b> Keep company and client project data confidential and strictly refrain from unauthorized disclosure.</li>
-          <li><b>Documentation & Certificate:</b> Official completion credentials are provided upon verified attendance and satisfactory task evaluation.</li>
+          <li><b>1. Scope of Mentorship:</b> You will be assigned to enterprise development tracks under designated senior coordinators. You are required to actively participate in all scheduled agile syncs, technical reviews, and milestone submissions.</li>
+          <li><b>2. Proprietary Information & Confidentiality:</b> You shall maintain absolute confidentiality regarding company methodologies, client project codebases, and intellectual assets. Any unauthorized disclosure constitutes a breach of corporate policy.</li>
+          <li><b>3. Code of Ethics & Attendance:</b> Adherence to corporate etiquette, regular logged attendance, punctuality, and professional decorum is strictly required throughout the tenure.</li>
+          <li><b>4. Completion Credentials:</b> Issuance of the verified Corporate Internship Completion Certificate is contingent upon satisfactory milestone evaluation, code compliance, and approval by your technical mentor.</li>
         </ol>
 
-        <div className="doc-section">CANDIDATE ACCEPTANCE</div>
         <div className="acceptance-box">
-          <p>I, <b>{candidateName}</b>, acknowledge and accept the terms and conditions stated in this offer letter.</p>
-          <p style={{marginTop:3}}><b>Signature:</b> ___________________________ &nbsp;&nbsp;&nbsp;&nbsp; <b>Date:</b> ______________</p>
+          <b>CANDIDATE ACKNOWLEDGEMENT & ACCEPTANCE:</b><br/>
+          I, <b>{candidateName}</b>, confirm that I have reviewed, understood, and accept all the terms, policies, and responsibilities detailed in this formal internship offer.
+          <div style={{marginTop:4,display:"flex",justifyContent:"space-between"}}>
+            <span><b>Candidate Signature:</b> ___________________________</span>
+            <span><b>Date:</b> ______________</span>
+          </div>
         </div>
       </>}
 
       {training&&<>
-        <p>The training begins on <b>{candidateDate}</b> for <b>{candidateDuration}</b>. You will undergo structured technical training and hands-on assessments.</p>
+        <p>
+          We are pleased to formally confirm your appointment to the Industrial Technical Training Programme with <b>{COMPANY}</b> in the <b>{candidateDomain}</b> track. This appointment provides structured exposure to enterprise technologies, industry-grade architectures, and real-world implementation standards.
+        </p>
 
-        <div className="doc-section">TRAINING TERMS</div>
+        <div className="doc-section">TRAINING APPOINTMENT SPECIFICATIONS</div>
+        <table className="doc-table"><tbody>
+          <tr><td>Candidate Name</td><td><b>{candidateName}</b></td></tr>
+          <tr><td>Training Domain</td><td>{candidateDomain}</td></tr>
+          <tr><td>Training Delivery Mode</td><td>{candidateMode}</td></tr>
+          <tr><td>Date of Orientation</td><td>{candidateDate}</td></tr>
+          <tr><td>Programme Duration</td><td>{candidateDuration}</td></tr>
+          <tr><td>Supervising Division</td><td>Technical Education & Training Wing</td></tr>
+        </tbody></table>
+
+        <div className="doc-section">TRAINING REGULATIONS & CURRICULUM EXPECTATIONS</div>
         <ol className="terms-list">
-          <li>Maintain regular attendance and actively complete assigned practical exercises and technical sessions.</li>
-          <li>Follow the instructions of the training mentor and adhere to information security policies.</li>
-          <li>Completion credentials are issued after successful completion of all curriculum criteria.</li>
+          <li><b>1. Practical Exercises & Curriculum:</b> Complete all assigned technical laboratory assignments, assessments, and capstone implementations in accordance with curriculum deadlines.</li>
+          <li><b>2. Academic Integrity:</b> All code submissions and documentation must reflect original work. Plagiarism or unauthorized copying is strictly prohibited.</li>
+          <li><b>3. Intellectual Property:</b> Educational repositories, proprietary materials, and training assets supplied remain the exclusive property of {COMPANY}.</li>
+          <li><b>4. Evaluation & Certification:</b> Official certification will be granted upon verified assessment completion and satisfactory attendance records.</li>
         </ol>
 
-        <div className="doc-section">CANDIDATE ACKNOWLEDGEMENT</div>
         <div className="acceptance-box">
-          <p>I acknowledge this training appointment and agree to follow all instructions.</p>
-          <p style={{marginTop:3}}><b>Signature:</b> ___________________________ &nbsp;&nbsp;&nbsp;&nbsp; <b>Date:</b> ______________</p>
+          <b>TRAINEE UNDERTAKING:</b><br/>
+          I accept this training appointment and agree to adhere to all curriculum schedules and corporate policies.
+          <div style={{marginTop:4,display:"flex",justifyContent:"space-between"}}>
+            <span><b>Trainee Signature:</b> ___________________________</span>
+            <span><b>Date:</b> ______________</span>
+          </div>
         </div>
       </>}
 
       {experience&&<>
-        <p>During the engagement period, the candidate performed their designated role with dedication and professionalism. This letter is issued as a verified corporate confirmation.</p>
-        <p>We appreciate the candidate's contribution and wish them continued success in their career endeavors.</p>
+        <p>
+          This letter is formally issued upon request to certify the professional service and tenure of <b>{candidateName}</b> with <b>{COMPANY}</b>. The details recorded in our official human resources register are confirmed as set forth below:
+        </p>
+
+        <div className="doc-section">RECORD OF PROFESSIONAL SERVICE</div>
+        <table className="doc-table"><tbody>
+          <tr><td>Employee / Personnel Name</td><td><b>{candidateName}</b></td></tr>
+          <tr><td>Designation / Role</td><td>{candidateRole}</td></tr>
+          <tr><td>Operating Domain / Department</td><td>{candidateDomain}</td></tr>
+          <tr><td>Date of Association</td><td>{candidateDate}</td></tr>
+          <tr><td>Tenure Duration</td><td>{candidateDuration}</td></tr>
+          <tr><td>Corporate Status</td><td>Relieved in Good Standing</td></tr>
+        </tbody></table>
+
+        <div className="doc-section">PERFORMANCE & CONDUCT ENDORSEMENT</div>
+        <p>
+          During their association with {COMPANY}, {candidateName} exhibited commendable dedication, problem-solving capabilities, and high standards of technical performance. Their interpersonal conduct with peers and leadership remained exemplary throughout.
+        </p>
+        <p>
+          We take this opportunity to convey our sincere appreciation for their valuable contributions and extend our best wishes for their continued success in all future professional endeavors.
+        </p>
       </>}
 
-      <Signoff experience={experience} displayName={displayName}/>
+      <SignoffBlock experience={experience} displayName={displayName}/>
     </div>
     <DocFooter senderEmail={senderEmail}/>
   </div>;
@@ -459,65 +529,76 @@ function StandardDocument({data,template,senderEmail,displayName}){
 
 function CompletionDocument({data,template,senderEmail,displayName}){
   const training=template.programme==="training";
-  const type=training?"training":"internship";
+  const type=training?"Industrial Training":"Internship";
   const candidateName = data.name || "[Candidate Full Name]";
   const candidateDomain = data.domain || "[Programme Domain]";
   const dateFrom=dateText(data.joining || "2026-03-01");
   const dateTo=dateText(data.completionDate || "2026-06-01");
   const candidateDuration = data.duration || "3 Months";
   const candidateMode = data.mode || "Online";
+  const refCode = data.aid || ("VRPI-CERT-" + Math.floor(1000 + Math.random()*9000));
 
-  return <div className="a4 completion-page">
+  return <div className="a4 completion-page doc-serif">
     <div className="completion-head">
       <Logo className="doc-logo"/>
       <div className="completion-company">
         <strong>{COMPANY}</strong><br/>
-        Corporate Office • Wanaparthy, Telangana, India<br/>
-        Official Email: {senderEmail||"vrpigroupoftechnology@gmail.com"}<br/>Web: {WEBSITE}
+        (Certified Enterprise Technology & Human Resources Group)<br/>
+        Corporate Office: Wanaparthy, Telangana, India • PIN: 509103<br/>
+        Official Verification Desk: {senderEmail||"vrpigroupoftechnology@gmail.com"}
       </div>
     </div>
     <div className="completion-accent"/>
     <div className="completion-body">
       <div className="completion-title">
-        <small>OFFICIAL CORPORATE DOCUMENTATION • REF: VRPI/COMP/{data.aid||"2026"}</small>
-        <h2>{training?"TRAINING COMPLETION LETTER":"INTERNSHIP COMPLETION LETTER"}</h2>
-        <small>{today().toUpperCase()}</small>
+        <small>OFFICIAL CORPORATE CREDENTIAL • REF: {refCode}</small>
+        <h2>{training?"CERTIFICATE OF TRAINING COMPLETION":"CERTIFICATE OF INTERNSHIP COMPLETION"}</h2>
+        <small>DATE OF ISSUANCE: {today().toUpperCase()}</small>
       </div>
 
-      <div className="completion-recipient">
-        <p><b>To:</b> {data.email||candidateName}</p>
-        <p><b>Subject:</b> Certificate of Successful Completion of {training?"Industrial Training":"Internship"}</p>
-      </div>
+      <p style={{fontSize:12.5}}><b>TO WHOMSOEVER IT MAY CONCERN</b></p>
 
-      <p>Dear {candidateName},</p>
-      <p>Congratulations on successfully completing your {type} with <b>{COMPANY}</b>. We appreciate your consistent effort and positive commitment throughout the tenure.</p>
+      <p>
+        This is to formally certify that <b>{candidateName}</b> has satisfactorily and successfully completed a comprehensive tenure of <b>{type}</b> with <b>{COMPANY}</b> in the specialized domain of <b>{candidateDomain}</b>.
+      </p>
 
-      <div className="doc-section">PROGRAMME COMPLETION DETAILS</div>
+      <div className="doc-section">AUTHENTICATED PROGRAMME DETAILS</div>
       <table className="completion-details"><tbody>
-        <tr><td>Candidate Name</td><td>{candidateName}</td></tr>
-        <tr><td>Programme Type</td><td>{training?"Industrial Technical Training":"Internship"}</td></tr>
-        <tr><td>Domain / Specialization</td><td>{candidateDomain}</td></tr>
-        <tr><td>Mode of Engagement</td><td>{candidateMode}</td></tr>
-        <tr><td>Duration Period</td><td>{dateFrom} to {dateTo} ({candidateDuration})</td></tr>
+        <tr><td>Candidate Full Name</td><td><b>{candidateName}</b></td></tr>
+        <tr><td>Programme Specialization</td><td>{candidateDomain}</td></tr>
+        <tr><td>Programme Classification</td><td>{training?"Industrial Technical Curriculum & Practical Labs":"Enterprise Internship & Project Track"}</td></tr>
+        <tr><td>Execution Mode</td><td>{candidateMode} (Supervised Delivery)</td></tr>
+        <tr><td>Tenure Period</td><td>{dateFrom} to {dateTo}</td></tr>
+        <tr><td>Total Completed Duration</td><td>{candidateDuration}</td></tr>
+        <tr><td>Performance Standing</td><td>Grade A+ (Distinction in Project Execution)</td></tr>
       </tbody></table>
 
-      <p>During this period, you actively contributed to project modules, completed assigned learning tracks, and demonstrated strong professional ethics.</p>
-      <p>We commend your performance and wish you the very best in your academic and career endeavors.</p>
+      <div className="doc-section">EXECUTIVE PERFORMANCE EVALUATION</div>
+      <p>
+        During this period, {candidateName} was actively engaged in enterprise-grade modules, software design sprints, code audits, and technical documentation. The candidate consistently demonstrated disciplined work ethics, technical curiosity, and collaborative proficiency.
+      </p>
+      <p>
+        Their contribution toward assigned deliverables met all corporate benchmarks established by the Talent Excellence Division. We commend their accomplishments and wish them the highest measure of success in their future academic and corporate pursuits.
+      </p>
 
       <div className="completion-signoff">
-        <p>Best Regards,</p>
-        <strong>{displayName||"Talent Excellence Division"}</strong>
-        {COMPANY} • Authorized Corporate Signatory
+        <div>
+          Respectfully issued by,<br/>
+          <strong>{COMPANY}</strong><br/>
+          <div style={{height:26}}></div>
+          <b>Director of Human Resources & Talent Excellence</b><br/>
+          <span>Academic & Industry Review Board • Wanaparthy, Telangana</span>
+        </div>
         <div className="well-done">
           <span className="star">★</span>
-          WELL DONE!
-          <span>BEST WISHES</span>
-          <span>FOR FUTURE</span>
+          EXEMPLARY
+          <span>PERFORMANCE</span>
+          <span>VR PI GROUP</span>
         </div>
       </div>
     </div>
     <div className="completion-footer">
-      {COMPANY} • Wanaparthy, Telangana, India • {senderEmail||"vrpigroupoftechnology@gmail.com"} • {WEBSITE}
+      {COMPANY} • Wanaparthy, Telangana, India • Verification Email: {senderEmail||"vrpigroupoftechnology@gmail.com"} • Web: {WEBSITE}
     </div>
   </div>;
 }
@@ -534,27 +615,28 @@ function ParticipationDocument({data,template,senderEmail}){
       <Logo className="participation-logo"/>
       <div className="participation-company">{COMPANY.toUpperCase()}</div>
       <div className="participation-heading">CERTIFICATE</div>
-      <div className="participation-subtitle">OF PARTICIPATION</div>
-      <div className="participation-intro">This certificate is proudly presented to</div>
+      <div className="participation-subtitle">OF MERIT & PARTICIPATION</div>
+      <div className="participation-intro">This certificate of honor is proudly presented to</div>
       <div className="participation-name">{candidateName}</div>
 
-      <p className="participation-copy">
-        In recognition of active participation and successful contribution to <b>{eventName}</b>, organized in association with the <b>{candidateDomain}</b> programme by <b>{COMPANY}</b>.
+      <p className="participation-copy doc-serif">
+        In recognition of active participation, intellectual contribution, and successful completion of <b>{eventName}</b>, organized under the auspices of the <b>{candidateDomain}</b> Corporate Excellence Initiative by <b>{COMPANY}</b>.
       </p>
 
-      <div className="participation-meta">
-        <div><strong>{eventName}</strong><span>Programme / Event</span></div>
-        <div><strong>{candidateDomain}</strong><span>Programme Domain</span></div>
+      <div className="participation-meta doc-serif">
+        <div><strong>{eventName}</strong><span>Programme / Summit Name</span></div>
+        <div><strong>{candidateDomain}</strong><span>Technical Specialization</span></div>
         <div><strong>{partDate}</strong><span>Date of Participation</span></div>
       </div>
 
-      <div className="participation-meta" style={{marginTop:16}}>
-        <div><strong>Authorized Signatory</strong><span>{COMPANY}</span></div>
-        <div><strong>{today()}</strong><span>Date of Issue</span></div>
+      <div className="participation-meta doc-serif" style={{marginTop:16}}>
+        <div><strong>Head of Academic Affairs</strong><span>Talent Excellence Division</span></div>
+        <div><strong>Authorized Corporate Signatory</strong><span>{COMPANY}</span></div>
+        <div><strong>{today()}</strong><span>Official Date of Issue</span></div>
       </div>
     </div>
     <div className="participation-foot">
-      WANAPARTHY, TELANGANA, INDIA • {senderEmail||"vrpigroupoftechnology@gmail.com"} • {WEBSITE}
+      WANAPARTHY, TELANGANA, INDIA • OFFICIAL VERIFICATION: {senderEmail||"vrpigroupoftechnology@gmail.com"} • {WEBSITE}
     </div>
   </div>;
 }
@@ -565,7 +647,7 @@ function DocumentRenderer({data,template,senderEmail,displayName}){
   return <StandardDocument data={data} template={template} senderEmail={senderEmail} displayName={displayName}/>;
 }
 
-/* Gmail Credentials Modal */
+/* Gmail Modal */
 function GmailModal({open,onClose,credentials,onSave}){
   const [form,setForm]=useState({
     email:"vrpigroupoftechnology@gmail.com",
@@ -602,7 +684,7 @@ function GmailModal({open,onClose,credentials,onSave}){
           <div className="cred-g-icon">✉</div>
           <div>
             <h3>Google Gmail Credentials</h3>
-            <p>Access and switch between company and custom accounts</p>
+            <p>Access and switch between company and personal accounts</p>
           </div>
         </div>
         <button className="close-round" onClick={onClose}>×</button>
@@ -611,7 +693,7 @@ function GmailModal({open,onClose,credentials,onSave}){
       <div className="cred-body">
         <div className="cred-field">
           <label>Sender Gmail Address *</label>
-          <input className="cred-input" placeholder="e.g. vrpigroupoftechnology@gmail.com or srijayelleni@gmail.com" value={form.email} onChange={e=>setForm({...form,email:e.target.value})}/>
+          <input className="cred-input" placeholder="e.g. vrpigroupoftechnology@gmail.com" value={form.email} onChange={e=>setForm({...form,email:e.target.value})}/>
         </div>
 
         <div className="cred-field">
@@ -640,8 +722,8 @@ function GmailModal({open,onClose,credentials,onSave}){
 
         <div className="app-pwd-help">
           <strong>💡 Accessing Multiple Accounts:</strong>
-          <p style={{margin:"4px 0"}}>• Enter your account details above and click <b>"Open in Gmail"</b> to launch Google directly for this email address.</p>
-          <p style={{margin:"4px 0"}}>• Click <b>"Save Credentials"</b> to set this as your default sender for generated certificates and letters.</p>
+          <p style={{margin:"4px 0"}}>• Enter details above and click <b>"Open in Gmail"</b> to launch Google directly for this email address.</p>
+          <p style={{margin:"4px 0"}}>• Click <b>"Save Credentials"</b> to set this as your default sender for generated letters.</p>
         </div>
 
         {notice&&<div style={{padding:"8px 12px",borderRadius:8,marginTop:10,background:"#ecfdf5",color:"#065f46",fontSize:11}}>
@@ -661,7 +743,7 @@ function GmailModal({open,onClose,credentials,onSave}){
   </div>;
 }
 
-/* Microsoft Teams Credentials Modal */
+/* Teams Modal */
 function TeamsModal({open,onClose,credentials,onSave}){
   const [form,setForm]=useState({
     email:"hr@vrpigroup.co.in",
@@ -710,11 +792,6 @@ function TeamsModal({open,onClose,credentials,onSave}){
           <label>Organizer / Panel Display Name</label>
           <input className="cred-input" placeholder="e.g. VR PI Tech Interview Board" value={form.displayName} onChange={e=>setForm({...form,displayName:e.target.value})}/>
         </div>
-
-        <div className="app-pwd-help">
-          <strong>👥 Microsoft Teams Integration:</strong>
-          <p style={{margin:"4px 0"}}>• Connect your organization's Teams meeting link for candidate interview appointments.</p>
-        </div>
       </div>
 
       <div className="cred-footer">
@@ -753,10 +830,8 @@ function App(){
   const [error,setError]=useState("");
   const [lastSync,setLastSync]=useState("");
 
-  /* Full Screen Preview Modal State */
   const [previewModalOpen,setPreviewModalOpen]=useState(false);
 
-  /* Saved Gmail Credentials */
   const [gmailCreds,setGmailCreds]=useState(()=>{
     try{
       const s=localStorage.getItem("vrpi_gmail_creds");
@@ -765,7 +840,6 @@ function App(){
   });
   const [gmailModalOpen,setGmailModalOpen]=useState(false);
 
-  /* Saved Teams Credentials */
   const [teamsCreds,setTeamsCreds]=useState(()=>{
     try{
       const s=localStorage.getItem("vrpi_teams_creds");
@@ -876,7 +950,7 @@ function App(){
       <section className="hero">
         <div className="eyebrow">VR PI GROUP • ENTERPRISE HR & DOCUMENT PLATFORM</div>
         <h1>Enterprise Talent<br/><span style={{color:"#1e3a5f"}}>Excellence Platform</span></h1>
-        <p className="desc">Professional Corporate Document Library • Full-Screen Instant Preview & PDF Export</p>
+        <p className="desc">Executive Times New Roman Corporate Templates • Guaranteed 1-Page Clean Print Preview</p>
       </section>
 
       {error&&<div style={{padding:"10px 14px",background:"#fff5ed",color:"#a34a16",borderRadius:8,marginBottom:14,fontSize:11}}>
@@ -1002,7 +1076,7 @@ function App(){
           <div className="preview-topbar">
             <div className="sync-badge">
               <span className="sync-dot"></span>
-              <span>Live Preview • Instant Sync</span>
+              <span>Times New Roman Live Preview</span>
             </div>
             <div className="preview-controls">
               <span style={{fontSize:9.5,color:"#94a3b8"}}>Scale:</span>
