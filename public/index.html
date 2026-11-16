@@ -80,7 +80,20 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
 .sync-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade80}
 .preview-controls{display:flex;align-items:center;gap:6px}
 .preview-scale-btn{background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:4px 8px;border-radius:6px;font-size:10px;font-weight:700}
-.preview-stage{background:#94a3b8;padding:16px 8px;border-radius:0 0 10px 10px;border:1px solid #94a3b8;overflow:auto;max-height:560px;display:flex;justify-content:center}
+/* WITH THIS: */
+.preview-stage{
+  background:#94a3b8;
+  padding:14px 8px;
+  border-radius:0 0 10px 10px;
+  border:1px solid #94a3b8;
+  overflow-y:auto;
+  overflow-x:hidden;
+  height:560px;       
+  max-height:560px;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+}
 .preview-scaled-wrap{transform-origin:top center;transition:transform .12s ease}
 
 /* Fullscreen Preview Modal */
