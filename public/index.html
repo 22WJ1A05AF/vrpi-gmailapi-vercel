@@ -15,7 +15,7 @@ button,input,select{font:inherit}
 button{cursor:pointer}
 .app{max-width:1520px;margin:auto;padding:20px}
 
-/* Header */
+
 header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border-bottom:1px solid #dfe6ef;padding-bottom:14px}
 .logo{width:180px;height:85px;object-fit:contain;display:block}
 .actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
@@ -28,13 +28,13 @@ header{display:flex;justify-content:space-between;align-items:center;gap:12px;fl
 .gmail-btn{background:linear-gradient(135deg,#312e81 0%,#4338ca 100%);color:white;border:1px solid #4f46e5}
 .teams-btn{background:linear-gradient(135deg,#464eb8 0%,#5b5fc7 100%);color:white;border:1px solid #5b5fc7}
 
-/* Hero */
+
 .hero{text-align:center;padding:26px 10px 16px}
 .eyebrow{display:inline-flex;align-items:center;gap:6px;background:white;border:1px solid #dfe6ef;border-radius:25px;padding:6px 16px;font-size:10px;font-weight:800;letter-spacing:1px;color:#64748b}
 h1{font-size:clamp(28px,4vw,44px);line-height:1.15;margin:12px 0;color:#121c30;letter-spacing:-1px}
 .desc{color:#8290a5;font-size:11.5px;line-height:1.7}
 
-/* Stats */
+
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
 .stat,.panel{background:white;border:1px solid #dfe6ef;border-radius:14px}
 .stat{padding:16px}
@@ -42,7 +42,7 @@ h1{font-size:clamp(28px,4vw,44px);line-height:1.15;margin:12px 0;color:#121c30;l
 .stat strong{display:block;font-size:22px;margin:6px 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .stat small{font-size:9.5px;color:#94a3b8}
 
-/* Panels */
+
 .panel{padding:20px;margin-bottom:20px}
 .kicker{font-size:10px;letter-spacing:1.2px;font-weight:800;color:#8492a7;display:flex;align-items:center;gap:6px}
 h2{font-size:19px;color:#172b49;margin:6px 0}
@@ -58,8 +58,8 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
 .pending{background:#fef3c7;color:#92400e}
 .text-btn{border:0;background:none;color:#0284c7;font-weight:800;font-size:10px;cursor:pointer}
 
-/* Two-Column Studio Layout with Compact Width Ratio */
-.studio-grid{display:grid;grid-template-columns:1.25fr 0.75fr;gap:20px;align-items:start}
+
+.studio-grid{display:grid;grid-template-columns:1.3fr 0.7fr;gap:20px;align-items:start}
 @media(max-width:1150px){.studio-grid{grid-template-columns:1fr}}
 
 .mode-switch,.template-pills{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}
@@ -73,41 +73,38 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
 .field input:focus,.field select:focus{border-color:#e94b17;box-shadow:0 0 0 3px #e94b1712}
 .field input[type=date]{min-height:37px;cursor:pointer;color-scheme:light}
 
-/* Live Preview Column with Compact Fixed Height */
 .preview-column{position:sticky;top:15px}
-.preview-topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;background:#0f172a;color:white;padding:10px 16px;border-radius:10px 10px 0 0}
+.preview-topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;background:#0f172a;color:white;padding:10px 14px;border-radius:10px 10px 0 0}
 .sync-badge{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:800;color:#4ade80}
 .sync-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade80}
 .preview-controls{display:flex;align-items:center;gap:6px}
 .preview-scale-btn{background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:4px 8px;border-radius:6px;font-size:10px;font-weight:700}
 
-/* Outside Window: Fixed Compact Height & Smooth Scroll */
+
 .preview-stage{
   background:#94a3b8;
-  padding:14px 8px;
+  padding:10px 6px;
   border-radius:0 0 10px 10px;
   border:1px solid #94a3b8;
   overflow-y:auto;
   overflow-x:hidden;
-  height:560px;
-  max-height:560px;
+  height:460px;
+  max-height:460px;
   display:flex;
   justify-content:center;
   align-items:flex-start;
 }
 .preview-scaled-wrap{transform-origin:top center;transition:transform .12s ease}
 
-/* Fullscreen Preview Modal */
+
 .modal-overlay{position:fixed;inset:0;background:#090d16cc;backdrop-filter:blur(4px);z-index:200;display:flex;flex-direction:column;align-items:center;overflow-y:auto;padding:15px}
 .modal-container{max-width:980px;width:100%;margin:auto}
 .modalbar{display:flex;justify-content:space-between;align-items:center;gap:12px;background:#17233a;padding:12px 18px;border-radius:12px;margin-bottom:14px;color:white}
 .modalbar strong{font-size:12px}
 .modal-actions{display:flex;gap:8px}
 
-/* ========================================================
-   GMAIL CREDENTIALS MODAL (MATCHING EXACT IMAGE DESIGN)
-   ======================================================== */
-.cred-card{background:white;border-radius:16px;max-width:620px;width:100%;box-shadow:0 25px 60px #00000040;overflow:hidden;margin:auto}
+
+.cred-card{background:white;border-radius:16px;max-width:600px;width:100%;box-shadow:0 25px 60px #00000040;overflow:hidden;margin:auto}
 .cred-header{background:linear-gradient(135deg,#312e81 0%,#4338ca 100%);padding:18px 24px;color:white;display:flex;justify-content:space-between;align-items:center}
 .cred-title-row{display:flex;align-items:center;gap:14px}
 .cred-g-icon{width:42px;height:42px;background:#ffffff18;border:1px solid #ffffff30;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px}
@@ -128,21 +125,13 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
 .input-with-icon span{color:#64748b;font-size:14px;margin-right:8px}
 .input-with-icon input{width:100%;padding:10px 0;border:none;background:transparent;font-size:12px;outline:none}
 
-.stages-title{font-size:10px;font-weight:800;letter-spacing:1px;color:#64748b;margin:16px 0 10px}
-.stages-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px}
-.stage-chip{padding:10px 12px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;display:flex;align-items:center;gap:10px}
-.stage-chip strong{font-size:11px;color:#1e293b;display:block}
-.stage-chip small{font-size:9.5px;color:#64748b}
-
 .app-pwd-help{background:#f8fafc;border:1px dashed #cbd5e1;border-radius:12px;padding:12px 16px;font-size:10px;color:#475569;line-height:1.7}
-.app-pwd-help strong{color:#1e293b;font-size:11px;display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.app-pwd-help strong{color:#1e3a5f;font-size:11px;display:flex;align-items:center;gap:6px;margin-bottom:4px}
 .app-pwd-help ol{margin:4px 0 0;padding-left:18px}
 
-.cred-footer{padding:14px 24px;background:#f8fafc;border-top:1px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center}
+.cred-footer{padding:14px 24px;background:#f8fafc;border-top:1px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
 
-/* ========================================================
-   EXECUTIVE TIMES NEW ROMAN A4 DOCUMENT ENGINE
-   ======================================================== */
+
 .doc-serif{font-family:'Times New Roman',Times,'Georgia',serif;color:#111827}
 .a4{width:210mm;height:296mm;max-height:296mm;overflow:hidden;background:white;margin:auto;display:flex;flex-direction:column;box-shadow:0 6px 25px #00000020}
 
@@ -168,7 +157,7 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
 .terms-list{margin:4px 0 6px;padding-left:18px}
 .terms-list li{margin-bottom:3px;color:#1f2937;line-height:1.45}
 
-/* Authentic Corporate Stamp / Notary Seal */
+
 .signoff-row{display:flex;justify-content:space-between;align-items:flex-end;margin-top:auto;padding-top:10px}
 .signoff-col{font-size:11.5px;line-height:1.45}
 .signoff-col strong{display:block;color:#1e3a5f;font-size:12px;margin-top:2px}
@@ -178,7 +167,7 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
 .acceptance-box p{margin:2px 0}
 .doc-footer{background:#1e3a5f;color:white;text-align:center;padding:7px 12px;font-size:8px;line-height:1.5;margin-top:auto;font-family:'Plus Jakarta Sans',sans-serif}
 
-/* Completion Certificate */
+
 .completion-page{border:1px solid #e5e9ef}
 .completion-head{padding:14px 28px 10px;display:flex;justify-content:space-between;align-items:center;gap:15px;border-bottom:3.5px solid #d6ad59}
 .completion-head .doc-logo{width:130px;height:65px}
@@ -195,7 +184,7 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
 .completion-signoff{margin-top:auto;padding-top:12px;position:relative;display:flex;justify-content:space-between;align-items:flex-end}
 .completion-footer{background:#132e50;color:#fff;padding:7px 14px;text-align:center;font-size:7.5px;line-height:1.5;border-top:2.5px solid #c69f4d;margin-top:auto;font-family:'Plus Jakarta Sans',sans-serif}
 
-/* Participation Certificate */
+
 .participation-page{
   width:297mm;
   height:208mm;
@@ -252,7 +241,7 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
 footer{text-align:center;color:#8491a5;font-size:9.5px;padding:22px}
 footer .logo{width:80px;height:auto;margin:0 auto 6px}
 
-/* Guaranteed 1-Page Clean Print Isolation */
+
 @media print{
   @page{size:A4 portrait;margin:0}
   @page certPage{size:A4 landscape;margin:0}
@@ -322,7 +311,7 @@ function Logo({className="",style={}}){
   return <img src="./vrpi-logo.png" alt="VR PI Group" className={className} style={{objectFit:"contain",display:"block",...style}} onError={e=>{e.target.style.display='none';}}/>;
 }
 
-/* Professional Corporate Registrar Stamp / Seal */
+
 function CorporateSeal(){
   return <svg viewBox="0 0 100 100" className="corp-seal-svg">
     <circle cx="50" cy="50" r="47" fill="none" stroke="#1e3a5f" strokeWidth="2.5"/>
@@ -346,7 +335,7 @@ function CorporateSeal(){
   </svg>;
 }
 
-/* Gold Excellence Medallion for Participation Certificate */
+/* Gold Excellence Medallion */
 function GoldSealBadge(){
   return <svg viewBox="0 0 100 100" className="gold-seal-svg">
     <defs>
@@ -697,7 +686,6 @@ function CompletionDocument({data,template}){
   </div>;
 }
 
-/* Participation Certificate: Clean Corporate Accreditation (CEO / Director signatures removed) */
 function ParticipationDocument({data}){
   const candidateName = data.name || "[Candidate Full Name]";
   const eventName = data.eventName || "[Event / Workshop Name]";
@@ -740,7 +728,7 @@ function ParticipationDocument({data}){
         <div><strong>{partDate}</strong><span>Date of Participation</span></div>
       </div>
 
-      {/* Clean Corporate Accreditation (No individual CEO/Director signatures) */}
+     
       <div className="participation-accreditation doc-serif">
         <GoldSealBadge/>
         <div style={{marginTop:6,fontSize:11,fontWeight:"bold",color:"#17395c",letterSpacing:0.5}}>
@@ -764,9 +752,7 @@ function DocumentRenderer({data,template}){
   return <StandardDocument data={data} template={template}/>;
 }
 
-/* ========================================================
-   GMAIL CREDENTIALS MODAL (MATCHING IMAGE DESIGN EXACTLY)
-   ======================================================== */
+
 function GmailModal({open,onClose,credentials,onSave,onRemove}){
   const [form,setForm]=useState({
     email:"hr@vrpigroup.co.in",
@@ -795,6 +781,12 @@ function GmailModal({open,onClose,credentials,onSave,onRemove}){
   function handleSave(){
     onSave(form);
     onClose();
+  }
+
+  function launchGmailInbox(){
+    const target = form.email.trim() || OFFICIAL_EMAIL;
+    const url = `https://accounts.google.com/AccountChooser?service=mail&continue=${encodeURIComponent('https://mail.google.com/mail/')}&Email=${encodeURIComponent(target)}`;
+    window.open(url, "_blank");
   }
 
   return <div className="modal-overlay" onClick={e=>{if(e.target===e.currentTarget)onClose();}}>
@@ -869,14 +861,6 @@ function GmailModal({open,onClose,credentials,onSave,onRemove}){
           </div>
         </div>
 
-        <div className="stages-title">CONNECTED RECRUITMENT STAGES (DEFAULT TEMPLATES AUTO-SENT)</div>
-        <div className="stages-grid">
-          <div className="stage-chip"><span>📅</span><div><strong>3. Interviews</strong><small>Teams link + .ics invite</small></div></div>
-          <div className="stage-chip"><span>📁</span><div><strong>4. Documents</strong><small>Upload link & checklist</small></div></div>
-          <div className="stage-chip"><span>✉️</span><div><strong>6. Call Letter</strong><small>Letter of Intent + PDF</small></div></div>
-          <div className="stage-chip"><span>🏅</span><div><strong>8. Offer Letter</strong><small>Formal Offer + CTC</small></div></div>
-        </div>
-
         <div className="app-pwd-help">
           <strong>✨ How to get your 16-character Google App Password:</strong>
           <ol>
@@ -897,6 +881,9 @@ function GmailModal({open,onClose,credentials,onSave,onRemove}){
           🗑 Remove
         </button>
         <div style={{display:"flex",gap:8}}>
+          <button type="button" className="btn dark" style={{background:"#1e3a5f",borderColor:"#1e3a5f"}} onClick={launchGmailInbox}>
+            ✉ Open Gmail Inbox ↗
+          </button>
           <button type="button" className="btn" onClick={handleTest}>
             ✈ Test Connection
           </button>
@@ -909,7 +896,7 @@ function GmailModal({open,onClose,credentials,onSave,onRemove}){
   </div>;
 }
 
-/* Microsoft Teams Modal */
+
 function TeamsModal({open,onClose,credentials,onSave}){
   const [form,setForm]=useState({
     email:"hr@vrpigroup.co.in",
@@ -998,7 +985,7 @@ function App(){
   const [previewModalOpen,setPreviewModalOpen]=useState(false);
   const [gmailModalOpen,setGmailModalOpen]=useState(false);
 
-  /* Saved Gmail Credentials */
+ 
   const [gmailCreds,setGmailCreds]=useState(()=>{
     try{
       const s=localStorage.getItem("vrpi_gmail_creds");
@@ -1013,7 +1000,7 @@ function App(){
     }
   });
 
-  /* Saved Teams Credentials */
+ 
   const [teamsCreds,setTeamsCreds]=useState(()=>{
     try{
       const s=localStorage.getItem("vrpi_teams_creds");
@@ -1096,7 +1083,6 @@ function App(){
     try{localStorage.setItem("vrpi_teams_creds",JSON.stringify(c));}catch(e){}
   }
 
-  /* Automatically opens the Company Gmail directly without authuser verification lock */
   function openCompanyGmailDirect(){
     window.open("https://mail.google.com/", "_blank");
   }
@@ -1147,7 +1133,7 @@ function App(){
         </div>)}
       </section>
 
-      {/* Candidate Records Table */}
+     
       <section className="panel">
         <div className="section-head">
           <div>
@@ -1188,7 +1174,7 @@ function App(){
         </div>
       </section>
 
-      {/* Live Studio Layout */}
+    
       <div className="studio-grid">
         <section className="panel" style={{marginBottom:0}}>
           <div className="kicker"><span style={{color:"#059669"}}>● Real-Time Studio</span></div>
@@ -1249,7 +1235,7 @@ function App(){
           </div>
         </section>
 
-        {/* Live Preview Side Panel (Compact Fixed Height) */}
+        
         <div className="preview-column">
           <div className="preview-topbar">
             <div className="sync-badge">
@@ -1291,7 +1277,7 @@ function App(){
         <a href={WEBSITE} target="_blank" rel="noreferrer">Official Company Website</a>
       </footer>
 
-      {/* Full-Screen Document Preview Modal */}
+      
       {previewModalOpen&&<div className="modal-overlay" onClick={e=>{if(e.target===e.currentTarget)setPreviewModalOpen(false);}}>
         <div className="modal-container">
           <div className="modalbar">
@@ -1314,7 +1300,7 @@ function App(){
         </div>
       </div>}
 
-      {/* Exact Matching Gmail Modal */}
+      {/* Exact Matching Gmail Modal with Direct Open Gmail Button */}
       <GmailModal
         open={gmailModalOpen}
         onClose={()=>setGmailModalOpen(false)}
