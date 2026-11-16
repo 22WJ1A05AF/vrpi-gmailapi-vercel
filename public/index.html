@@ -59,7 +59,7 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
 .text-btn{border:0;background:none;color:#0284c7;font-weight:800;font-size:10px;cursor:pointer}
 
 /* Two-Column Studio Layout */
-.studio-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.studio-grid{display:grid;grid-template-columns:1fr 0.6fr;gap:20px;align-items:start}
 @media(max-width:1150px){.studio-grid{grid-template-columns:1fr}}
 
 .mode-switch,.template-pills{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}
@@ -80,7 +80,7 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
 .sync-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade80}
 .preview-controls{display:flex;align-items:center;gap:6px}
 .preview-scale-btn{background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:4px 8px;border-radius:6px;font-size:10px;font-weight:700}
-.preview-stage{background:#94a3b8;padding:16px 8px;border-radius:0 0 10px 10px;border:1px solid #94a3b8;overflow:auto;max-height:820px;display:flex;justify-content:center}
+.preview-stage{background:#94a3b8;padding:16px 8px;border-radius:0 0 10px 10px;border:1px solid #94a3b8;overflow:auto;max-height:750px;display:flex;justify-content:center}
 .preview-scaled-wrap{transform-origin:top center;transition:transform .12s ease}
 
 /* Fullscreen Preview Modal */
@@ -157,9 +157,9 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
    PARTICIPATION CERTIFICATE (CEO SIGNATURES REMOVED)
    ======================================================== */
 .participation-page{
-  width:150mm;
-  height:150mm;
-  max-height:150mm;
+  width:278mm;
+  height:208mm;
+  max-height:208mm;
   position:relative;
   overflow:hidden;
   background:#fffdf8;
@@ -919,7 +919,7 @@ function App(){
     role:"Full Stack Developer Intern"
   });
 
-  const [previewScale,setPreviewScale]=useState(0.55);
+  const [previewScale,setPreviewScale]=useState(0.45);
   const [search,setSearch]=useState("");
   const [loading,setLoading]=useState(false);
   const [error,setError]=useState("");
