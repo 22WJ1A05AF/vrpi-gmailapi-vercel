@@ -154,7 +154,7 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
 .completion-footer{background:#132e50;color:#fff;padding:7px 14px;text-align:center;font-size:7.5px;line-height:1.5;border-top:2.5px solid #c69f4d;margin-top:auto;font-family:'Plus Jakarta Sans',sans-serif}
 
 /* ========================================================
-   RE-ENGINEERED PARTICIPATION CERTIFICATE (NO GAP)
+   PARTICIPATION CERTIFICATE (CEO SIGNATURES REMOVED)
    ======================================================== */
 .participation-page{
   width:297mm;
@@ -226,25 +226,18 @@ td{padding:10px 12px;border-bottom:1px solid #edf0f4;font-size:10px;color:#52637
 .participation-meta-box strong{display:block;font-size:11.5px}
 .participation-meta-box span{display:block;color:#64748b;font-size:9.5px}
 
-.participation-signoff-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  width:95%;
-  margin-top:6px;
-  padding-bottom:4px;
-}
-.part-sign-col{text-align:center;font-size:11px;line-height:1.35;color:#1e3a5f}
-.part-sign-col .sign-line{width:165px;height:1px;background:#1e3a5f;margin:22px auto 4px}
-
-.gold-seal-wrap{
+/* Clean Corporate Endorsement (No Individual Digital Signatures) */
+.participation-accreditation{
   display:flex;
   flex-direction:column;
   align-items:center;
+  justify-content:center;
+  margin-top:4px;
+  padding:4px 0;
 }
 .gold-seal-svg{
-  width:82px;
-  height:82px;
+  width:78px;
+  height:78px;
   display:block;
 }
 .participation-foot{font-size:8px;color:#17395c;font-weight:700;position:relative;z-index:2;margin-top:4px;letter-spacing:1px}
@@ -364,24 +357,22 @@ function CorporateSeal(){
 
 /* Gold Excellence Medallion for Participation Certificate */
 function GoldSealBadge(){
-  return <div className="gold-seal-wrap">
-    <svg viewBox="0 0 100 100" className="gold-seal-svg">
-      <defs>
-        <radialGradient id="goldGrad" cx="35%" cy="30%" r="70%">
-          <stop offset="0%" stopColor="#fff8e1"/>
-          <stop offset="45%" stopColor="#d4af37"/>
-          <stop offset="100%" stopColor="#997018"/>
-        </radialGradient>
-      </defs>
-      <circle cx="50" cy="50" r="48" fill="url(#goldGrad)" stroke="#6b4c10" strokeWidth="2"/>
-      <circle cx="50" cy="50" r="43" fill="none" stroke="#fff8dc" strokeWidth="1.2" strokeDasharray="3,2"/>
-      <circle cx="50" cy="50" r="35" fill="none" stroke="#fff8dc" strokeWidth="1.5"/>
-      <text x="50" y="32" fill="#fff" fontSize="13" fontWeight="bold" textAnchor="middle">★</text>
-      <text x="50" y="46" fill="#fff" fontSize="8" fontWeight="bold" letterSpacing="1" textAnchor="middle">EXCELLENCE</text>
-      <text x="50" y="55" fill="#fff" fontSize="7" fontWeight="bold" letterSpacing="0.8" textAnchor="middle">IN MERIT</text>
-      <text x="50" y="66" fill="#fff8dc" fontSize="5.8" fontWeight="bold" textAnchor="middle">VR PI GROUP</text>
-    </svg>
-  </div>;
+  return <svg viewBox="0 0 100 100" className="gold-seal-svg">
+    <defs>
+      <radialGradient id="goldGrad" cx="35%" cy="30%" r="70%">
+        <stop offset="0%" stopColor="#fff8e1"/>
+        <stop offset="45%" stopColor="#d4af37"/>
+        <stop offset="100%" stopColor="#997018"/>
+      </radialGradient>
+    </defs>
+    <circle cx="50" cy="50" r="48" fill="url(#goldGrad)" stroke="#6b4c10" strokeWidth="2"/>
+    <circle cx="50" cy="50" r="43" fill="none" stroke="#fff8dc" strokeWidth="1.2" strokeDasharray="3,2"/>
+    <circle cx="50" cy="50" r="35" fill="none" stroke="#fff8dc" strokeWidth="1.5"/>
+    <text x="50" y="32" fill="#fff" fontSize="13" fontWeight="bold" textAnchor="middle">★</text>
+    <text x="50" y="46" fill="#fff" fontSize="8" fontWeight="bold" letterSpacing="1" textAnchor="middle">EXCELLENCE</text>
+    <text x="50" y="55" fill="#fff" fontSize="7" fontWeight="bold" letterSpacing="0.8" textAnchor="middle">IN MERIT</text>
+    <text x="50" y="66" fill="#fff8dc" fontSize="5.8" fontWeight="bold" textAnchor="middle">VR PI GROUP</text>
+  </svg>;
 }
 
 const TEMPLATES=[
@@ -716,6 +707,7 @@ function CompletionDocument({data,template}){
   </div>;
 }
 
+/* Participation Certificate: Clean Corporate Accreditation (CEO / Director signatures removed) */
 function ParticipationDocument({data}){
   const candidateName = data.name || "[Candidate Full Name]";
   const eventName = data.eventName || "[Event / Workshop Name]";
@@ -758,19 +750,14 @@ function ParticipationDocument({data}){
         <div><strong>{partDate}</strong><span>Date of Participation</span></div>
       </div>
 
-      <div className="participation-signoff-row doc-serif">
-        <div className="part-sign-col">
-          <div className="sign-line"></div>
-          <b>Director of Academic Affairs</b><br/>
-          <span>Talent Excellence Division</span>
-        </div>
-        
+      {/* Clean Corporate Accreditation (No individual CEO/Director signatures) */}
+      <div className="participation-accreditation doc-serif">
         <GoldSealBadge/>
-
-        <div className="part-sign-col">
-          <div className="sign-line"></div>
-          <b>Managing Director & CEO</b><br/>
-          <span>{COMPANY}</span>
+        <div style={{marginTop:6,fontSize:11,fontWeight:"bold",color:"#17395c",letterSpacing:0.5}}>
+          OFFICIALLY ENDORSED & CONFERRED BY VR PI GROUP OF COMPANIES
+        </div>
+        <div style={{fontSize:9.5,color:"#64748b"}}>
+          Academic & Industry Review Council • Registered Corporate Office: Wanaparthy, Telangana, India
         </div>
       </div>
 
@@ -787,7 +774,7 @@ function DocumentRenderer({data,template}){
   return <StandardDocument data={data} template={template}/>;
 }
 
-/* Gmail Settings Dialog: cleanly lets user open any other Gmail account */
+/* Gmail Settings Dialog: lets user launch any other account */
 function GmailModal({open,onClose}){
   const [targetEmail,setTargetEmail]=useState("");
 
@@ -799,8 +786,8 @@ function GmailModal({open,onClose}){
     window.open(url, "_blank");
   }
 
-  function launchGeneralGmail(){
-    window.open("https://mail.google.com/", "_blank");
+  function launchCompanyDirect(){
+    window.open(`https://mail.google.com/mail/?authuser=${encodeURIComponent(OFFICIAL_EMAIL)}#inbox`, "_blank");
   }
 
   return <div className="modal-overlay" onClick={e=>{if(e.target===e.currentTarget)onClose();}}>
@@ -820,28 +807,29 @@ function GmailModal({open,onClose}){
         <div style={{background:"#f8fafc",border:"1px solid #e2e8f0",borderRadius:10,padding:14,marginBottom:16}}>
           <span style={{fontSize:10,fontWeight:800,color:"#64748b",letterSpacing:1}}>OFFICIAL COMPANY GMAIL</span>
           <div style={{fontSize:13,fontWeight:700,color:"#1e3a5f",margin:"4px 0"}}>{OFFICIAL_EMAIL}</div>
-          <small style={{color:"#059669",fontWeight:700}}>✓ Connected Corporate Dispatcher</small>
+          <small style={{color:"#059669",fontWeight:700}}>✓ Official Corporate Dispatcher</small>
         </div>
 
         <div className="cred-field">
           <label>Open Another Gmail Account</label>
           <input
             className="cred-input"
-            placeholder="Enter any other Gmail address to open..."
+            placeholder="Enter any other Gmail address (e.g. yourname@gmail.com)..."
             value={targetEmail}
             onChange={e=>setTargetEmail(e.target.value)}
           />
         </div>
 
         <div className="app-pwd-help">
-          <strong>💡 Account Chooser:</strong>
-          <p style={{margin:"3px 0"}}>Click below to launch Google's account launcher for the specific address you entered, or open your default active Gmail inbox.</p>
+          <strong>💡 Account Switcher:</strong>
+          <p style={{margin:"3px 0"}}>• The top bar <b>"✉ Open Gmail"</b> button opens the company Gmail ({OFFICIAL_EMAIL}) automatically.</p>
+          <p style={{margin:"3px 0"}}>• To open any other account, type the email above and click <b>"Open This Account in Gmail"</b>.</p>
         </div>
       </div>
 
       <div className="cred-footer">
-        <button type="button" className="btn" onClick={launchGeneralGmail}>
-          ✉ Open Default Gmail Inbox ↗
+        <button type="button" className="btn" onClick={launchCompanyDirect}>
+          ✉ Open Company Inbox ↗
         </button>
         <button type="button" className="btn dark" style={{background:"#4338ca",borderColor:"#4338ca"}} onClick={launchSpecificEmail}>
           🚀 Open This Account in Gmail ↗
@@ -1011,8 +999,9 @@ function App(){
     try{localStorage.setItem("vrpi_teams_creds",JSON.stringify(c));}catch(e){}
   }
 
-  function openCompanyGmail(){
-    window.open("https://mail.google.com/", "_blank");
+  /* Automatically opens the Company Gmail */
+  function openCompanyGmailDirect(){
+    window.open(`https://mail.google.com/mail/?authuser=${encodeURIComponent(OFFICIAL_EMAIL)}#inbox`, "_blank");
   }
 
   return <>
@@ -1030,7 +1019,7 @@ function App(){
           <button className="btn teams-btn" onClick={()=>setTeamsModalOpen(true)}>
             👥 Teams Settings
           </button>
-          <button className="btn dark" onClick={openCompanyGmail}>
+          <button className="btn dark" onClick={openCompanyGmailDirect}>
             ✉ Open Gmail ↗
           </button>
           <a className="btn" style={{background:"#5b5fc7",color:"white",borderColor:"#5b5fc7"}} href={teamsCreds.meetingLink||"https://teams.microsoft.com/"} target="_blank" rel="noreferrer">
